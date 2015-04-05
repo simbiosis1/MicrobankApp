@@ -90,6 +90,7 @@ public class RevenueSharingActivity extends Activity {
 		form.addPeriods("Desember 2014", "12;2014");
 		form.addPeriods("Januari 2015", "01;2015");
 		form.addPeriods("Februari 2015", "02;2015");
+		form.addPeriods("Maret 2015", "03;2015");
 		// showLoading();
 		// srv.loadBranch(getKey(), new AsyncCallback<List<BranchDv>>() {
 		//

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="BprsLoanReport">
+        <wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
+        <dependent-module archiveName="BprsLoanReportService.war" deploy-path="/" handle="module:/resource/BprsLoanReportService/BprsLoanReportService">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="BprsReportingLib.jar" deploy-path="/lib" handle="module:/resource/BprsReportingLib/BprsReportingLib">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="BprsBpIntf.jar" deploy-path="/lib" handle="module:/resource/BprsBpIntf/BprsBpIntf">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="MicrobankDto.jar" deploy-path="/lib" handle="module:/resource/MicrobankDto/MicrobankDto">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SystemBpIntf.jar" deploy-path="/lib" handle="module:/resource/SystemBpIntf/SystemBpIntf">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="BprsLoanReportViewer.war" deploy-path="/" handle="module:/resource/BprsLoanReportViewer/BprsLoanReportViewer">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="KembangModule.jar" deploy-path="/lib" handle="module:/resource/KembangModule/KembangModule">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="MicrobankIntf.jar" deploy-path="/lib" handle="module:/resource/MicrobankIntf/MicrobankIntf">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SystemDto.jar" deploy-path="/lib" handle="module:/resource/SystemDto/SystemDto">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>

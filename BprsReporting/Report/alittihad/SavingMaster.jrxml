@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SavingBookMaster" language="groovy" pageWidth="1133" pageHeight="566" orientation="Landscape" columnWidth="1133" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="8548c4f0-d73c-492e-891a-198e97842b88">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="231"/>
+	<parameter name="Saving.code" class="java.lang.String"/>
+	<parameter name="Saving.name" class="java.lang.String"/>
+	<parameter name="Saving.address" class="java.lang.String"/>
+	<parameter name="Saving.city" class="java.lang.String"/>
+	<parameter name="Saving.product" class="java.lang.String"/>
+	<parameter name="Saving.idCode" class="java.lang.String"/>
+	<parameter name="Saving.cstCode" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="359" splitType="Stretch">
+			<staticText>
+				<reportElement x="452" y="81" width="669" height="20" uuid="6c3c2da4-2b68-4020-bd40-a2ad9824e4e2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[.]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="207">
+			<textField>
+				<reportElement x="74" y="37" width="436" height="17" uuid="f56af49f-4b78-4638-a99b-4444f838b600"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Saving.code} + " (" + $P{Saving.product} + ")"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="74" y="3" width="436" height="17" uuid="a62a2e3b-4741-453e-929d-b27c42d09b3f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Saving.name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="74" y="54" width="340" height="17" uuid="f9486a2e-a33a-469e-b693-e2f7d4fd2c76"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Saving.address}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="74" y="71" width="340" height="17" uuid="6d95aaeb-6c69-4094-9f10-51e0f2486360"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Saving.city}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="74" y="20" width="436" height="17" uuid="4d2b113e-6539-41a4-a1bf-a67b6e3a339f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Saving.cstCode}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="330" y="152" width="100" height="20" uuid="69dca2af-464a-4c31-ae10-714999ce02e8"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+</jasperReport>

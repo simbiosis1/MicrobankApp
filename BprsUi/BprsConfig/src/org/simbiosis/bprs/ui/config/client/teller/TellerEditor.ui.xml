@@ -1,0 +1,38 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:e="urn:import:org.simbiosis.bprs.ui.config.client.editor">
+	<g:HTMLPanel>
+		<table>
+			<tr>
+				<td class="formLabel">Kode</td>
+				<td>
+					<g:TextBox ui:field="code" styleName="formText" />
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel">User</td>
+				<td>
+					<e:UserListBox ui:field="user" styleName="formCombobox" />
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel">Cabang</td>
+				<td>
+					<e:BranchListBox ui:field="branch" styleName="formCombobox" />
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel">Kas</td>
+				<td>
+					<e:SubBranchListBox ui:field="subBranch" styleName="formCombobox" />
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel">Akun</td>
+				<td>
+					<e:CoaListEditor ui:field="coa" styleName="formCombobox" />
+				</td>
+			</tr>
+		</table>
+	</g:HTMLPanel>
+</ui:UiBinder> 

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+              http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5"
+         xmlns="http://java.sun.com/xml/ns/javaee">
+
+  <!-- Servlets -->
+	<servlet>
+		<servlet-name>systemServlet</servlet-name>
+		<servlet-class>org.kembang.module.server.SystemServiceImpl</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>systemServlet</servlet-name>
+		<url-pattern>/bprsloan/system</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>micBankCommServlet</servlet-name>
+		<servlet-class>org.simbiosis.ui.bprs.common.server.MicBankServiceImpl</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>micBankCommServlet</servlet-name>
+		<url-pattern>/bprsloan/micbankcomm</url-pattern>
+	</servlet-mapping>
+	
+ 	<servlet>
+		<servlet-name>micBankServlet</servlet-name>
+		<servlet-class>org.simbiosis.ui.bprs.loan.server.LoanServiceImpl</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>micBankServlet</servlet-name>
+		<url-pattern>/bprsloan/micbank</url-pattern>
+	</servlet-mapping>
+  
+  <!-- Default page to serve -->
+  <welcome-file-list>
+    <welcome-file>BprsLoan.html</welcome-file>
+  </welcome-file-list>
+
+</web-app>

@@ -1,0 +1,86 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.google.gwt.user.datepicker.client"
+	xmlns:e="urn:import:org.simbiosis.ui.bprs.loan.client.editor" xmlns:gr="urn:import:org.kembang.grid.client">
+	<ui:style>
+
+	</ui:style>
+	<g:HTMLPanel>
+		<g:HTMLPanel>
+			<table class="formTableLayout">
+				<tr>
+					<td class="formLabel">
+						No jaminan
+					</td>
+					<td>&nbsp;&nbsp;</td>
+					<td>
+						<g:TextBox ui:field="code" styleName="formText" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						Tanggal registrasi
+					</td>
+					<td>&nbsp;&nbsp;</td>
+					<td>
+						<g:Label ui:field="strRegistration" styleName="formTextlabel" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						Jenis
+					</td>
+					<td>&nbsp;&nbsp;</td>
+					<td>
+						<e:TypeListEditor ui:field="type" styleName="formCombobox" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						Jenis dokumen/No rekening
+					</td>
+					<td>&nbsp;&nbsp;</td>
+					<td>
+						<g:TextBox ui:field="number" styleName="formText" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						Deskripsi
+					</td>
+					<td>&nbsp;&nbsp;</td>
+					<td>
+						<g:TextBox ui:field="description" styleName="formText" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						Pemilik
+					</td>
+					<td>&nbsp;&nbsp;</td>
+					<td>
+						<g:TextBox ui:field="ownerName" styleName="formText" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						Nilai taksiran internal
+					</td>
+					<td>&nbsp;&nbsp;</td>
+					<td>
+						<g:TextBox ui:field="strAppraisalIntValue" styleName="formText" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						Nilai taksiran pasar
+					</td>
+					<td>&nbsp;&nbsp;</td>
+					<td>
+						<g:TextBox ui:field="strAppraisalMarkValue" styleName="formText" />
+					</td>
+				</tr>
+			</table>
+		</g:HTMLPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

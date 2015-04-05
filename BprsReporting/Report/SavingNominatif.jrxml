@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SavingNominatif" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="580e5546-d5d8-4f67-a48e-d071708b52e0">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Saving.company" class="java.lang.String"/>
+	<parameter name="Saving.branch" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="code" class="java.lang.String">
+		<fieldDescription><![CDATA[code]]></fieldDescription>
+	</field>
+	<field name="name" class="java.lang.String">
+		<fieldDescription><![CDATA[name]]></fieldDescription>
+	</field>
+	<field name="valAfter" class="java.lang.Double">
+		<fieldDescription><![CDATA[valAfter]]></fieldDescription>
+	</field>
+	<field name="productName" class="java.lang.String">
+		<fieldDescription><![CDATA[productName]]></fieldDescription>
+	</field>
+	<variable name="saldoAkhir_SUM" class="java.lang.Double" resetType="Group" resetGroup="product" calculation="Sum">
+		<variableExpression><![CDATA[$F{valAfter}]]></variableExpression>
+	</variable>
+	<group name="product" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{productName}]]></groupExpression>
+		<groupHeader>
+			<band height="27">
+				<textField>
+					<reportElement x="0" y="2" width="308" height="20" uuid="1043d5d7-a47b-4367-a8b5-d284791bb53f"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{productName}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="29">
+				<textField isStretchWithOverflow="true" pattern="#,##0.00">
+					<reportElement x="424" y="0" width="129" height="20" uuid="eaecd1c0-b14d-4146-894b-f691ac109f62"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{saldoAkhir_SUM}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="80" height="20" uuid="4d9c6fb9-5ff6-4edb-8c57-82a995acfb8b"/>
+					<text><![CDATA[Total Saldo ]]></text>
+				</staticText>
+				<line>
+					<reportElement x="233" y="21" width="322" height="1" uuid="ab963e97-bfbe-4739-8c06-6d1e1ba26e9e"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="90" splitType="Stretch">
+			<staticText>
+				<reportElement x="287" y="0" width="267" height="30" uuid="81183759-eac7-48cf-8e39-ff43bf131482"/>
+				<textElement textAlignment="Right">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nominatif Tabungan]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="288" y="32" width="267" height="30" uuid="16b9748b-c1e0-4959-8af4-0c635c6d096c"/>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Saving.company}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="246" y="65" width="307" height="20" uuid="bfc0ae22-b66c-4e59-8028-dedea43a1132"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Saving.branch}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="15" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="3" width="37" height="15" uuid="e783e1eb-a67f-40b3-9f20-2f4a9c421d43"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="43" y="3" width="85" height="15" uuid="1fde387f-291a-4e39-87af-9cdd96993981"/>
+				<textElement textAlignment="Left">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No Rekening]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="3" width="105" height="15" uuid="5837e2f1-181e-41ef-a2a2-5dbfd3d2df1f"/>
+				<textElement textAlignment="Left">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Nasabah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="475" y="3" width="80" height="15" uuid="bab434c1-21a3-4864-97d9-9e75e16f99f4"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Saldo]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="19" width="555" height="1" uuid="1283d670-35c5-495d-88bb-f9d44ffe5741"/>
+			</line>
+			<line>
+				<reportElement x="0" y="1" width="555" height="1" uuid="1283d670-35c5-495d-88bb-f9d44ffe5741"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="37" height="13" uuid="190b19c0-d414-42c4-a719-aaad1121c6b6"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="43" y="0" width="85" height="13" uuid="04a248f4-6b83-4839-b5dd-8e1661f70c5a"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{code}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="0" width="294" height="13" uuid="ad1e28d6-34ee-4241-afac-674380bc1a2a"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="427" y="0" width="126" height="13" uuid="e2bac44c-df3e-4374-8e99-5e6284361486"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valAfter}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="14" width="555" height="1" uuid="1283d670-35c5-495d-88bb-f9d44ffe5741"/>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

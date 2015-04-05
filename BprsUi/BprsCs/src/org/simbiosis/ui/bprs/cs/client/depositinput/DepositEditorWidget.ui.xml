@@ -1,0 +1,86 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:e="urn:import:org.simbiosis.ui.bprs.common.client.editor">
+	<ui:style>
+
+	</ui:style>
+	<g:HTMLPanel>
+		<g:HTMLPanel>
+			<table class="formTableLayout">
+				<tr>
+					<td class="formLabel">
+						No rek
+					</td>
+					<td>
+						<g:TextBox ui:field="code" styleName="formText" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						Tanggal registrasi
+					</td>
+					<td>
+						<g:Label ui:field="strRegistration" styleName="formTextlabel" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						Bilyet
+					</td>
+					<td>
+						<g:TextBox ui:field="bilyet" styleName="formText" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						Produk
+					</td>
+					<td>
+						<e:ProductListEditor ui:field="product"
+							styleName="formCombobox" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						Nominal
+					</td>
+					<td>
+						<g:TextBox ui:field="strValue" styleName="formText" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						Nisbah
+					</td>
+					<td>
+						<g:Label ui:field="strRate" styleName="formTextlabel" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						Tambahan nisbah
+					</td>
+					<td>
+						<g:TextBox ui:field="strSpecialRate" styleName="formText" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						ARO
+					</td>
+					<td>
+						<g:CheckBox ui:field="aro" styleName="formCheckbox" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						Zakat
+					</td>
+					<td>
+						<g:CheckBox ui:field="zakat" styleName="formCheckbox" />
+					</td>
+				</tr>
+			</table>
+		</g:HTMLPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

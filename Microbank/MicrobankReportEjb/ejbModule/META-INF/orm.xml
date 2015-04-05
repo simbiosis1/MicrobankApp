@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.0" xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd">
+	<persistence-unit-metadata>
+		<persistence-unit-defaults>
+			<access>FIELD</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<entity class="org.simbiosis.microbank.model.SavingRpt">
+		<table name="RPT_SAVING">
+		</table>
+		<named-query name="deleteDailySaving">
+			<query>delete from SavingRpt x where x.type=1 and x.company=:company and x.id.pos=:pos</query>
+		</named-query>
+		<named-query name="sumTransDebetSaving">
+			<query>select sum(x.transDebet) from SavingRpt x where x.type=1 and x.company=:company and x.id.pos&gt;=:beginDate and x.id.pos&lt;=:endDate and x.id.refId=:refId</query>
+		</named-query>
+		<named-query name="sumTransCreditSaving">
+			<query>select sum(x.transCredit) from SavingRpt x where x.type=1 and x.company=:company and x.id.pos&gt;=:beginDate and x.id.pos&lt;=:endDate and x.id.refId=:refId</query>
+		</named-query>
+		<named-query name="sumTransSaving">
+			<query>select x.id.refId,sum(x.transDebet),sum(x.transCredit) from SavingRpt x where x.type=1 and x.company=:company and x.id.pos&gt;=:beginDate and x.id.pos&lt;=:endDate and x.id.refId=:refId group by x.id.refId</query>
+		</named-query>
+		<named-query name="getDailySaving">
+			<query>select x from SavingRpt x where x.type=1 and x.id.pos=:pos and x.id.refId=:refId</query>
+		</named-query>
+		<named-query name="getMonthlySaving">
+			<query>select x from SavingRpt x where x.type=2 and x.month=:month and x.year=:year and x.id.refId=:refId</query>
+		</named-query>
+		<named-query name="listDailySaving1">
+			<query>select x from SavingRpt x where x.type=1 and x.company=:company and x.id.pos=:pos order by x.productCode,x.productName,x.code</query>
+		</named-query>
+		<named-query name="listDailySaving2">
+			<query>select x from SavingRpt x where x.type=1 and x.branch=:branch and x.id.pos=:pos order by x.productCode,x.productName,x.code</query>
+		</named-query>
+		<named-query name="listMonthlySaving">
+			<query>select x from SavingRpt x where x.type=2 and x.branch=:branch and x.month=:month and x.year=:year order by x.productCode,x.productName,x.code</query>
+		</named-query>
+		<named-query name="listDailySavingBySchema">
+			<query>select x from SavingRpt x where x.type=1 and x.company=:company and x.id.pos=:pos and x.schema=:schema order by x.productCode,x.code</query>
+		</named-query>
+		<named-query name="listDailySavingByProduct">
+			<query>select x from SavingRpt x where x.type=1 and x.company=:company and x.id.pos=:pos and x.product=:product order by x.code</query>
+		</named-query>
+		<named-query name="listDailySavingByProduct2">
+			<query>select x from SavingRpt x where x.type=1 and x.branch=:branch and x.id.pos=:pos and x.product=:product order by x.code</query>
+		</named-query>
+		<attributes>
+			<embedded-id name="id">
+			</embedded-id>
+			<basic name="company">
+				<column name="SAV_COMPANY"/>
+			</basic>
+			<basic name="branch">
+				<column name="SAV_BRANCH"/>
+			</basic>
+			<basic name="branchCode">
+				<column name="SAV_BRANCHCODE" length="30"/>
+			</basic>
+			<basic name="branchName">
+				<column name="SAV_BRANCHNAME" length="100"/>
+			</basic>
+			<basic name="code">
+				<column name="SAV_CODE" length="30"/>
+			</basic>
+			<basic name="name">
+				<column name="SAV_NAME" length="200"/>
+			</basic>
+			<basic name="product">
+				<column name="SAV_PRODUCT"/>
+			</basic>
+			<basic name="productCode">
+				<column name="SAV_PRODUCTCODE" length="30"/>
+			</basic>
+			<basic name="productName">
+				<column name="SAV_PRODUCTNAME" length="100"/>
+			</basic>
+			<basic name="schema">
+				<column name="SAV_SCHEMA"/>
+			</basic>
+			<basic name="rate">
+				<column name="SAV_RATE"/>
+			</basic>
+			<basic name="iRate">
+				<column name="SAV_IRATE"/>
+			</basic>
+			<basic name="type">
+				<column name="SAV_TYPE"/>
+			</basic>
+			<basic name="month">
+				<column name="SAV_MONTH"/>
+			</basic>
+			<basic name="year">
+				<column name="SAV_YEAR"/>
+			</basic>
+			<basic name="begin">
+				<column name="SAV_BEGIN"/>
+				<temporal>DATE</temporal>
+			</basic>
+			<basic name="end">
+				<column name="SAV_END"/>
+				<temporal>DATE</temporal>
+			</basic>
+			<basic name="valPrev">
+				<column name="SAV_VALPREV"/>
+			</basic>
+			<basic name="valAfter">
+				<column name="SAV_VALAFTER"/>
+			</basic>
+			<basic name="transDebet">
+				<column name="SAV_TRANSDEBET"/>
+			</basic>
+			<basic name="transCredit">
+				<column name="SAV_TRANSCREDIT"/>
+			</basic>
+			<basic name="biCity">
+				<column name="SAV_BICITY"/>
+			</basic>
+			<basic name="city">
+				<column name="SAV_CITY"/>
+			</basic>
+		</attributes>
+	</entity>
+	<entity class="org.simbiosis.microbank.model.DepositRpt">
+		<table name="RPT_DEPOSIT">
+		</table>
+		<named-query name="deleteDailyDeposit">
+			<query>delete from DepositRpt x where x.type=1 and x.company=:company and x.id.pos=:pos</query>
+		</named-query>
+		<named-query name="listDailyDeposit1">
+			<query>select x from DepositRpt x where x.type=1 and x.company=:company and x.id.pos=:pos order by x.productCode,x.code</query>
+		</named-query>
+		<named-query name="listDailyDeposit2">
+			<query>select x from DepositRpt x where x.type=1 and x.branch=:branch and x.id.pos=:pos order by x.productCode,x.code</query>
+		</named-query>
+		<named-query name="listDailyDepositByProduct">
+			<query>select x from DepositRpt x where x.type=1 and x.company=:company and x.id.pos=:pos and x.product=:product order by x.code</query>
+		</named-query>
+		<named-query name="listDailyDepositByProduct2">
+			<query>select x from DepositRpt x where x.type=1 and x.branch=:branch and x.id.pos=:pos and x.product=:product order by x.code</query>
+		</named-query>
+		<attributes>
+			<embedded-id name="id">
+			</embedded-id>
+			<basic name="company">
+				<column name="DEP_COMPANY"/>
+			</basic>
+			<basic name="branch">
+				<column name="DEP_BRANCH"/>
+			</basic>
+			<basic name="branchCode">
+				<column name="DEP_BRANCHCODE"/>
+			</basic>
+			<basic name="branchName">
+				<column name="DEP_BRANCHNAME"/>
+			</basic>
+			<basic name="code">
+				<column name="DEP_CODE"/>
+			</basic>
+			<basic name="name">
+				<column name="DEP_NAME"/>
+			</basic>
+			<basic name="product">
+				<column name="DEP_PRODUCT"/>
+			</basic>
+			<basic name="productCode">
+				<column name="DEP_PRODUCTCODE"/>
+			</basic>
+			<basic name="productName">
+				<column name="DEP_PRODUCTNAME"/>
+			</basic>
+			<basic name="rate">
+				<column name="DEP_RATE"/>
+			</basic>
+			<basic name="iRate">
+				<column name="DEP_IRATE"/>
+			</basic>
+			<basic name="type">
+				<column name="DEP_TYPE"/>
+			</basic>
+			<basic name="month">
+				<column name="DEP_MONTH"/>
+			</basic>
+			<basic name="year">
+				<column name="DEP_YEAR"/>
+			</basic>
+			<basic name="value">
+				<column name="DEP_VALUE"/>
+			</basic>
+			<basic name="registration">
+				<column name="DEP_REGISTRATION"/>
+			</basic>
+			<basic name="begin">
+				<column name="DEP_BEGIN"/>
+			</basic>
+			<basic name="end">
+				<column name="DEP_END"/>
+			</basic>
+			<basic name="biCity">
+				<column name="DEP_BICITY"/>
+			</basic>
+		</attributes>
+	</entity>
+	<entity class="org.simbiosis.microbank.model.LoanRpt">
+		<table name="RPT_LOAN">
+		</table>
+		<named-query name="getDailyLoanByCode">
+			<query>select x from LoanRpt x where x.type=1 and x.code=:code and x.company=:company and x.id.pos=:pos</query>
+		</named-query>
+		<named-query name="listCustomerLoan">
+			<query>select x from LoanRpt x where x.type=1 and x.customer=:customer and x.id.pos=:pos</query>
+		</named-query>
+		<named-query name="getMaxQuality">
+			<query>select max(x.quality) from LoanRpt x where x.type=1 and x.customer=:customer and x.id.pos=:pos</query>
+		</named-query>
+		<named-query name="getDailyLoan">
+			<query>select x from LoanRpt x where x.type=1 and x.id.refId=:loan and x.id.pos=:pos</query>
+		</named-query>
+		<named-query name="deleteDailyLoan">
+			<query>delete from LoanRpt x where x.type=1 and x.company=:company and x.id.pos=:pos</query>
+		</named-query>
+		<named-query name="listDailyLoan1">
+			<query>select x from LoanRpt x where x.type=1 and x.company=:company and x.id.pos=:pos order by x.productName,x.code</query>
+		</named-query>
+		<named-query name="listDailyLoan2">
+			<query>select x from LoanRpt x where x.type=1 and x.branch=:branch and x.id.pos=:pos order by x.productName,x.code</query>
+		</named-query>
+		<named-query name="listDailyLoan3">
+			<query>select x from LoanRpt x where x.type=1 and x.company=:company and x.ao=:ao and x.id.pos=:pos order by x.productName,x.code</query>
+		</named-query>
+		<named-query name="listDailyLoan4">
+			<query>select x from LoanRpt x where x.type=1 and x.branch=:branch and x.ao=:ao and x.id.pos=:pos order by x.productName,x.code</query>
+		</named-query>
+		<named-query name="listDailyLoanByQuality1">
+			<query>select x from LoanRpt x where x.type=1 and x.company=:company and x.id.pos=:pos and x.quality=1 order by x.productName,x.code</query>
+		</named-query>
+		<named-query name="listDailyLoanByQuality2">
+			<query>select x from LoanRpt x where x.type=1 and x.company=:company and x.id.pos=:pos and x.quality&gt;=2 order by x.productName,x.code</query>
+		</named-query>
+		<named-query name="listDailyLoanByQuality3">
+			<query>select x from LoanRpt x where x.type=1 and x.id.pos=:pos and x.branch=:branch and x.quality=1 order by x.productName,x.code</query>
+		</named-query>
+		<named-query name="listDailyLoanByQuality4">
+			<query>select x from LoanRpt x where x.type=1 and x.id.pos=:pos and x.branch=:branch and x.quality&gt;=2 order by x.productName,x.code</query>
+		</named-query>
+		<named-query name="listDailyLoanByProduct1">
+			<query>select x from LoanRpt x where x.type=1 and x.id.pos=:pos and x.company=:company and x.product=:product order by x.productName,x.code</query>
+		</named-query>
+		<named-query name="listDailyLoanByProduct2">
+			<query>select x from LoanRpt x where x.type=1 and x.id.pos=:pos and x.company=:company and x.quality=1 and x.product=:product order by x.productName,x.code</query>
+		</named-query>
+		<named-query name="listDailyLoanByProduct3">
+			<query>select x from LoanRpt x where x.type=1 and x.id.pos=:pos and x.company=:company and x.quality&gt;=2 and x.product=:product order by x.productName,x.code</query>
+		</named-query>
+		<named-query name="listDailyLoanByProduct4">
+			<query>select x from LoanRpt x where x.type=1 and x.id.pos=:pos and x.branch=:branch and x.product=:product order by x.productName,x.code</query>
+		</named-query>
+		<named-query name="listDailyLoanByProduct5">
+			<query>select x from LoanRpt x where x.type=1 and x.id.pos=:pos and x.branch=:branch and x.quality=1 and x.product=:product order by x.productName,x.code</query>
+		</named-query>
+		<named-query name="listDailyLoanByProduct6">
+			<query>select x from LoanRpt x where x.type=1 and x.id.pos=:pos and x.branch=:branch and x.quality&gt;=2 and x.product=:product order by x.productName,x.code</query>
+		</named-query>
+		<named-query name="listDailyLoanByAo1">
+			<query>select x from LoanRpt x where x.type=1 and x.id.pos=:pos order by x.code</query>
+		</named-query>
+		<named-query name="listDailyLoanByAo2">
+			<query>select x from LoanRpt x where x.type=1 and x.id.pos=:pos and x.ao=:ao and x.quality=1 order by x.code</query>
+		</named-query>
+		<named-query name="listDailyLoanByAo3">
+			<query>select x from LoanRpt x where x.type=1 and x.id.pos=:pos and x.ao=:ao and x.quality&gt;=2 order by x.code</query>
+		</named-query>
+		<named-query name="listDailyLoanByAo4">
+			<query>select x from LoanRpt x where x.type=1 and x.id.pos=:pos and x.quality=1 order by x.code</query>
+		</named-query>
+		<named-query name="listDailyLoanByAo5">
+			<query>select x from LoanRpt x where x.type=1 and x.id.pos=:pos and x.quality&gt;=2 order by x.code</query>
+		</named-query>
+		<named-query name="listDailyLoanByAo6">
+			<query>select x from LoanRpt x where x.type=1 and x.id.pos=:pos and x.ao=:ao order by x.code</query>
+		</named-query>
+		<attributes>
+			<embedded-id name="id">
+			</embedded-id>
+			<basic name="customer">
+				<column name="LOA_CUSTOMER"/>
+			</basic>
+			<basic name="company">
+				<column name="LOA_COMPANY"/>
+			</basic>
+			<basic name="branch">
+				<column name="LOA_BRANCH"/>
+			</basic>
+			<basic name="branchCode">
+				<column name="LOA_BRANCHCODE" length="30"/>
+			</basic>
+			<basic name="branchName">
+				<column name="LOA_BRANCHNAME" length="100"/>
+			</basic>
+			<basic name="code">
+				<column name="LOA_CODE" length="30"/>
+			</basic>
+			<basic name="name">
+				<column name="LOA_NAME" length="100"/>
+			</basic>
+			<basic name="product">
+				<column name="LOA_PRODUCT"/>
+			</basic>
+			<basic name="productCode">
+				<column name="LOA_PRODUCTCODE" length="30"/>
+			</basic>
+			<basic name="productName">
+				<column name="LOA_PRODUCTNAME" length="100"/>
+			</basic>
+			<basic name="rate">
+				<column name="LOA_RATE"/>
+			</basic>
+			<basic name="iRate">
+				<column name="LOA_IRATE"/>
+			</basic>
+			<basic name="type">
+				<column name="LOA_TYPE"/>
+			</basic>
+			<basic name="month">
+				<column name="LOA_MONTH"/>
+			</basic>
+			<basic name="year">
+				<column name="LOA_YEAR"/>
+			</basic>
+			<basic name="schema">
+				<column name="LOA_SCHEMA"/>
+			</basic>
+			<basic name="contract">
+				<column name="LOA_CONTRACT" length="200"/>
+			</basic>
+			<basic name="contractDate">
+				<column name="LOA_CONTRACTDATE"/>
+				<temporal>DATE</temporal>
+			</basic>
+			<basic name="tenor">
+				<column name="LOA_TENOR"/>
+			</basic>
+			<basic name="principal">
+				<column name="LOA_PRINCIPAL"/>
+			</basic>
+			<basic name="margin">
+				<column name="LOA_MARGIN"/>
+			</basic>
+			<basic name="total">
+				<column name="LOA_TOTAL"/>
+			</basic>
+			<basic name="paidPrincipal">
+				<column name="LOA_PAIDPRINCIPAL"/>
+			</basic>
+			<basic name="paidMargin">
+				<column name="LOA_PAIDMARGIN"/>
+			</basic>
+			<basic name="paidTotal">
+				<column name="LOA_PAIDTOTAL"/>
+			</basic>
+			<basic name="osPrincipal">
+				<column name="LOA_OSPRINCIPAL"/>
+			</basic>
+			<basic name="osMargin">
+				<column name="LOA_OSMARGIN"/>
+			</basic>
+			<basic name="osTotal">
+				<column name="LOA_OSTOTAL"/>
+			</basic>
+			<basic name="quality">
+				<column name="LOA_QUALITY"/>
+			</basic>
+			<basic name="dueOs">
+				<column name="LOA_DUEOS"/>
+			</basic>
+			<basic name="lastPaid">
+				<column name="LOA_LASTPAID"/>
+				<temporal>DATE</temporal>
+			</basic>
+			<basic name="dueOsPrincipal">
+				<column name="LOA_DUEOSPRINCIPAL"/>
+			</basic>
+			<basic name="dueOsMargin">
+				<column name="LOA_DUEOSMARGIN"/>
+			</basic>
+			<basic name="dueOsTotal">
+				<column name="LOA_DUEOSTOTAL"/>
+			</basic>
+			<basic name="outstanding">
+				<column name="LOA_OUTSTANDING"/>
+			</basic>
+			<basic name="guaranteeType">
+				<column name="LOA_GUARANTEETYPE"/>
+			</basic>
+			<basic name="guarantee">
+				<column name="LOA_GUARANTEE"/>
+			</basic>
+			<basic name="ppap">
+				<column name="LOA_PPAP"/>
+			</basic>
+			<basic name="savingCode">
+				<column name="LOA_SAVINGCODE" length="30"/>
+			</basic>
+			<basic name="savingBallance">
+				<column name="LOA_SAVINGBALLANCE"/>
+			</basic>
+			<basic name="registration">
+				<column name="LOA_REGISTRATION"/>
+				<temporal>DATE</temporal>
+			</basic>
+			<basic name="begin">
+				<column name="LOA_BEGIN"/>
+				<temporal>DATE</temporal>
+			</basic>
+			<basic name="end">
+				<column name="LOA_END"/>
+				<temporal>DATE</temporal>
+			</basic>
+			<basic name="biCity">
+				<column name="LOA_BICITY"/>
+			</basic>
+			<basic name="city">
+				<column name="LOA_CITY"/>
+			</basic>
+			<basic name="ao">
+				<column name="LOA_AO"/>
+			</basic>
+			<basic name="aoName">
+				<column name="LOA_AONAME" length="100"/>
+			</basic>
+			<basic name="address">
+				<column name="LOA_ADDRESS" length="400"/>
+			</basic>
+			<basic name="paidDiscount">
+				<column name="LOA_PAIDDISCOUNT"/>
+			</basic>
+			<basic name="saving">
+				<column name="LOA_SAVING"/>
+			</basic>
+			<basic name="postCode">
+				<column name="LOA_POSTCODE" length="30"/>
+			</basic>
+			<basic name="handphone">
+				<column name="LOA_HANDPHONE" length="100"/>
+			</basic>
+			<basic name="phone">
+				<column name="LOA_PHONE" length="100"/>
+			</basic>
+			<basic name="installment">
+				<column name="LOA_INSTALLMENT"/>
+			</basic>
+			<basic name="fine">
+				<column name="LOA_FINE"/>
+			</basic>
+			<basic name="guaranteeDescription">
+				<column name="LOA_GUARANTEEDESCRIPTION" length="200"/>
+			</basic>
+		</attributes>
+	</entity>
+	<entity class="org.simbiosis.microbank.model.CifRpt">
+		<table name="RPT_CIF">
+		</table>
+		<attributes>
+			<id name="id">
+				<column name="CIF_ID" nullable="true" unique="false"/>
+			</id>
+			<basic name="refId">
+				<column name="CIF_REFID"/>
+			</basic>
+			<basic name="code">
+				<column length="30" name="CIF_CODE"/>
+			</basic>
+			<basic name="name">
+				<column name="CIF_NAME"/>
+			</basic>
+			<basic name="idType">
+				<column name="CIF_IDTYPE"/>
+			</basic>
+			<basic name="idCode">
+				<column name="CIF_IDCODE" length="100"/>
+			</basic>
+			<basic name="taxNr">
+				<column name="CIF_TAXNR" length="100"/>
+			</basic>
+			<basic name="biCity">
+				<column name="CIF_BICITY" length="30"/>
+			</basic>
+		</attributes>
+	</entity>
+	<embeddable class="org.simbiosis.microbank.model.SavingRptPk">
+		<attributes>
+			<basic name="pos">
+				<column name="SAV_POS"/>
+			</basic>
+			<basic name="refId">
+				<column name="SAV_REFID"/>
+			</basic>
+		</attributes>
+	</embeddable>
+	<embeddable class="org.simbiosis.microbank.model.DepositRptPk">
+		<attributes>
+			<basic name="pos">
+				<column name="DEP_POS"/>
+			</basic>
+			<basic name="refId">
+				<column name="DEP_REFID"/>
+			</basic>
+		</attributes>
+	</embeddable>
+	<embeddable class="org.simbiosis.microbank.model.LoanRptPk">
+		<attributes>
+			<basic name="pos">
+				<column name="LOA_POS"/>
+			</basic>
+			<basic name="refId">
+				<column name="LOA_REFID"/>
+			</basic>
+		</attributes>
+	</embeddable>
+</entity-mappings>

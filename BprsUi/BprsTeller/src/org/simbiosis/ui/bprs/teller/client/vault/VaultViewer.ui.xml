@@ -1,0 +1,32 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:e="urn:import:org.simbiosis.ui.bprs.teller.client.vault"
+	>
+	<ui:style>
+	</ui:style>
+	<g:HTMLPanel>
+		<table>
+			<tr>
+				<td colspan="3" class="formDescription">Transaksi khasanah / vault</td>
+			</tr>
+			<tr>
+				<td class="formLabel" width="150px">Tanggal</td>
+				<td>&nbsp;</td>
+				<td>
+					<g:Label ui:field="strDate" />
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel">Jenis</td>
+				<td>&nbsp;</td>
+				<td>
+					<g:Label ui:field="strType" />
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3"><e:VaultInfo ui:field="info"/></td>
+			</tr>
+		</table>
+	</g:HTMLPanel>
+</ui:UiBinder> 

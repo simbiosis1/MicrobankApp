@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jackson"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/commons"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/CliSimbiosis"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/SystemDto"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jodatime"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/GlIntf"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/GlBpIntf"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,71 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<g:HTMLPanel>
+		<table>
+			<tr>
+				<td class="formLabel">Skema</td>
+				<td>
+					<g:Label ui:field="strSchema" styleName="formTextlabel" />
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel">Kode</td>
+				<td>
+					<g:Label ui:field="code" styleName="formTextlabel" />
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel">Nama</td>
+				<td>
+					<g:Label ui:field="name" styleName="formTextlabel" />
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel">Nisbah</td>
+				<td>
+					<g:Label ui:field="strSharing" styleName="formTextlabel" />
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel">Saldo minimal</td>
+				<td>
+					<g:Label ui:field="strMinValue" styleName="formTextlabel" />
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel">Biaya penutupan</td>
+				<td>
+					<g:Label ui:field="strCloseAdmin" styleName="formTextlabel" />
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel" colspan="2">Akun</td>
+			</tr>
+			<tr>
+				<td class="formLabel">Produk</td>
+				<td>
+					<g:Label ui:field="strCoa1" styleName="formTextlabel" />
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel">Bonus/Bagi Hasil</td>
+				<td>
+					<g:Label ui:field="strCoa2" styleName="formTextlabel" />
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel">Administrasi</td>
+				<td>
+					<g:Label ui:field="strCoa3" styleName="formTextlabel" />
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel">Penutupan</td>
+				<td>
+					<g:Label ui:field="strCoa4" styleName="formTextlabel" />
+				</td>
+			</tr>
+		</table>
+	</g:HTMLPanel>
+</ui:UiBinder> 

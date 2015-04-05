@@ -1,0 +1,50 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:e="urn:import:org.simbiosis.bprs.ui.config.client.editor">
+	<g:HTMLPanel>
+		<table>
+			<tr>
+				<td class="formLabel" width="75px">Kode</td>
+				<td>
+					<g:TextBox ui:field="code" styleName="formText" />
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel" width="75px">Nama</td>
+				<td>
+					<g:TextBox ui:field="name" styleName="formText" />
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel" width="75px" colspan="2"><g:CheckBox ui:field="hasShare" styleName="formCheckbox">Dibagihasilkan</g:CheckBox></td>
+			</tr>
+			<tr>
+				<td class="formLabel" colspan="2">Akun</td>
+			</tr>
+			<tr>
+				<td class="formLabel" width="75px">Produk</td>
+				<td>
+					<e:CoaListEditor ui:field="coa1" styleName="formCombobox" />
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel" width="75px">Pendapatan</td>
+				<td>
+					<e:CoaListEditor ui:field="coa2" styleName="formCombobox" />
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel" width="75px">Beban</td>
+				<td>
+					<e:CoaListEditor ui:field="coa3" styleName="formCombobox" />
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel" width="75px">Diskon</td>
+				<td>
+					<e:CoaListEditor ui:field="coa4" styleName="formCombobox" />
+				</td>
+			</tr>
+					</table>
+	</g:HTMLPanel>
+</ui:UiBinder> 

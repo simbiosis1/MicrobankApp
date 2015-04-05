@@ -1,0 +1,186 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.google.gwt.user.datepicker.client"
+	xmlns:ce="urn:import:org.simbiosis.ui.bprs.common.client.editor"
+	xmlns:e="urn:import:org.simbiosis.ui.bprs.loan.client.editor"
+	xmlns:gr="urn:import:org.kembang.grid.client">
+	<ui:style>
+
+	</ui:style>
+	<g:HTMLPanel>
+		<g:HTMLPanel>
+			<table class="formTableLayout">
+				<tr>
+					<td class="formLabel">
+						No rek
+					</td>
+					<td>&nbsp;&nbsp;</td>
+					<td>
+						<g:TextBox ui:field="code" styleName="formText" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						Tanggal registrasi
+					</td>
+					<td>&nbsp;&nbsp;</td>
+					<td>
+						<g:Label ui:field="strRegistration" styleName="formTextlabel" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						Produk
+					</td>
+					<td>&nbsp;&nbsp;</td>
+					<td>
+						<ce:ProductListEditor ui:field="product"
+							styleName="formCombobox" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						Tanggal akad
+					</td>
+					<td>&nbsp;&nbsp;</td>
+					<td>
+						<p1:DateBox ui:field="contractDate" styleName="formDatebox"
+							width="75px" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						No akad
+					</td>
+					<td>&nbsp;&nbsp;</td>
+					<td>
+						<g:TextBox ui:field="contract" styleName="formText" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">AO</td>
+					<td>&nbsp;&nbsp;</td>
+					<td>
+						<e:UserListBox ui:field="ao" styleName="formCombobox" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">AO sebelumnya</td>
+					<td>&nbsp;&nbsp;</td>
+					<td>
+						<g:TextBox ui:field="aoHistory" styleName="formText" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						Tujuan pembiayaan
+					</td>
+					<td>&nbsp;&nbsp;</td>
+					<td>
+						<g:TextBox ui:field="purpose" styleName="formText" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						Sektor ekonomi
+					</td>
+					<td>&nbsp;&nbsp;</td>
+					<td>
+						<g:ListBox ui:field="biSektor" styleName="formText" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						Pokok
+					</td>
+					<td>&nbsp;&nbsp;</td>
+					<td>
+						<g:TextBox ui:field="strPrincipal" styleName="formText" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						Rate
+					</td>
+					<td>&nbsp;&nbsp;</td>
+					<td>
+						<g:HorizontalPanel>
+							<g:TextBox ui:field="strRate" width="50px" styleName="formText" />
+							<g:HTML styleName="formTextLabel">&nbsp;&nbsp;%pa</g:HTML>
+						</g:HorizontalPanel>
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						Biaya administrasi
+					</td>
+					<td>&nbsp;&nbsp;</td>
+					<td>
+						<g:TextBox ui:field="strAdmin" styleName="formText" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						Biaya denda (harian)
+					</td>
+					<td>&nbsp;&nbsp;</td>
+					<td>
+						<g:TextBox ui:field="strFine" styleName="formText" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						Jangka waktu
+					</td>
+					<td>&nbsp;&nbsp;</td>
+					<td>
+						<g:HorizontalPanel>
+							<g:TextBox ui:field="strTenor" width="50px" styleName="formText" />
+							<g:HTML styleName="formTextLabel">&nbsp;&nbsp;bulan</g:HTML>
+						</g:HorizontalPanel>
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						Model angsuran
+					</td>
+					<td>&nbsp;&nbsp;</td>
+					<td>
+						<e:LoanScheduleType ui:field="scheduleType"
+							styleName="formCombobox" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="formLabel">Data angsuran</td>
+					<td>&nbsp;&nbsp;</td>
+					<td>
+						<g:HorizontalPanel>
+							<g:Button ui:field="btnGenerate">Generate</g:Button>
+							<g:Button ui:field="btnAdd">+</g:Button>
+							<g:Button ui:field="btnRemove">-</g:Button>
+						</g:HorizontalPanel>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<g:VerticalPanel width="650px" styleName='Global-FlexTable-Outer'>
+							<e:LoanScheduleEditorTable
+								ui:field="schedules" width="100%" height="300px" />
+							<g:FlexTable ui:field='schedFooter' styleName='Global-FlexTable-Footer'
+								cellSpacing='0' cellPadding='0' />
+						</g:VerticalPanel>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">&nbsp;</td>
+				</tr>
+			</table>
+		</g:HTMLPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

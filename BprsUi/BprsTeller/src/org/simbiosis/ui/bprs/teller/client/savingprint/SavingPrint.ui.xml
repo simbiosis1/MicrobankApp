@@ -1,0 +1,60 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.google.gwt.user.datepicker.client"
+	xmlns:gr="urn:import:org.kembang.grid.client"
+	xmlns:s="urn:import:org.simbiosis.ui.bprs.common.client.savinghelper"
+	xmlns:p2="urn:import:org.simbiosis.ui.bprs.teller.client.savingprint"
+	>
+	<ui:style>
+		.searchBox {
+			padding-bottom: 5px;
+		}
+	</ui:style>
+	<g:DockLayoutPanel unit="PX">
+		<g:north size="45">
+			<g:HorizontalPanel height="100%" width="100%"
+				styleName="{style.searchBox}">
+				<g:HorizontalPanel height="90%" width="100%"
+					styleName="formBox">
+					<g:HorizontalPanel height="90%"
+						verticalAlignment="ALIGN_MIDDLE">
+						<g:HTMLPanel>
+							<table>
+								<tr>
+									<td>Transaksi mulai tanggal</td>
+									<td>&nbsp;</td>
+									<td>
+										<p1:DateBox styleName="formDatebox" ui:field="date"
+											width="75px" />
+									</td>
+									<td>&nbsp;</td>
+									<td>dicetak mulai NUC</td>
+									<td>&nbsp;</td>
+									<td>
+										<g:TextBox styleName="formText" ui:field="nuc"
+											width="30px" />
+									</td>
+								</tr>
+							</table>
+						</g:HTMLPanel>
+
+					</g:HorizontalPanel>
+				</g:HorizontalPanel>
+			</g:HorizontalPanel>
+		</g:north>
+		<g:center>
+			<g:DockLayoutPanel unit="PX">
+				<g:north size="130">
+					<s:SavingInfo ui:field="savingDv" />
+				</g:north>
+				<g:center>
+					<g:VerticalPanel>
+						<g:Button ui:field="btnPrintMaster">Cetak master</g:Button>
+						<g:HTML>&nbsp;</g:HTML>
+						<g:Button ui:field="btnPrintBook">Cetak buku</g:Button>
+					</g:VerticalPanel>
+				</g:center>
+			</g:DockLayoutPanel>
+		</g:center>
+	</g:DockLayoutPanel>
+</ui:UiBinder> 

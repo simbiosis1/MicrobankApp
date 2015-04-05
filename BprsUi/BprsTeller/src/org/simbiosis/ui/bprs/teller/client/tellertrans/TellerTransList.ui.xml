@@ -1,0 +1,43 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.google.gwt.user.datepicker.client"
+	xmlns:p2="urn:import:org.simbiosis.ui.bprs.teller.client.tellertrans"
+	xmlns:p3="urn:import:org.simbiosis.ui.bprs.teller.client.editor"
+	xmlns:gr="urn:import:org.kembang.grid.client">
+	<ui:style>
+	.searchBox {
+		padding-bottom: 5px;
+	}
+	</ui:style>
+	<g:DockLayoutPanel unit="PX">
+		<g:north size="45">
+			<g:HorizontalPanel height="100%" width="100%"
+				styleName="{style.searchBox}">
+				<g:HorizontalPanel height="90%" width="100%"
+					styleName="formBox">
+					<g:HorizontalPanel height="90%"
+						verticalAlignment="ALIGN_MIDDLE">
+						<g:HTMLPanel>
+							<table>
+								<tr>
+									<td>Teller</td>
+									<td>&nbsp;</td>
+									<td><p3:TellerListEditor styleName="formDatebox" ui:field="tellers" /></td>
+									<td>&nbsp;&nbsp;</td>
+									<td>Tanggal transaksi</td>
+									<td>&nbsp;</td>
+									<td><p1:DateBox styleName="formDatebox" ui:field="transactionDate" width="75px" /></td>
+								</tr>
+							</table>
+						</g:HTMLPanel>
+
+					</g:HorizontalPanel>
+				</g:HorizontalPanel>
+			</g:HorizontalPanel>
+		</g:north>
+		<g:center>
+			<p2:TellerTransListTableWidget
+				ui:field='searchEditor' />
+		</g:center>
+	</g:DockLayoutPanel>
+</ui:UiBinder> 

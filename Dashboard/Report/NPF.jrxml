@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="NPF" language="groovy" pageWidth="802" pageHeight="555" orientation="Landscape" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="6da3e031-a2c2-4202-9df6-4a3520ca43de">
+	<property name="ireport.zoom" value="1.3310000000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<parameter name="Loan.company" class="java.lang.String"/>
+	<parameter name="Loan.branch" class="java.lang.String"/>
+	<parameter name="Loan.date" class="java.lang.String"/>
+	<field name="productName" class="java.lang.String"/>
+	<field name="totalNet" class="java.lang.Double"/>
+	<field name="totalGross" class="java.lang.Double"/>
+	<field name="totalPrincipalNett" class="java.lang.Double"/>
+	<field name="totalPrincipalGross" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="85" splitType="Stretch">
+			<staticText>
+				<reportElement x="441" y="0" width="360" height="32" uuid="df17843e-3c59-44da-9089-6ac260b8d4d5"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Non Performing Financing ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="580" y="32" width="221" height="20" uuid="e742bbf1-0e60-44b6-bddf-509c5a4644a6"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Loan.company}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="580" y="52" width="221" height="20" uuid="80c7d91e-d4b4-45e8-b01b-efd74a06f6b4"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Loan.branch}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="52" width="221" height="20" uuid="9215ec01-afa3-4161-aac3-0930f48539f3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Periode "+$P{Loan.date}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<summary>
+		<band height="300">
+			<crosstab>
+				<reportElement x="0" y="0" width="802" height="300" uuid="be2b2c5a-55ef-4c56-84e7-00d59f513c6a"/>
+				<rowGroup name="productName" width="152" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{productName}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="152" height="25" uuid="7c0fbe38-9007-42d8-beea-11c3e63b9e65"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$V{productName}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents backcolor="#BFE1FF" mode="Transparent"/>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<columnGroup name="totalPrincipalNett" height="30" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[""]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="100" height="30" uuid="3b476342-6daf-4002-a2eb-1cd5d8d63bad"/>
+								<textElement verticalAlignment="Middle"/>
+								<text><![CDATA[NPF]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents backcolor="#BFE1FF" mode="Transparent"/>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<columnGroup name="group1" height="30" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[""]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5"/>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<staticText>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="30" uuid="1c3b6b6f-d74e-44a1-8568-ef6c17260cc3"/>
+								<textElement verticalAlignment="Middle"/>
+								<text><![CDATA[Net]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5"/>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<staticText>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="30" uuid="d130935c-d4a1-4542-af7a-13c54a27329d"/>
+								<textElement verticalAlignment="Middle"/>
+								<text><![CDATA[Gross]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<measure name="totalPrincipalNettMeasure" class="java.lang.Double" calculation="Average">
+					<measureExpression><![CDATA[$F{totalNet}]]></measureExpression>
+				</measure>
+				<measure name="totalPrincipalGross" class="java.lang.Double" calculation="Average">
+					<measureExpression><![CDATA[$F{totalGross}]]></measureExpression>
+				</measure>
+				<crosstabCell width="50" height="25">
+					<cellContents>
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField pattern="#,##0.00;-#,##0.00">
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="46" height="25" uuid="469bdea1-d8f3-43f0-8eb3-07c7ec77da26"/>
+							<textElement textAlignment="Right" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$V{totalPrincipalNettMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="50" height="25" rowTotalGroup="productName">
+					<cellContents backcolor="#BFE1FF" mode="Transparent"/>
+				</crosstabCell>
+				<crosstabCell width="50" height="25" columnTotalGroup="totalPrincipalNett">
+					<cellContents backcolor="#BFE1FF" mode="Transparent"/>
+				</crosstabCell>
+				<crosstabCell height="25" rowTotalGroup="productName" columnTotalGroup="totalPrincipalNett">
+					<cellContents backcolor="#BFE1FF" mode="Transparent"/>
+				</crosstabCell>
+				<crosstabCell height="25" columnTotalGroup="group1">
+					<cellContents>
+						<box>
+							<pen lineWidth="0.5"/>
+							<topPen lineWidth="0.5"/>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+							<rightPen lineWidth="0.5"/>
+						</box>
+						<textField pattern="#,##0.00;-#,##0.00">
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="46" height="25" uuid="251fb09e-1e86-4d9e-ac95-47ec33a8d4e3"/>
+							<textElement textAlignment="Right" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$V{totalPrincipalGross}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell height="25" rowTotalGroup="productName" columnTotalGroup="group1">
+					<cellContents backcolor="#BFE1FF" mode="Transparent"/>
+				</crosstabCell>
+			</crosstab>
+		</band>
+	</summary>
+</jasperReport>

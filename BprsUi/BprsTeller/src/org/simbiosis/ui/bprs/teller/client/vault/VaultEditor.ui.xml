@@ -1,0 +1,40 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:e="urn:import:org.simbiosis.ui.bprs.teller.client.editor">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+	</ui:style>
+	<g:HTMLPanel>
+		<table>
+			<tr>
+				<td colspan="3" class="formDescription">Transaksi khasanah / vault</td>
+			</tr>
+			<tr>
+				<td class="formLabel" width="150px">Tanggal</td>
+				<td>&nbsp;</td>
+				<td>
+					<g:Label ui:field="strDate" styleName="formDatebox"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel">Jenis</td>
+				<td>&nbsp;</td>
+				<td>
+					<g:HorizontalPanel>
+						<e:VaultTypeEditor ui:field="type" styleName="formCombobox" />
+						<g:HTMLPanel>&nbsp;</g:HTMLPanel>
+						<g:Button ui:field="btnGet" styleName="formButton" >...</g:Button>
+					</g:HorizontalPanel>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3">
+					<g:HorizontalPanel ui:field="info" />
+				</td>
+			</tr>
+		</table>
+	</g:HTMLPanel>
+</ui:UiBinder> 

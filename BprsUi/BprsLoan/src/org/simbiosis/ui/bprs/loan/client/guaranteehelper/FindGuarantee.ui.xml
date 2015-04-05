@@ -1,0 +1,66 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:p1="urn:import:com.google.gwt.user.datepicker.client"
+	xmlns:p2="urn:import:org.simbiosis.ui.bprs.loan.client.guaranteehelper"
+	xmlns:gr="urn:import:org.kembang.grid.client">
+	<ui:style>
+		.searchBox {
+			padding-bottom: 5px;
+		}
+	</ui:style>
+	<g:DockLayoutPanel unit="PX">
+		<g:north size="100">
+			<g:HorizontalPanel height="100%" width="100%"
+				styleName="{style.searchBox}">
+				<g:HorizontalPanel height="90%" width="100%"
+					styleName="formBox">
+					<g:HorizontalPanel height="90%"
+						verticalAlignment="ALIGN_MIDDLE">
+						<g:HTMLPanel>
+							<table>
+								<tr>
+									<td>
+										<g:CheckBox ui:field="hasCode" styleName="formCheckBox" />
+									</td>
+									<td class="formLabel">No jaminan</td>
+									<td>&nbsp;</td>
+									<td>
+										<g:TextBox styleName="formText" ui:field="code"
+											width="200px" />
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<g:CheckBox ui:field="hasName" styleName="formCheckBox" />
+									</td>
+									<td class="formLabel">Nama</td>
+									<td>&nbsp;</td>
+									<td>
+										<g:TextBox styleName="formText" ui:field="name"
+											width="200px" />
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<g:CheckBox ui:field="hasDob" styleName="formCheckBox" />
+									</td>
+									<td class="formLabel">Tanggal lahir</td>
+									<td>&nbsp;</td>
+									<td>
+										<p1:DateBox styleName="formDatebox" ui:field="dob"
+											width="75px" />
+									</td>
+								</tr>
+							</table>
+						</g:HTMLPanel>
+
+					</g:HorizontalPanel>
+				</g:HorizontalPanel>
+			</g:HorizontalPanel>
+		</g:north>
+		<g:center>
+			<p2:GuaranteeListEditor ui:field='searchEditor' />
+		</g:center>
+	</g:DockLayoutPanel>
+</ui:UiBinder> 

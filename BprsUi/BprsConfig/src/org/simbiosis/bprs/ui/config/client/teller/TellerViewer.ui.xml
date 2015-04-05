@@ -1,0 +1,38 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<g:HTMLPanel>
+		<table>
+			<tr>
+				<td class="formLabel">Kode</td>
+				<td>
+					<g:Label ui:field="code" styleName="formTextlabel" />
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel">User</td>
+				<td>
+					<g:Label ui:field="strUser" styleName="formTextlabel" />
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel">Cabang</td>
+				<td>
+					<g:Label ui:field="strBranch" styleName="formTextlabel" />
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel">Kas</td>
+				<td>
+					<g:Label ui:field="strSubBranch" styleName="formTextlabel" />
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel">Akun</td>
+				<td>
+					<g:Label ui:field="strCoa" styleName="formTextlabel" />
+				</td>
+			</tr>
+		</table>
+	</g:HTMLPanel>
+</ui:UiBinder> 

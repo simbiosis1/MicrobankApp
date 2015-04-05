@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SavingNominatif" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="580e5546-d5d8-4f67-a48e-d071708b52e0">
+	<property name="ireport.zoom" value="1.3310000000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Saving.company" class="java.lang.String"/>
+	<parameter name="Saving.branch" class="java.lang.String"/>
+	<parameter name="Saving.branchId" class="java.lang.String"/>
+	<parameter name="Saving.date" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="nr" class="java.lang.Integer">
+		<fieldDescription><![CDATA[nr]]></fieldDescription>
+	</field>
+	<field name="value" class="java.lang.Double">
+		<fieldDescription><![CDATA[value]]></fieldDescription>
+	</field>
+	<field name="product" class="java.lang.String">
+		<fieldDescription><![CDATA[product]]></fieldDescription>
+	</field>
+	<field name="productId" class="java.lang.Long"/>
+	<field name="link" class="java.lang.String"/>
+	<variable name="saldoAkhir_SUM" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{value}]]></variableExpression>
+	</variable>
+	<variable name="saldoAwal_SUM" class="java.lang.Double" resetType="Group" resetGroup="product" calculation="Sum">
+		<variableExpression><![CDATA[$F{value}]]></variableExpression>
+	</variable>
+	<group name="product">
+		<groupExpression><![CDATA[$F{product}]]></groupExpression>
+		<groupFooter>
+			<band height="15">
+				<textField pattern="#,##0.00">
+					<reportElement x="382" y="0" width="171" height="13" uuid="e2bac44c-df3e-4374-8e99-5e6284361486"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{saldoAwal_SUM}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="0" width="25" height="13" uuid="7a5a9d50-796a-4e6f-8b6f-f70dc31d9444"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nr}]]></textFieldExpression>
+				</textField>
+				<textField hyperlinkType="Reference">
+					<reportElement x="25" y="0" width="183" height="13" forecolor="#0000FF" uuid="afcd62aa-b7e5-486c-be68-ae462ac71b61"/>
+					<textElement verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{product}]]></textFieldExpression>
+					<hyperlinkReferenceExpression><![CDATA[$F{link}]]></hyperlinkReferenceExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="90" splitType="Stretch">
+			<staticText>
+				<reportElement x="287" y="0" width="267" height="30" uuid="81183759-eac7-48cf-8e39-ff43bf131482"/>
+				<textElement textAlignment="Right">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nominatif Tabungan]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="288" y="32" width="267" height="30" uuid="16b9748b-c1e0-4959-8af4-0c635c6d096c"/>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Saving.company}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="246" y="65" width="307" height="20" uuid="bfc0ae22-b66c-4e59-8028-dedea43a1132"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Saving.branch}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="15" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="3" width="25" height="15" uuid="e783e1eb-a67f-40b3-9f20-2f4a9c421d43"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="382" y="3" width="173" height="15" uuid="bab434c1-21a3-4864-97d9-9e75e16f99f4"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Saldo]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="19" width="555" height="1" uuid="1283d670-35c5-495d-88bb-f9d44ffe5741"/>
+			</line>
+			<line>
+				<reportElement x="0" y="1" width="555" height="1" uuid="1283d670-35c5-495d-88bb-f9d44ffe5741"/>
+			</line>
+			<staticText>
+				<reportElement x="25" y="3" width="183" height="15" uuid="3ef4d2e7-4f14-4d60-8559-e7574f57449f"/>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Produk]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<summary>
+		<band height="22">
+			<textField pattern="#,##0.00;-#,##0.00">
+				<reportElement x="382" y="3" width="171" height="15" uuid="d5358734-9b9f-4a82-a007-c4052df30775"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{saldoAkhir_SUM}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="1" width="555" height="1" uuid="562e2694-cdef-4a92-bde3-4ec006e74211"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="3" width="40" height="15" uuid="b7e33567-2ed0-4276-bae6-86326e6e6d3e"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

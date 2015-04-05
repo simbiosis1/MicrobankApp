@@ -1,0 +1,159 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:e="urn:import:org.simbiosis.ui.bprs.teller.client.editor">
+	<ui:style>
+
+	</ui:style>
+	<g:HTMLPanel>
+		<table>
+			<tr>
+				<td colspan="3" class="formDescription">Kontrol transaksi khasanah / vault</td>
+			</tr>
+			<tr>
+				<td class="formLabel">Nama teller</td>
+				<td>&nbsp;</td>
+				<td>
+					<e:TellerListEditor ui:field="teller" styleName="formCombobox" />
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel">Jenis</td>
+				<td>&nbsp;</td>
+				<td>
+					<g:HorizontalPanel>
+						<e:VaultTypeEditor ui:field="type" styleName="formCombobox" />
+						<g:HTMLPanel>&nbsp;</g:HTMLPanel>
+						<g:Button ui:field="btnGet" styleName="formButton">...</g:Button>
+					</g:HorizontalPanel>
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel">Tanggal</td>
+				<td>&nbsp;</td>
+				<td>
+					<g:Label ui:field="strDate" styleName="formTextlabel" />
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel">Kode</td>
+				<td>&nbsp;</td>
+				<td>
+					<g:Label ui:field="code" styleName="formTextlabel" />
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel">Jumlah</td>
+				<td>&nbsp;</td>
+				<td>
+					<g:Label ui:field="strValue" styleName="formTextlabel" />
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" class="formSubtitle">Detail pecahan</td>
+			</tr>
+			<tr>
+				<td colspan="3">
+					<table>
+						<tr>
+							<td class="formLabel">Pecahan 50 Logam</td>
+							<td>&nbsp;</td>
+							<td>
+								<g:TextBox ui:field="str50L" styleName="formText" width="75px"/>
+							</td>
+							<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+							<td class="formLabel">Pecahan 1.000 Kertas</td>
+							<td>&nbsp;</td>
+							<td>
+								<g:TextBox ui:field="str1000K" styleName="formText" width="75px"/>
+							</td>
+						</tr>
+						<tr>
+							<td class="formLabel">Pecahan 100 Logam</td>
+							<td>&nbsp;</td>
+							<td>
+								<g:TextBox ui:field="str100L" styleName="formText" width="75px"/>
+							</td>
+							<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+							<td class="formLabel">Pecahan 2.000 Kertas</td>
+							<td>&nbsp;</td>
+							<td>
+								<g:TextBox ui:field="str2000K" styleName="formText" width="75px"/>
+							</td>
+						</tr>
+						<tr>
+							<td class="formLabel">Pecahan 200 Logam</td>
+							<td>&nbsp;</td>
+							<td>
+								<g:TextBox ui:field="str200L" styleName="formText" width="75px"/>
+							</td>
+							<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+							<td class="formLabel">Pecahan 5.000 Kertas</td>
+							<td>&nbsp;</td>
+							<td>
+								<g:TextBox ui:field="str5000K" styleName="formText" width="75px"/>
+							</td>
+						</tr>
+						<tr>
+							<td class="formLabel">Pecahan 500 Logam</td>
+							<td>&nbsp;</td>
+							<td>
+								<g:TextBox ui:field="str500L" styleName="formText" width="75px"/>
+							</td>
+							<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+							<td class="formLabel">Pecahan 10.000 Kertas</td>
+							<td>&nbsp;</td>
+							<td>
+								<g:TextBox ui:field="str10000K" styleName="formText" width="75px"/>
+							</td>
+						</tr>
+						<tr>
+							<td class="formLabel">Pecahan 1.000 Logam</td>
+							<td>&nbsp;</td>
+							<td>
+								<g:TextBox ui:field="str1000L" styleName="formText" width="75px"/>
+							</td>
+							<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+							<td class="formLabel">Pecahan 20.000 Kertas</td>
+							<td>&nbsp;</td>
+							<td>
+								<g:TextBox ui:field="str20000K" styleName="formText" width="75px"/>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>&nbsp;</td>
+							<td></td>
+							<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+							<td class="formLabel">Pecahan 50.000 Kertas</td>
+							<td>&nbsp;</td>
+							<td>
+								<g:TextBox ui:field="str50000K" styleName="formText" width="75px"/>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>&nbsp;</td>
+							<td></td>
+							<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+							<td class="formLabel">Pecahan 100.000 Kertas</td>
+							<td>&nbsp;</td>
+							<td>
+								<g:TextBox ui:field="str100000K" styleName="formText" width="75px"/>
+							</td>
+						</tr>
+						<tr>
+							<td class="formLabel">Kontrol</td>
+							<td>&nbsp;</td>
+							<td><g:Label ui:field="control" styleName="formTextlabel"/></td>
+							<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+							<td class="formLabel"></td>
+							<td>&nbsp;</td>
+							<td>
+							</td>
+						</tr>
+											</table>
+				</td>
+			</tr>
+		</table>
+	</g:HTMLPanel>
+</ui:UiBinder> 

@@ -1,0 +1,135 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		
+	</ui:style>
+	<g:HTMLPanel>
+		<g:HTMLPanel>
+			<table width="100%">
+				<tr>
+					<td width="45%" valign="top">
+						<table class="formTableLayout" width="100%">
+							<tr>
+								<td class="formLabel">
+									Kode CIF
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:Label ui:field="code" styleName="formTextlabel" />
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">
+									Nama
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:Label ui:field="name" styleName="formTextlabel" />
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">
+									Jenis kelamin
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:Label ui:field="strSex" styleName="formTextlabel" />
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">
+									Tempat dan tanggal lahir
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:HorizontalPanel>
+										<g:Label ui:field="pob" styleName="formTextlabel" />
+										<g:HTMLPanel>&nbsp;</g:HTMLPanel>
+										<g:Label ui:field="strDob" styleName="formTextlabel" />
+									</g:HorizontalPanel>
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">
+									Jenis dan Nomor pengenal
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:HorizontalPanel>
+										<g:Label ui:field="strIdType" styleName="formTextlabel" />
+										<g:HTMLPanel>&nbsp;</g:HTMLPanel>
+										<g:Label ui:field="idCode" styleName="formTextlabel" />
+									</g:HorizontalPanel>
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">
+									Nama ibu kandung
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:Label ui:field="motherName" styleName="formTextlabel" />
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td width="45%" valign="top">
+						<table class="formTableLayout" width="100%">
+							<tr>
+								<td class="formLabel">
+									Alamat
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:Label ui:field="address" styleName="formTextlabel" />
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">
+									Kota, kode pos
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:HorizontalPanel>
+										<g:Label ui:field="city" styleName="formTextlabel" />
+										<g:HTMLPanel>&nbsp;</g:HTMLPanel>
+										<g:Label ui:field="postCode" styleName="formTextlabel" />
+									</g:HorizontalPanel>
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">
+									Propinsi
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:Label ui:field="province" styleName="formTextlabel" />
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">
+									Telp. rumah
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:Label ui:field="phone" styleName="formTextlabel" />
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">
+									Telp. seluler
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:Label ui:field="handphone" styleName="formTextlabel" />
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+
+		</g:HTMLPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

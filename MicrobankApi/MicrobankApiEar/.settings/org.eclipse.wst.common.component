@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="MicrobankApiEar">
+        <wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
+        <dependent-module archiveName="MicrobankIntf.jar" deploy-path="/lib" handle="module:/resource/MicrobankIntf/MicrobankIntf">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="GlIntf.jar" deploy-path="/lib" handle="module:/resource/GlIntf/GlIntf">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="BprsBpIntf.jar" deploy-path="/lib" handle="module:/resource/BprsBpIntf/BprsBpIntf">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="MicrobankDto.jar" deploy-path="/lib" handle="module:/resource/MicrobankDto/MicrobankDto">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="MicrobankApiReport.war" deploy-path="/" handle="module:/resource/MicrobankApiReport/MicrobankApiReport">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="MicrobankApiCore.war" deploy-path="/" handle="module:/resource/MicrobankApiCore/MicrobankApiCore">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SystemBpIntf.jar" deploy-path="/lib" handle="module:/resource/SystemBpIntf/SystemBpIntf">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SystemDto.jar" deploy-path="/lib" handle="module:/resource/SystemDto/SystemDto">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="GlBpIntf.jar" deploy-path="/lib" handle="module:/resource/GlBpIntf/GlBpIntf">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>

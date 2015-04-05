@@ -1,0 +1,54 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:e="urn:import:org.simbiosis.ui.bprs.common.client.editor">
+	<ui:style>
+
+	</ui:style>
+	<g:HTMLPanel>
+		<g:HTMLPanel>
+			<table class="formTableLayout">
+				<tr>
+					<td class="formLabel">
+						Kode
+					</td>
+					<td class="formLabel">
+						&nbsp;&nbsp;&nbsp; </td>
+					<td>
+						<g:TextBox ui:field="code" styleName="formText" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						Tanggal registrasi
+					</td>
+					<td class="formLabel">
+						&nbsp;&nbsp;&nbsp; </td>
+					<td>
+						<g:Label ui:field="strRegistration" styleName="formTextlabel" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						Produk
+					</td>
+					<td class="formLabel">
+						&nbsp;&nbsp;&nbsp; </td>
+					<td>
+						<e:ProductListEditor ui:field="product"
+							styleName="formCombobox" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						Zakat
+					</td>
+					<td class="formLabel">
+						&nbsp;&nbsp;&nbsp; </td>
+					<td>
+						<g:CheckBox ui:field="zakat" styleName="formCheckbox" />
+					</td>
+				</tr>
+			</table>
+		</g:HTMLPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DepositNominatif" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="0aa6782b-bdd6-4339-9223-1566b9af801c">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Deposit.company" class="java.lang.String"/>
+	<parameter name="Deposit.branch" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="code" class="java.lang.String">
+		<fieldDescription><![CDATA[code]]></fieldDescription>
+	</field>
+	<field name="name" class="java.lang.String">
+		<fieldDescription><![CDATA[name]]></fieldDescription>
+	</field>
+	<field name="registration" class="java.util.Date">
+		<fieldDescription><![CDATA[registration]]></fieldDescription>
+	</field>
+	<field name="begin" class="java.util.Date">
+		<fieldDescription><![CDATA[begin]]></fieldDescription>
+	</field>
+	<field name="end" class="java.util.Date">
+		<fieldDescription><![CDATA[end]]></fieldDescription>
+	</field>
+	<field name="value" class="java.lang.Double">
+		<fieldDescription><![CDATA[value]]></fieldDescription>
+	</field>
+	<field name="productName" class="java.lang.String">
+		<fieldDescription><![CDATA[productName]]></fieldDescription>
+	</field>
+	<variable name="TotalNominatif" class="java.lang.Double" resetType="Group" resetGroup="product" calculation="Sum">
+		<variableExpression><![CDATA[$F{value}]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<group name="product" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{productName}]]></groupExpression>
+		<groupHeader>
+			<band height="23">
+				<textField>
+					<reportElement x="2" y="0" width="230" height="20" uuid="4d0d450e-a9fe-455c-93f3-3610a1a75831"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{productName}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="20" width="555" height="1" uuid="1283d670-35c5-495d-88bb-f9d44ffe5741"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="29">
+				<staticText>
+					<reportElement x="0" y="2" width="80" height="20" uuid="4d9c6fb9-5ff6-4edb-8c57-82a995acfb8b"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total Saldo ]]></text>
+				</staticText>
+				<line>
+					<reportElement x="470" y="20" width="85" height="1" uuid="1283d670-35c5-495d-88bb-f9d44ffe5741"/>
+				</line>
+				<textField pattern="#,##0.00">
+					<reportElement x="291" y="2" width="264" height="15" uuid="f7f306f3-8a4b-4a4d-b21a-081e7cea029d"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{TotalNominatif}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="87" splitType="Stretch">
+			<textField>
+				<reportElement x="179" y="40" width="376" height="20" uuid="16b9748b-c1e0-4959-8af4-0c635c6d096c"/>
+				<textElement textAlignment="Right">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Deposit.company}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="179" y="10" width="376" height="30" uuid="81183759-eac7-48cf-8e39-ff43bf131482"/>
+				<textElement textAlignment="Right">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nominatif Deposito]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="179" y="60" width="376" height="20" uuid="7370e845-dbd4-4566-8876-bca194cd0e3e"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Deposit.branch}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="3" width="25" height="18" uuid="11d06287-4a5f-475a-8bd5-068b1fab000b"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="3" width="83" height="18" uuid="c3d57846-eeba-4d79-b38c-42eb4dc3123e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No Rekening]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="122" y="3" width="110" height="18" uuid="78971070-647d-43a9-a613-6c688f5117b2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Nasabah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="235" y="3" width="80" height="18" uuid="0b689956-a8f6-4759-bf69-a4340df4f7ab"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tanggal Buka]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="315" y="3" width="80" height="18" uuid="fcedf71d-c523-4520-8dae-fa4812098761"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tanggal Mulai]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="395" y="3" width="80" height="18" uuid="b93ee107-3818-48c8-a738-32b25635c493"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tanggal Akhir]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="475" y="3" width="80" height="18" uuid="70956de1-905c-41e0-a727-4bbeb5469ca4"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jumlah]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="22" width="555" height="1" uuid="1283d670-35c5-495d-88bb-f9d44ffe5741"/>
+			</line>
+			<line>
+				<reportElement x="0" y="1" width="555" height="1" uuid="1283d670-35c5-495d-88bb-f9d44ffe5741"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="40" y="2" width="80" height="15" uuid="3ddf6f50-696b-48b6-b644-7db9eb5020a5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{code}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="123" y="2" width="109" height="15" uuid="3d71eeac-c667-4315-9824-47a25e5fe888"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MM-yy">
+				<reportElement x="235" y="2" width="80" height="15" uuid="f40d03f6-cdb8-4533-bcb2-b7c4b18d8351"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{registration}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MM-yy">
+				<reportElement x="315" y="2" width="80" height="15" uuid="8d8b8d9f-e7d4-4e83-9ee6-8bb5d6add0ec"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{begin}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MM-yy">
+				<reportElement x="395" y="2" width="80" height="15" uuid="75d1e1b7-b1c5-4fe9-905b-43f4ffce8d5a"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{end}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="475" y="2" width="80" height="15" uuid="cffa7466-f68f-4bb6-9635-694bf92f0739"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{value}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="17" width="555" height="1" uuid="1283d670-35c5-495d-88bb-f9d44ffe5741"/>
+			</line>
+			<textField>
+				<reportElement x="0" y="2" width="25" height="15" uuid="81437b8f-a85f-4523-8f9e-6080c51c5a84"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="11" splitType="Stretch"/>
+	</columnFooter>
+</jasperReport>

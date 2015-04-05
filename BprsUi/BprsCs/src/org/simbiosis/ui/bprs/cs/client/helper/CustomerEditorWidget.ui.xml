@@ -1,0 +1,291 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:d="urn:import:com.google.gwt.user.datepicker.client"
+	xmlns:e="urn:import:org.simbiosis.ui.bprs.cs.client.editor" xmlns:f="urn:import:org.simbiosis.ui.bprs.common.client.editor">
+	<ui:style>
+	
+	</ui:style>
+	<g:HTMLPanel>
+		<g:HTMLPanel>
+			<table width="100%">
+				<tr>
+					<td colspan="3" class="formSubtitle">Data utama</td>
+				</tr>
+				<tr>
+					<td width="45%" valign="top">
+						<table class="formTableLayout">
+							<tr>
+								<td class="formLabel">
+									Kode CIF
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:Label ui:field="code" />
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">
+									Tanggal registrasi
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:Label ui:field="strRegistration" />
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">
+									Nama
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:TextBox ui:field="name" styleName="formText" />
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">
+									Gelar
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:TextBox ui:field="title" styleName="formText" />
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">
+									Jenis kelamin
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<e:SexTypeEditor ui:field="sex" styleName="formCombobox" />
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">
+									Tempat dan tanggal lahir
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:HorizontalPanel>
+										<g:TextBox ui:field="pob" styleName="formText" />
+										<g:HTMLPanel>&nbsp;</g:HTMLPanel>
+										<d:DateBox styleName="formDatebox" ui:field="dob"
+											width="75px" />
+									</g:HorizontalPanel>
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">
+									Jenis dan Nomor pengenal
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:HorizontalPanel>
+										<e:IdTypeEditor ui:field="idType" styleName="formCombobox" />
+										<g:HTMLPanel>&nbsp;</g:HTMLPanel>
+										<g:TextBox ui:field="idCode" styleName="formText" />
+									</g:HorizontalPanel>
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">
+									Nama ibu kandung
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:TextBox ui:field="motherName" styleName="formText" />
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">
+									Nama pasangan (suami/istri)
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:TextBox ui:field="spouseName" styleName="formText" />
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td width="55%" valign="top">
+						<table class="formTableLayout">
+							<tr>
+								<td class="formLabel">
+									Alamat
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:TextBox ui:field="address" styleName="formText" />
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">
+									Kelurahan, Kecamatan
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:HorizontalPanel>
+										<g:TextBox ui:field="village" styleName="formText" />
+										<g:HTMLPanel>&nbsp;</g:HTMLPanel>
+										<g:TextBox ui:field="district" styleName="formText" />
+									</g:HorizontalPanel>
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">
+									Kota, kode pos
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:HorizontalPanel>
+										<f:CityListEditor ui:field="city" styleName="formCombobox" />
+										<g:HTMLPanel>&nbsp;</g:HTMLPanel>
+										<g:TextBox ui:field="postCode" styleName="formText" />
+									</g:HorizontalPanel>
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">
+									Propinsi
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<f:ProvinceListEditor ui:field="province"
+										styleName="formCombobox" />
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">
+									Telp. rumah
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:TextBox ui:field="phone" styleName="formText" />
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">
+									Telp. seluler
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:TextBox ui:field="handphone" styleName="formText" />
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">&nbsp;</td>
+				</tr>
+				<tr>
+					<td colspan="3" class="formSubtitle">Data tambahan</td>
+				</tr>
+				<tr>
+					<td width="45%" valign="top">
+						<table class="formTableLayout">
+							<tr>
+								<td class="formLabel">
+									Jenis Pekerjaan
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<f:OccupationListEditor ui:field="occupation"
+										styleName="formCombobox" />
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">
+									Nama perusahaan / kantor
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:TextBox ui:field="officeName" styleName="formText" />
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">
+									Alamat perusahaan / kantor
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:TextBox ui:field="officeAddress" styleName="formText" />
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">
+									Kota perusahaan / kantor
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<f:CityListEditor ui:field="officeCity"
+										styleName="formCombobox" />
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">
+									Penghasilan
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:TextBox ui:field="income" styleName="formText" />
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">
+									PPH
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:CheckBox ui:field="taxable" styleName="formCheckbox" />
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">
+									NPWP
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:TextBox ui:field="taxNr" styleName="formText" />
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">
+									Relasi dengan bank
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:CheckBox ui:field="bankRel" styleName="formCheckbox" />
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td width="55%" valign="top">
+						<table class="formTableLayout">
+							<tr>
+								<td class="formLabel">
+									Ahli waris
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:TextBox ui:field="descendant" styleName="formText" />
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">
+									Alamat
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:TextBox ui:field="descAddress" styleName="formText" />
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+
+		</g:HTMLPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

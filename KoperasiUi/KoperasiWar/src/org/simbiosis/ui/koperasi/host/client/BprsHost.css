@@ -1,0 +1,16 @@
+/** Add css rules here for your application. */
+.gwt-Frame {
+	border: 0px;
+}
+
+.gwt-PopupPanel {
+	border-width: 0px;
+	border-radius: 0px;
+	padding: 10px 0px 10px 10px;
+	background: none repeat scroll 0 0 transparent;
+}
+
+.gwt-PopupPanel popupContent {
+	padding: 0;
+	background: none repeat scroll 0 0 transparent;
+}

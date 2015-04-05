@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SavingNominatif" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="580e5546-d5d8-4f67-a48e-d071708b52e0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="RevenueSharing.company" class="java.lang.String"/>
+	<parameter name="RevenueSharing.branch" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="nr" class="java.lang.Integer">
+		<fieldDescription><![CDATA[nr]]></fieldDescription>
+	</field>
+	<field name="code" class="java.lang.String">
+		<fieldDescription><![CDATA[code]]></fieldDescription>
+	</field>
+	<field name="name" class="java.lang.String">
+		<fieldDescription><![CDATA[name]]></fieldDescription>
+	</field>
+	<field name="revValue" class="java.lang.Double">
+		<fieldDescription><![CDATA[revValue]]></fieldDescription>
+	</field>
+	<field name="product" class="java.lang.String">
+		<fieldDescription><![CDATA[product]]></fieldDescription>
+	</field>
+	<field name="avgBallance" class="java.lang.Double"/>
+	<field name="equivalent" class="java.lang.Double"/>
+	<field name="tax" class="java.lang.Double"/>
+	<variable name="revValue_Sum" class="java.lang.Double" resetType="Group" resetGroup="product" calculation="Sum">
+		<variableExpression><![CDATA[$F{revValue}]]></variableExpression>
+	</variable>
+	<variable name="tax_Sum" class="java.lang.Double" resetType="Group" resetGroup="product" calculation="Sum">
+		<variableExpression><![CDATA[$F{tax}]]></variableExpression>
+	</variable>
+	<variable name="avgBallance_Sum" class="java.lang.Double" resetType="Group" resetGroup="product" calculation="Sum">
+		<variableExpression><![CDATA[$F{avgBallance}]]></variableExpression>
+	</variable>
+	<group name="product" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{product}]]></groupExpression>
+		<groupHeader>
+			<band height="27">
+				<textField>
+					<reportElement x="0" y="2" width="308" height="20" uuid="1043d5d7-a47b-4367-a8b5-d284791bb53f"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{product}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="29">
+				<staticText>
+					<reportElement x="0" y="0" width="80" height="20" uuid="4d9c6fb9-5ff6-4edb-8c57-82a995acfb8b"/>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[Total Saldo ]]></text>
+				</staticText>
+				<line>
+					<reportElement x="233" y="24" width="322" height="1" uuid="ab963e97-bfbe-4739-8c06-6d1e1ba26e9e"/>
+				</line>
+				<textField isStretchWithOverflow="true" pattern="#,##0.00">
+					<reportElement x="399" y="2" width="71" height="20" uuid="bd393d4f-12de-45e5-bd1b-eaf0cdf08594"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{tax_Sum}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="#,##0.00">
+					<reportElement x="318" y="2" width="77" height="20" uuid="eaecd1c0-b14d-4146-894b-f691ac109f62"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{revValue_Sum}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="#,##0.00">
+					<reportElement x="237" y="2" width="77" height="20" uuid="81cc0f6c-1ca9-4cde-a048-74ba875dcd92"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{avgBallance_Sum}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="75" splitType="Stretch">
+			<staticText>
+				<reportElement x="287" y="0" width="267" height="30" uuid="81183759-eac7-48cf-8e39-ff43bf131482"/>
+				<textElement textAlignment="Right">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bagi Hasil]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="288" y="32" width="267" height="20" uuid="16b9748b-c1e0-4959-8af4-0c635c6d096c"/>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{RevenueSharing.company}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="246" y="54" width="307" height="20" uuid="bfc0ae22-b66c-4e59-8028-dedea43a1132"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{RevenueSharing.branch}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="15" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="2" width="25" height="15" uuid="e783e1eb-a67f-40b3-9f20-2f4a9c421d43"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="2" width="80" height="15" uuid="1fde387f-291a-4e39-87af-9cdd96993981"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No Rekening]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="106" y="2" width="127" height="15" uuid="5837e2f1-181e-41ef-a2a2-5dbfd3d2df1f"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Nasabah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="475" y="2" width="80" height="15" uuid="bab434c1-21a3-4864-97d9-9e75e16f99f4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Equiv]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="19" width="555" height="1" uuid="1283d670-35c5-495d-88bb-f9d44ffe5741"/>
+			</line>
+			<line>
+				<reportElement x="0" y="1" width="555" height="1" uuid="1283d670-35c5-495d-88bb-f9d44ffe5741"/>
+			</line>
+			<staticText>
+				<reportElement x="236" y="2" width="77" height="15" uuid="b6dec66d-6466-4f85-9663-e33dbf32d420"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Saldo rata]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="316" y="2" width="80" height="15" uuid="9c7e1571-d996-4784-8480-73e00276186a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bagi hasil]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="398" y="2" width="74" height="15" uuid="75cb6a32-433b-4271-a98d-96bdd57063e9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PPH]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="1" width="25" height="13" uuid="190b19c0-d414-42c4-a719-aaad1121c6b6"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nr}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="25" y="1" width="80" height="13" uuid="04a248f4-6b83-4839-b5dd-8e1661f70c5a"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{code}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="107" y="1" width="126" height="13" uuid="ad1e28d6-34ee-4241-afac-674380bc1a2a"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="474" y="1" width="78" height="13" uuid="e2bac44c-df3e-4374-8e99-5e6284361486"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{equivalent}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="14" width="555" height="1" uuid="1283d670-35c5-495d-88bb-f9d44ffe5741"/>
+			</line>
+			<textField pattern="#,##0.00">
+				<reportElement x="237" y="1" width="78" height="13" uuid="307208b1-10d2-4f6c-bdb2-1089bdb1b9c5"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{avgBallance}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="317" y="1" width="78" height="13" uuid="d27eb01e-6b1d-4cf2-b13c-9776072e99fc"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{revValue}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="398" y="1" width="72" height="13" uuid="cc2ff63a-f0b5-4975-93e8-af922df018c2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tax}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

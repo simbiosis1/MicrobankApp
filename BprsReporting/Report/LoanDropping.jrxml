@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TellerTrans" language="groovy" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="97180309-4638-4763-84f1-4aaaba5cbc01">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="198"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="LoanDropping.company" class="java.lang.String"/>
+	<parameter name="LoanDropping.branch" class="java.lang.String"/>
+	<parameter name="LoanDropping.beginDate" class="java.lang.String"/>
+	<parameter name="LoanDropping.endDate" class="java.lang.String"/>
+	<field name="principal" class="java.lang.Double">
+		<fieldDescription><![CDATA[principal]]></fieldDescription>
+	</field>
+	<field name="margin" class="java.lang.Double">
+		<fieldDescription><![CDATA[margin]]></fieldDescription>
+	</field>
+	<field name="discount" class="java.lang.Double">
+		<fieldDescription><![CDATA[discount]]></fieldDescription>
+	</field>
+	<field name="total" class="java.lang.Double">
+		<fieldDescription><![CDATA[total]]></fieldDescription>
+	</field>
+	<field name="date" class="java.util.Date">
+		<fieldDescription><![CDATA[date]]></fieldDescription>
+	</field>
+	<field name="description" class="java.lang.String">
+		<fieldDescription><![CDATA[description]]></fieldDescription>
+	</field>
+	<field name="code" class="java.lang.String">
+		<fieldDescription><![CDATA[code]]></fieldDescription>
+	</field>
+	<variable name="totalPrincipal" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{principal}]]></variableExpression>
+	</variable>
+	<variable name="totalMargin" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{margin}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement x="326" y="0" width="267" height="22" uuid="21a16b88-7089-46b1-96a8-b6333660fa64"/>
+				<textElement textAlignment="Right">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dropping]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="327" y="46" width="266" height="20" uuid="17f8d1c9-9d74-4b3e-a587-bd371a35d54f"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{LoanDropping.branch}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="327" y="24" width="267" height="20" uuid="a9bc0367-1cf6-4732-b334-d9be3e8cbf80"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{LoanDropping.company}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="5" y="48" width="261" height="17" uuid="157400a1-c911-4c6e-9d32-7dc8384953c9"/>
+				<textFieldExpression><![CDATA["Tanggal "+$P{LoanDropping.beginDate} + " - " + $P{LoanDropping.endDate}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="6" width="25" height="15" uuid="17ddb476-2919-462f-bc7f-10b533864557"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="23" width="590" height="1" uuid="32e5e3b9-3b53-4b0b-a093-3279c0001c86"/>
+			</line>
+			<line>
+				<reportElement x="1" y="3" width="590" height="1" uuid="2c93d604-bff8-48a7-b44b-c82c985cd9ce"/>
+			</line>
+			<staticText>
+				<reportElement x="511" y="6" width="75" height="15" uuid="eabacf51-ce49-4040-9dcc-bf6c86c59745"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Marjin]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="436" y="6" width="75" height="15" uuid="2197c87d-53a7-476e-80c2-2c2513dd2bf5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pokok]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="6" width="60" height="15" uuid="23381736-8123-4bf8-998c-7cf3a55eee4f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="168" y="6" width="267" height="15" uuid="c2250cad-cc60-472f-8806-ce8d70176a6b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="86" y="6" width="82" height="15" uuid="77abc1d4-c83a-4d31-9f4b-e316d239c2b1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No Rek]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<textField pattern="#,##0;-#,##0">
+				<reportElement x="510" y="1" width="75" height="15" uuid="89687e03-d000-44ad-8086-44764a9d843b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{margin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="1" width="25" height="15" uuid="9f20c654-d61e-41ae-b2c6-7db1189630bf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;-#,##0">
+				<reportElement x="435" y="1" width="75" height="15" uuid="799580bd-b00a-4495-8dee-5cffec29e90b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{principal}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MM-yyyy">
+				<reportElement x="26" y="2" width="60" height="15" uuid="73053f99-3ab5-4c24-b0f1-17a0b3111540"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MM-yyyy">
+				<reportElement x="168" y="2" width="267" height="15" uuid="4206c5b5-f2d5-499d-a52f-8c07f8059b0a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MM-yyyy">
+				<reportElement x="86" y="2" width="82" height="15" uuid="39bb3f09-5500-4622-bb21-747899773b7a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{code}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="28" splitType="Stretch">
+			<textField pattern="#,##0;-#,##0">
+				<reportElement x="436" y="3" width="75" height="15" uuid="56c9a02b-78e9-435d-ac94-de185294f517"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalPrincipal}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;-#,##0">
+				<reportElement x="511" y="3" width="75" height="15" uuid="a461cfd3-b2ec-4a02-bc23-c0ce40bbca01"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalMargin}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="310" y="1" width="280" height="1" uuid="24518ab2-6979-4a16-a265-392f7e51f230"/>
+			</line>
+			<line>
+				<reportElement x="310" y="20" width="280" height="1" uuid="0862c53d-d148-41e4-8909-6b168ffa30ec"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

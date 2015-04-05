@@ -1,0 +1,34 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+
+	</ui:style>
+	<g:HTMLPanel>
+		<g:DialogBox ui:field="mainPanel" animationEnabled="true"
+			modal="true" glassEnabled="true">
+			<g:caption>
+				<b>Mencetak validasi</b>
+			</g:caption>
+			<g:HTMLPanel width="230px" height="100px">
+				<g:DockLayoutPanel unit="PX" width="100%" height="100%">
+					<g:center>
+						<g:VerticalPanel>
+						<g:Label>Transaksi sudah berhasil.</g:Label>
+						<g:Label>Apakah anda ingin mencetak validasi?</g:Label>
+						</g:VerticalPanel>
+					</g:center>
+					<g:south size="40">
+						<g:HorizontalPanel width="100%" height="100%">
+							<g:HorizontalPanel>
+								<g:Button ui:field="btnNo">Tidak</g:Button>
+								<g:HTML>&nbsp;</g:HTML>
+								<g:Button ui:field="btnYes">Ya</g:Button>
+							</g:HorizontalPanel>
+						</g:HorizontalPanel>
+					</g:south>
+				</g:DockLayoutPanel>
+			</g:HTMLPanel>
+		</g:DialogBox>
+	</g:HTMLPanel>
+</ui:UiBinder> 

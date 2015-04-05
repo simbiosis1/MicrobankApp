@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LoanDropping" language="groovy" pageWidth="802" pageHeight="555" orientation="Landscape" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="bc9ad368-7fc3-480f-88d2-ac31caab15b4">
+	<property name="ireport.zoom" value="0.75"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<parameter name="LoanDropping.company" class="java.lang.String"/>
+	<parameter name="LoanDropping.branch" class="java.lang.String"/>
+	<field name="month" class="java.lang.String">
+		<fieldDescription><![CDATA[month]]></fieldDescription>
+	</field>
+	<field name="product" class="java.lang.String">
+		<fieldDescription><![CDATA[product]]></fieldDescription>
+	</field>
+	<field name="dropping" class="java.lang.Double">
+		<fieldDescription><![CDATA[dropping]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="94" splitType="Stretch">
+			<textField>
+				<reportElement x="580" y="32" width="221" height="20" uuid="5e65a210-8bc1-4704-89ed-c2da32cbf430"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{LoanDropping.company}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="581" y="52" width="221" height="20" uuid="f7189c87-40c2-4671-a833-8995f55f6edd"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{LoanDropping.branch}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="442" y="0" width="360" height="32" uuid="023e5cb0-ac99-4db2-9a7a-f0f1f1290a7d"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pencairan Pembiayaan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="59" width="227" height="20" uuid="9d315bf8-acd0-47e3-ad5d-492cb5c42137"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Periode 2013]]></text>
+			</staticText>
+		</band>
+	</title>
+	<summary>
+		<band height="306" splitType="Stretch">
+			<stackedBarChart>
+				<chart>
+					<reportElement x="0" y="14" width="801" height="278" uuid="f0eab098-256a-427f-a1b9-26b35c628e77"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{product}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{month}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{dropping}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</barPlot>
+			</stackedBarChart>
+		</band>
+	</summary>
+</jasperReport>

@@ -549,7 +549,8 @@ public class LoanImpl implements ILoan {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public LoanTransactionDto getLoanTransByDateCode(long loanId,Date date, String code) {
+	public LoanTransactionDto getLoanTransByDateCode(long loanId, Date date,
+			String code) {
 		Query qry = em.createNamedQuery("getLoanTransByDateCode");
 		qry.setParameter("loanId", loanId);
 		qry.setParameter("date", date);
@@ -565,7 +566,6 @@ public class LoanImpl implements ILoan {
 		LoanTransaction trans = em.find(LoanTransaction.class, id);
 		return createLoanTransactionToDto(trans);
 	}
-
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -1135,18 +1135,23 @@ public class LoanImpl implements ILoan {
 					+ (schema == 5 || schema == 6 ? 0 : myMargin);
 			if (schedTotal - myTotal <= 0.01) {
 				// kalo bisa memenuhi
+				double myPayment = myPrincipal;
 				if (sched.getPrincipal() > 0.01) {
 					myPrincipal -= sched.getPrincipal();
 				}
 				if (sched.getMargin() > 0.01) {
 					myMargin -= sched.getMargin();
 				}
+				//System.out.println("Tanggal:" + sched.getDate()
+				//		+ ", mPrincipal=" + myPrincipal + ", mMargin"
+				//		+ myMargin);
 				q.setLastPaid(sched.getDate());
 				if (myPrincipal < 0) {
 					if (telat == 0) {
 						q.setLastPaid(sched.getDate());
 					}
-					telat++;
+					if (myPayment < 0.01)
+						telat++;
 					osPrincipal += sched.getPrincipal();
 					osMargin += sched.getMargin();
 				}
@@ -1156,6 +1161,10 @@ public class LoanImpl implements ILoan {
 					q.setLastPaid(sched.getDate());
 				}
 				// lihat apakah dia masih punya sisa pokok
+				//System.out
+				//		.println("Tanggal:" + sched.getDate() + "stotal="
+				//				+ schedTotal + ", mtotal" + myTotal + ", telat"
+				//				+ telat);
 				if (myTotal > 0.01) {
 					osPrincipal += sched.getPrincipal() - myPrincipal;
 					osMargin += sched.getMargin()
@@ -1170,6 +1179,7 @@ public class LoanImpl implements ILoan {
 			}
 			// lastSched = sched.getDate();
 		}
+		//System.out.println("telat=" + telat);
 		int duration = daysBetween(q.getLastPaid(), date);
 		q.setDuration(duration);
 		q.setDueOs(telat);

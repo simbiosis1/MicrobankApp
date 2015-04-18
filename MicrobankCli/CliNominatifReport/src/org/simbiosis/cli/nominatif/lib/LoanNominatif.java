@@ -63,6 +63,7 @@ public class LoanNominatif {
 		jsonReport.sendRawData("deleteDailyLoan", strDate);
 		System.out.println("Generate loan nominatif...");
 		String data = jsonMain.sendRawData("listLoanId", strDate);
+		//data = "2823";
 		if (!data.isEmpty()) {
 			String sids[] = data.split(";");
 			//

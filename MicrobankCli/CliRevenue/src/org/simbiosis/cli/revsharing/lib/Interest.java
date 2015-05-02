@@ -15,6 +15,7 @@ public class Interest {
 	Map<Long, Double> taxList = new HashMap<Long, Double>();
 
 	Funding funding = null;
+	double admin = 2500;
 
 	public Interest(MicrobankCoreClient jsonClient, String beginDate, int days,
 			String endDate) {
@@ -36,12 +37,12 @@ public class Interest {
 				revSharing.setTotalSharing(0);
 				revSharing.setCustomerSharing(revSharing.getAverageValue()
 						* revSharing.getSharing() * days / 36500);
-				revSharing.setZakat(2500);
+				revSharing.setZakat(admin);
 				revSharing.setTax(0);
 			} else {
 				revSharing.setTotalSharing(0);
 				revSharing.setCustomerSharing(0);
-				revSharing.setZakat(2500);
+				revSharing.setZakat(admin);
 				revSharing.setTax(0);
 			}
 		}

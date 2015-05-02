@@ -54,47 +54,47 @@
 		<link>
 			<name>DepositNominatifSummary.jrxml</name>
 			<type>1</type>
-			<location>/home/iwanaf/Development/SIMbiosis.old1/BprsReporting/Report/DepositNominatifSummary.jrxml</location>
+			<location>/home/javadev/Development/SIMbiosis.old1/BprsReporting/Report/DepositNominatifSummary.jrxml</location>
 		</link>
 		<link>
 			<name>LoanNominatifSummary.jasper</name>
 			<type>1</type>
-			<location>/home/iwanaf/Development/SIMbiosis/BprsReporting/Report/LoanNominatifSummary.jasper</location>
+			<location>/home/javadev/Development/SIMbiosis/BprsReporting/Report/LoanNominatifSummary.jasper</location>
 		</link>
 		<link>
 			<name>LoanNominatifSummary.jrxml</name>
 			<type>1</type>
-			<location>/home/iwanaf/Development/SIMbiosis/BprsReporting/Report/LoanNominatifSummary.jrxml</location>
+			<location>/home/javadev/Development/SIMbiosis/BprsReporting/Report/LoanNominatifSummary.jrxml</location>
 		</link>
 		<link>
 			<name>LoanPaidExtPdf.jasper</name>
 			<type>1</type>
-			<location>/home/iwanaf/Development/SIMbiosis/BprsReporting/Report/LoanPaidExtPdf.jasper</location>
+			<location>/home/javadev/Development/SIMbiosis/BprsReporting/Report/LoanPaidExtPdf.jasper</location>
 		</link>
 		<link>
 			<name>LoanPaidExtPdf.jrxml</name>
 			<type>1</type>
-			<location>/home/iwanaf/Development/SIMbiosis/BprsReporting/Report/LoanPaidExtPdf.jrxml</location>
+			<location>/home/javadev/Development/SIMbiosis/BprsReporting/Report/LoanPaidExtPdf.jrxml</location>
 		</link>
 		<link>
 			<name>LoanRepayment.jrxml</name>
 			<type>1</type>
-			<location>/home/iwanaf/Development/SIMbiosis/BprsReporting/Report/LoanRepayment.jrxml</location>
+			<location>/home/javadev/Development/SIMbiosis/BprsReporting/Report/LoanRepayment.jrxml</location>
 		</link>
 		<link>
 			<name>NeracaPublikasi.jasper</name>
 			<type>1</type>
-			<location>/home/iwanaf/Development/SIMbiosis/BprsReporting/Report/NeracaPublikasi.jasper</location>
+			<location>/home/javadev/Development/SIMbiosis/BprsReporting/Report/NeracaPublikasi.jasper</location>
 		</link>
 		<link>
 			<name>NeracaPublikasi.jrxml</name>
 			<type>1</type>
-			<location>/home/iwanaf/Development/SIMbiosis/BprsReporting/Report/NeracaPublikasi.jrxml</location>
+			<location>/home/javadev/Development/SIMbiosis/BprsReporting/Report/NeracaPublikasi.jrxml</location>
 		</link>
 		<link>
 			<name>TellerTransPdf.jrxml</name>
 			<type>1</type>
-			<location>/home/iwanaf/Development/SIMbiosis/BprsReporting/Report/TellerTransPdf.jrxml</location>
+			<location>/home/javadev/Development/SIMbiosis/BprsReporting/Report/TellerTransPdf.jrxml</location>
 		</link>
 	</linkedResources>
 </projectDescription>

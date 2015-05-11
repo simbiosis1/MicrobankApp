@@ -39,7 +39,8 @@ public class CalculateInterest extends CliBase {
 	public CalculateInterest() {
 		super("cli.properties");
 		// Dijalankan tanggal 1 awal bulan.....
-		DateTime now = new DateTime().dayOfMonth().withMinimumValue().minusDays(1);
+		DateTime now = new DateTime().dayOfMonth().withMinimumValue()
+				.minusDays(1);
 		//
 		DateTimeFormatter sMonth = DateTimeFormat.forPattern("MM");
 		DateTimeFormatter sYear = DateTimeFormat.forPattern("yyyy");
@@ -72,17 +73,20 @@ public class CalculateInterest extends CliBase {
 	void sendRevenueSharing(UserDto user) {
 		for (Object ob : interest.getRevenueSharing()) {
 			RevenueSharingDto rev = (RevenueSharingDto) ob;
-			rev.setCompany(user.getCompany());
-			rev.setMonth(month);
-			rev.setYear(year);
-			try {
-				ObjectMapper mapper = new ObjectMapper();
-				StringWriter sw = new StringWriter();
-				mapper.writeValue(sw, rev);
-				String result = sw.toString();
-				getCoreClient().sendRawData("saveRevenueSharingItem", result);
-			} catch (IOException e) {
-				e.printStackTrace();
+			if (rev.getCustomerSharing() > 0.01 || rev.getZakat() > 0.01) {
+				rev.setCompany(user.getCompany());
+				rev.setMonth(month);
+				rev.setYear(year);
+				try {
+					ObjectMapper mapper = new ObjectMapper();
+					StringWriter sw = new StringWriter();
+					mapper.writeValue(sw, rev);
+					String result = sw.toString();
+					getCoreClient().sendRawData("saveRevenueSharingItem",
+							result);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}

@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.type.TypeFactory;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -90,8 +89,10 @@ public class Funding {
 		ObjectMapper mapper = new ObjectMapper();
 		List<SavingTransactionDto> scheds = new ArrayList<SavingTransactionDto>();
 		try {
-			scheds = mapper.readValue(data, TypeFactory.collectionType(
-					ArrayList.class, SavingTransactionDto.class));
+			scheds = mapper.readValue(
+					data,
+					mapper.getTypeFactory().constructCollectionType(
+							ArrayList.class, SavingTransactionDto.class));
 			for (SavingTransactionDto sched : scheds) {
 				int day = Integer.parseInt(dayFormat.print(new DateTime(sched
 						.getDate())));

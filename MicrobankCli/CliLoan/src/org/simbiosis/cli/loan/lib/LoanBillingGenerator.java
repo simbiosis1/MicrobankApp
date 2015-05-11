@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.type.TypeFactory;
 import org.simbiosis.cli.base.MicrobankCoreClient;
 import org.simbiosis.microbank.LoanInformationDto;
 import org.simbiosis.microbank.LoanScheduleDto;
@@ -75,11 +74,11 @@ public class LoanBillingGenerator {
 			Double val = savingMap.get(billing.getSaving());
 			Double blockir = getBlockir(billing.getCode());
 			billing.setBillable(val > (billing.getBill() + blockir));
-//			if (billing.getId() == 2817) {
-//				System.out.println(billing.isBillable() + "-"
-//						+ billing.getDueDate() + "-" + billing.getPrincipal()
-//						+ "-" + billing.getMargin());
-//			}
+			// if (billing.getId() == 2817) {
+			// System.out.println(billing.isBillable() + "-"
+			// + billing.getDueDate() + "-" + billing.getPrincipal()
+			// + "-" + billing.getMargin());
+			// }
 			if (billing.isBillable()
 					&& billing.getDueDate() != null
 					&& (billing.getPrincipal() > 0.1 || billing.getMargin() > 0.1)) {
@@ -174,8 +173,10 @@ public class LoanBillingGenerator {
 		ObjectMapper mapper = new ObjectMapper();
 		List<LoanScheduleDto> scheds = new ArrayList<LoanScheduleDto>();
 		try {
-			scheds = mapper.readValue(data, TypeFactory.collectionType(
-					ArrayList.class, LoanScheduleDto.class));
+			scheds = mapper.readValue(
+					data,
+					mapper.getTypeFactory().constructCollectionType(
+							ArrayList.class, LoanScheduleDto.class));
 			for (LoanScheduleDto sched : scheds) {
 				LoanBillingDv billing = loanMap.get(sched.getLoan());
 				if (billing != null && billing.isBillable()) {

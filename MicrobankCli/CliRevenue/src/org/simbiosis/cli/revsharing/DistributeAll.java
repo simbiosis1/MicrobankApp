@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.type.TypeFactory;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -103,9 +102,10 @@ public class DistributeAll extends CliBase {
 					month + ";" + year + ";0");
 			ObjectMapper mapper = new ObjectMapper();
 			try {
-				List<RevenueSharingDto> result = mapper.readValue(data,
-						TypeFactory.collectionType(ArrayList.class,
-								RevenueSharingDto.class));
+				List<RevenueSharingDto> result = mapper.readValue(
+						data,
+						mapper.getTypeFactory().constructCollectionType(
+								ArrayList.class, RevenueSharingDto.class));
 				for (RevenueSharingDto rs : result) {
 					if (rs.getType() == 1) {
 						if (rs.getCustomerSharing() > 0) {

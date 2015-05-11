@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.type.TypeFactory;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -57,7 +56,7 @@ public class AmortAdmin extends CliBase {
 						loanProducts.put(loan.getProduct(), product);
 					}
 				}
-				if (product != null && product.getProfitShared()!=0) {
+				if (product != null && product.getProfitShared() != 0) {
 					ObjectMapper mapper = new ObjectMapper();
 					try {
 						GlTrans trans = new GlTrans();
@@ -108,8 +107,10 @@ public class AmortAdmin extends CliBase {
 
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			List<LoanDto> loans = mapper.readValue(data,
-					TypeFactory.collectionType(ArrayList.class, LoanDto.class));
+			List<LoanDto> loans = mapper.readValue(
+					data,
+					mapper.getTypeFactory().constructCollectionType(
+							ArrayList.class, LoanDto.class));
 			for (LoanDto loan : loans) {
 				if (loan.getAdmin() > 0) {
 					loanAdmins.add(loan);

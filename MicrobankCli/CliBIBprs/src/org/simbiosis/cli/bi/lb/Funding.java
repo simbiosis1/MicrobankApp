@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.type.TypeFactory;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -61,8 +60,10 @@ public class Funding {
 			Date begin = sdf.parseDateTime("01" + endDate.substring(2))
 					.toDate();
 			Date end = sdf.parseDateTime(endDate).toDate();
-			List<SavingRpt> ballances = mapper.readValue(data, TypeFactory
-					.collectionType(ArrayList.class, SavingRpt.class));
+			List<SavingRpt> ballances = mapper.readValue(
+					data,
+					mapper.getTypeFactory().constructCollectionType(
+							ArrayList.class, SavingRpt.class));
 			for (SavingRpt ballance : ballances) {
 				switch (ballance.getSchema()) {
 				case 1:

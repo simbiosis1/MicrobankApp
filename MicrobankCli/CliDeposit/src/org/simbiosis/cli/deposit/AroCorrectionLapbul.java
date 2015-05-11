@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.type.TypeFactory;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -103,8 +102,10 @@ public class AroCorrectionLapbul extends CliBase {
 		String data = getCoreClient().sendRawData("listDepositProduct", "");
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			List<DepositProductDto> list = mapper.readValue(data, TypeFactory
-					.collectionType(ArrayList.class, DepositProductDto.class));
+			List<DepositProductDto> list = mapper.readValue(
+					data,
+					mapper.getTypeFactory().constructCollectionType(
+							ArrayList.class, DepositProductDto.class));
 			return list;
 		} catch (IOException e) {
 			e.printStackTrace();

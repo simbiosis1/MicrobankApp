@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.type.TypeFactory;
 import org.simbiosis.cli.base.MicrobankCoreClient;
 import org.simbiosis.cli.base.MicrobankReportClient;
 import org.simbiosis.gl.model.Coa;
@@ -196,9 +195,8 @@ public class Neraca {
 		ObjectMapper mapper = new ObjectMapper();
 		List<CoaGroup> objects = null;
 		try {
-			objects = mapper
-					.readValue(data, TypeFactory.collectionType(
-							ArrayList.class, CoaGroup.class));
+			objects = mapper.readValue(data, mapper.getTypeFactory()
+					.constructCollectionType(ArrayList.class, CoaGroup.class));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -210,9 +208,10 @@ public class Neraca {
 				+ ";1;" + year);
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			List<FinancialStartRpt> objects = mapper.readValue(data,
-					TypeFactory.collectionType(ArrayList.class,
-							FinancialStartRpt.class));
+			List<FinancialStartRpt> objects = mapper.readValue(
+					data,
+					mapper.getTypeFactory().constructCollectionType(
+							ArrayList.class, FinancialStartRpt.class));
 			for (FinancialStartRpt rs : objects) {
 				if (branch == 0
 						&& (rs.getCoaCode().contains(coaRakAktiva) || rs
@@ -240,8 +239,9 @@ public class Neraca {
 				+ ";" + strBeginDate + ";" + strEndDate + ";" + dto.getCode());
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			List<Object[]> objects = mapper
-					.readValue(data, TypeFactory.collectionType(
+			List<Object[]> objects = mapper.readValue(
+					data,
+					mapper.getTypeFactory().constructCollectionType(
 							ArrayList.class, Object[].class));
 			for (Object[] rs : objects) {
 				long id = Long.parseLong(rs[0].toString());

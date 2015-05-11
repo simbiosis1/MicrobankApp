@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.type.TypeFactory;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -132,8 +131,10 @@ public class CorrectBill extends CliBase {
 				id.toString());
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			scheds = mapper.readValue(data, TypeFactory.collectionType(
-					ArrayList.class, LoanScheduleDto.class));
+			scheds = mapper.readValue(
+					data,
+					mapper.getTypeFactory().constructCollectionType(
+							ArrayList.class, LoanScheduleDto.class));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -146,8 +147,10 @@ public class CorrectBill extends CliBase {
 				date);
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			scheds = mapper.readValue(data, TypeFactory.collectionType(
-					ArrayList.class, LoanTransInfoDto.class));
+			scheds = mapper.readValue(
+					data,
+					mapper.getTypeFactory().constructCollectionType(
+							ArrayList.class, LoanTransInfoDto.class));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

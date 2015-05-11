@@ -152,17 +152,21 @@ public class DistributeInterest extends CliBase {
 	void saveSavingTrans(RevenueSharingDto rs) {
 		try {
 			SavingInformationDto si = getSavingInformation(rs.getSaving());
+			ObjectMapper mapper = null;
+			StringWriter sw = null;
 			//
-			SavingTransactionDto transBasil = createSavingTrans(rs.getSaving(),
-					si.getBranch(), rs.getCustomerSharing(), ref, "BUNGA "
-							+ period, 1);
-			Long coa = si.getCoa2();
-			ObjectMapper mapper = new ObjectMapper();
-			StringWriter sw = new StringWriter();
-			mapper.writeValue(sw, transBasil);
-			System.out.println(sw.toString());
-			sendRawData("saveSavingJournalRevenueTrans", coa.toString(),
-					sw.toString());
+			if (rs.getCustomerSharing() > 0) {
+				SavingTransactionDto transBasil = createSavingTrans(
+						rs.getSaving(), si.getBranch(),
+						rs.getCustomerSharing(), ref, "BUNGA " + period, 1);
+				Long coa = si.getCoa2();
+				mapper = new ObjectMapper();
+				sw = new StringWriter();
+				mapper.writeValue(sw, transBasil);
+				System.out.println(sw.toString());
+				sendRawData("saveSavingJournalRevenueTrans", coa.toString(),
+						sw.toString());
+			}
 			//
 			if (rs.getZakat() > 0) {
 				SavingTransactionDto transZakat = createSavingTrans(

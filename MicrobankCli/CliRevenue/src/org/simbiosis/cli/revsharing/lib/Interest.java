@@ -15,9 +15,9 @@ public class Interest {
 	Map<Long, Double> taxList = new HashMap<Long, Double>();
 
 	Funding funding = null;
-	double minValue = 2000000;
+	double minAverageValue = 2000000;
+	// double admin = 2500;
 	double admin = 0;
-	//double admin = 2500;
 
 	public Interest(MicrobankCoreClient jsonClient, String beginDate, int days,
 			String endDate) {
@@ -35,7 +35,7 @@ public class Interest {
 
 	public void disburstRevenue() {
 		for (RevenueSharingDto revSharing : revSharingMap.values()) {
-			if (revSharing.getAverageValue() >= minValue) {
+			if (revSharing.getAverageValue() >= minAverageValue) {
 				revSharing.setTotalSharing(0);
 				revSharing.setCustomerSharing(revSharing.getAverageValue()
 						* revSharing.getSharing() * days / 36500);

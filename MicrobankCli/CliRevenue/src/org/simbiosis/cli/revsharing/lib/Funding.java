@@ -205,43 +205,44 @@ public class Funding {
 
 	void fillDepositData() {
 		String data = jsonClient.sendRawData("listDepositId", endDate);
-		String[] ids = data.split(";");
-		for (String id : ids) {
-			long depositId = Long.parseLong(id);
-			//
-			DepositInformationDto info = getDepositInformation(depositId);
-			CustomerDto cif = getCif(info.getCustomer());
-			//
-			RevenueSharingDto item = new RevenueSharingDto();
-			item.setAccount(depositId);
-			item.setType(2);
-			item.setStartValue(info.getValue());
-			item.setEndValue(info.getValue());
-			item.setAverageValue(info.getValue());
-			item.setCode(info.getCode());
-			item.setCustomer(info.getCustomer());
-			item.setName(info.getName());
-			item.setProduct(info.getProductName());
-			item.setSharing(info.getSharing());
-			item.setHasShare(1);
-			item.setSaving(info.getSaving());
-			item.setZakat(info.getZakat());
-			//
-			if (cif.getTaxable() == 1) {
-				Double value = taxMap.get(item.getCustomer());
-				if (value != null) {
-					value += item.getEndValue();
-				} else {
-					value = item.getEndValue();
+		if (!data.isEmpty()) {
+			String[] ids = data.split(";");
+			for (String id : ids) {
+				long depositId = Long.parseLong(id);
+				//
+				DepositInformationDto info = getDepositInformation(depositId);
+				CustomerDto cif = getCif(info.getCustomer());
+				//
+				RevenueSharingDto item = new RevenueSharingDto();
+				item.setAccount(depositId);
+				item.setType(2);
+				item.setStartValue(info.getValue());
+				item.setEndValue(info.getValue());
+				item.setAverageValue(info.getValue());
+				item.setCode(info.getCode());
+				item.setCustomer(info.getCustomer());
+				item.setName(info.getName());
+				item.setProduct(info.getProductName());
+				item.setSharing(info.getSharing());
+				item.setHasShare(1);
+				item.setSaving(info.getSaving());
+				item.setZakat(info.getZakat());
+				//
+				if (cif.getTaxable() == 1) {
+					Double value = taxMap.get(item.getCustomer());
+					if (value != null) {
+						value += item.getEndValue();
+					} else {
+						value = item.getEndValue();
+					}
+					taxMap.put(item.getCustomer(), value);
 				}
-				taxMap.put(item.getCustomer(), value);
+				//
+				totalAverageBallance += item.getAverageValue();
+				// Masukkan
+				revSharingMap.put("2;" + depositId, item);
 			}
-			//
-			totalAverageBallance += item.getAverageValue();
-			// Masukkan
-			revSharingMap.put("2;" + depositId, item);
 		}
-
 	}
 
 }

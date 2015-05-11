@@ -5,6 +5,7 @@ import java.util.List;
 import org.kembang.module.shared.SimpleBranchDv;
 import org.kembang.module.shared.UserDv;
 import org.simbiosis.bprs.ui.config.shared.CoaDv;
+import org.simbiosis.bprs.ui.config.shared.ConfigDv;
 import org.simbiosis.bprs.ui.config.shared.ProductDv;
 import org.simbiosis.bprs.ui.config.shared.SubBranchDv;
 import org.simbiosis.bprs.ui.config.shared.TellerDv;
@@ -37,5 +38,9 @@ public interface AppServiceAsync {
 	void listSubBranch(String key, AsyncCallback<List<SubBranchDv>> callback);
 
 	void listTerm(String key, AsyncCallback<List<SimpleBranchDv>> callback);
+
+	void loadConfig(String key, AsyncCallback<ConfigDv> callback);
+
+	void saveConfig(String key, ConfigDv config, AsyncCallback<Void> callback);
 
 }

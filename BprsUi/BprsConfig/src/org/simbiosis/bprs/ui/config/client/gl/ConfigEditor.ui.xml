@@ -1,0 +1,15 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:v="urn:import:org.simbiosis.bprs.ui.config.client.editor"
+	>
+	<ui:style>
+	
+	</ui:style>
+	<g:HTMLPanel>
+		<div class="formLabel">Coa vault/khasanah</div>
+		<div><v:CoaListEditor  ui:field="vault" styleName="formCombobox"/></div>
+		<div class="formLabel">Rekening antar bagian teller</div>
+		<div><v:CoaListEditor  ui:field="rab" styleName="formCombobox"/></div>
+	</g:HTMLPanel>
+</ui:UiBinder> 

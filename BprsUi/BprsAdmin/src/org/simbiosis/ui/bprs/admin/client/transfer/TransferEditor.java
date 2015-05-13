@@ -1,5 +1,6 @@
 package org.simbiosis.ui.bprs.admin.client.transfer;
 
+import org.kembang.editor.client.DoubleTextBox;
 import org.kembang.module.client.mvp.AppStatus;
 import org.kembang.module.client.mvp.FormWidget;
 import org.simbiosis.ui.bprs.common.client.savinghelper.SavingInfo;
@@ -42,7 +43,7 @@ public class TransferEditor extends FormWidget implements ITransfer,
 	@UiField
 	TextBox description;
 	@UiField
-	TextBox strValue;
+	DoubleTextBox value;
 
 	public TransferEditor() {
 		initWidget(uiBinder.createAndBindUi(this));

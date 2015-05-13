@@ -208,7 +208,8 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 		srcDto.setSaving(dv.getSaving().getId());
 		srcDto.setRefCode(dv.getRefCode());
 		srcDto.setDescription(dv.getDescription());
-		srcDto.setValue(Double.parseDouble(dv.getStrValue().replace(",", "")));
+		//srcDto.setValue(Double.parseDouble(dv.getStrValue().replace(",", "")));
+		srcDto.setValue(dv.getValue());
 		srcDto.setDirection(2);
 		// Kecukupan saldo tabungan
 		double saldo = savingBp.getWithdrawalBallance(srcDto.getSaving(),

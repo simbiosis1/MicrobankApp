@@ -28,24 +28,28 @@ public class KoreksiForm04 {
 	}
 
 	public void readFile() {
+		ManualPPAPJam data = new ManualPPAPJam();
+		data.loadData();
 		try {
 			FileInputStream fstream = new FileInputStream(
-					"620113001072014_ori.exp");
+					"620113001042015_ori.exp");
 			DataInputStream in = new DataInputStream(fstream);
 			BufferedReader br = new BufferedReader(new InputStreamReader(in));
 			String strLine;
 			// Read File Line By Line
 			while ((strLine = br.readLine()) != null) {
 				if (strLine.substring(0, 4).equalsIgnoreCase("BS04")) {
-					String depan = strLine.substring(0, 146);
-					String nilai = strLine.substring(146, 158);
-					String akhir = strLine.substring(158);
-					Double dMargin = Double.parseDouble(nilai);
+					String code = strLine.substring(4, 19);
+					String depan = strLine.substring(0, 104);
+					String nilai = strLine.substring(104, 116);
+					String akhir = strLine.substring(116);
+					Double dMargin = data.getData(code.trim()).getJaminan();
 					if (dMargin != 0) {
 						dMargin = dMargin / 1000;
 						Long iMargin = Math.round(dMargin);
 						nilai = StrUtils.lpadded(iMargin.toString(), 12, '0');
 					}
+					System.out.println(code + " - " + nilai);
 					buffer += (depan + nilai + akhir + newLine);
 				} else {
 					buffer += (strLine + newLine);
@@ -61,7 +65,7 @@ public class KoreksiForm04 {
 	public void writeFile() {
 		try {
 			FileOutputStream fstream = new FileOutputStream(
-					"620113001072014.exp");
+					"620113001042015.exp");
 			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
 					fstream));
 			writer.write(buffer);

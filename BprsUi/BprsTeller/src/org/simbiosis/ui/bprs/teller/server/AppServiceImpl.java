@@ -84,7 +84,8 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 				.toUpperCase() : "");
 		transDto.setDescription(transDv.getDescription() != null ? transDv
 				.getDescription().toUpperCase() : "");
-		transDto.setValue(Double.parseDouble(transDv.getStrValue()));
+		//transDto.setValue(Double.parseDouble(transDv.getStrValue()));
+		transDto.setValue(transDv.getValue());
 		transDto.setAccountId(transDv.getSaving().getId());
 		//
 		SavingInformationDto info = savingBp.getInformation(transDto
@@ -161,7 +162,8 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 				.toUpperCase() : "");
 		transDto.setDescription(transDv.getDescription() != null ? transDv
 				.getDescription().toUpperCase() : "");
-		transDto.setValue(Double.parseDouble(transDv.getStrValue()));
+		//transDto.setValue(Double.parseDouble(transDv.getStrValue()));
+		transDto.setValue(transDv.getValue());
 		transDto.setMaker(transDv.getMaker() != null ? transDv.getMaker()
 				.toUpperCase() : "");
 		// Validasi kecukupan saldo tabungan dan saldo teller ketika penarikan
@@ -268,8 +270,9 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 		String strValue = "";
 		if (transDv.getDirection() == 1) {
 			transDto.setTeller(teller.getId());
-			transDto.setValue(Double.parseDouble(transDv.getStrValue()));
-			strValue = transDv.getStrValue();
+			//transDto.setValue(Double.parseDouble(transDv.getStrValue()));
+			transDto.setValue(transDv.getValue());
+			strValue = formatNumber(transDv.getValue());
 			// Validasi kecukupan saldo tabungan dan saldo teller ketika
 			// penarikan
 			// Kecukupan saldo teller

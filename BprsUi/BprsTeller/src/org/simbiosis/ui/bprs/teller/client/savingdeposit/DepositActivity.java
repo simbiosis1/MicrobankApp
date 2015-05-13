@@ -24,8 +24,7 @@ import com.google.web.bindery.event.shared.EventBus;
 
 public class DepositActivity extends Activity {
 
-	private final AppServiceAsync tellerSrv = GWT
-			.create(AppService.class);
+	private final AppServiceAsync tellerSrv = GWT.create(AppService.class);
 
 	Place myPlace;
 	AppFactory appFactory;
@@ -105,16 +104,15 @@ public class DepositActivity extends Activity {
 				IDeposit myForm = appFactory.getSetorTunaiEditor();
 				myForm.setActivity(getActivity(), appFactory.getAppStatus());
 				//
-				TransactionDv transactionDv = new TransactionDv();
-				transactionDv.setDate(new Date());
-				transactionDv.setDirection(1);
+				TransactionDv transDv = new TransactionDv();
+				transDv.setDate(new Date());
+				transDv.setDirection(1);
 				DateTimeFormat format = DateTimeFormat.getFormat("dd-MM-yyyy");
-				transactionDv
-						.setStrDate(format.format(transactionDv.getDate()));
+				transDv.setStrDate(format.format(transDv.getDate()));
 				savingDv.copySavingData();
-				transactionDv.setSaving(savingDv);
+				transDv.setSaving(savingDv);
 				//
-				myForm.showData(transactionDv);
+				myForm.showData(transDv);
 				appFactory.showApplication(null, myForm.getFormWidget());
 			}
 

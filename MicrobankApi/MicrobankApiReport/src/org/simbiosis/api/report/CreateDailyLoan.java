@@ -122,7 +122,9 @@ public class CreateDailyLoan extends WebApiReportServlet {
 				+ loan.getPaidDiscount());
 		//
 		loan.setOsPrincipal(loan.getPrincipal() - loan.getPaidPrincipal());
-		if (loan.getSchema() < 4 || loan.getSchema() == 8) {
+		// Prinsip jual beli, multijasa, konvensional
+		if (loan.getSchema() < 4 || loan.getSchema() == 8
+				|| loan.getSchema() == 11) {
 			loan.setTotal(loan.getPrincipal() + loan.getMargin());
 			loan.setOsMargin(loan.getMargin() - loan.getPaidMargin()
 					- loan.getPaidDiscount());
@@ -181,7 +183,7 @@ public class CreateDailyLoan extends WebApiReportServlet {
 
 			List<GuaranteeDto> collaterals = iLoan.listLoanGuarantee(loan
 					.getId().getRefId());
-			int collateralBondType=0;
+			int collateralBondType = 0;
 			if (collaterals.size() > 0) {
 				double values = 0;
 				String description = "";

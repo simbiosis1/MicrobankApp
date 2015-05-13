@@ -1,5 +1,6 @@
 package org.simbiosis.ui.bprs.teller.client.cashtrans;
 
+import org.kembang.editor.client.DoubleTextBox;
 import org.kembang.module.client.mvp.AppStatus;
 import org.kembang.module.client.mvp.FormWidget;
 import org.simbiosis.ui.bprs.common.shared.TransactionDv;
@@ -24,7 +25,8 @@ public class CashTransEditor extends FormWidget implements ICashTrans,
 	interface MyUiBinder extends UiBinder<Widget, CashTransEditor> {
 	}
 
-	interface Driver extends SimpleBeanEditorDriver<TransactionDv, CashTransEditor> {
+	interface Driver extends
+			SimpleBeanEditorDriver<TransactionDv, CashTransEditor> {
 	}
 
 	private Driver driver = GWT.create(Driver.class);
@@ -36,7 +38,7 @@ public class CashTransEditor extends FormWidget implements ICashTrans,
 	@UiField
 	TextBox refCode;
 	@UiField
-	TextBox strValue;
+	DoubleTextBox value;
 	@UiField
 	TextBox maker;
 	@UiField

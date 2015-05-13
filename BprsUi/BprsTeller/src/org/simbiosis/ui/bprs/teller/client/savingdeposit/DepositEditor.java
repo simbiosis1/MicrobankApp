@@ -1,5 +1,6 @@
 package org.simbiosis.ui.bprs.teller.client.savingdeposit;
 
+import org.kembang.editor.client.DoubleTextBox;
 import org.kembang.module.client.mvp.AppStatus;
 import org.kembang.module.client.mvp.FormWidget;
 import org.simbiosis.ui.bprs.common.client.savinghelper.SavingInfo;
@@ -39,7 +40,7 @@ public class DepositEditor extends FormWidget implements IDeposit,
 	@UiField
 	TextBox description;
 	@UiField
-	TextBox strValue;
+	DoubleTextBox value;
 
 	public DepositEditor() {
 		initWidget(uiBinder.createAndBindUi(this));

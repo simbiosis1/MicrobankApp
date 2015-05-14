@@ -17,7 +17,6 @@ import org.simbiosis.ui.bprs.common.shared.SavingDv;
 import org.simbiosis.ui.bprs.common.shared.TransactionDv;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -87,7 +86,7 @@ public class SavingJournalActivity extends Activity {
 					@Override
 					public void onSuccess(TransactionDv result) {
 						hideLoading();
-						//Window.alert("Transaksi sudah disimpan");
+						// Window.alert("Transaksi sudah disimpan");
 						ISavingJournal myForm = appFactory
 								.getSavingJournalViewer();
 						myForm.showData(result);
@@ -115,8 +114,6 @@ public class SavingJournalActivity extends Activity {
 				dv.setDate(new Date());
 				dv.setDirection(1);
 				dv.setType(1);
-				DateTimeFormat format = DateTimeFormat.getFormat("dd-MM-yyyy");
-				dv.setStrDate(format.format(dv.getDate()));
 				savingDv.copySavingData();
 				dv.setSaving(savingDv);
 				//

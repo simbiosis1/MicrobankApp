@@ -29,8 +29,8 @@ public interface LoanService extends RemoteService {
 
 	LoanDv saveLoanReschedule(String key, LoanDv loanDv);
 
-	List<LoanScheduleDv> createLoanSchedule(String principal, String tenor,
-			String rate, Date beginDate, int type);
+	List<LoanScheduleDv> createLoanSchedule(Double principal, Integer tenor,
+			Double rate, Date beginDate, int type);
 
 	InfoLoanDv getPaymentInfo(Long id);
 

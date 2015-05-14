@@ -217,13 +217,9 @@ public class MicBankServiceImpl extends RemoteServiceServlet implements
 		dv.setProduct(loanProduct.getId());
 		dv.setStrProduct(loanProduct.getName());
 		dv.setPrincipal(dto.getPrincipal());
-		dv.setStrPrincipal(nf.format(dv.getPrincipal()));
 		dv.setMargin(dto.getMargin());
-		dv.setStrMargin(nf.format(dv.getMargin()));
 		dv.setRate(dto.getRate());
-		dv.setStrRate(nf.format(dv.getRate()));
 		dv.setTenor(dto.getTenor());
-		dv.setStrTenor("" + dv.getTenor());
 		dv.setDropped(dto.isDropped());
 		dv.setPurpose(dto.getPurpose());
 		dv.setBiSektor(dto.getBiSektor());

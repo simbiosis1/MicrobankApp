@@ -3,10 +3,10 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui"
 	xmlns:l="urn:import:org.simbiosis.ui.bprs.common.client.deposithelper"
 	xmlns:s="urn:import:org.simbiosis.ui.bprs.common.client.savinghelper"
-	xmlns:e="urn:import:org.simbiosis.ui.bprs.admin.client.editor">
-	<ui:style>
-		
-	</ui:style>
+	xmlns:e="urn:import:org.simbiosis.ui.bprs.admin.client.editor"
+	xmlns:k="urn:import:org.kembang.editor.client"
+	>
+	
 	<g:HTMLPanel>
 		<g:HTMLPanel>
 			<table class="formTableLayout" width="100%">

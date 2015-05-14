@@ -33,7 +33,7 @@ public class LoanPaidExtPdf extends ReportServlet {
 	String code;
 	String savingCode;
 	Double principal = 0D;
-	Double tenor = 0D;
+	Integer tenor = 0;
 
 	public LoanPaidExtPdf() {
 		super("LoanPaidExtPdf");

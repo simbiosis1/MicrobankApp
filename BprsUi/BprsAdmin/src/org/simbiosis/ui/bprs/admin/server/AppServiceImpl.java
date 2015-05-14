@@ -71,12 +71,9 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 		if (dv.getLoan().isDropped()) {
 			dto.setType(dv.getType());
 			dto.setDirection(2);
-			dto.setPrincipal(Double.parseDouble(dv.getStrPrincipal().replace(
-					",", "")));
-			dto.setMargin(Double
-					.parseDouble(dv.getStrMargin().replace(",", "")));
-			dto.setDiscount(Double.parseDouble(dv.getStrDiscount().replace(",",
-					"")));
+			dto.setPrincipal(dv.getPrincipal());
+			dto.setMargin(dv.getMargin());
+			dto.setDiscount(dv.getDiscount());
 			//
 			long savingId = dv.getLoan().getSaving().getId();
 			double value = dto.getPrincipal() + dto.getMargin();
@@ -88,15 +85,13 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 				throw new IllegalArgumentException("Saldo rekening tabungan "
 						+ info.getCode() + " tidak mencukupi");
 			}
-			baris2 += dv.getStrPrincipal() + "+" + dv.getStrMargin();
+			baris2 += nf.format(dv.getPrincipal()) + "+" + nf.format(dv.getMargin());
 
 		} else {
 			dto.setType(dv.getType());
 			dto.setDirection(1);
-			dto.setPrincipal(Double.parseDouble(dv.getStrValue().replace(",",
-					"")));
-			dto.setMargin(Double
-					.parseDouble(dv.getStrMargin().replace(",", "")));
+			dto.setPrincipal(dv.getValue());
+			dto.setMargin(dv.getMargin());
 			//
 			if (loanDto.getGuarantees().size() == 0) {
 				throw new IllegalArgumentException(
@@ -108,7 +103,7 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 				throw new IllegalArgumentException(
 						"Jaminan untuk pembiayaan ini belum diinput dengan benar");
 			}
-			baris2 += dv.getStrValue();
+			baris2 += nf.format(dv.getValue());
 		}
 		dto = loanBp.saveCompleteLoanTrans(key, dto);
 		dv.setCode(dto.getCode());
@@ -129,7 +124,7 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 		dto.setDate(dv.getDate());
 		dto.setDeposit(dv.getDeposit().getId());
 		dto.setRefCode(dv.getRefCode());
-		dto.setValue(Double.parseDouble(dv.getStrValue().replace(",", "")));
+		dto.setValue(dv.getValue());
 		dto.setDirection(dv.getType());
 		if (dto.getDirection() == 1) {
 			// Kecukupan saldo tabungan ketika mau setoran
@@ -150,13 +145,13 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 		}
 
 		dto = depositBp.saveDepositTrans(key, dto, dv.getSaving().getId());
-		dv.setStrValue(nf.format(dto.getValue()));
+		dv.setValue(dto.getValue());
 		dv.setCode(dto.getCode());
 		// Validasi
 		String baris1 = dto.getCode() + " " + dto.getDirection() + " "
 				+ dv.getDeposit().getCode() + " - " + dv.getSaving().getCode()
 				+ " " + dv.getDeposit().getName();
-		String baris2 = "IDR " + dv.getStrValue();
+		String baris2 = "IDR " + nf.format(dv.getValue());
 		String baris3 = "" + new Date();
 		dv.setValidationText(baris1 + "<>" + baris2 + "<>" + baris3);
 		//
@@ -171,7 +166,8 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 		dto.setSaving(dv.getSaving().getId());
 		dto.setRefCode(dv.getRefCode());
 		dto.setDescription(dv.getDescription());
-		dto.setValue(Double.parseDouble(dv.getStrValue().replace(",", "")));
+		//dto.setValue(Double.parseDouble(dv.getStrValue().replace(",", "")));
+		dto.setValue(dv.getValue());
 		dto.setDirection(dv.getType());
 		if (dto.getDirection() == 2) {
 			// Kecukupan saldo tabungan
@@ -186,14 +182,14 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 		}
 		SavingTransactionDto transDto = savingBp.saveSavingJournalTrans(key,
 				dto, dv.getCoa());
-		dv.setStrValue(nf.format(dto.getValue()));
+		dv.setValue(dto.getValue());
 		dv.setCode(transDto.getCode());
 		// Validasi
 		Coa coa = glBp.getCoa(dv.getCoa());
 		String baris1 = transDto.getCode() + " " + transDto.getDirection()
 				+ " " + coa.getCode() + " - " + dv.getSaving().getCode() + " "
 				+ dv.getSaving().getName();
-		String baris2 = "IDR " + dv.getStrValue();
+		String baris2 = "IDR " + nf.format(dv.getValue());
 		String baris3 = "" + new Date();
 		dv.setValidationText(baris1 + "<>" + baris2 + "<>" + baris3);
 		//
@@ -225,7 +221,7 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 		destDto.setSaving(dv.getSavingDest().getId());
 		destDto.setRefCode(dv.getRefCode());
 		destDto.setDescription(dv.getDescription());
-		destDto.setValue(Double.parseDouble(dv.getStrValue().replace(",", "")));
+		destDto.setValue(dv.getValue());
 		destDto.setDirection(1);
 		SavingTransactionDto transDto = new SavingTransactionDto();
 		Long id = savingBp.saveSavingTrfTrans(key, srcDto, destDto);
@@ -237,7 +233,7 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 				+ " " + dv.getSaving().getName() + " - 1 "
 				+ dv.getSavingDest().getCode() + " "
 				+ dv.getSavingDest().getName();
-		String baris2 = "IDR " + dv.getStrValue();
+		String baris2 = "IDR " + nf.format(dv.getValue());
 		String baris3 = "" + transDto.getTimestamp();
 		dv.setValidationText(baris1 + "<>" + baris2 + "<>" + baris3);
 		//
@@ -253,22 +249,16 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 		TransactionDv trans = new TransactionDv();
 		trans.setDate(dto.getDate());
 		trans.setPrincipal(dto.getPrincipal());
-		trans.setStrPrincipal(nf.format(trans.getPrincipal()));
 		trans.setMargin(dto.getMargin());
-		trans.setStrMargin(nf.format(trans.getMargin()));
 		trans.setTotal(trans.getPrincipal() + trans.getMargin());
-		trans.setStrTotal(nf.format(trans.getTotal()));
 		result.add(trans);
 		//
 		dto = loanBp.getEarlyRepayment(id);
 		trans = new TransactionDv();
 		trans.setDate(dto.getDate());
 		trans.setPrincipal(dto.getPrincipal());
-		trans.setStrPrincipal(nf.format(trans.getPrincipal()));
 		trans.setMargin(dto.getMargin());
-		trans.setStrMargin(nf.format(trans.getMargin()));
 		trans.setTotal(trans.getPrincipal() + trans.getMargin());
-		trans.setStrTotal(nf.format(trans.getTotal()));
 		result.add(trans);
 		//
 		return result;

@@ -16,7 +16,6 @@ import org.simbiosis.ui.bprs.common.shared.SavingDv;
 import org.simbiosis.ui.bprs.common.shared.TransactionDv;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -85,7 +84,7 @@ public class DepositActivity extends Activity {
 						myForm.showData(result);
 						appFactory.showApplication(null, myForm.getFormWidget());
 						printValidation(result.getValidationText());
-						//Window.alert("Transaksi sudah disimpan");
+						// Window.alert("Transaksi sudah disimpan");
 					}
 
 					@Override
@@ -107,12 +106,9 @@ public class DepositActivity extends Activity {
 				//
 				TransactionDv transDv = new TransactionDv();
 				transDv.setDate(new Date());
-				DateTimeFormat format = DateTimeFormat.getFormat("dd-MM-yyyy");
-				transDv.setStrDate(format.format(transDv.getDate()));
 				transDv.setType(1);
 				transDv.setDirection(1);
 				transDv.setValue(depositDv.getValue());
-				transDv.setStrValue(depositDv.getStrValue());
 				depositDv.copyDepositData();
 				transDv.setDeposit(depositDv);
 				SavingDv savingDv = depositDv.getSaving();

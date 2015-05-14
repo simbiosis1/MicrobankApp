@@ -193,11 +193,8 @@ public class LoanServiceImpl extends RemoteServiceServlet implements
 		dv.setProduct(loanProduct.getId());
 		dv.setStrProduct(loanProduct.getName());
 		dv.setPrincipal(dto.getPrincipal());
-		dv.setStrPrincipal(nf.format(dto.getPrincipal()));
 		dv.setRate(dto.getRate());
-		dv.setStrRate(nf.format(dto.getRate()));
 		dv.setTenor(dto.getTenor());
-		dv.setStrTenor("" + dv.getTenor());
 		dv.setPurpose(dto.getPurpose());
 		dv.setBiSektor(dto.getBiSektor());
 		//
@@ -267,10 +264,9 @@ public class LoanServiceImpl extends RemoteServiceServlet implements
 		dto.setContract(dv.getContract() == null ? "" : dv.getContract()
 				.toUpperCase());
 		dto.setContractDate(dv.getContractDate());
-		dto.setPrincipal(Double.parseDouble(dv.getStrPrincipal().replace(",",
-				"")));
-		dto.setRate(Double.parseDouble(dv.getStrRate().replace(",", "")));
-		dto.setTenor(Double.parseDouble(dv.getStrTenor().replace(",", "")));
+		dto.setPrincipal(dv.getPrincipal());
+		dto.setRate(dv.getRate());
+		dto.setTenor(dv.getTenor());
 		dto.setSaving(dv.getSaving().getId());
 		dto.setRegistration(dv.getRegistration());
 		dto.setAo(dv.getAo());
@@ -307,30 +303,24 @@ public class LoanServiceImpl extends RemoteServiceServlet implements
 	}
 
 	@Override
-	public List<LoanScheduleDv> createLoanSchedule(String strPrincipal,
-			String strTenor, String strRate, Date beginDate, int type) {
+	public List<LoanScheduleDv> createLoanSchedule(Double strPrincipal,
+			Integer strTenor, Double strRate, Date beginDate, int type) {
 		List<LoanScheduleDv> result = new ArrayList<LoanScheduleDv>();
 		DateTime begin = new DateTime(beginDate).plusMonths(1);
 		beginDate = begin.toDate();
 		List<LoanScheduleDto> loanScheduleDtos = new ArrayList<LoanScheduleDto>();
 		switch (type) {
 		case 1:
-			loanScheduleDtos = loanBp.createFlatSchedule(
-					Double.parseDouble(strPrincipal.replace(",", "")),
-					Double.parseDouble(strTenor.replace(",", "")),
-					Double.parseDouble(strRate.replace(",", "")), beginDate);
+			loanScheduleDtos = loanBp.createFlatSchedule(strPrincipal,
+					strTenor, strRate, beginDate);
 			break;
 		case 2:
-			loanScheduleDtos = loanBp.createEffectiveSchedule(
-					Double.parseDouble(strPrincipal.replace(",", "")),
-					Double.parseDouble(strTenor.replace(",", "")),
-					Double.parseDouble(strRate.replace(",", "")), beginDate);
+			loanScheduleDtos = loanBp.createEffectiveSchedule(strPrincipal,
+					strTenor, strRate, beginDate);
 			break;
 		case 3:
-			loanScheduleDtos = loanBp.createAnuitasSchedule(
-					Double.parseDouble(strPrincipal.replace(",", "")),
-					Double.parseDouble(strTenor.replace(",", "")),
-					Double.parseDouble(strRate.replace(",", "")), beginDate);
+			loanScheduleDtos = loanBp.createAnuitasSchedule(strPrincipal,
+					strTenor, strRate, beginDate);
 			break;
 		default:
 			break;

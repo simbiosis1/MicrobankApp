@@ -3,7 +3,9 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui"
 	xmlns:l="urn:import:org.simbiosis.ui.bprs.common.client.loanhelper"
 	xmlns:s="urn:import:org.simbiosis.ui.bprs.common.client.savinghelper"
-	xmlns:e="urn:import:org.simbiosis.ui.bprs.admin.client.editor">
+	xmlns:e="urn:import:org.simbiosis.ui.bprs.admin.client.editor"
+	xmlns:k="urn:import:org.kembang.editor.client"
+	>
 	<ui:style>
 		
 	</ui:style>
@@ -60,22 +62,22 @@
 						<tr>
 							<td class="formLabel">Jumlah</td>
 							<td>&nbsp;</td>
-							<td><g:TextBox styleName="formText" ui:field="strValue"/></td>
+							<td><k:DoubleTextBox styleName="formText" ui:field="value"/></td>
 						</tr>
 						<tr>
 							<td class="formLabel">Pokok</td>
 							<td>&nbsp;</td>
-							<td><g:TextBox styleName="formText" ui:field="strPrincipal"/></td>
+							<td><k:DoubleTextBox styleName="formText" ui:field="principal"/></td>
 						</tr>
 						<tr>
 							<td class="formLabel">Marjin</td>
 							<td>&nbsp;</td>
-							<td><g:TextBox styleName="formText" ui:field="strMargin"/></td>
+							<td><k:DoubleTextBox styleName="formText" ui:field="margin"/></td>
 						</tr>
 						<tr>
 							<td class="formLabel">Diskon</td>
 							<td>&nbsp;</td>
-							<td><g:TextBox styleName="formText" ui:field="strDiscount"/></td>
+							<td><k:DoubleTextBox styleName="formText" ui:field="discount"/></td>
 						</tr>
 					</table>
 					</td>

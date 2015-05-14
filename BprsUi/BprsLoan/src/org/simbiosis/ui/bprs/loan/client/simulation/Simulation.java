@@ -1,11 +1,13 @@
 package org.simbiosis.ui.bprs.loan.client.simulation;
 
+import org.kembang.editor.client.DoubleTextBox;
+import org.kembang.editor.client.IntegerTextBox;
 import org.kembang.grid.client.FlexTableHelper;
 import org.kembang.module.client.mvp.AppStatus;
 import org.kembang.module.client.mvp.FormWidget;
 import org.simbiosis.ui.bprs.common.shared.LoanScheduleDv;
-import org.simbiosis.ui.bprs.loan.client.editor.LoanScheduleViewerTable;
 import org.simbiosis.ui.bprs.loan.client.editor.LoanScheduleType;
+import org.simbiosis.ui.bprs.loan.client.editor.LoanScheduleViewerTable;
 import org.simbiosis.ui.bprs.loan.shared.LoanScheduleGenDv;
 
 import com.google.gwt.core.client.GWT;
@@ -41,11 +43,11 @@ public class Simulation extends FormWidget implements ISimulation,
 	@UiField
 	TextBox name;
 	@UiField
-	TextBox strPrincipal;
+	DoubleTextBox principal;
 	@UiField
-	TextBox strTenor;
+	IntegerTextBox tenor;
 	@UiField
-	TextBox strRate;
+	DoubleTextBox rate;
 	@UiField
 	LoanScheduleViewerTable schedules;
 	@UiField

@@ -87,7 +87,7 @@ public class MigratorLoan extends Migrator {
 					dto.setActive(rs.getInt("financingaccount_active"));
 					dto.setClosing(rs.getDate("financingaccount_closedate"));
 					dto.setPrincipal(rs.getDouble("financingaccount_plafond"));
-					dto.setTenor(rs.getDouble("financingaccount_schedamount"));
+					dto.setTenor(rs.getInt("financingaccount_schedamount"));
 					dto.setRate(rs.getDouble("financingaccount_rate1"));
 					dto.setMargin(rs.getDouble("financingaccount_return"));
 					if (dto.getRate() < 0.01 && dto.getPrincipal() > 0.1) {

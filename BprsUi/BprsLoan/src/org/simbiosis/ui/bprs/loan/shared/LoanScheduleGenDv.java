@@ -9,9 +9,9 @@ import com.google.gwt.user.client.rpc.IsSerializable;
 
 public class LoanScheduleGenDv implements IsSerializable {
 	String name;
-	String strPrincipal;
-	String strRate;
-	String strTenor;
+	Double principal;
+	Double rate;
+	Integer tenor;
 	List<LoanScheduleDv> schedules = new ArrayList<LoanScheduleDv>();
 	int scheduleType;
 
@@ -27,28 +27,28 @@ public class LoanScheduleGenDv implements IsSerializable {
 		scheduleType = 1;
 	}
 
-	public String getStrPrincipal() {
-		return strPrincipal;
+	public Double getPrincipal() {
+		return principal;
 	}
 
-	public void setStrPrincipal(String strPrincipal) {
-		this.strPrincipal = strPrincipal;
+	public void setPrincipal(Double principal) {
+		this.principal = principal;
 	}
 
-	public String getStrRate() {
-		return strRate;
+	public Double getRate() {
+		return rate;
 	}
 
-	public void setStrRate(String strRate) {
-		this.strRate = strRate;
+	public void setRate(Double rate) {
+		this.rate = rate;
 	}
 
-	public String getStrTenor() {
-		return strTenor;
+	public Integer getTenor() {
+		return tenor;
 	}
 
-	public void setStrTenor(String strTenor) {
-		this.strTenor = strTenor;
+	public void setTenor(Integer tenor) {
+		this.tenor = tenor;
 	}
 
 	public List<LoanScheduleDv> getSchedules() {

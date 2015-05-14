@@ -132,12 +132,11 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 		}
 		long id = tellerBp.saveTellerSavingTrans(key, transDto);
 		transDto = tellerBp.getTellerTransaction(id);
-		transDv.setStrValue(formatNumber(transDto.getValue()));
 		transDv.setCode(transDto.getCode());
 		// Validasi
 		String baris1 = transDto.getCode() + " " + transDto.getDirection()
 				+ " " + info.getCode() + " " + info.getName();
-		String baris2 = "IDR " + transDv.getStrValue();
+		String baris2 = "IDR " + formatNumber(transDv.getValue());
 		String baris3 = "" + transDto.getTimestamp() + " " + teller.getCode()
 				+ " " + teller.getName();
 		transDv.setValidationText(baris1 + "<>" + baris2 + "<>" + baris3);
@@ -189,13 +188,12 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 		transDto = tellerBp.getTellerTransaction(id);
 		transDv.setRefCode(transDto.getRefCode());
 		transDv.setCode(transDto.getCode());
-		transDv.setStrValue(formatNumber(transDto.getValue()));
 		transDv.setMaker(transDto.getMaker());
 		transDv.setDescription(transDto.getDescription());
 		// Validasi
 		String baris1 = transDto.getCode() + " " + transDto.getDirection()
 				+ " CASH " + transDto.getMaker();
-		String baris2 = "IDR " + transDv.getStrValue();
+		String baris2 = "IDR " + formatNumber(transDv.getValue());
 		String baris3 = "" + transDto.getTimestamp() + " " + teller.getCode()
 				+ " " + teller.getName();
 		transDv.setValidationText(baris1 + "<>" + baris2 + "<>" + baris3);

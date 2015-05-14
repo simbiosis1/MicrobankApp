@@ -16,13 +16,9 @@ public class LoanDv implements IsSerializable {
 	Long product;
 	String strProduct;
 	Double principal;
-	String strPrincipal;
 	Double margin;
-	String strMargin;
 	Double rate;
-	String strRate;
-	Double tenor;
-	String strTenor;
+	Integer tenor;
 	String contract;
 	Date contractDate;
 	String strContractDate;
@@ -58,11 +54,11 @@ public class LoanDv implements IsSerializable {
 		product = 0L;
 		principal = 0D;
 		rate = 0D;
-		tenor = 0D;
+		tenor = 0;
 		ao = 0L;
 		scheduleType = 1;
-		admin=0D;
-		fine=0D;
+		admin = 0D;
+		fine = 0D;
 	}
 
 	public void copyLoanData() {
@@ -156,44 +152,12 @@ public class LoanDv implements IsSerializable {
 		this.principal = principal;
 	}
 
-	public String getStrPrincipal() {
-		return strPrincipal;
-	}
-
-	public void setStrPrincipal(String strPrincipal) {
-		this.strPrincipal = strPrincipal;
-	}
-
 	public Double getRate() {
 		return rate;
 	}
 
 	public void setRate(Double rate) {
 		this.rate = rate;
-	}
-
-	public String getStrRate() {
-		return strRate;
-	}
-
-	public void setStrRate(String strRate) {
-		this.strRate = strRate;
-	}
-
-	public Double getTenor() {
-		return tenor;
-	}
-
-	public void setTenor(Double tenor) {
-		this.tenor = tenor;
-	}
-
-	public String getStrTenor() {
-		return strTenor;
-	}
-
-	public void setStrTenor(String strTenor) {
-		this.strTenor = strTenor;
 	}
 
 	public String getContract() {
@@ -308,14 +272,6 @@ public class LoanDv implements IsSerializable {
 		this.margin = margin;
 	}
 
-	public String getStrMargin() {
-		return strMargin;
-	}
-
-	public void setStrMargin(String strMargin) {
-		this.strMargin = strMargin;
-	}
-
 	public List<GuaranteeDv> getGuarantees() {
 		return guarantees;
 	}
@@ -410,5 +366,13 @@ public class LoanDv implements IsSerializable {
 
 	public void setStrFine(String strFine) {
 		this.strFine = strFine;
+	}
+
+	public Integer getTenor() {
+		return tenor;
+	}
+
+	public void setTenor(Integer tenor) {
+		this.tenor = tenor;
 	}
 }

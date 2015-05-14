@@ -17,7 +17,6 @@ import org.simbiosis.ui.bprs.common.shared.SavingDv;
 import org.simbiosis.ui.bprs.common.shared.TransactionDv;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -89,7 +88,7 @@ public class LoanActivity extends Activity {
 						myForm.showData(result);
 						appFactory.showApplication(null, myForm.getFormWidget());
 						printValidation(result.getValidationText());
-						//Window.alert("Transaksi sudah disimpan");
+						// Window.alert("Transaksi sudah disimpan");
 					}
 
 					@Override
@@ -111,8 +110,6 @@ public class LoanActivity extends Activity {
 				transDv.setDate(new Date());
 				transDv.setType(1);
 				transDv.setDirection(1);
-				DateTimeFormat format = DateTimeFormat.getFormat("dd-MM-yyyy");
-				transDv.setStrDate(format.format(transDv.getDate()));
 				loanDv.copyLoanData();
 				transDv.setLoan(loanDv);
 				// transDv.setPrincipal(loanDv.getPrincipal());
@@ -138,15 +135,10 @@ public class LoanActivity extends Activity {
 								//
 								TransactionDv repayment = result.get(0);
 								transDv.setPrincipal(repayment.getPrincipal());
-								transDv.setStrPrincipal(repayment
-										.getStrPrincipal());
 								transDv.setMargin(repayment.getMargin());
-								transDv.setStrMargin(repayment.getStrMargin());
 								transDv.setTotal(repayment.getTotal());
-								transDv.setStrTotal(repayment.getStrTotal());
 								transDv.setValue(transDv.getValue());
-								transDv.setStrValue(transDv.getStrTotal());
-								transDv.setStrDiscount("0");
+								transDv.setDiscount(0D);
 								myForm.showData(transDv);
 								appFactory.showApplication(null,
 										myForm.getFormWidget());

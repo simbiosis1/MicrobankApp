@@ -56,8 +56,8 @@ public class SimulationActivity extends Activity {
 		LoanScheduleGenDv dv = myForm.getData();
 		Window.open(
 				reportService + "/getLoanSimulationPdf?principal="
-						+ dv.getStrPrincipal() + "&rate=" + dv.getStrRate()
-						+ "&tenor=" + dv.getStrTenor() + "&type="
+						+ dv.getPrincipal() + "&rate=" + dv.getRate()
+						+ "&tenor=" + dv.getTenor() + "&type="
 						+ dv.getScheduleType() + "&name=" + dv.getName(),
 				"_blank", null);
 	}
@@ -65,8 +65,8 @@ public class SimulationActivity extends Activity {
 	@Override
 	public void generate(LoanScheduleGenDv data) {
 		showLoading();
-		loanSrv.createLoanSchedule(data.getStrPrincipal(), data.getStrTenor(),
-				data.getStrRate(), new Date(), data.getScheduleType(),
+		loanSrv.createLoanSchedule(data.getPrincipal(), data.getTenor(),
+				data.getRate(), new Date(), data.getScheduleType(),
 				new AsyncCallback<List<LoanScheduleDv>>() {
 
 					@Override

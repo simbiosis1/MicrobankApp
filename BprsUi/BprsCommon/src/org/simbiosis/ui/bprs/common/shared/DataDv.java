@@ -11,7 +11,6 @@ public class DataDv implements IsSerializable {
 	Long produk;
 	String strProduk;
 	Double rate;
-	String strRate;
 
 	public Integer getNr() {
 		return nr;
@@ -82,11 +81,4 @@ public class DataDv implements IsSerializable {
 		this.rate = rate;
 	}
 
-	public String getStrRate() {
-		return strRate;
-	}
-
-	public void setStrRate(String strRate) {
-		this.strRate = strRate;
-	}
 }

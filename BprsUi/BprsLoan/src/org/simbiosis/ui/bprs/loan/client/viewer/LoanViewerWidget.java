@@ -12,9 +12,11 @@ import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.DateLabel;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.NumberLabel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class LoanViewerWidget extends Composite implements Editor<LoanDv> {
@@ -32,9 +34,9 @@ public class LoanViewerWidget extends Composite implements Editor<LoanDv> {
 	@UiField
 	Label code;
 	@UiField
-	Label strRegistration;
+	DateLabel registration;
 	@UiField
-	Label strContractDate;
+	DateLabel contractDate;
 	@UiField
 	Label contract;
 	@UiField
@@ -44,15 +46,15 @@ public class LoanViewerWidget extends Composite implements Editor<LoanDv> {
 	@UiField
 	Label strProduct;
 	@UiField
-	Label strPrincipal;
+	NumberLabel<Double> principal;
 	@UiField
-	Label strRate;
+	NumberLabel<Double> rate;
 	@UiField
-	Label strTenor;
+	NumberLabel<Integer> tenor;
 	@UiField
-	Label strAdmin;
+	NumberLabel<Double> admin;
 	@UiField
-	Label strFine;
+	NumberLabel<Double> fine;
 	@UiField
 	Label purpose;
 	@UiField

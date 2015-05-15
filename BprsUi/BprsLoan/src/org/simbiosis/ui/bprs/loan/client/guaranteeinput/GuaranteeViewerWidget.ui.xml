@@ -3,7 +3,7 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.google.gwt.user.datepicker.client"
 	xmlns:e="urn:import:org.simbiosis.ui.bprs.loan.client.editor" xmlns:gr="urn:import:org.kembang.grid.client">
 	<ui:style>
-
+	
 	</ui:style>
 	<g:HTMLPanel>
 		<g:HTMLPanel>
@@ -23,7 +23,8 @@
 					</td>
 					<td>&nbsp;&nbsp;</td>
 					<td>
-						<g:Label ui:field="strRegistration" styleName="formTextlabel" />
+						<g:DateLabel ui:field="registration" styleName="formTextlabel"
+							customFormat="dd-MM-yyyy" />
 					</td>
 				</tr>
 				<tr>
@@ -68,7 +69,8 @@
 					</td>
 					<td>&nbsp;&nbsp;</td>
 					<td>
-						<g:Label ui:field="strAppraisalIntValue" styleName="formTextlabel" />
+						<g:NumberLabel ui:field="appraisalIntValue"
+							styleName="formTextlabel" customFormat="#,##0.00" />
 					</td>
 				</tr>
 				<tr>
@@ -77,7 +79,8 @@
 					</td>
 					<td>&nbsp;&nbsp;</td>
 					<td>
-						<g:Label ui:field="strAppraisalMarkValue" styleName="formTextlabel" />
+						<g:NumberLabel ui:field="appraisalMarkValue"
+							styleName="formTextlabel" customFormat="#,##0.00" />
 					</td>
 				</tr>
 			</table>

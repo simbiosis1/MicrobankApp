@@ -41,14 +41,12 @@ public class CustomerDv implements IsSerializable {
 	Integer nr;
 	String code;
 	Date registration;
-	String strRegistration;
 	String name;
 	String title;
 	Integer sex;
 	String strSex;
 	String pob;
 	Date dob;
-	String strDob;
 	Integer idType;
 	String strIdType;
 	String idCode;
@@ -127,14 +125,6 @@ public class CustomerDv implements IsSerializable {
 		this.registration = registration;
 	}
 
-	public String getStrRegistration() {
-		return strRegistration;
-	}
-
-	public void setStrRegistration(String strRegistration) {
-		this.strRegistration = strRegistration;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -173,14 +163,6 @@ public class CustomerDv implements IsSerializable {
 
 	public void setDob(Date dob) {
 		this.dob = dob;
-	}
-
-	public String getStrDob() {
-		return strDob;
-	}
-
-	public void setStrDob(String strDob) {
-		this.strDob = strDob;
 	}
 
 	public Integer getIdType() {

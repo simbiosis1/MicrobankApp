@@ -179,7 +179,6 @@ public class SavingInputActivity extends Activity {
 		ISavingInput editorForm = appFactory.getSavingEditor();
 		SavingDv saving = new SavingDv();
 		saving.setRegistration(new Date());
-		saving.setStrRegistration(dateFormat.format(saving.getRegistration()));
 		if (newCustomer) {
 			saving.setNewCustomer(newCustomer);
 		} else {

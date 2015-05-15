@@ -43,7 +43,7 @@
 								<td class="formLabel">Tanggal</td>
 								<td>&nbsp;</td>
 								<td>
-									<g:Label ui:field="strDate" width="75px" />
+									<g:DateLabel ui:field="date" width="75px" customFormat="dd-MM-yyyy"/>
 								</td>
 							</tr>
 							<tr>

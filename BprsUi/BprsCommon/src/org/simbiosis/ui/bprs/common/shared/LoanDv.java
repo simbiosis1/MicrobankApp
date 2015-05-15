@@ -11,7 +11,6 @@ public class LoanDv implements IsSerializable {
 	Integer nr;
 	String code;
 	Date registration;
-	String strRegistration;
 	CustomerDv customer = new CustomerDv();
 	Long product;
 	String strProduct;
@@ -21,7 +20,6 @@ public class LoanDv implements IsSerializable {
 	Integer tenor;
 	String contract;
 	Date contractDate;
-	String strContractDate;
 	boolean dropped;
 	int scheduleType;
 	String strScheduleType;
@@ -104,14 +102,6 @@ public class LoanDv implements IsSerializable {
 		this.registration = registration;
 	}
 
-	public String getStrRegistration() {
-		return strRegistration;
-	}
-
-	public void setStrRegistration(String strRegistration) {
-		this.strRegistration = strRegistration;
-	}
-
 	public CustomerDv getCustomer() {
 		return customer;
 	}
@@ -174,14 +164,6 @@ public class LoanDv implements IsSerializable {
 
 	public void setContractDate(Date contractDate) {
 		this.contractDate = contractDate;
-	}
-
-	public String getStrContractDate() {
-		return strContractDate;
-	}
-
-	public void setStrContractDate(String strContractDate) {
-		this.strContractDate = strContractDate;
 	}
 
 	public String getName() {

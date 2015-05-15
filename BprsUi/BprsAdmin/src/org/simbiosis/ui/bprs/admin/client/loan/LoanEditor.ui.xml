@@ -47,7 +47,7 @@
 						<tr>
 							<td class="formLabel">Tanggal</td>
 							<td>&nbsp;</td>
-							<td><g:Label ui:field="strDate" width="75px" styleName="formTextlabel"/></td>
+							<td><g:DateLabel ui:field="date" width="75px" styleName="formTextlabel" customFormat="dd-MM-yyyy"/></td>
 						</tr>
 						<tr>
 							<td class="formLabel">Kode</td>

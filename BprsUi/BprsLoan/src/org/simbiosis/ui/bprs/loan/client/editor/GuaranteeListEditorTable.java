@@ -57,7 +57,7 @@ public class GuaranteeListEditorTable extends AdvancedGrid<GuaranteeDv> {
 
 		@Override
 		public String getDataValue(GuaranteeDv data) {
-			return data.getStrAppraisalIntValue();
+			return numberFormat.format(data.getAppraisalIntValue());
 		}
 	};
 

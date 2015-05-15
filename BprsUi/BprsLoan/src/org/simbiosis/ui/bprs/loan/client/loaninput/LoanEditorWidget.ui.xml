@@ -25,7 +25,7 @@
 					</td>
 					<td>&nbsp;&nbsp;</td>
 					<td>
-						<g:Label ui:field="strRegistration" styleName="formTextlabel" />
+						<g:DateLabel ui:field="registration" styleName="formTextlabel" customFormat="dd-MM-yyyy"/>
 					</td>
 				</tr>
 				<tr>

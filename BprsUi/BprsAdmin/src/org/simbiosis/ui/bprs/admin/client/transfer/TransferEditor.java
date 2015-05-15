@@ -11,7 +11,7 @@ import com.google.gwt.editor.client.Editor;
 import com.google.gwt.editor.client.SimpleBeanEditorDriver;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.DateLabel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -37,7 +37,7 @@ public class TransferEditor extends FormWidget implements ITransfer,
 	@UiField
 	SavingInfo savingDest;
 	@UiField
-	Label strDate;
+	DateLabel date;
 	@UiField
 	TextBox refCode;
 	@UiField

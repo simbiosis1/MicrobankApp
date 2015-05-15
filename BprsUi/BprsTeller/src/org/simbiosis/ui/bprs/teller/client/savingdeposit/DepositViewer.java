@@ -10,7 +10,9 @@ import com.google.gwt.editor.client.Editor;
 import com.google.gwt.editor.client.SimpleBeanEditorDriver;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.DateLabel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.NumberLabel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class DepositViewer extends FormWidget implements Editor<TransactionDv>,
@@ -32,7 +34,7 @@ public class DepositViewer extends FormWidget implements Editor<TransactionDv>,
 	@UiField
 	SavingInfo saving;
 	@UiField
-	Label strDate;
+	DateLabel date;
 	@UiField
 	Label code;
 	@UiField
@@ -40,7 +42,7 @@ public class DepositViewer extends FormWidget implements Editor<TransactionDv>,
 	@UiField
 	Label description;
 	@UiField
-	Label strValue;
+	NumberLabel<Double> value;
 
 	public DepositViewer() {
 		initWidget(uiBinder.createAndBindUi(this));

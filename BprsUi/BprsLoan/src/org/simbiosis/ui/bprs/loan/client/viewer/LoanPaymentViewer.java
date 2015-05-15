@@ -14,7 +14,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
-import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.NumberLabel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class LoanPaymentViewer extends Composite implements Editor<InfoLoanDv> {
@@ -31,13 +31,13 @@ public class LoanPaymentViewer extends Composite implements Editor<InfoLoanDv> {
 	private Driver driver = GWT.create(Driver.class);
 
 	@UiField
-	Label osPrincipal;
+	NumberLabel<Double> osPrincipal;
 	@UiField
-	Label osMargin;
+	NumberLabel<Double> osMargin;
 	@UiField
-	Label osTotal;
+	NumberLabel<Double> osTotal;
 	@UiField
-	Label quality;
+	NumberLabel<Integer> quality;
 	//@UiField
 	//Label osDueValue;
 	//@UiField

@@ -3,6 +3,7 @@ package org.simbiosis.ui.bprs.loan.client.guaranteeinput;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.kembang.editor.client.DoubleTextBox;
 import org.simbiosis.ui.bprs.common.shared.GuaranteeDv;
 import org.simbiosis.ui.bprs.loan.client.editor.TypeListEditor;
 import org.simbiosis.ui.bprs.loan.client.guaranteeinput.IGuaranteeInput.Activity;
@@ -15,7 +16,7 @@ import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.DateLabel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -38,7 +39,7 @@ public class GuaranteeEditorWidget extends Composite implements
 	@UiField
 	TextBox code;
 	@UiField
-	Label strRegistration;
+	DateLabel registration;
 	@UiField
 	TypeListEditor type;
 	@UiField
@@ -48,9 +49,9 @@ public class GuaranteeEditorWidget extends Composite implements
 	@UiField
 	TextBox ownerName;
 	@UiField
-	TextBox strAppraisalIntValue;
+	DoubleTextBox appraisalIntValue;
 	@UiField
-	TextBox strAppraisalMarkValue;
+	DoubleTextBox appraisalMarkValue;
 
 	String[] widthsText = { "28px", "100px", "150px", "150px", "150px" };
 	String[] footerText = { "", "Total", "0", "0", "0" };

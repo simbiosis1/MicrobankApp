@@ -28,9 +28,9 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.DateLabel;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
@@ -52,7 +52,7 @@ public class LoanEditorWidget extends Composite implements Editor<LoanDv> {
 	@UiField
 	TextBox code;
 	@UiField
-	Label strRegistration;
+	DateLabel registration;
 	@UiField
 	ProductListEditor product;
 	@UiField

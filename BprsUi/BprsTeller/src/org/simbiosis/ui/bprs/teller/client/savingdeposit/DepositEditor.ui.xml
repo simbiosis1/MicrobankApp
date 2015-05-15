@@ -1,11 +1,9 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-	xmlns:g="urn:import:com.google.gwt.user.client.ui"
-	xmlns:s="urn:import:org.simbiosis.ui.bprs.common.client.savinghelper"
-	xmlns:k="urn:import:org.kembang.editor.client"
-	>
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:s="urn:import:org.simbiosis.ui.bprs.common.client.savinghelper"
+	xmlns:k="urn:import:org.kembang.editor.client">
 	<ui:style>
-		
+	
 	</ui:style>
 	<g:HTMLPanel>
 		<g:HTMLPanel>
@@ -17,7 +15,9 @@
 					<td class="formSubtitle">Data tabungan</td>
 				</tr>
 				<tr>
-					<td width="100%"><s:SavingInfo ui:field="saving" /></td>
+					<td width="100%">
+						<s:SavingInfo ui:field="saving" />
+					</td>
 				</tr>
 				<tr>
 					<td class="formLabel">&nbsp;</td>
@@ -27,33 +27,45 @@
 				</tr>
 				<tr>
 					<td>
-					<table>
-						<tr>
-							<td class="formLabel">Tanggal</td>
-							<td>&nbsp;</td>
-							<td><g:Label ui:field="strDate"  styleName="formTextlabel"/></td>
-						</tr>
-						<tr>
-							<td class="formLabel">Kode</td>
-							<td>&nbsp;</td>
-							<td><g:Label ui:field="code" styleName="formTextlabel"/></td>
-						</tr>
-						<tr>
-							<td class="formLabel">Referensi</td>
-							<td>&nbsp;</td>
-							<td><g:TextBox styleName="formText" ui:field="refCode"/></td>
-						</tr>
-						<tr>
-							<td class="formLabel">Keterangan</td>
-							<td>&nbsp;</td>
-							<td><g:TextBox styleName="formText" ui:field="description" width="200px"/></td>
-						</tr>
-						<tr>
-							<td class="formLabel">Jumlah</td>
-							<td>&nbsp;</td>
-							<td><k:DoubleTextBox styleName="formText" ui:field="value"/></td>
-						</tr>
-					</table>
+						<table>
+							<tr>
+								<td class="formLabel">Tanggal</td>
+								<td>&nbsp;</td>
+								<td>
+									<g:DateLabel ui:field="date" styleName="formTextlabel"
+										customFormat="dd-MM-yyyy" />
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">Kode</td>
+								<td>&nbsp;</td>
+								<td>
+									<g:Label ui:field="code" styleName="formTextlabel" />
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">Referensi</td>
+								<td>&nbsp;</td>
+								<td>
+									<g:TextBox styleName="formText" ui:field="refCode" />
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">Keterangan</td>
+								<td>&nbsp;</td>
+								<td>
+									<g:TextBox styleName="formText" ui:field="description"
+										width="200px" />
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">Jumlah</td>
+								<td>&nbsp;</td>
+								<td>
+									<k:DoubleTextBox styleName="formText" ui:field="value" />
+								</td>
+							</tr>
+						</table>
 					</td>
 				</tr>
 			</table>

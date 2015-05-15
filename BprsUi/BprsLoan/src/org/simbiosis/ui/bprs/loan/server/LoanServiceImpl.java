@@ -1,6 +1,5 @@
 package org.simbiosis.ui.bprs.loan.server;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -8,8 +7,6 @@ import java.util.List;
 import javax.ejb.EJB;
 
 import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 import org.simbiosis.bp.dto.ValidationDto;
 import org.simbiosis.bp.micbank.ICustomerBp;
 import org.simbiosis.bp.micbank.IDepositBp;
@@ -62,8 +59,8 @@ public class LoanServiceImpl extends RemoteServiceServlet implements
 	@EJB(lookup = "java:global/SystemBpEar/SystemBpEjb/SystemBp")
 	ISystemBp systemBp;
 
-	DecimalFormat nf = new DecimalFormat("#,##0.00");
-	DateTimeFormatter sdf = DateTimeFormat.forPattern("dd-MM-yyyy");
+	// DecimalFormat nf = new DecimalFormat("#,##0.00");
+	// DateTimeFormatter sdf = DateTimeFormat.forPattern("dd-MM-yyyy");
 
 	public LoanServiceImpl() {
 	}
@@ -73,14 +70,11 @@ public class LoanServiceImpl extends RemoteServiceServlet implements
 		customerDv.setId(customerDto.getId());
 		customerDv.setCode(customerDto.getCode());
 		customerDv.setRegistration(customerDto.getRegistration());
-		customerDv.setStrRegistration(sdf.print(new DateTime(customerDv
-				.getRegistration())));
 		customerDv.setName(customerDto.getName());
 		customerDv.setSex(customerDto.getSex());
 		customerDv.setStrSex(SexTypeEnum.valueToString(customerDv.getSex()));
 		customerDv.setPob(customerDto.getPob());
 		customerDv.setDob(customerDto.getDob());
-		customerDv.setStrDob(sdf.print(new DateTime(customerDv.getDob())));
 		customerDv.setIdType(customerDto.getIdType());
 		customerDv
 				.setStrIdType(IdTypeEnum.valueToString(customerDv.getIdType()));
@@ -185,10 +179,8 @@ public class LoanServiceImpl extends RemoteServiceServlet implements
 		dv.setId(dto.getId());
 		dv.setCode(dto.getCode());
 		dv.setRegistration(dto.getRegistration());
-		dv.setStrRegistration(sdf.print(new DateTime(dv.getRegistration())));
 		dv.setContract(dto.getContract());
 		dv.setContractDate(dto.getContractDate());
-		dv.setStrContractDate(sdf.print(new DateTime(dv.getContractDate())));
 		LoanProductDto loanProduct = loanBp.getLoanProduct(dto.getProduct());
 		dv.setProduct(loanProduct.getId());
 		dv.setStrProduct(loanProduct.getName());
@@ -224,8 +216,6 @@ public class LoanServiceImpl extends RemoteServiceServlet implements
 			gDv.setCode(gDto.getCode());
 			gDv.setStrType(guaranteeTypes.get(gDto.getType()));
 			gDv.setNumber(gDto.getNumber());
-			gDv.setStrAppraisalIntValue(nf.format(gDto.getAppraisalIntValue()));
-			gDv.setStrAppraisalMarkValue(nf.format(gDto.getAppraisalMarkValue()));
 			dv.getGuarantees().add(gDv);
 		}
 		//
@@ -236,9 +226,7 @@ public class LoanServiceImpl extends RemoteServiceServlet implements
 		dv.setStrAo(user.getRealName());
 		dv.setAoHistory(dto.getAoHistory());
 		dv.setFine(dto.getFine());
-		dv.setStrFine(nf.format(dv.getFine()));
 		dv.setAdmin(dto.getAdmin());
-		dv.setStrAdmin(nf.format(dv.getAdmin()));
 		return dv;
 	}
 
@@ -342,22 +330,12 @@ public class LoanServiceImpl extends RemoteServiceServlet implements
 		LoanRpt loanRpt = loanReport.getDailyLoan(id, new Date());
 		if (loanRpt != null) {
 			//
-			DecimalFormat nf = new DecimalFormat("#,##0.00");
-			result.setOsPrincipal(nf.format(loanRpt.getOsPrincipal()));
-			result.setOsMargin(nf.format(loanRpt.getOsMargin()));
-			result.setOsTotal(nf.format(loanRpt.getOsTotal()));
-			result.setOsDueCount("" + loanRpt.getDueOs());
-			result.setOsDueValue(nf.format(loanRpt.getOutstanding()));
-			result.setQuality("" + loanRpt.getQuality());
-		} else {
-			//
-			DecimalFormat nf = new DecimalFormat("#,##0.00");
-			result.setOsPrincipal(nf.format(0));
-			result.setOsMargin(nf.format(0));
-			result.setOsTotal(nf.format(0));
-			result.setOsDueCount("0");
-			result.setOsDueValue(nf.format(0));
-			result.setQuality("-");
+			result.setOsPrincipal(loanRpt.getOsPrincipal());
+			result.setOsMargin(loanRpt.getOsMargin());
+			result.setOsTotal(loanRpt.getOsTotal());
+			result.setOsDueCount(loanRpt.getDueOs());
+			result.setOsDueValue(loanRpt.getOutstanding());
+			result.setQuality(loanRpt.getQuality());
 		}
 		//
 		int i = 1;
@@ -392,10 +370,8 @@ public class LoanServiceImpl extends RemoteServiceServlet implements
 				: "");
 		dto.setDescription(dv.getDescription() != null ? dv.getDescription()
 				.toUpperCase() : "");
-		dto.setAppraisalIntValue(Double.parseDouble(dv
-				.getStrAppraisalIntValue().replace(",", "")));
-		dto.setAppraisalMarkValue(Double.parseDouble(dv
-				.getStrAppraisalMarkValue().replace(",", "")));
+		dto.setAppraisalIntValue(dv.getAppraisalIntValue());
+		dto.setAppraisalMarkValue(dv.getAppraisalMarkValue());
 		dto.setType(dv.getType());
 		long id = loanBp.saveGuarantee(key, dto);
 		dv.setId(id);
@@ -417,14 +393,11 @@ public class LoanServiceImpl extends RemoteServiceServlet implements
 		CustomerDto cdto = customerBp.getCustomer(dto.getCustomer());
 		dv.setCustomer(createCustomerDvFromDto(cdto));
 		dv.setRegistration(dto.getRegistration());
-		dv.setStrRegistration(sdf.print(new DateTime(dv.getRegistration())));
 		dv.setCode(dto.getCode());
 		dv.setType(dto.getType());
 		dv.setStrType(guaranteeTypes.get(dto.getType()));
 		dv.setAppraisalIntValue(dto.getAppraisalIntValue());
-		dv.setStrAppraisalIntValue(nf.format(dto.getAppraisalIntValue()));
 		dv.setAppraisalMarkValue(dto.getAppraisalMarkValue());
-		dv.setStrAppraisalMarkValue(nf.format(dto.getAppraisalMarkValue()));
 		dv.setNumber(dto.getNumber());
 		dv.setDescription(dto.getDescription());
 		dv.setOwnerName(dto.getOwner());
@@ -521,11 +494,7 @@ public class LoanServiceImpl extends RemoteServiceServlet implements
 	public LoanDv newLoan() {
 		LoanDv loanDv = new LoanDv();
 		loanDv.setRegistration(new Date());
-		loanDv.setStrRegistration(sdf.print(new DateTime(loanDv
-				.getRegistration())));
 		loanDv.setContractDate(loanDv.getRegistration());
-		loanDv.setStrContractDate(sdf.print(new DateTime(loanDv
-				.getRegistration())));
 		return loanDv;
 	}
 
@@ -536,12 +505,8 @@ public class LoanServiceImpl extends RemoteServiceServlet implements
 		//
 		oldLoan.setCode(oldLoan.getCode() + "A1");
 		oldLoan.setRegistration(new Date());
-		oldLoan.setStrRegistration(sdf.print(new DateTime(oldLoan
-				.getRegistration())));
 		oldLoan.setContract("");
 		oldLoan.setContractDate(oldLoan.getRegistration());
-		oldLoan.setStrContractDate(sdf.print(new DateTime(oldLoan
-				.getRegistration())));
 		oldLoan.getSchedules().clear();
 		//
 		LoanRpt report = loanReport.getDailyLoan(oldId,

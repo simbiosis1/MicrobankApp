@@ -73,6 +73,8 @@ public class Guarantee {
 	double appraisalIntValue;
 	@Column(name = "GUA_APPRMARKVALUE")
 	double appraisalMarkValue;
+	@Column(name = "GUA_APPROJKVALUE")
+	double appraisalOJKValue;
 	@Column(name = "GUA_COMPANY")
 	long company;
 	@Column(name = "GUA_BRANCH")
@@ -264,6 +266,14 @@ public class Guarantee {
 
 	public void setClosing(Date closing) {
 		this.closing = closing;
+	}
+
+	public double getAppraisalOJKValue() {
+		return appraisalOJKValue;
+	}
+
+	public void setAppraisalOJKValue(double appraisalOJKValue) {
+		this.appraisalOJKValue = appraisalOJKValue;
 	}
 
 }

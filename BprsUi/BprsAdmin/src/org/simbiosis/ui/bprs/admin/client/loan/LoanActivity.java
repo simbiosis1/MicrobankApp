@@ -137,7 +137,7 @@ public class LoanActivity extends Activity {
 								transDv.setPrincipal(repayment.getPrincipal());
 								transDv.setMargin(repayment.getMargin());
 								transDv.setTotal(repayment.getTotal());
-								transDv.setValue(transDv.getValue());
+								transDv.setValue(transDv.getTotal());
 								transDv.setDiscount(0D);
 								myForm.showData(transDv);
 								appFactory.showApplication(null,

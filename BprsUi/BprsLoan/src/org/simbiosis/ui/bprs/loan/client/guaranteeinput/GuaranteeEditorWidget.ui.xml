@@ -4,7 +4,7 @@
 	xmlns:e="urn:import:org.simbiosis.ui.bprs.loan.client.editor" xmlns:gr="urn:import:org.kembang.grid.client"
 	xmlns:k="urn:import:org.kembang.editor.client">
 	<ui:style>
-	
+
 	</ui:style>
 	<g:HTMLPanel>
 		<g:HTMLPanel>
@@ -24,7 +24,8 @@
 					</td>
 					<td>&nbsp;&nbsp;</td>
 					<td>
-						<g:DateLabel ui:field="registration" styleName="formTextlabel" customFormat="dd-MM-yyyy"/>
+						<g:DateLabel ui:field="registration" styleName="formTextlabel"
+							customFormat="dd-MM-yyyy" />
 					</td>
 				</tr>
 				<tr>
@@ -80,6 +81,16 @@
 					<td>&nbsp;&nbsp;</td>
 					<td>
 						<k:DoubleTextBox ui:field="appraisalMarkValue"
+							styleName="formText" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						Nilai sesuai OJK
+					</td>
+					<td>&nbsp;&nbsp;</td>
+					<td>
+						<k:DoubleTextBox ui:field="appraisalOJKValue"
 							styleName="formText" />
 					</td>
 				</tr>

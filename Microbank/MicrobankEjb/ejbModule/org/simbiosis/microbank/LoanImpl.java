@@ -621,6 +621,7 @@ public class LoanImpl implements ILoan {
 		dto.setDescription(gua.getDescription());
 		dto.setAppraisalIntValue(gua.getAppraisalIntValue());
 		dto.setAppraisalMarkValue(gua.getAppraisalMarkValue());
+		dto.setAppraisalOJKValue(gua.getAppraisalOJKValue());
 		dto.setActive(gua.getActive());
 		return dto;
 	}
@@ -642,6 +643,7 @@ public class LoanImpl implements ILoan {
 		gua.setDescription(dto.getDescription());
 		gua.setAppraisalIntValue(dto.getAppraisalIntValue());
 		gua.setAppraisalMarkValue(dto.getAppraisalMarkValue());
+		gua.setAppraisalOJKValue(dto.getAppraisalOJKValue());
 		gua.setActive(dto.getActive());
 		return gua;
 	}
@@ -1142,9 +1144,9 @@ public class LoanImpl implements ILoan {
 				if (sched.getMargin() > 0.01) {
 					myMargin -= sched.getMargin();
 				}
-				//System.out.println("Tanggal:" + sched.getDate()
-				//		+ ", mPrincipal=" + myPrincipal + ", mMargin"
-				//		+ myMargin);
+				// System.out.println("Tanggal:" + sched.getDate()
+				// + ", mPrincipal=" + myPrincipal + ", mMargin"
+				// + myMargin);
 				q.setLastPaid(sched.getDate());
 				if (myPrincipal < 0) {
 					if (telat == 0) {
@@ -1161,10 +1163,10 @@ public class LoanImpl implements ILoan {
 					q.setLastPaid(sched.getDate());
 				}
 				// lihat apakah dia masih punya sisa pokok
-				//System.out
-				//		.println("Tanggal:" + sched.getDate() + "stotal="
-				//				+ schedTotal + ", mtotal" + myTotal + ", telat"
-				//				+ telat);
+				// System.out
+				// .println("Tanggal:" + sched.getDate() + "stotal="
+				// + schedTotal + ", mtotal" + myTotal + ", telat"
+				// + telat);
 				if (myTotal > 0.01) {
 					osPrincipal += sched.getPrincipal() - myPrincipal;
 					osMargin += sched.getMargin()
@@ -1179,7 +1181,7 @@ public class LoanImpl implements ILoan {
 			}
 			// lastSched = sched.getDate();
 		}
-		//System.out.println("telat=" + telat);
+		// System.out.println("telat=" + telat);
 		int duration = daysBetween(q.getLastPaid(), date);
 		q.setDuration(duration);
 		q.setDueOs(telat);

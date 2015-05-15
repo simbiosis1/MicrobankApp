@@ -30,6 +30,7 @@ public class GuaranteeDto implements Serializable {
 	String appraisalName;
 	double appraisalIntValue;
 	double appraisalMarkValue;
+	double appraisalOJKValue;
 	long customer;
 	long company;
 	long branch;
@@ -221,6 +222,14 @@ public class GuaranteeDto implements Serializable {
 
 	public void setClosing(Date closing) {
 		this.closing = closing;
+	}
+
+	public double getAppraisalOJKValue() {
+		return appraisalOJKValue;
+	}
+
+	public void setAppraisalOJKValue(double appraisalOJKValue) {
+		this.appraisalOJKValue = appraisalOJKValue;
 	}
 
 }

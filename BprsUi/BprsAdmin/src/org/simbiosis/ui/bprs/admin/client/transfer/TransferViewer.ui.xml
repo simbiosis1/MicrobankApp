@@ -64,7 +64,7 @@
 								<td class="formLabel">Deskripsi</td>
 								<td>&nbsp;</td>
 								<td>
-									<g:Label styleName="formText" ui:field="description" />
+									<g:Label styleName="formTextlabel" ui:field="description" />
 								</td>
 							</tr>
 							<tr>

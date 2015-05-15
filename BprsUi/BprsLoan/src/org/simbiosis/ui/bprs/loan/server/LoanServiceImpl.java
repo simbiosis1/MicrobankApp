@@ -119,6 +119,7 @@ public class LoanServiceImpl extends RemoteServiceServlet implements
 		dto.setType(dv.getType());
 		dto.setAppraisalIntValue(dv.getAppraisalIntValue());
 		dto.setAppraisalMarkValue(dv.getAppraisalMarkValue());
+		dto.setAppraisalOJKValue(dv.getAppraisalOJKValue());
 		dto.setNumber(dv.getNumber());
 		dto.setDescription(dv.getDescription());
 		dto.setActive(dv.getActive());
@@ -378,6 +379,7 @@ public class LoanServiceImpl extends RemoteServiceServlet implements
 		dv.setCode(dto.getCode());
 		dv.setAppraisalIntValue(dto.getAppraisalIntValue());
 		dv.setAppraisalMarkValue(dto.getAppraisalMarkValue());
+		dv.setAppraisalOJKValue(dto.getAppraisalOJKValue());
 		dv.setStrType(guaranteeTypes.get(dv.getType()));
 		return dv;
 	}

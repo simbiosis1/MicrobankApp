@@ -18,6 +18,7 @@ public class GuaranteeDv implements IsSerializable {
 	Double appraisalIntValue;
 	Double appraisalMarkValue;
 	Double appraisalTaxValue;
+	Double appraisalOJKValue;
 	Integer type;
 	String strType;
 	Integer active;
@@ -160,6 +161,14 @@ public class GuaranteeDv implements IsSerializable {
 
 	public void setAppraisalTaxValue(Double appraisalTaxValue) {
 		this.appraisalTaxValue = appraisalTaxValue;
+	}
+
+	public Double getAppraisalOJKValue() {
+		return appraisalOJKValue;
+	}
+
+	public void setAppraisalOJKValue(Double appraisalOJKValue) {
+		this.appraisalOJKValue = appraisalOJKValue;
 	}
 
 }

@@ -3,7 +3,7 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.google.gwt.user.datepicker.client"
 	xmlns:e="urn:import:org.simbiosis.ui.bprs.loan.client.editor" xmlns:gr="urn:import:org.kembang.grid.client">
 	<ui:style>
-	
+
 	</ui:style>
 	<g:HTMLPanel>
 		<g:HTMLPanel>
@@ -80,6 +80,16 @@
 					<td>&nbsp;&nbsp;</td>
 					<td>
 						<g:NumberLabel ui:field="appraisalMarkValue"
+							styleName="formTextlabel" customFormat="#,##0.00" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						Nilai sesuai OJK
+					</td>
+					<td>&nbsp;&nbsp;</td>
+					<td>
+						<g:NumberLabel ui:field="appraisalOJKValue"
 							styleName="formTextlabel" customFormat="#,##0.00" />
 					</td>
 				</tr>

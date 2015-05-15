@@ -52,6 +52,8 @@ public class GuaranteeEditorWidget extends Composite implements
 	DoubleTextBox appraisalIntValue;
 	@UiField
 	DoubleTextBox appraisalMarkValue;
+	@UiField
+	DoubleTextBox appraisalOJKValue;
 
 	String[] widthsText = { "28px", "100px", "150px", "150px", "150px" };
 	String[] footerText = { "", "Total", "0", "0", "0" };

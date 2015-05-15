@@ -50,6 +50,8 @@ public class GuaranteeViewerWidget extends Composite implements
 	NumberLabel<Double> appraisalIntValue;
 	@UiField
 	NumberLabel<Double> appraisalMarkValue;
+	@UiField
+	NumberLabel<Double> appraisalOJKValue;
 
 	String[] widthsText = { "28px", "100px", "150px", "150px", "150px" };
 	String[] footerText = { "", "Total", "0", "0", "0" };

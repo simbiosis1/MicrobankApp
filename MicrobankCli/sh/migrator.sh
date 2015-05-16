@@ -6,7 +6,7 @@
 DIRNAME=`dirname "$0"`
 PROGNAME=`basename "$0"`
 APP_JAR=CliMigrator.jar
-APP_CLASS=org.simbiosis.migrator.correction.TellerTrans
+APP_CLASS=org.simbiosis.migrator.correction.SavingTrans
 GREP="grep"
 
 # Use the maximum available, or set MAX_FD != -1 to use that

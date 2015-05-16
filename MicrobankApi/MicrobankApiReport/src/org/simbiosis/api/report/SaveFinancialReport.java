@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.type.TypeFactory;
 import org.simbiosis.api.lib.WebApiReportServlet;
 import org.simbiosis.gl.model.Coa;
 import org.simbiosis.gl.model.FinancialRpt;
@@ -46,8 +45,10 @@ public class SaveFinancialReport extends WebApiReportServlet {
 			ObjectMapper mapper = new ObjectMapper();
 			try {
 				//
-				List<FinancialRpt> frs = mapper.readValue(data, TypeFactory
-						.collectionType(ArrayList.class, FinancialRpt.class));
+				List<FinancialRpt> frs = mapper.readValue(
+						data,
+						mapper.getTypeFactory().constructCollectionType(
+								ArrayList.class, FinancialRpt.class));
 				//
 				for (FinancialRpt val : frs) {
 					val.getId().setCompany(company);

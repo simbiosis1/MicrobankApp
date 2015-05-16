@@ -1063,16 +1063,16 @@ public class LoanImpl implements ILoan {
 			qry.setParameter("branch", branch);
 		}
 		List<Loan> loans = qry.getResultList();
-		System.out.println("Jumlah data : " + loans.size());
+		//System.out.println("Jumlah data : " + loans.size());
 		for (int i = 0; i < loans.size(); i++) {
-			System.out.print(i + " ");
+			//System.out.print(i + " ");
 			result.add(createLoanInformationToDto(loans.get(i)));
 		}
 		// for (Loan loan : loans) {
 		// System.out.print(".");
 		// result.add(createLoanInformationToDto(loan));
 		// }
-		System.out.println("Jumlah data : " + result.size());
+		//System.out.println("Jumlah data : " + result.size());
 		return result;
 	}
 

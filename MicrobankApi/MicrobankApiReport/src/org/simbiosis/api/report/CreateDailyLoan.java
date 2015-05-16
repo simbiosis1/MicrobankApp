@@ -183,21 +183,26 @@ public class CreateDailyLoan extends WebApiReportServlet {
 
 			List<GuaranteeDto> collaterals = iLoan.listLoanGuarantee(loan
 					.getId().getRefId());
-			int collateralBondType = 0;
+			// int collateralBondType = 0;
 			if (collaterals.size() > 0) {
 				double values = 0;
+				String collateralType = "";
 				String description = "";
 				for (GuaranteeDto collateral : collaterals) {
-					collateralBondType = collateral.getBondType();
-					values += collateral.getAppraisalMarkValue();
+					// collateralBondType = collateral.getBondType();
+					values += collateral.getAppraisalOJKValue();
 					int type = collateral.getType() > 7 ? 0 : collateral
 							.getType();
-					description += description.isEmpty() ? collateralTypes[type]
+					collateralType += collateralType.isEmpty() ? collateralTypes[type]
 							: (collateralTypes[type] + ", ");
+					if (description.isEmpty()) {
+						description = collateral.getDescription();
+					}
 				}
 				loan.setGuarantee(values);
 				GuaranteeDto collateral = collaterals.get(0);
 				loan.setGuaranteeType(collateral.getType());
+				loan.setGuaranteeTypeName(collateralType);
 				loan.setGuaranteeDescription(description);
 			}
 			loan.setSavingCode(savingInfo.getCode());

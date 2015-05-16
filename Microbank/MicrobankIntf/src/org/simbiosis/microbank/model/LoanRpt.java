@@ -54,6 +54,7 @@ public class LoanRpt implements Serializable {
 	double outstanding;
 	int guaranteeType;
 	double guarantee;
+	String guaranteeTypeName;
 	String guaranteeDescription;
 	double ppap;
 	long saving;
@@ -522,6 +523,14 @@ public class LoanRpt implements Serializable {
 
 	public void setGuaranteeDescription(String guaranteeDescription) {
 		this.guaranteeDescription = guaranteeDescription;
+	}
+
+	public String getGuaranteeTypeName() {
+		return guaranteeTypeName;
+	}
+
+	public void setGuaranteeTypeName(String guaranteeTypeName) {
+		this.guaranteeTypeName = guaranteeTypeName;
 	}
 
 }

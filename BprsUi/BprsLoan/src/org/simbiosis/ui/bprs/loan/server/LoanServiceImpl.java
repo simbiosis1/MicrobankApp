@@ -400,6 +400,7 @@ public class LoanServiceImpl extends RemoteServiceServlet implements
 		dv.setStrType(guaranteeTypes.get(dto.getType()));
 		dv.setAppraisalIntValue(dto.getAppraisalIntValue());
 		dv.setAppraisalMarkValue(dto.getAppraisalMarkValue());
+		dv.setAppraisalOJKValue(dto.getAppraisalOJKValue());
 		dv.setNumber(dto.getNumber());
 		dv.setDescription(dto.getDescription());
 		dv.setOwnerName(dto.getOwner());

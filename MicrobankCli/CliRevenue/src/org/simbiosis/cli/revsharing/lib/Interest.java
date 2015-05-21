@@ -16,6 +16,7 @@ public class Interest {
 
 	Funding funding = null;
 	double minAverageValue = 2000000;
+	//double minAverageValue = 100000;
 	// double admin = 2500;
 	double admin = 0;
 

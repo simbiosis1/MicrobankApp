@@ -155,17 +155,23 @@ public class DistributeAll extends CliBase {
 		try {
 			SavingInformationDto si = getSavingInformation(rs.getSaving());
 			//
-			SavingTransactionDto transBasil = createSavingTrans(rs.getSaving(),
-					si.getBranch(), rs.getCustomerSharing(), ref,
-					"BAHAS/BONUS " + period, 1);
-			transBasil.setBranch(si.getBranch());
-			long coa = si.getCoa2();
-			ObjectMapper mapper = new ObjectMapper();
-			StringWriter sw = new StringWriter();
-			mapper.writeValue(sw, transBasil);
-			// System.out.println(sw.toString());
-			sendRawData("saveSavingJournalRevenueTrans", "" + coa,
-					sw.toString());
+			ObjectMapper mapper = null;
+			StringWriter sw = null;
+			//
+			if (rs.getCustomerSharing() > 0) {
+				SavingTransactionDto transBasil = createSavingTrans(
+						rs.getSaving(), si.getBranch(),
+						rs.getCustomerSharing(), ref, "BAHAS/BONUS " + period,
+						1);
+				transBasil.setBranch(si.getBranch());
+				long coa = si.getCoa2();
+				mapper = new ObjectMapper();
+				sw = new StringWriter();
+				mapper.writeValue(sw, transBasil);
+				// System.out.println(sw.toString());
+				sendRawData("saveSavingJournalRevenueTrans", "" + coa,
+						sw.toString());
+			}
 			//
 			if (rs.getZakat() > 0) {
 				SavingTransactionDto transZakat = createSavingTrans(

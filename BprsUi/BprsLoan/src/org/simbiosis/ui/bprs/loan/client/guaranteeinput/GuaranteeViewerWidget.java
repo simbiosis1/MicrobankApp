@@ -13,7 +13,9 @@ import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.DateLabel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.NumberLabel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class GuaranteeViewerWidget extends Composite implements
@@ -35,7 +37,7 @@ public class GuaranteeViewerWidget extends Composite implements
 	@UiField
 	Label code;
 	@UiField
-	Label strRegistration;
+	DateLabel registration;
 	@UiField
 	Label strType;
 	@UiField
@@ -45,10 +47,11 @@ public class GuaranteeViewerWidget extends Composite implements
 	@UiField
 	Label ownerName;
 	@UiField
-	Label strAppraisalIntValue;
+	NumberLabel<Double> appraisalIntValue;
 	@UiField
-	Label strAppraisalMarkValue;
-	
+	NumberLabel<Double> appraisalMarkValue;
+	@UiField
+	NumberLabel<Double> appraisalOJKValue;
 
 	String[] widthsText = { "28px", "100px", "150px", "150px", "150px" };
 	String[] footerText = { "", "Total", "0", "0", "0" };

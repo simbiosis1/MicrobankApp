@@ -3,6 +3,8 @@ package org.simbiosis.ui.bprs.loan.client.loaninput;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.kembang.editor.client.DoubleTextBox;
+import org.kembang.editor.client.IntegerTextBox;
 import org.kembang.grid.client.FlexTableHelper;
 import org.simbiosis.ui.bprs.common.client.editor.ProductListEditor;
 import org.simbiosis.ui.bprs.common.shared.DataDv;
@@ -26,9 +28,9 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.DateLabel;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
@@ -50,7 +52,7 @@ public class LoanEditorWidget extends Composite implements Editor<LoanDv> {
 	@UiField
 	TextBox code;
 	@UiField
-	Label strRegistration;
+	DateLabel registration;
 	@UiField
 	ProductListEditor product;
 	@UiField
@@ -62,11 +64,11 @@ public class LoanEditorWidget extends Composite implements Editor<LoanDv> {
 	@UiField
 	ListBox biSektor;
 	@UiField
-	TextBox strPrincipal;
+	DoubleTextBox principal;
 	@UiField
-	TextBox strRate;
+	DoubleTextBox rate;
 	@UiField
-	TextBox strTenor;
+	IntegerTextBox tenor;
 	@UiField
 	LoanScheduleEditorTable schedules;
 	@UiField
@@ -84,10 +86,10 @@ public class LoanEditorWidget extends Composite implements Editor<LoanDv> {
 	@UiField
 	TextBox aoHistory;
 	@UiField
-	TextBox strAdmin;
+	DoubleTextBox admin;
 	@UiField
-	TextBox strFine;
-	
+	DoubleTextBox fine;
+
 	String[] widthsText = { "28px", "100px", "150px", "150px", "150px" };
 	String[] footerText = { "", "Total", "0", "0", "0" };
 	NumberFormat numberFormat = NumberFormat.getFormat("####,###.00");
@@ -176,9 +178,9 @@ public class LoanEditorWidget extends Composite implements Editor<LoanDv> {
 	@UiHandler("btnGenerate")
 	void onGenerate(ClickEvent event) {
 		LoanScheduleGenDv data = new LoanScheduleGenDv();
-		data.setStrPrincipal(strPrincipal.getText());
-		data.setStrTenor(strTenor.getText());
-		data.setStrRate(strRate.getText());
+		data.setPrincipal(principal.getValue());
+		data.setTenor(tenor.getValue());
+		data.setRate(rate.getValue());
 		data.setScheduleType(scheduleType.getValue());
 		scheduleHandler.generate(data);
 	}

@@ -6,7 +6,6 @@ import java.util.Collection;
 import java.util.List;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.type.TypeFactory;
 import org.simbiosis.cli.base.MicrobankCoreClient;
 import org.simbiosis.microbank.RevenueDto;
 
@@ -44,12 +43,13 @@ public class Lending {
 	List<RevenueDto> listRevenue() {
 		String result = jsonClient.sendRawData("listRevenue", beginDate + ";"
 				+ endDate);
-		//System.out.println(result);
+		// System.out.println(result);
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			ArrayList<RevenueDto> listRevenue = mapper.readValue(result,
-					TypeFactory.collectionType(ArrayList.class,
-							RevenueDto.class));
+			ArrayList<RevenueDto> listRevenue = mapper.readValue(
+					result,
+					mapper.getTypeFactory().constructCollectionType(
+							ArrayList.class, RevenueDto.class));
 			for (RevenueDto rev : listRevenue) {
 				totalRevenue += rev.getValue();
 			}

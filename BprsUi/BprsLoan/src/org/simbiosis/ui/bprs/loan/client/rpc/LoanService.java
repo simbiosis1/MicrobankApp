@@ -29,8 +29,8 @@ public interface LoanService extends RemoteService {
 
 	LoanDv saveLoanReschedule(String key, LoanDv loanDv);
 
-	List<LoanScheduleDv> createLoanSchedule(String principal, String tenor,
-			String rate, Date beginDate, int type);
+	List<LoanScheduleDv> createLoanSchedule(Double principal, Integer tenor,
+			Double rate, Date beginDate, int type);
 
 	InfoLoanDv getPaymentInfo(Long id);
 
@@ -41,6 +41,8 @@ public interface LoanService extends RemoteService {
 	GuaranteeDv saveGuarantee(String key, GuaranteeDv guaranteeDv);
 
 	GuaranteeDv getGuarantee(Long id);
+
+	List<GuaranteeDv> listGuaranteeByCode(String key, String code);
 
 	List<DataDv> findGuarantee(String key, Boolean hasCode, Boolean hasName,
 			Boolean hasDob, String code, String name, Date dob);

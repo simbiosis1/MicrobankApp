@@ -36,7 +36,7 @@ if [ "x$JAVA" = "x" ]; then
 fi
 
 COMMON="$APP_HOME/lib/commons-logging-1.1.1.jar:$APP_HOME/lib/httpclient-4.2.jar:$APP_HOME/lib/httpcore-4.2.jar"
-JACKSON="$APP_HOME/lib/jackson-core-asl-1.6.9.jar:$APP_HOME/lib/jackson-mapper-asl-1.6.9.jar"
+JACKSON="$APP_HOME/lib/jackson-core-asl-1.9.13.jar:$APP_HOME/lib/jackson-mapper-asl-1.9.13.jar"
 JODATIME="$APP_HOME/lib/joda-time-1.6.2-redhat-4.jar"
 SIMBIOSIS="$APP_HOME/simbiosis/SystemDto.jar:$APP_HOME/simbiosis/MicrobankDto.jar:$APP_HOME/simbiosis/GlIntf.jar:$APP_HOME/simbiosis/CliSimbiosis.jar"
 CLASSPATH="$APP_HOME/$APP_JAR:$COMMON:$JACKSON:$JODATIME:$SIMBIOSIS"

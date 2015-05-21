@@ -88,7 +88,7 @@ public class VaultEditor extends FormWidget implements IVault {
 	@Override
 	public VaultTransactionDv getData() {
 		if (data.getDirection() == 1) {
-			data.setStrValue(vaultInput.getValue());
+			data.setValue(vaultInput.getValue());
 		}
 		return data;
 	}

@@ -46,7 +46,7 @@
 									<g:HorizontalPanel>
 										<g:Label ui:field="pob" styleName="formTextlabel" />
 										<g:HTMLPanel>&nbsp;</g:HTMLPanel>
-										<g:Label ui:field="strDob" styleName="formTextlabel" />
+										<g:DateLabel ui:field="dob" styleName="formTextlabel" customFormat="dd-MM-yyyy"/>
 									</g:HorizontalPanel>
 								</td>
 							</tr>

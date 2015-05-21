@@ -11,11 +11,13 @@ import com.google.gwt.editor.client.Editor;
 import com.google.gwt.editor.client.SimpleBeanEditorDriver;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.DateLabel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.NumberLabel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class DepositViewer extends FormWidget implements
-		Editor<TransactionDv>, IDeposit {
+public class DepositViewer extends FormWidget implements Editor<TransactionDv>,
+		IDeposit {
 
 	Activity activity;
 
@@ -35,13 +37,13 @@ public class DepositViewer extends FormWidget implements
 	@UiField
 	SavingInfo saving;
 	@UiField
-	Label strDate;
+	DateLabel date;
 	@UiField
 	Label code;
 	@UiField
 	Label refCode;
 	@UiField
-	Label strValue;
+	NumberLabel<Double> value;
 	@UiField
 	Label strType;
 

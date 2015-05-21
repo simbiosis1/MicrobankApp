@@ -46,7 +46,8 @@ public class CreateDailyLoan extends WebApiReportServlet {
 
 	private Double createPpap(LoanRpt info) {
 		double ppap = 0.5 * info.getOsPrincipal() / 100;
-		double osPpap = info.getOsPrincipal() - (0.5 * info.getGuarantee());
+		//double osPpap = info.getOsPrincipal() - (0.5 * info.getGuarantee());
+		double osPpap = info.getOsPrincipal() - info.getGuarantee();
 		if (osPpap < 0) {
 			osPpap = 0;
 		}
@@ -122,7 +123,9 @@ public class CreateDailyLoan extends WebApiReportServlet {
 				+ loan.getPaidDiscount());
 		//
 		loan.setOsPrincipal(loan.getPrincipal() - loan.getPaidPrincipal());
-		if (loan.getSchema() < 4 || loan.getSchema() == 8) {
+		// Prinsip jual beli, multijasa, konvensional
+		if (loan.getSchema() < 4 || loan.getSchema() == 8
+				|| loan.getSchema() == 11) {
 			loan.setTotal(loan.getPrincipal() + loan.getMargin());
 			loan.setOsMargin(loan.getMargin() - loan.getPaidMargin()
 					- loan.getPaidDiscount());
@@ -181,21 +184,26 @@ public class CreateDailyLoan extends WebApiReportServlet {
 
 			List<GuaranteeDto> collaterals = iLoan.listLoanGuarantee(loan
 					.getId().getRefId());
-			int collateralBondType=0;
+			// int collateralBondType = 0;
 			if (collaterals.size() > 0) {
 				double values = 0;
+				String collateralType = "";
 				String description = "";
 				for (GuaranteeDto collateral : collaterals) {
-					collateralBondType = collateral.getBondType();
-					values += collateral.getAppraisalMarkValue();
+					// collateralBondType = collateral.getBondType();
+					values += collateral.getAppraisalOJKValue();
 					int type = collateral.getType() > 7 ? 0 : collateral
 							.getType();
-					description += description.isEmpty() ? collateralTypes[type]
+					collateralType += collateralType.isEmpty() ? collateralTypes[type]
 							: (collateralTypes[type] + ", ");
+					if (description.isEmpty()) {
+						description = collateral.getDescription();
+					}
 				}
 				loan.setGuarantee(values);
 				GuaranteeDto collateral = collaterals.get(0);
 				loan.setGuaranteeType(collateral.getType());
+				loan.setGuaranteeTypeName(collateralType);
 				loan.setGuaranteeDescription(description);
 			}
 			loan.setSavingCode(savingInfo.getCode());

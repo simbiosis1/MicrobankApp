@@ -15,7 +15,6 @@ import org.simbiosis.ui.bprs.common.shared.SavingDv;
 import org.simbiosis.ui.bprs.common.shared.TransactionDv;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -87,7 +86,7 @@ public class TransferActivity extends Activity {
 					@Override
 					public void onSuccess(TransactionDv result) {
 						hideLoading();
-						//Window.alert("Transaksi sudah disimpan");
+						// Window.alert("Transaksi sudah disimpan");
 						ITransfer myForm = appFactory.getTransferViewer();
 						myForm.showData(result);
 						appFactory.showApplication(null, myForm.getFormWidget());
@@ -134,8 +133,6 @@ public class TransferActivity extends Activity {
 	private void onNew() {
 		transDv.setDate(new Date());
 		transDv.setDirection(1);
-		DateTimeFormat format = DateTimeFormat.getFormat("dd-MM-yyyy");
-		transDv.setStrDate(format.format(transDv.getDate()));
 		//
 		GetSavingHandler srcHandler = new GetSavingHandler() {
 

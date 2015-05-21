@@ -3,6 +3,7 @@ package org.simbiosis.ui.bprs.cs.client.depositinput;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.kembang.editor.client.DoubleTextBox;
 import org.simbiosis.ui.bprs.common.client.editor.ProductListEditor;
 import org.simbiosis.ui.bprs.common.shared.DataDv;
 import org.simbiosis.ui.bprs.common.shared.DepositDv;
@@ -16,7 +17,8 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.DateLabel;
+import com.google.gwt.user.client.ui.NumberLabel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -36,17 +38,17 @@ public class DepositEditorWidget extends Composite implements Editor<DepositDv> 
 	@UiField
 	TextBox code;
 	@UiField
-	Label strRegistration;
+	DateLabel registration;
 	@UiField
 	ProductListEditor product;
 	@UiField
 	TextBox bilyet;
 	@UiField
-	TextBox strValue;
+	DoubleTextBox value;
 	@UiField
-	Label strRate;
+	NumberLabel<Double> rate;
 	@UiField
-	TextBox strSpecialRate;
+	DoubleTextBox specialRate;
 	@UiField
 	CheckBox aro;
 	@UiField
@@ -61,8 +63,8 @@ public class DepositEditorWidget extends Composite implements Editor<DepositDv> 
 
 			@Override
 			public void onChange(ChangeEvent event) {
-				strRate.setText(productList.get(product.getSelectedIndex())
-						.getStrRate());
+				rate.setValue(productList.get(product.getSelectedIndex())
+						.getRate());
 			}
 		});
 		//
@@ -73,7 +75,7 @@ public class DepositEditorWidget extends Composite implements Editor<DepositDv> 
 	public void showData(DepositDv depositDv) {
 		driver.edit(depositDv);
 		if (depositDv.getId() == 0L) {
-			strRate.setText(productList.get(0).getStrRate());
+			rate.setValue(productList.get(0).getRate());
 		}
 	}
 

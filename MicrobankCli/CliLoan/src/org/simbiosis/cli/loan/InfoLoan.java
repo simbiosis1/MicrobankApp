@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.type.TypeFactory;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -56,8 +55,8 @@ public class InfoLoan extends CliBase {
 				"2;0;" + sdf.print(now));
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			loans = mapper.readValue(data,
-					TypeFactory.collectionType(ArrayList.class, LoanRpt.class));
+			loans = mapper.readValue(data, mapper.getTypeFactory()
+					.constructCollectionType(ArrayList.class, LoanRpt.class));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

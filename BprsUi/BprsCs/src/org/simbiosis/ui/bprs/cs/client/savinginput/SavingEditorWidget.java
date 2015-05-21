@@ -14,7 +14,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.DateLabel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -23,10 +23,12 @@ public class SavingEditorWidget extends Composite implements Editor<SavingDv> {
 	private static SimpananEditorUiBinder uiBinder = GWT
 			.create(SimpananEditorUiBinder.class);
 
-	interface SimpananEditorUiBinder extends UiBinder<Widget, SavingEditorWidget> {
+	interface SimpananEditorUiBinder extends
+			UiBinder<Widget, SavingEditorWidget> {
 	}
 
-	interface Driver extends SimpleBeanEditorDriver<SavingDv, SavingEditorWidget> {
+	interface Driver extends
+			SimpleBeanEditorDriver<SavingDv, SavingEditorWidget> {
 	}
 
 	private Driver driver = GWT.create(Driver.class);
@@ -34,14 +36,14 @@ public class SavingEditorWidget extends Composite implements Editor<SavingDv> {
 	@UiField
 	TextBox code;
 	@UiField
-	Label strRegistration;
+	DateLabel registration;
 	@UiField
 	ProductListEditor product;
 	@UiField
 	CheckBox zakat;
 
 	List<DataDv> savingProductList = new ArrayList<DataDv>();
-	
+
 	public SavingEditorWidget() {
 		initWidget(uiBinder.createAndBindUi(this));
 		//
@@ -57,7 +59,7 @@ public class SavingEditorWidget extends Composite implements Editor<SavingDv> {
 		return driver.flush();
 	}
 
-	public void setSavingProductList(List<DataDv> savingProductList){
+	public void setSavingProductList(List<DataDv> savingProductList) {
 		this.savingProductList.clear();
 		this.savingProductList.addAll(savingProductList);
 		product.setList(this.savingProductList);

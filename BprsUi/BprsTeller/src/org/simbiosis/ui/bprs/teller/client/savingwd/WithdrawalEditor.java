@@ -1,5 +1,6 @@
 package org.simbiosis.ui.bprs.teller.client.savingwd;
 
+import org.kembang.editor.client.DoubleTextBox;
 import org.kembang.module.client.mvp.AppStatus;
 import org.kembang.module.client.mvp.FormWidget;
 import org.simbiosis.ui.bprs.common.client.savinghelper.SavingInfo;
@@ -10,7 +11,7 @@ import com.google.gwt.editor.client.Editor;
 import com.google.gwt.editor.client.SimpleBeanEditorDriver;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.DateLabel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -33,13 +34,13 @@ public class WithdrawalEditor extends FormWidget implements IWithdrawal,
 	@UiField
 	SavingInfo saving;
 	@UiField
-	Label strDate;
+	DateLabel date;
 	@UiField
 	TextBox refCode;
 	@UiField
 	TextBox description;
 	@UiField
-	TextBox strValue;
+	DoubleTextBox value;
 
 	public WithdrawalEditor() {
 		initWidget(uiBinder.createAndBindUi(this));

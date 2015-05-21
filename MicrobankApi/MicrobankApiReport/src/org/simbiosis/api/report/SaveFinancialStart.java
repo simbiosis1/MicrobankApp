@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.type.TypeFactory;
 import org.simbiosis.api.lib.WebApiReportServlet;
 import org.simbiosis.gl.model.Coa;
 import org.simbiosis.gl.model.FinancialStartRpt;
@@ -37,8 +36,10 @@ public class SaveFinancialStart extends WebApiReportServlet {
 		ObjectMapper mapper = new ObjectMapper();
 		UserDto user = iSystem.getUserFromSession(key);
 		try {
-			List<FinancialStartRpt> vals = mapper.readValue(data, TypeFactory
-					.collectionType(ArrayList.class, FinancialStartRpt.class));
+			List<FinancialStartRpt> vals = mapper.readValue(
+					data,
+					mapper.getTypeFactory().constructCollectionType(
+							ArrayList.class, FinancialStartRpt.class));
 			for (FinancialStartRpt val : vals) {
 				val.setCompany(user.getCompany());
 				Coa coa = iCoa.get(val.getCoa());

@@ -1,5 +1,6 @@
 package org.simbiosis.ui.bprs.teller.client.cashtrans;
 
+import org.kembang.editor.client.DoubleTextBox;
 import org.kembang.module.client.mvp.AppStatus;
 import org.kembang.module.client.mvp.FormWidget;
 import org.simbiosis.ui.bprs.common.shared.TransactionDv;
@@ -10,6 +11,7 @@ import com.google.gwt.editor.client.Editor;
 import com.google.gwt.editor.client.SimpleBeanEditorDriver;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.DateLabel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
@@ -24,19 +26,20 @@ public class CashTransEditor extends FormWidget implements ICashTrans,
 	interface MyUiBinder extends UiBinder<Widget, CashTransEditor> {
 	}
 
-	interface Driver extends SimpleBeanEditorDriver<TransactionDv, CashTransEditor> {
+	interface Driver extends
+			SimpleBeanEditorDriver<TransactionDv, CashTransEditor> {
 	}
 
 	private Driver driver = GWT.create(Driver.class);
 
 	@UiField
-	Label strDate;
+	DateLabel date;
 	@UiField
 	Label code;
 	@UiField
 	TextBox refCode;
 	@UiField
-	TextBox strValue;
+	DoubleTextBox value;
 	@UiField
 	TextBox maker;
 	@UiField

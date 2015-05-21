@@ -43,7 +43,7 @@
 								<td class="formLabel">Tanggal</td>
 								<td>&nbsp;</td>
 								<td>
-									<g:Label ui:field="strDate" styleName="formTextlabel" />
+									<g:DateLabel ui:field="date" styleName="formTextlabel" customFormat="dd-MM-yyyy"/>
 								</td>
 							</tr>
 							<tr>
@@ -64,14 +64,14 @@
 								<td class="formLabel">Deskripsi</td>
 								<td>&nbsp;</td>
 								<td>
-									<g:Label styleName="formText" ui:field="description" />
+									<g:Label styleName="formTextlabel" ui:field="description" />
 								</td>
 							</tr>
 							<tr>
 								<td class="formLabel">Jumlah</td>
 								<td>&nbsp;</td>
 								<td>
-									<g:Label ui:field="strValue" styleName="formTextlabel" />
+									<g:NumberLabel ui:field="value" styleName="formTextlabel" customFormat="#,##0.00"/>
 								</td>
 							</tr>
 						</table>

@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.type.TypeFactory;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -92,9 +91,10 @@ public class DistributeDeposit extends CliBase {
 					strDate);
 			ObjectMapper mapper = new ObjectMapper();
 			try {
-				List<DepositRevSharingDto> result = mapper.readValue(data,
-						TypeFactory.collectionType(ArrayList.class,
-								DepositRevSharingDto.class));
+				List<DepositRevSharingDto> result = mapper.readValue(
+						data,
+						mapper.getTypeFactory().constructCollectionType(
+								ArrayList.class, DepositRevSharingDto.class));
 				for (DepositRevSharingDto rs : result) {
 					System.out.println("data = " + rs.getDeposit() + "=="
 							+ rs.getDate() + "==" + rs.getSaving() + "=="

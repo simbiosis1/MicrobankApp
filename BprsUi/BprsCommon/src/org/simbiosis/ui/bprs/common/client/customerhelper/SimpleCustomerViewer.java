@@ -8,6 +8,7 @@ import com.google.gwt.editor.client.SimpleBeanEditorDriver;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.DateLabel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -36,7 +37,7 @@ public class SimpleCustomerViewer extends Composite implements
 	@UiField
 	Label pob;
 	@UiField
-	Label strDob;
+	DateLabel dob;
 	@UiField
 	Label strIdType;
 	@UiField

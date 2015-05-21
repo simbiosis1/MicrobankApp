@@ -10,7 +10,6 @@ public class DepositDv implements IsSerializable {
 	String code;
 	String bilyet;
 	Date registration;
-	String strRegistration;
 	CustomerDv customer = new CustomerDv();
 	Long product;
 	String strProduct;
@@ -93,14 +92,6 @@ public class DepositDv implements IsSerializable {
 
 	public void setRegistration(Date registration) {
 		this.registration = registration;
-	}
-
-	public String getStrRegistration() {
-		return strRegistration;
-	}
-
-	public void setStrRegistration(String strRegistration) {
-		this.strRegistration = strRegistration;
 	}
 
 	public CustomerDv getCustomer() {

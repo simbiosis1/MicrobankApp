@@ -452,7 +452,10 @@
 				<column name="LOA_FINE"/>
 			</basic>
 			<basic name="guaranteeDescription">
-				<column name="LOA_GUARANTEEDESCRIPTION" length="200"/>
+				<column name="LOA_GUARANTEEDESCRIPTION" length="4000"/>
+			</basic>
+			<basic name="guaranteeTypeName">
+				<column name="LOA_GUARANTEETYPENAME" length="200"/>
 			</basic>
 		</attributes>
 	</entity>

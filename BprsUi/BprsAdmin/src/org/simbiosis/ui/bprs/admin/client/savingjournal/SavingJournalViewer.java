@@ -13,12 +13,14 @@ import com.google.gwt.editor.client.Editor;
 import com.google.gwt.editor.client.SimpleBeanEditorDriver;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.DateLabel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.NumberLabel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class SavingJournalViewer extends FormWidget implements
 		Editor<TransactionDv>, ISavingJournal {
-	
+
 	Activity activity;
 
 	private static TarikTunaiViewerUiBinder uiBinder = GWT
@@ -28,16 +30,16 @@ public class SavingJournalViewer extends FormWidget implements
 			UiBinder<Widget, SavingJournalViewer> {
 	}
 
-	interface Driver extends SimpleBeanEditorDriver<TransactionDv, SavingJournalViewer> {
+	interface Driver extends
+			SimpleBeanEditorDriver<TransactionDv, SavingJournalViewer> {
 	}
 
 	private Driver driver = GWT.create(Driver.class);
 
-
 	@UiField
 	SavingInfo saving;
 	@UiField
-	Label strDate;
+	DateLabel date;
 	@UiField
 	Label code;
 	@UiField
@@ -47,7 +49,7 @@ public class SavingJournalViewer extends FormWidget implements
 	@UiField
 	Label description;
 	@UiField
-	Label strValue;
+	NumberLabel<Double> value;
 	@UiField
 	Label strCoa;
 

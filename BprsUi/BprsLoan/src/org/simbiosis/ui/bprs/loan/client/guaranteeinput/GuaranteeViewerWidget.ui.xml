@@ -23,7 +23,8 @@
 					</td>
 					<td>&nbsp;&nbsp;</td>
 					<td>
-						<g:Label ui:field="strRegistration" styleName="formTextlabel" />
+						<g:DateLabel ui:field="registration" styleName="formTextlabel"
+							customFormat="dd-MM-yyyy" />
 					</td>
 				</tr>
 				<tr>
@@ -68,7 +69,8 @@
 					</td>
 					<td>&nbsp;&nbsp;</td>
 					<td>
-						<g:Label ui:field="strAppraisalIntValue" styleName="formTextlabel" />
+						<g:NumberLabel ui:field="appraisalIntValue"
+							styleName="formTextlabel" customFormat="#,##0.00" />
 					</td>
 				</tr>
 				<tr>
@@ -77,7 +79,18 @@
 					</td>
 					<td>&nbsp;&nbsp;</td>
 					<td>
-						<g:Label ui:field="strAppraisalMarkValue" styleName="formTextlabel" />
+						<g:NumberLabel ui:field="appraisalMarkValue"
+							styleName="formTextlabel" customFormat="#,##0.00" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						Nilai sesuai OJK
+					</td>
+					<td>&nbsp;&nbsp;</td>
+					<td>
+						<g:NumberLabel ui:field="appraisalOJKValue"
+							styleName="formTextlabel" customFormat="#,##0.00" />
 					</td>
 				</tr>
 			</table>

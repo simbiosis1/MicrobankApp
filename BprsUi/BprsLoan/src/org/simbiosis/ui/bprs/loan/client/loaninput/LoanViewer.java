@@ -5,6 +5,7 @@ import java.util.List;
 import org.kembang.module.client.mvp.AppStatus;
 import org.kembang.module.client.mvp.FormWidget;
 import org.simbiosis.ui.bprs.common.shared.DataDv;
+import org.simbiosis.ui.bprs.common.shared.GuaranteeDv;
 import org.simbiosis.ui.bprs.common.shared.LoanDv;
 import org.simbiosis.ui.bprs.common.shared.LoanScheduleDv;
 import org.simbiosis.ui.bprs.loan.client.viewer.LoanFormViewer;
@@ -76,6 +77,12 @@ public class LoanViewer extends FormWidget implements ILoanInput {
 
 	@Override
 	public void setBISektor(List<String> listBISektor) {
+	}
+
+	@Override
+	public void setGuarantee(List<GuaranteeDv> guarantees) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

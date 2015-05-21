@@ -9,7 +9,6 @@ public class GuaranteeDv implements IsSerializable {
 	Long id;
 	String code;
 	Date registration;
-	String strRegistration;
 	CustomerDv customer = new CustomerDv();
 	Long company;
 	Long branch;
@@ -17,10 +16,9 @@ public class GuaranteeDv implements IsSerializable {
 	String number;
 	String description;
 	Double appraisalIntValue;
-	String strAppraisalIntValue;
 	Double appraisalMarkValue;
-	String strAppraisalMarkValue;
 	Double appraisalTaxValue;
+	Double appraisalOJKValue;
 	Integer type;
 	String strType;
 	Integer active;
@@ -35,8 +33,7 @@ public class GuaranteeDv implements IsSerializable {
 		appraisalIntValue = 0D;
 		appraisalMarkValue = 0D;
 		appraisalTaxValue = 0D;
-		strAppraisalIntValue = "0";
-		strAppraisalMarkValue = "0";
+		appraisalOJKValue = 0D;
 	}
 
 	public Integer getNr() {
@@ -85,14 +82,6 @@ public class GuaranteeDv implements IsSerializable {
 
 	public void setRegistration(Date registration) {
 		this.registration = registration;
-	}
-
-	public String getStrRegistration() {
-		return strRegistration;
-	}
-
-	public void setStrRegistration(String strRegistration) {
-		this.strRegistration = strRegistration;
 	}
 
 	public String getOwnerName() {
@@ -159,14 +148,6 @@ public class GuaranteeDv implements IsSerializable {
 		this.appraisalIntValue = appraisalIntValue;
 	}
 
-	public String getStrAppraisalIntValue() {
-		return strAppraisalIntValue;
-	}
-
-	public void setStrAppraisalIntValue(String strAppraisalIntValue) {
-		this.strAppraisalIntValue = strAppraisalIntValue;
-	}
-
 	public Double getAppraisalMarkValue() {
 		return appraisalMarkValue;
 	}
@@ -175,20 +156,20 @@ public class GuaranteeDv implements IsSerializable {
 		this.appraisalMarkValue = appraisalMarkValue;
 	}
 
-	public String getStrAppraisalMarkValue() {
-		return strAppraisalMarkValue;
-	}
-
-	public void setStrAppraisalMarkValue(String strAppraisalMarkValue) {
-		this.strAppraisalMarkValue = strAppraisalMarkValue;
-	}
-
 	public Double getAppraisalTaxValue() {
 		return appraisalTaxValue;
 	}
 
 	public void setAppraisalTaxValue(Double appraisalTaxValue) {
 		this.appraisalTaxValue = appraisalTaxValue;
+	}
+
+	public Double getAppraisalOJKValue() {
+		return appraisalOJKValue;
+	}
+
+	public void setAppraisalOJKValue(Double appraisalOJKValue) {
+		this.appraisalOJKValue = appraisalOJKValue;
 	}
 
 }

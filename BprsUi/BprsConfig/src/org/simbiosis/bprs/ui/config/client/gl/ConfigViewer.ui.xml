@@ -1,0 +1,13 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+	
+	</ui:style>
+	<g:HTMLPanel>
+		<div class="formLabel">Coa vault/khasanah</div>
+		<div><g:Label ui:field="strVault" styleName="formTextlabel"/></div>
+		<div class="formLabel">Rekening antar bagian teller</div>
+		<div><g:Label ui:field="strRab" styleName="formTextlabel" /></div>
+	</g:HTMLPanel>
+</ui:UiBinder> 

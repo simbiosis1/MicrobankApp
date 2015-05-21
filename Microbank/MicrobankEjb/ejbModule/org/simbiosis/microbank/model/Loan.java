@@ -63,7 +63,7 @@ public class Loan {
 	@Column(name = "LOA_PRINCIPAL")
 	double principal;
 	@Column(name = "LOA_TENOR")
-	double tenor;
+	int tenor;
 	@Column(name = "LOA_RATE")
 	double rate;
 	@Column(name = "LOA_MARGIN")
@@ -168,11 +168,11 @@ public class Loan {
 		this.principal = principal;
 	}
 
-	public double getTenor() {
+	public int getTenor() {
 		return tenor;
 	}
 
-	public void setTenor(double tenor) {
+	public void setTenor(int tenor) {
 		this.tenor = tenor;
 	}
 

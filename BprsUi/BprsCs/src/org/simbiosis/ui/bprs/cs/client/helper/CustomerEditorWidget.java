@@ -19,6 +19,7 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.CheckBox;
+import com.google.gwt.user.client.ui.DateLabel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
@@ -43,7 +44,7 @@ public class CustomerEditorWidget extends FormWidget implements
 	@UiField
 	Label code;
 	@UiField
-	Label strRegistration;
+	DateLabel registration;
 	@UiField
 	TextBox name;
 	@UiField

@@ -19,7 +19,7 @@ public class LoanDto implements Serializable {
 	double principal;
 	double rate;
 	double margin;
-	double tenor;
+	int tenor;
 	String contract;
 	Date contractDate;
 	int active;
@@ -106,11 +106,11 @@ public class LoanDto implements Serializable {
 		this.rate = rate;
 	}
 
-	public double getTenor() {
+	public int getTenor() {
 		return tenor;
 	}
 
-	public void setTenor(double tenor) {
+	public void setTenor(int tenor) {
 		this.tenor = tenor;
 	}
 

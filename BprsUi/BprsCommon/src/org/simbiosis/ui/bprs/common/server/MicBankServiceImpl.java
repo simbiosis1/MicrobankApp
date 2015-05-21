@@ -1,15 +1,11 @@
 package org.simbiosis.ui.bprs.common.server;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
 
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 import org.simbiosis.bp.micbank.ICustomerBp;
 import org.simbiosis.bp.micbank.IDepositBp;
 import org.simbiosis.bp.micbank.ILoanBp;
@@ -51,8 +47,8 @@ public class MicBankServiceImpl extends RemoteServiceServlet implements
 	@EJB(lookup = "java:global/BprsBpEar/BprsBpEjb/LoanBp")
 	ILoanBp loanBp;
 
-	DecimalFormat nf = new DecimalFormat("#,##0.00");
-	DateTimeFormatter sdf = DateTimeFormat.forPattern("dd-MM-yyyy");
+	// DecimalFormat nf = new DecimalFormat("#,##0.00");
+	// DateTimeFormatter sdf = DateTimeFormat.forPattern("dd-MM-yyyy");
 
 	public MicBankServiceImpl() {
 	}
@@ -62,14 +58,12 @@ public class MicBankServiceImpl extends RemoteServiceServlet implements
 		dv.setId(dto.getId());
 		dv.setCode(dto.getCode());
 		dv.setRegistration(dto.getRegistration());
-		dv.setStrRegistration(sdf.print(new DateTime(dv.getRegistration())));
 		dv.setName(dto.getName());
 		dv.setTitle(dto.getTitle());
 		dv.setSex(dto.getSex());
 		dv.setStrSex(SexTypeEnum.valueToString(dv.getSex()));
 		dv.setPob(dto.getPob());
 		dv.setDob(dto.getDob());
-		dv.setStrDob(sdf.print(new DateTime(dv.getDob())));
 		dv.setIdType(dto.getIdType());
 		dv.setStrIdType(IdTypeEnum.valueToString(dv.getIdType()));
 		dv.setIdCode(dto.getIdCode());
@@ -109,7 +103,6 @@ public class MicBankServiceImpl extends RemoteServiceServlet implements
 		dv.setId(dto.getId());
 		dv.setCode(dto.getCode());
 		dv.setRegistration(dto.getRegistration());
-		dv.setStrRegistration(sdf.print(new DateTime(dv.getRegistration())));
 		SavingProductDto spDto = savingBp.getSavingProduct(dto.getProduct());
 		dv.setProduct(spDto.getId());
 		dv.setStrProduct(spDto.getName());
@@ -212,18 +205,13 @@ public class MicBankServiceImpl extends RemoteServiceServlet implements
 		dv.setId(dto.getId());
 		dv.setCode(dto.getCode());
 		dv.setRegistration(dto.getRegistration());
-		dv.setStrRegistration(sdf.print(new DateTime(dv.getRegistration())));
 		LoanProductDto loanProduct = loanBp.getLoanProduct(dto.getProduct());
 		dv.setProduct(loanProduct.getId());
 		dv.setStrProduct(loanProduct.getName());
 		dv.setPrincipal(dto.getPrincipal());
-		dv.setStrPrincipal(nf.format(dv.getPrincipal()));
 		dv.setMargin(dto.getMargin());
-		dv.setStrMargin(nf.format(dv.getMargin()));
 		dv.setRate(dto.getRate());
-		dv.setStrRate(nf.format(dv.getRate()));
 		dv.setTenor(dto.getTenor());
-		dv.setStrTenor("" + dv.getTenor());
 		dv.setDropped(dto.isDropped());
 		dv.setPurpose(dto.getPurpose());
 		dv.setBiSektor(dto.getBiSektor());
@@ -315,7 +303,6 @@ public class MicBankServiceImpl extends RemoteServiceServlet implements
 		dv.setId(dto.getId());
 		dv.setCode(dto.getCode());
 		dv.setRegistration(dto.getRegistration());
-		dv.setStrRegistration(sdf.print(new DateTime(dv.getRegistration())));
 		DepositProductDto product = depositBp.getDepositProduct(dto
 				.getProduct());
 		dv.setProduct(product.getId());
@@ -325,11 +312,8 @@ public class MicBankServiceImpl extends RemoteServiceServlet implements
 		dv.setZakat(dto.getZakat() == 1);
 		dv.setStrZakat(dv.getZakat() ? "ZAKAT" : "NON ZAKAT");
 		dv.setValue(dto.getValue());
-		dv.setStrValue(nf.format(dv.getValue()));
 		dv.setRate(dto.getRate());
-		dv.setStrRate(nf.format(dv.getRate()));
 		dv.setSpecialRate(dto.getSpecialRate());
-		dv.setStrSpecialRate(nf.format(dv.getSpecialRate()));
 		dv.setBilyet(dto.getBilyet());
 		//
 		CustomerDto customerDto = customerBp.getCustomer(dto.getCustomer());

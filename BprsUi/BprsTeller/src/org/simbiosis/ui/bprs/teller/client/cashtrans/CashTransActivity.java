@@ -14,7 +14,6 @@ import org.simbiosis.ui.bprs.teller.client.rpc.AppService;
 import org.simbiosis.ui.bprs.teller.client.rpc.AppServiceAsync;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -23,8 +22,7 @@ import com.google.web.bindery.event.shared.EventBus;
 
 public class CashTransActivity extends Activity {
 
-	private final AppServiceAsync tellerSrv = GWT
-			.create(AppService.class);
+	private final AppServiceAsync tellerSrv = GWT.create(AppService.class);
 
 	Place myPlace;
 	AppFactory appFactory;
@@ -147,7 +145,7 @@ public class CashTransActivity extends Activity {
 			Window.alert("Error : " + message);
 		}
 	}
-	
+
 	private void onNew() {
 		//
 		ICashTrans myForm = appFactory.getKasEditor();
@@ -157,8 +155,6 @@ public class CashTransActivity extends Activity {
 		transactionDv.setDate(new Date());
 		transactionDv.setType(1);
 		transactionDv.setDirection(1);
-		DateTimeFormat format = DateTimeFormat.getFormat("dd-MM-yyyy");
-		transactionDv.setStrDate(format.format(transactionDv.getDate()));
 		//
 		myForm.showData(transactionDv);
 		appFactory.showApplication(null, myForm.getFormWidget());

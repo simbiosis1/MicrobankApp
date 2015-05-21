@@ -60,7 +60,7 @@ public interface ILoanBp {
 			int direction, Date beginDate, Date endDate);
 
 	long isLoanExistByRefId(String key, long refId);
-
+	
 	//
 
 	ValidationDto validateGuarantee(String key, GuaranteeDto dto);
@@ -70,6 +70,8 @@ public interface ILoanBp {
 	GuaranteeDto getGuarantee(long id);
 
 	List<GuaranteeDto> findGuarantee(String key, FindLoanDto findLoan);
+
+	List<GuaranteeDto> listGuaranteeByCode(String key, String code);
 
 	List<String> listGuaranteeType(String key);
 

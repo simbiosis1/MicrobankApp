@@ -5,6 +5,7 @@ import java.util.List;
 import org.kembang.module.shared.SimpleBranchDv;
 import org.kembang.module.shared.UserDv;
 import org.simbiosis.bprs.ui.config.shared.CoaDv;
+import org.simbiosis.bprs.ui.config.shared.ConfigDv;
 import org.simbiosis.bprs.ui.config.shared.ProductDv;
 import org.simbiosis.bprs.ui.config.shared.SubBranchDv;
 import org.simbiosis.bprs.ui.config.shared.TellerDv;
@@ -20,7 +21,8 @@ public interface AppService extends RemoteService {
 	List<CoaDv> listCoaForTransaction(String key)
 			throws IllegalArgumentException;
 
-	List<ProductDv> listSavingProduct(String key) throws IllegalArgumentException;
+	List<ProductDv> listSavingProduct(String key)
+			throws IllegalArgumentException;
 
 	void saveSavingProduct(String key, ProductDv dv)
 			throws IllegalArgumentException;
@@ -42,4 +44,9 @@ public interface AppService extends RemoteService {
 	List<SubBranchDv> listSubBranch(String key) throws IllegalArgumentException;
 
 	List<SimpleBranchDv> listTerm(String key) throws IllegalArgumentException;
+
+	ConfigDv loadConfig(String key);
+
+	void saveConfig(String key, ConfigDv config);
+
 }

@@ -3,6 +3,7 @@ package org.simbiosis.ui.bprs.admin.client.loan;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.kembang.editor.client.DoubleTextBox;
 import org.kembang.module.client.mvp.AppStatus;
 import org.kembang.module.client.mvp.FormWidget;
 import org.simbiosis.ui.bprs.admin.client.editor.LoanTransTypeEditor;
@@ -18,7 +19,7 @@ import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.DateLabel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -43,17 +44,17 @@ public class LoanEditor extends FormWidget implements ILoan,
 	@UiField
 	SavingInfo saving;
 	@UiField
-	Label strDate;
+	DateLabel date;
 	@UiField
 	TextBox refCode;
 	@UiField
-	TextBox strValue;
+	DoubleTextBox value;
 	@UiField
-	TextBox strPrincipal;
+	DoubleTextBox principal;
 	@UiField
-	TextBox strMargin;
+	DoubleTextBox margin;
 	@UiField
-	TextBox strDiscount;
+	DoubleTextBox discount;
 	@UiField
 	LoanTransTypeEditor type;
 
@@ -68,33 +69,33 @@ public class LoanEditor extends FormWidget implements ILoan,
 		//
 		driver.initialize(this);
 		//
-		strPrincipal.setVisible(false);
-		strMargin.setVisible(false);
-		strDiscount.setVisible(false);
+		principal.setVisible(false);
+		margin.setVisible(false);
+		discount.setVisible(false);
 		//
 		type.addChangeHandler(new ChangeHandler() {
 
 			@Override
 			public void onChange(ChangeEvent event) {
-				String principal = "";
-				String margin = "";
-				String total = "";
+				Double dprincipal = 0D;
+				Double dmargin = 0D;
+				Double dtotal = 0D;
 				if (type.getValue() == 2) {
-					strPrincipal.setReadOnly(false);
-					strDiscount.setVisible(false);
-					principal = repayment.get(0).getStrPrincipal();
-					margin = repayment.get(0).getStrMargin();
-					total = repayment.get(0).getStrTotal();
+					principal.setReadOnly(false);
+					discount.setVisible(false);
+					dprincipal = repayment.get(0).getPrincipal();
+					dmargin = repayment.get(0).getMargin();
+					dtotal = repayment.get(0).getTotal();
 				} else if (type.getValue() == 3) {
-					strPrincipal.setReadOnly(true);
-					strDiscount.setVisible(true);
-					principal = repayment.get(1).getStrPrincipal();
-					margin = repayment.get(1).getStrMargin();
-					total = repayment.get(1).getStrTotal();
+					principal.setReadOnly(true);
+					discount.setVisible(true);
+					dprincipal = repayment.get(1).getPrincipal();
+					dmargin = repayment.get(1).getMargin();
+					dtotal = repayment.get(1).getTotal();
 				}
-				strPrincipal.setText(principal);
-				strMargin.setText(margin);
-				strValue.setText(total);
+				principal.setValue(dprincipal);
+				margin.setValue(dmargin);
+				value.setValue(dtotal);
 			}
 		});
 	}
@@ -119,26 +120,24 @@ public class LoanEditor extends FormWidget implements ILoan,
 		type.addAll();
 		if (transactionDv.getLoan().getId() != 0) {
 			LoanDv loan = transactionDv.getLoan();
-			strDiscount.setVisible(false);
+			discount.setVisible(false);
 			if (loan.isDropped()) {
 				// Tentukan tampilan untuk pilihan transaksi
 				type.removeItem(0);
 				//
-				strPrincipal.setVisible(true);
-				strMargin.setVisible(true);
+				principal.setVisible(true);
+				margin.setVisible(true);
 			} else {
 				// Tentukan tampilan untuk pilihan transaksi
 				type.removeItem(2);
 				type.removeItem(1);
 				// Tentukan jumlah
-				strValue.setEnabled(false);
-				transactionDv.setStrValue(transactionDv.getLoan()
-						.getStrPrincipal());
-				transactionDv.setStrMargin(transactionDv.getLoan()
-						.getStrMargin());
+				value.setEnabled(false);
+				transactionDv.setValue(transactionDv.getLoan().getPrincipal());
+				transactionDv.setMargin(transactionDv.getLoan().getMargin());
 				//
-				strPrincipal.setVisible(false);
-				strMargin.setVisible(false);
+				principal.setVisible(false);
+				margin.setVisible(false);
 			}
 		}
 		//

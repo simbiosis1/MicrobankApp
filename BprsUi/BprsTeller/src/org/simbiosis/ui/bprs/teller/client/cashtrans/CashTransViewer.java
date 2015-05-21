@@ -9,7 +9,9 @@ import com.google.gwt.editor.client.Editor;
 import com.google.gwt.editor.client.SimpleBeanEditorDriver;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.DateLabel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.NumberLabel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class CashTransViewer extends FormWidget implements ICashTrans,
@@ -22,19 +24,20 @@ public class CashTransViewer extends FormWidget implements ICashTrans,
 	interface MyUiBinder extends UiBinder<Widget, CashTransViewer> {
 	}
 
-	interface Driver extends SimpleBeanEditorDriver<TransactionDv, CashTransViewer> {
+	interface Driver extends
+			SimpleBeanEditorDriver<TransactionDv, CashTransViewer> {
 	}
 
 	private Driver driver = GWT.create(Driver.class);
 
 	@UiField
-	Label strDate;
+	DateLabel date;
 	@UiField
 	Label code;
 	@UiField
 	Label refCode;
 	@UiField
-	Label strValue;
+	NumberLabel<Double> value;
 	@UiField
 	Label maker;
 	@UiField

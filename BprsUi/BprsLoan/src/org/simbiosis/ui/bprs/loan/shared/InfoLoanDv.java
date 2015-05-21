@@ -8,63 +8,69 @@ import org.simbiosis.ui.bprs.common.shared.TransactionDv;
 import com.google.gwt.user.client.rpc.IsSerializable;
 
 public class InfoLoanDv implements IsSerializable {
-	String osPrincipal;
-	String osMargin;
-	String osTotal;
-	String quality;
-	String osDueCount;
-	String osDueValue;
+	Double osPrincipal;
+	Double osMargin;
+	Double osTotal;
+	Integer quality;
+	Integer osDueCount;
+	Double osDueValue;
 
 	List<TransactionDv> loanPayments = new ArrayList<TransactionDv>();
 
 	public InfoLoanDv() {
+		osPrincipal = 0D;
+		osMargin = 0D;
+		osTotal = 0D;
+		quality = 1;
+		osDueCount = 0;
+		osDueValue = 0D;
 	}
 
-	public String getOsPrincipal() {
+	public Double getOsPrincipal() {
 		return osPrincipal;
 	}
 
-	public void setOsPrincipal(String osPrincipal) {
+	public void setOsPrincipal(Double osPrincipal) {
 		this.osPrincipal = osPrincipal;
 	}
 
-	public String getOsMargin() {
+	public Double getOsMargin() {
 		return osMargin;
 	}
 
-	public void setOsMargin(String osMargin) {
+	public void setOsMargin(Double osMargin) {
 		this.osMargin = osMargin;
 	}
 
-	public String getOsTotal() {
+	public Double getOsTotal() {
 		return osTotal;
 	}
 
-	public void setOsTotal(String osTotal) {
+	public void setOsTotal(Double osTotal) {
 		this.osTotal = osTotal;
 	}
 
-	public String getQuality() {
+	public Integer getQuality() {
 		return quality;
 	}
 
-	public void setQuality(String quality) {
+	public void setQuality(Integer quality) {
 		this.quality = quality;
 	}
 
-	public String getOsDueCount() {
+	public Integer getOsDueCount() {
 		return osDueCount;
 	}
 
-	public void setOsDueCount(String osDueCount) {
+	public void setOsDueCount(Integer osDueCount) {
 		this.osDueCount = osDueCount;
 	}
 
-	public String getOsDueValue() {
+	public Double getOsDueValue() {
 		return osDueValue;
 	}
 
-	public void setOsDueValue(String osDueValue) {
+	public void setOsDueValue(Double osDueValue) {
 		this.osDueValue = osDueValue;
 	}
 

@@ -76,7 +76,6 @@ public class DepositInputActivity extends Activity {
 				DepositDv dv = new DepositDv();
 				// FIXME : harusnya tanggal ambil dari server
 				dv.setRegistration(new Date());
-				dv.setStrRegistration(dateFormat.format(dv.getRegistration()));
 				dv.setCustomer(savingDv.getCustomer());
 				savingDv.copySavingData();
 				dv.setSaving(savingDv);

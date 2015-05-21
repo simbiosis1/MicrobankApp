@@ -81,24 +81,16 @@ public class TransactionDv implements IsSerializable {
 	String code;
 	String refCode;
 	Date date;
-	String strDate;
 	int type;
 	String strType;
 	String description;
 	Double value;
-	String strValue;
 	Double principal;
-	String strPrincipal;
 	Double margin;
-	String strMargin;
 	Double discount;
-	String strDiscount;
 	Double debit;
-	String strDebit;
 	Double credit;
-	String strCredit;
 	Double total;
-	String strTotal;
 	Integer direction;
 	String validationText;
 	String maker;
@@ -181,14 +173,6 @@ public class TransactionDv implements IsSerializable {
 		this.date = date;
 	}
 
-	public String getStrDate() {
-		return strDate;
-	}
-
-	public void setStrDate(String strDate) {
-		this.strDate = strDate;
-	}
-
 	public String getDescription() {
 		return description;
 	}
@@ -203,14 +187,6 @@ public class TransactionDv implements IsSerializable {
 
 	public void setValue(Double value) {
 		this.value = value;
-	}
-
-	public String getStrValue() {
-		return strValue;
-	}
-
-	public void setStrValue(String strValue) {
-		this.strValue = strValue;
 	}
 
 	public SavingDv getSaving() {
@@ -237,14 +213,6 @@ public class TransactionDv implements IsSerializable {
 		this.debit = debit;
 	}
 
-	public String getStrDebit() {
-		return strDebit;
-	}
-
-	public void setStrDebit(String strDebit) {
-		this.strDebit = strDebit;
-	}
-
 	public Double getCredit() {
 		return credit;
 	}
@@ -253,28 +221,12 @@ public class TransactionDv implements IsSerializable {
 		this.credit = credit;
 	}
 
-	public String getStrCredit() {
-		return strCredit;
-	}
-
-	public void setStrCredit(String strCredit) {
-		this.strCredit = strCredit;
-	}
-
 	public Double getTotal() {
 		return total;
 	}
 
 	public void setTotal(Double total) {
 		this.total = total;
-	}
-
-	public String getStrTotal() {
-		return strTotal;
-	}
-
-	public void setStrTotal(String strTotal) {
-		this.strTotal = strTotal;
 	}
 
 	public String getValidationText() {
@@ -325,14 +277,6 @@ public class TransactionDv implements IsSerializable {
 		this.principal = principal;
 	}
 
-	public String getStrPrincipal() {
-		return strPrincipal;
-	}
-
-	public void setStrPrincipal(String strPrincipal) {
-		this.strPrincipal = strPrincipal;
-	}
-
 	public Double getMargin() {
 		return margin;
 	}
@@ -341,28 +285,12 @@ public class TransactionDv implements IsSerializable {
 		this.margin = margin;
 	}
 
-	public String getStrMargin() {
-		return strMargin;
-	}
-
-	public void setStrMargin(String strMargin) {
-		this.strMargin = strMargin;
-	}
-
 	public Double getDiscount() {
 		return discount;
 	}
 
 	public void setDiscount(Double discount) {
 		this.discount = discount;
-	}
-
-	public String getStrDiscount() {
-		return strDiscount;
-	}
-
-	public void setStrDiscount(String strDiscount) {
-		this.strDiscount = strDiscount;
 	}
 
 	public DepositDv getDeposit() {

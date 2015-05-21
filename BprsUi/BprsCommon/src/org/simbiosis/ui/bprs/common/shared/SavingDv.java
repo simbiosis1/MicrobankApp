@@ -9,7 +9,6 @@ public class SavingDv implements IsSerializable {
 	Integer nr;
 	String code;
 	Date registration;
-	String strRegistration;
 	Long product;
 	String strProduct;
 	//
@@ -28,10 +27,8 @@ public class SavingDv implements IsSerializable {
 	String strZakat;
 
 	Double minValue;
-	String strMinValue;
 
 	Date closing;
-	String strClosing;
 	String reason;
 
 	public SavingDv() {
@@ -84,14 +81,6 @@ public class SavingDv implements IsSerializable {
 
 	public void setRegistration(Date registration) {
 		this.registration = registration;
-	}
-
-	public String getStrRegistration() {
-		return strRegistration;
-	}
-
-	public void setStrRegistration(String strRegistration) {
-		this.strRegistration = strRegistration;
 	}
 
 	public CustomerDv getCustomer() {
@@ -206,14 +195,6 @@ public class SavingDv implements IsSerializable {
 		this.closing = closing;
 	}
 
-	public String getStrClosing() {
-		return strClosing;
-	}
-
-	public void setStrClosing(String strClosing) {
-		this.strClosing = strClosing;
-	}
-
 	public String getReason() {
 		return reason;
 	}
@@ -237,13 +218,4 @@ public class SavingDv implements IsSerializable {
 	public void setMinValue(Double minValue) {
 		this.minValue = minValue;
 	}
-
-	public String getStrMinValue() {
-		return strMinValue;
-	}
-
-	public void setStrMinValue(String strMinValue) {
-		this.strMinValue = strMinValue;
-	}
-
 }

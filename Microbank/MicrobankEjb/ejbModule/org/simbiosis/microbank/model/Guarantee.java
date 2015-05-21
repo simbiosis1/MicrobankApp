@@ -21,6 +21,7 @@ import javax.persistence.Temporal;
 @Table(name = "MIB_GUARANTEE")
 @NamedQueries({
 		@NamedQuery(name = "listDepositGuarantee", query = "select x from Guarantee x where x.company=:company and x.type=3 and x.number=:number"),
+		@NamedQuery(name = "listGuaranteeByCode", query = "select x from Guarantee x where x.company=:company and x.code=:code"),
 		@NamedQuery(name = "listGuaranteeByCompany", query = "select x from Guarantee x where x.company=:company"),
 		@NamedQuery(name = "listGuaranteeByCompanyBranch", query = "select x from Guarantee x where x.company=:company and x.branch=:branch"),
 		@NamedQuery(name = "getMaxGuaranteeCode", query = "select max(x.code) from Guarantee x where x.company=:company and x.branch=:branch and x.code like :prefixCode"),
@@ -73,6 +74,8 @@ public class Guarantee {
 	double appraisalIntValue;
 	@Column(name = "GUA_APPRMARKVALUE")
 	double appraisalMarkValue;
+	@Column(name = "GUA_APPROJKVALUE")
+	double appraisalOJKValue;
 	@Column(name = "GUA_COMPANY")
 	long company;
 	@Column(name = "GUA_BRANCH")
@@ -264,6 +267,14 @@ public class Guarantee {
 
 	public void setClosing(Date closing) {
 		this.closing = closing;
+	}
+
+	public double getAppraisalOJKValue() {
+		return appraisalOJKValue;
+	}
+
+	public void setAppraisalOJKValue(double appraisalOJKValue) {
+		this.appraisalOJKValue = appraisalOJKValue;
 	}
 
 }

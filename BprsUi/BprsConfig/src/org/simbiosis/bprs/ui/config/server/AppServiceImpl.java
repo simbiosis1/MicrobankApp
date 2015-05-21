@@ -16,6 +16,7 @@ import org.simbiosis.bp.micbank.ITellerBp;
 import org.simbiosis.bp.system.ISystemBp;
 import org.simbiosis.bprs.ui.config.client.rpc.AppService;
 import org.simbiosis.bprs.ui.config.shared.CoaDv;
+import org.simbiosis.bprs.ui.config.shared.ConfigDv;
 import org.simbiosis.bprs.ui.config.shared.ProductDv;
 import org.simbiosis.bprs.ui.config.shared.SubBranchDv;
 import org.simbiosis.bprs.ui.config.shared.TellerDv;
@@ -25,6 +26,7 @@ import org.simbiosis.microbank.LoanProductDto;
 import org.simbiosis.microbank.SavingProductDto;
 import org.simbiosis.microbank.TellerDto;
 import org.simbiosis.system.BranchDto;
+import org.simbiosis.system.ConfigDto;
 import org.simbiosis.system.SubBranchDto;
 import org.simbiosis.system.UserDto;
 
@@ -351,5 +353,38 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 		}
 		return returnList;
 	}
+	
+	String getCoaDescription(long id) {
+		Coa coa = glBp.getCoa(id);
+		return coa == null ? "-" : (coa.getCode() + " - " + coa
+				.getDescription());
+	}
 
+	@Override
+	public ConfigDv loadConfig(String key) {
+		ConfigDv config = new ConfigDv();
+		ConfigDto dto = systemBp.getConfig(key, "vault.coa");
+		config.setVault(dto == null ? 0 : dto.getLongValue());
+		config.setStrVault(getCoaDescription(config.getVault()));
+		//
+		dto = systemBp.getConfig(key, "teller.RabCoa");
+		config.setRab(dto == null ? 0 : dto.getLongValue());
+		config.setStrRab(getCoaDescription(config.getRab()));
+		//
+		return config;
+	}
+
+	@Override
+	public void saveConfig(String key, ConfigDv config) {
+		ConfigDto dto = new ConfigDto();
+		dto.setKey("vault.coa");
+		dto.setLongValue(config.getVault());
+		systemBp.saveConfig(key, dto);
+		//
+		dto = new ConfigDto();
+		dto.setKey("teller.RabCoa");
+		dto.setLongValue(config.getRab());
+		systemBp.saveConfig(key, dto);
+		//
+	}
 }

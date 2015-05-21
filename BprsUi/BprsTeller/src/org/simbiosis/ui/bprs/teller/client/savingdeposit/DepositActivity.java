@@ -15,7 +15,6 @@ import org.simbiosis.ui.bprs.teller.client.rpc.AppServiceAsync;
 import org.simbiosis.ui.bprs.teller.client.savingdeposit.IDeposit.Activity;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -24,8 +23,7 @@ import com.google.web.bindery.event.shared.EventBus;
 
 public class DepositActivity extends Activity {
 
-	private final AppServiceAsync tellerSrv = GWT
-			.create(AppService.class);
+	private final AppServiceAsync tellerSrv = GWT.create(AppService.class);
 
 	Place myPlace;
 	AppFactory appFactory;
@@ -105,16 +103,13 @@ public class DepositActivity extends Activity {
 				IDeposit myForm = appFactory.getSetorTunaiEditor();
 				myForm.setActivity(getActivity(), appFactory.getAppStatus());
 				//
-				TransactionDv transactionDv = new TransactionDv();
-				transactionDv.setDate(new Date());
-				transactionDv.setDirection(1);
-				DateTimeFormat format = DateTimeFormat.getFormat("dd-MM-yyyy");
-				transactionDv
-						.setStrDate(format.format(transactionDv.getDate()));
+				TransactionDv transDv = new TransactionDv();
+				transDv.setDate(new Date());
+				transDv.setDirection(1);
 				savingDv.copySavingData();
-				transactionDv.setSaving(savingDv);
+				transDv.setSaving(savingDv);
 				//
-				myForm.showData(transactionDv);
+				myForm.showData(transDv);
 				appFactory.showApplication(null, myForm.getFormWidget());
 			}
 

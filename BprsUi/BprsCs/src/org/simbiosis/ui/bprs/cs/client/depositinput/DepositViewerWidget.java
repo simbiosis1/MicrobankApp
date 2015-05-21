@@ -8,6 +8,7 @@ import com.google.gwt.editor.client.SimpleBeanEditorDriver;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.DateLabel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -18,7 +19,8 @@ public class DepositViewerWidget extends Composite implements Editor<DepositDv> 
 	interface MyUiBinder extends UiBinder<Widget, DepositViewerWidget> {
 	}
 
-	interface Driver extends SimpleBeanEditorDriver<DepositDv, DepositViewerWidget> {
+	interface Driver extends
+			SimpleBeanEditorDriver<DepositDv, DepositViewerWidget> {
 	}
 
 	private Driver driver = GWT.create(Driver.class);
@@ -26,7 +28,7 @@ public class DepositViewerWidget extends Composite implements Editor<DepositDv> 
 	@UiField
 	Label code;
 	@UiField
-	Label strRegistration;
+	DateLabel registration;
 	@UiField
 	Label strProduct;
 	@UiField

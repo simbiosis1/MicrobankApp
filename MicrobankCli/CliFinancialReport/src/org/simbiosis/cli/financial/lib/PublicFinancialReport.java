@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.type.TypeFactory;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.simbiosis.bp.gl.model.PublicReportDto;
@@ -127,53 +126,67 @@ public class PublicFinancialReport {
 			// Schema syariah;aktiva
 			String data = coreClient.sendRawData("listFinancialReportRef",
 					"1;1");
-			List<PublicReportDto> objects = mapper.readValue(data, TypeFactory
-					.collectionType(ArrayList.class, PublicReportDto.class));
+			List<PublicReportDto> objects = mapper.readValue(
+					data,
+					mapper.getTypeFactory().constructCollectionType(
+							ArrayList.class, PublicReportDto.class));
 			for (PublicReportDto rs : objects) {
 				coaRef.add(rs);
 			}
 			// Schema syariah;pasiva
 			data = coreClient.sendRawData("listFinancialReportRef", "1;2");
-			objects = mapper.readValue(data, TypeFactory.collectionType(
-					ArrayList.class, PublicReportDto.class));
+			objects = mapper.readValue(
+					data,
+					mapper.getTypeFactory().constructCollectionType(
+							ArrayList.class, PublicReportDto.class));
 			for (PublicReportDto rs : objects) {
 				coaRef.add(rs);
 			}
 			// Schema syariah;pendapatan
 			data = coreClient.sendRawData("listFinancialReportRef", "1;3");
 			System.out.println(data);
-			objects = mapper.readValue(data, TypeFactory.collectionType(
-					ArrayList.class, PublicReportDto.class));
+			objects = mapper.readValue(
+					data,
+					mapper.getTypeFactory().constructCollectionType(
+							ArrayList.class, PublicReportDto.class));
 			for (PublicReportDto rs : objects) {
 				coaRef.add(rs);
 			}
 			// Schema syariah;bagi hasil
 			data = coreClient.sendRawData("listFinancialReportRef", "1;4");
 			System.out.println(data);
-			objects = mapper.readValue(data, TypeFactory.collectionType(
-					ArrayList.class, PublicReportDto.class));
+			objects = mapper.readValue(
+					data,
+					mapper.getTypeFactory().constructCollectionType(
+							ArrayList.class, PublicReportDto.class));
 			for (PublicReportDto rs : objects) {
 				coaRef.add(rs);
 			}
 			// Schema syariah;beban
 			data = coreClient.sendRawData("listFinancialReportRef", "1;5");
 			System.out.println(data);
-			objects = mapper.readValue(data, TypeFactory.collectionType(
-					ArrayList.class, PublicReportDto.class));
+			objects = mapper.readValue(
+					data,
+					mapper.getTypeFactory().constructCollectionType(
+							ArrayList.class, PublicReportDto.class));
 			for (PublicReportDto rs : objects) {
 				coaRef.add(rs);
 			}
 			// Schema syariah;pendapatan non ops
 			data = coreClient.sendRawData("listFinancialReportRef", "1;6");
-			objects = mapper.readValue(data, TypeFactory.collectionType(
-					ArrayList.class, PublicReportDto.class));
+			objects = mapper.readValue(
+					data,
+					mapper.getTypeFactory().constructCollectionType(
+							ArrayList.class, PublicReportDto.class));
 			for (PublicReportDto rs : objects) {
 				coaRef.add(rs);
 			}
 			// Schema syariah;beban non ops
 			data = coreClient.sendRawData("listFinancialReportRef", "1;7");
-			objects = mapper.readValue(data, TypeFactory.collectionType(
-					ArrayList.class, PublicReportDto.class));
+			objects = mapper.readValue(
+					data,
+					mapper.getTypeFactory().constructCollectionType(
+							ArrayList.class, PublicReportDto.class));
 			for (PublicReportDto rs : objects) {
 				coaRef.add(rs);
 			}
@@ -282,8 +295,10 @@ public class PublicFinancialReport {
 		String data = reportClient.sendRawData("listFinancialReport", param);
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			List<FinancialRpt> result = mapper.readValue(data, TypeFactory
-					.collectionType(ArrayList.class, FinancialRpt.class));
+			List<FinancialRpt> result = mapper.readValue(
+					data,
+					mapper.getTypeFactory().constructCollectionType(
+							ArrayList.class, FinancialRpt.class));
 			finReportList.clear();
 			finReportList.addAll(result);
 		} catch (IOException e) {

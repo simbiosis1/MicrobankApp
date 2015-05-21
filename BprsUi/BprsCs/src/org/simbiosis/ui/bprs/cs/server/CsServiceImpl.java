@@ -150,7 +150,6 @@ public class CsServiceImpl extends RemoteServiceServlet implements CsService {
 			dv.setId(dto.getId());
 			dv.setNama(dto.getName());
 			dv.setRate(dto.getSharing());
-			dv.setStrRate(df.format(dv.getRate()));
 			result.add(dv);
 		}
 		return result;

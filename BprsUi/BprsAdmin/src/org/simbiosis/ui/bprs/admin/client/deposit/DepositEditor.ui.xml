@@ -3,10 +3,10 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui"
 	xmlns:l="urn:import:org.simbiosis.ui.bprs.common.client.deposithelper"
 	xmlns:s="urn:import:org.simbiosis.ui.bprs.common.client.savinghelper"
-	xmlns:e="urn:import:org.simbiosis.ui.bprs.admin.client.editor">
-	<ui:style>
-		
-	</ui:style>
+	xmlns:e="urn:import:org.simbiosis.ui.bprs.admin.client.editor"
+	xmlns:k="urn:import:org.kembang.editor.client"
+	>
+	
 	<g:HTMLPanel>
 		<g:HTMLPanel>
 			<table class="formTableLayout" width="100%">
@@ -45,7 +45,7 @@
 						<tr>
 							<td class="formLabel">Tanggal</td>
 							<td>&nbsp;</td>
-							<td><g:Label ui:field="strDate" width="75px" styleName="formTextlabel"/></td>
+							<td><g:DateLabel ui:field="date" width="75px" styleName="formTextlabel" customFormat="dd-MM-yyyy"/></td>
 						</tr>
 						<tr>
 							<td class="formLabel">Kode</td>
@@ -60,7 +60,7 @@
 						<tr>
 							<td class="formLabel">Jumlah</td>
 							<td>&nbsp;</td>
-							<td><g:Label styleName="formTextlabel" ui:field="strValue"/></td>
+							<td><g:NumberLabel styleName="formTextlabel" ui:field="value" customFormat="#,##0.00"/></td>
 						</tr>
 					</table>
 					</td>

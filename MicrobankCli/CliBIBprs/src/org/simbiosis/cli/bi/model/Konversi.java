@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.type.TypeFactory;
 import org.simbiosis.cli.base.MicrobankReportClient;
 import org.simbiosis.gl.model.PublicFinancialRpt;
 
@@ -403,8 +402,10 @@ public class Konversi {
 				"0;" + endMonths[month] + "-" + year + ";" + group.toString());
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			result = mapper.readValue(data, TypeFactory.collectionType(
-					ArrayList.class, PublicFinancialRpt.class));
+			result = mapper.readValue(
+					data,
+					mapper.getTypeFactory().constructCollectionType(
+							ArrayList.class, PublicFinancialRpt.class));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

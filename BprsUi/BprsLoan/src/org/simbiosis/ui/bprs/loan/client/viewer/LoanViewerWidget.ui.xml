@@ -23,7 +23,7 @@
 					</td>
 					<td>&nbsp;&nbsp;</td>
 					<td>
-						<g:Label ui:field="strRegistration" styleName="formTextlabel" />
+						<g:DateLabel ui:field="registration" styleName="formTextlabel" customFormat="dd-MM-yyyy"/>
 					</td>
 				</tr>
 				<tr>
@@ -41,7 +41,7 @@
 					</td>
 					<td>&nbsp;&nbsp;</td>
 					<td>
-						<g:Label ui:field="strContractDate" styleName="formTextlabel" />
+						<g:DateLabel ui:field="contractDate" styleName="formTextlabel" customFormat="dd-MM-yyyy"/>
 					</td>
 				</tr>
 				<tr>
@@ -93,7 +93,7 @@
 					</td>
 					<td>&nbsp;&nbsp;</td>
 					<td>
-						<g:Label ui:field="strPrincipal" styleName="formTextlabel" />
+						<g:NumberLabel ui:field="principal" styleName="formTextlabel" customFormat="#,##0.00"/>
 					</td>
 				</tr>
 				<tr>
@@ -103,7 +103,7 @@
 					<td>&nbsp;&nbsp;</td>
 					<td>
 						<g:HorizontalPanel>
-							<g:Label ui:field="strRate" styleName="formTextlabel" />
+							<g:NumberLabel ui:field="rate" styleName="formTextlabel" customFormat="#,##0.00"/>
 							<g:HTML styleName="formTextlabel">&nbsp;&nbsp;% pa</g:HTML>
 						</g:HorizontalPanel>
 					</td>
@@ -114,7 +114,7 @@
 					</td>
 					<td>&nbsp;&nbsp;</td>
 					<td>
-						<g:Label ui:field="strAdmin" styleName="formTextlabel" />
+						<g:NumberLabel ui:field="admin" styleName="formTextlabel" customFormat="#,##0.00"/>
 					</td>
 				</tr>
 				<tr>
@@ -123,7 +123,7 @@
 					</td>
 					<td>&nbsp;&nbsp;</td>
 					<td>
-						<g:Label ui:field="strFine" styleName="formTextlabel" />
+						<g:NumberLabel ui:field="fine" styleName="formTextlabel" customFormat="#,##0.00"/>
 					</td>
 				</tr>
 				<tr>
@@ -136,7 +136,7 @@
 					<td>&nbsp;&nbsp;</td>
 					<td>
 						<g:HorizontalPanel>
-							<g:Label ui:field="strTenor" styleName="formTextlabel" />
+							<g:NumberLabel ui:field="tenor" styleName="formTextlabel" />
 							<g:HTML styleName="formTextlabel">&nbsp;&nbsp;bulan</g:HTML>
 						</g:HorizontalPanel>
 					</td>

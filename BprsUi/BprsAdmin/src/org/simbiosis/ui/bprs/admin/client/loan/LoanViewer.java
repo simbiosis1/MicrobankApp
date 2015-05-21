@@ -13,11 +13,13 @@ import com.google.gwt.editor.client.Editor;
 import com.google.gwt.editor.client.SimpleBeanEditorDriver;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.DateLabel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.NumberLabel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class LoanViewer extends FormWidget implements
-		Editor<TransactionDv>, ILoan {
+public class LoanViewer extends FormWidget implements Editor<TransactionDv>,
+		ILoan {
 
 	Activity activity;
 
@@ -26,8 +28,7 @@ public class LoanViewer extends FormWidget implements
 	interface MyUiBinder extends UiBinder<Widget, LoanViewer> {
 	}
 
-	interface Driver extends
-			SimpleBeanEditorDriver<TransactionDv, LoanViewer> {
+	interface Driver extends SimpleBeanEditorDriver<TransactionDv, LoanViewer> {
 	}
 
 	private Driver driver = GWT.create(Driver.class);
@@ -37,19 +38,19 @@ public class LoanViewer extends FormWidget implements
 	@UiField
 	SavingInfo saving;
 	@UiField
-	Label strDate;
+	DateLabel date;
 	@UiField
 	Label code;
 	@UiField
 	Label refCode;
 	@UiField
-	Label strValue;
+	NumberLabel<Double> value;
 	@UiField
-	Label strPrincipal;
+	NumberLabel<Double> principal;
 	@UiField
-	Label strMargin;
+	NumberLabel<Double> margin;
 	@UiField
-	Label strDiscount;
+	NumberLabel<Double> discount;
 	@UiField
 	Label strType;
 

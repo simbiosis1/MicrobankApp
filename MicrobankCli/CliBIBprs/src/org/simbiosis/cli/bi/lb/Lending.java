@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.type.TypeFactory;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -36,6 +35,8 @@ public class Lending {
 	String nextMonthBegin = "";
 	String nextMonthEnd = "";
 
+	ManualPPAPJam dataManualPpapJam = new ManualPPAPJam();
+
 	// Map<String, Double> nilai = new HashMap<String, Double>();
 
 	public Lending(MicrobankCoreClient jsonCore,
@@ -56,6 +57,7 @@ public class Lending {
 	}
 
 	public void retrieve() {
+		dataManualPpapJam.loadData();
 		listAllLoan();
 	}
 
@@ -78,8 +80,10 @@ public class Lending {
 		ObjectMapper mapper = new ObjectMapper();
 		String data = jsonReport.sendRawData("listDailyLoan", endDate, "0");
 		try {
-			List<LoanRpt> infos = mapper.readValue(data,
-					TypeFactory.collectionType(ArrayList.class, LoanRpt.class));
+			List<LoanRpt> infos = mapper.readValue(
+					data,
+					mapper.getTypeFactory().constructCollectionType(
+							ArrayList.class, LoanRpt.class));
 			for (LoanRpt info : infos) {
 				if (info.getQuality() == 0) {
 					System.out.println("Warning : " + info.getCode());
@@ -175,11 +179,14 @@ public class Lending {
 		Long iSaldoPiutang = iSaldoPokok + iSaldoMargin;
 		String saldoPiutang = StrUtils.lpadded(iSaldoPiutang.toString(), 12,
 				'0');
-		Double dNilaiAgunan = info.getGuarantee() / 1000;
+		// Double dNilaiAgunan = info.getGuarantee() / 1000;
+		Double dNilaiAgunan = dataManualPpapJam.getData(loanCode.trim())
+				.getJaminan() / 1000;
 		Long iNilaiAgunan = Math.round(dNilaiAgunan);
 		String nilaiAgunan = StrUtils.lpadded(iNilaiAgunan.toString(), 12, '0');
 		String agunan = getJenisAgunan(info.getGuaranteeType());
-		Double dPpap = info.getPpap() / 1000;
+		// Double dPpap = info.getPpap() / 1000;
+		Double dPpap = dataManualPpapJam.getData(loanCode.trim()).getPpap() / 1000;
 		Long iPpap = Math.round(dPpap);
 		String ppap = StrUtils.lpadded(iPpap.toString(), 12, '0');
 		String metodeBasil = "2";
@@ -250,11 +257,14 @@ public class Lending {
 		Long iSaldoPembiayaan = Math.round(dSaldoPembiayaan);
 		String saldoPembiayaan = StrUtils.lpadded(iSaldoPembiayaan.toString(),
 				12, '0');
-		Double dNilaiAgunan = info.getGuarantee() / 1000;
+		// Double dNilaiAgunan = info.getGuarantee() / 1000;
+		Double dNilaiAgunan = dataManualPpapJam.getData(loanCode.trim())
+				.getJaminan() / 1000;
 		Long iNilaiAgunan = Math.round(dNilaiAgunan);
 		String nilaiAgunan = StrUtils.lpadded(iNilaiAgunan.toString(), 12, '0');
 		String agunan = getJenisAgunan(info.getGuaranteeType());
-		Double dPpap = info.getPpap() / 1000;
+		// Double dPpap = info.getPpap() / 1000;
+		Double dPpap = dataManualPpapJam.getData(loanCode.trim()).getPpap() / 1000;
 		Long iPpap = Math.round(dPpap);
 		String ppap = StrUtils.lpadded(iPpap.toString(), 12, '0');
 		String sifatPlafond = "1";
@@ -284,56 +294,56 @@ public class Lending {
 		return buffer;
 	}
 
-//	String create08Text(LoanRpt info, int line) {
-//		String code = "BS08";
-//		String loanCode = StrUtils.rpadded(info.getCode(), 15, ' ');
-//		String kodeKhusus = "1       ";
-//		String jenisPembiayaan = info.getSchema() == 2 ? "10" : "20";
-//		String jenisPenggunaan = getJenisPenggunaan(loanCode);
-//		String hubDenganBank = "2";
-//		String registrasi = df.print(new DateTime(info.getBegin()));
-//		String tempo = df.print(new DateTime(info.getEnd()));
-//		String col = "" + info.getQuality();
-//		Double dImbalan = (info.getMargin() * 10000) / info.getPrincipal();
-//		Long iImbalan = Math.round(dImbalan);
-//		if (iImbalan > 9900L) {
-//			iImbalan = 9900L;
-//		}
-//		String imbalan = "1850";// StrUtils.lpadded(iImbalan.toString(), 4,
-//								// '0');
-//		String sektorE = getSektorE(jenisPenggunaan);
-//		Double dPlafond = info.getOsPrincipal() / 1000;
-//		Long iPlafond = Math.round(dPlafond);
-//		String plafond = StrUtils.lpadded(iPlafond.toString(), 12, '0');
-//		String longgarTarik = StrUtils.lpadded("0", 12, '0');
-//		Double dSaldoPembiayaan = info.getOsPrincipal() / 1000;
-//		Long iSaldoPembiayaan = Math.round(dSaldoPembiayaan);
-//		String saldoPembiayaan = StrUtils.lpadded(iSaldoPembiayaan.toString(),
-//				12, '0');
-//		Double dNilaiAgunan = info.getGuarantee() / 1000;
-//		Long iNilaiAgunan = Math.round(dNilaiAgunan);
-//		String nilaiAgunan = StrUtils.lpadded(iNilaiAgunan.toString(), 12, '0');
-//		String agunan = getJenisAgunan(info.getGuaranteeType());
-//		Double dPpap = info.getPpap() / 1000;
-//		Long iPpap = Math.round(dPpap);
-//		String ppap = StrUtils.lpadded(iPpap.toString(), 12, '0');
-//		String sifatPlafond = "1";
-//		String metodeBasil = "2";
-//		String metodeBasilDana = "2";
-//		String golPenjamin = "880";
-//		String bagPenjamin = "9900";
-//		String golNasabah = "876";
-//		String lokasiUsaha = biCityConverter
-//				.get(info.getCity(), info.getCode());
-//		String golPiutang = getGolonganPiutang(jenisPenggunaan);
-//		String strLine = StrUtils.lpadded("" + line, 6, '0');
-//		return code + loanCode + kodeKhusus + jenisPembiayaan + jenisPenggunaan
-//				+ hubDenganBank + registrasi + tempo + col + imbalan + sektorE
-//				+ plafond + longgarTarik + saldoPembiayaan + agunan
-//				+ nilaiAgunan + ppap + sifatPlafond + metodeBasil
-//				+ metodeBasilDana + golPenjamin + bagPenjamin + golNasabah
-//				+ lokasiUsaha + golPiutang + strLine;
-//	}
+	// String create08Text(LoanRpt info, int line) {
+	// String code = "BS08";
+	// String loanCode = StrUtils.rpadded(info.getCode(), 15, ' ');
+	// String kodeKhusus = "1       ";
+	// String jenisPembiayaan = info.getSchema() == 2 ? "10" : "20";
+	// String jenisPenggunaan = getJenisPenggunaan(loanCode);
+	// String hubDenganBank = "2";
+	// String registrasi = df.print(new DateTime(info.getBegin()));
+	// String tempo = df.print(new DateTime(info.getEnd()));
+	// String col = "" + info.getQuality();
+	// Double dImbalan = (info.getMargin() * 10000) / info.getPrincipal();
+	// Long iImbalan = Math.round(dImbalan);
+	// if (iImbalan > 9900L) {
+	// iImbalan = 9900L;
+	// }
+	// String imbalan = "1850";// StrUtils.lpadded(iImbalan.toString(), 4,
+	// // '0');
+	// String sektorE = getSektorE(jenisPenggunaan);
+	// Double dPlafond = info.getOsPrincipal() / 1000;
+	// Long iPlafond = Math.round(dPlafond);
+	// String plafond = StrUtils.lpadded(iPlafond.toString(), 12, '0');
+	// String longgarTarik = StrUtils.lpadded("0", 12, '0');
+	// Double dSaldoPembiayaan = info.getOsPrincipal() / 1000;
+	// Long iSaldoPembiayaan = Math.round(dSaldoPembiayaan);
+	// String saldoPembiayaan = StrUtils.lpadded(iSaldoPembiayaan.toString(),
+	// 12, '0');
+	// Double dNilaiAgunan = info.getGuarantee() / 1000;
+	// Long iNilaiAgunan = Math.round(dNilaiAgunan);
+	// String nilaiAgunan = StrUtils.lpadded(iNilaiAgunan.toString(), 12, '0');
+	// String agunan = getJenisAgunan(info.getGuaranteeType());
+	// Double dPpap = info.getPpap() / 1000;
+	// Long iPpap = Math.round(dPpap);
+	// String ppap = StrUtils.lpadded(iPpap.toString(), 12, '0');
+	// String sifatPlafond = "1";
+	// String metodeBasil = "2";
+	// String metodeBasilDana = "2";
+	// String golPenjamin = "880";
+	// String bagPenjamin = "9900";
+	// String golNasabah = "876";
+	// String lokasiUsaha = biCityConverter
+	// .get(info.getCity(), info.getCode());
+	// String golPiutang = getGolonganPiutang(jenisPenggunaan);
+	// String strLine = StrUtils.lpadded("" + line, 6, '0');
+	// return code + loanCode + kodeKhusus + jenisPembiayaan + jenisPenggunaan
+	// + hubDenganBank + registrasi + tempo + col + imbalan + sektorE
+	// + plafond + longgarTarik + saldoPembiayaan + agunan
+	// + nilaiAgunan + ppap + sifatPlafond + metodeBasil
+	// + metodeBasilDana + golPenjamin + bagPenjamin + golNasabah
+	// + lokasiUsaha + golPiutang + strLine;
+	// }
 
 	String create09() {
 		String buffer = "";
@@ -358,15 +368,18 @@ public class Lending {
 		Long iSaldoPiutang = Math.round(dSaldoPiutang);
 		String saldoPiutang = StrUtils.lpadded(iSaldoPiutang.toString(), 12,
 				'0');
-		Double dNilaiAgunan = info.getGuarantee() / 1000;
+		// Double dNilaiAgunan = info.getGuarantee() / 1000;
+		Double dNilaiAgunan = dataManualPpapJam.getData(loanCode.trim())
+				.getJaminan() / 1000;
 		Long iNilaiAgunan = Math.round(dNilaiAgunan);
 		String nilaiAgunan = StrUtils.lpadded(iNilaiAgunan.toString(), 12, '0');
 		String agunan = getJenisAgunan(info.getGuaranteeType());
 		if (iNilaiAgunan > 0 && agunan.equalsIgnoreCase("0")) {
 			agunan = "3";
-			System.out.println(loanCode+" - Agunan bermasalah....");
+			System.out.println(loanCode + " - Agunan bermasalah....");
 		}
-		Double dPpap = info.getPpap() / 1000;
+		// Double dPpap = info.getPpap() / 1000;
+		Double dPpap = dataManualPpapJam.getData(loanCode.trim()).getPpap() / 1000;
 		Long iPpap = Math.round(dPpap);
 		String ppap = StrUtils.lpadded(iPpap.toString(), 12, '0');
 		String metodeBasil = "2";
@@ -421,11 +434,14 @@ public class Lending {
 		Long iSaldoPiutang = iSaldoPokok + iSaldoMargin;
 		String saldoPiutang = StrUtils.lpadded(iSaldoPiutang.toString(), 12,
 				'0');
-		Double dNilaiAgunan = info.getGuarantee() / 1000;
+		// Double dNilaiAgunan = info.getGuarantee() / 1000;
+		Double dNilaiAgunan = dataManualPpapJam.getData(loanCode.trim())
+				.getJaminan() / 1000;
 		Long iNilaiAgunan = Math.round(dNilaiAgunan);
 		String nilaiAgunan = StrUtils.lpadded(iNilaiAgunan.toString(), 12, '0');
 		String agunan = getJenisAgunan(info.getGuaranteeType());
-		Double dPpap = info.getPpap() / 1000;
+		// Double dPpap = info.getPpap() / 1000;
+		Double dPpap = dataManualPpapJam.getData(loanCode.trim()).getPpap() / 1000;
 		Long iPpap = Math.round(dPpap);
 		String ppap = StrUtils.lpadded(iPpap.toString(), 12, '0');
 		String strLine = StrUtils.lpadded("" + line, 6, '0');
@@ -1883,8 +1899,10 @@ public class Lending {
 		String data = jsonCore.sendRawData("listRepaymentByRange", id + ";"
 				+ nextMonthBegin + ";" + nextMonthEnd);
 		try {
-			List<LoanScheduleDto> infos = mapper.readValue(data, TypeFactory
-					.collectionType(ArrayList.class, LoanScheduleDto.class));
+			List<LoanScheduleDto> infos = mapper.readValue(
+					data,
+					mapper.getTypeFactory().constructCollectionType(
+							ArrayList.class, LoanScheduleDto.class));
 			if (infos.size() > 0) {
 				LoanScheduleDto result = new LoanScheduleDto();
 				result.setMargin(0);

@@ -7,6 +7,7 @@ import org.kembang.module.client.mvp.FormActivityType;
 import org.simbiosis.ui.bprs.common.client.handler.GetSavingHandler;
 import org.simbiosis.ui.bprs.common.client.savinghelper.DlgGetSaving;
 import org.simbiosis.ui.bprs.common.shared.DataDv;
+import org.simbiosis.ui.bprs.common.shared.GuaranteeDv;
 import org.simbiosis.ui.bprs.common.shared.LoanDv;
 import org.simbiosis.ui.bprs.common.shared.LoanScheduleDv;
 import org.simbiosis.ui.bprs.common.shared.SavingDv;
@@ -238,8 +239,8 @@ public class LoanInputActivity extends Activity {
 	@Override
 	public void generate(LoanScheduleGenDv data) {
 		showLoading();
-		loanSrv.createLoanSchedule(data.getStrPrincipal(), data.getStrTenor(),
-				data.getStrRate(), new Date(), data.getScheduleType(),
+		loanSrv.createLoanSchedule(data.getPrincipal(), data.getTenor(),
+				data.getRate(), new Date(), data.getScheduleType(),
 				new AsyncCallback<List<LoanScheduleDv>>() {
 
 					@Override
@@ -255,6 +256,26 @@ public class LoanInputActivity extends Activity {
 						viewerForm.setSchedule(result);
 					}
 				});
+	}
+
+	@Override
+	public void connectGuarantee() {
+		showLoading();
+		LoanDv data = appFactory.getLoanEditor().getEditedData();
+		loanSrv.listGuaranteeByCode(getKey(), data.getCode(), new AsyncCallback<List<GuaranteeDv>>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				hideLoading();
+				Window.alert("Error : listGuaranteeByCode");
+			}
+
+			@Override
+			public void onSuccess(List<GuaranteeDv> result) {
+				hideLoading();
+				appFactory.getLoanEditor().setGuarantee(result);
+			}
+		});
 	}
 
 }

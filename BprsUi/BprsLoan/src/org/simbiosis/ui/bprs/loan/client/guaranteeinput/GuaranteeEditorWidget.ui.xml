@@ -1,7 +1,8 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.google.gwt.user.datepicker.client"
-	xmlns:e="urn:import:org.simbiosis.ui.bprs.loan.client.editor" xmlns:gr="urn:import:org.kembang.grid.client">
+	xmlns:e="urn:import:org.simbiosis.ui.bprs.loan.client.editor" xmlns:gr="urn:import:org.kembang.grid.client"
+	xmlns:k="urn:import:org.kembang.editor.client">
 	<ui:style>
 
 	</ui:style>
@@ -23,7 +24,8 @@
 					</td>
 					<td>&nbsp;&nbsp;</td>
 					<td>
-						<g:Label ui:field="strRegistration" styleName="formTextlabel" />
+						<g:DateLabel ui:field="registration" styleName="formTextlabel"
+							customFormat="dd-MM-yyyy" />
 					</td>
 				</tr>
 				<tr>
@@ -68,7 +70,8 @@
 					</td>
 					<td>&nbsp;&nbsp;</td>
 					<td>
-						<g:TextBox ui:field="strAppraisalIntValue" styleName="formText" />
+						<k:DoubleTextBox ui:field="appraisalIntValue"
+							styleName="formText" />
 					</td>
 				</tr>
 				<tr>
@@ -77,7 +80,18 @@
 					</td>
 					<td>&nbsp;&nbsp;</td>
 					<td>
-						<g:TextBox ui:field="strAppraisalMarkValue" styleName="formText" />
+						<k:DoubleTextBox ui:field="appraisalMarkValue"
+							styleName="formText" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel">
+						Nilai sesuai OJK
+					</td>
+					<td>&nbsp;&nbsp;</td>
+					<td>
+						<k:DoubleTextBox ui:field="appraisalOJKValue"
+							styleName="formText" />
 					</td>
 				</tr>
 			</table>

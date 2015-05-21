@@ -6,6 +6,7 @@ import org.kembang.module.client.mvp.AppStatus;
 import org.kembang.module.client.mvp.FormActivity;
 import org.kembang.module.client.mvp.FormWidget;
 import org.simbiosis.ui.bprs.common.shared.DataDv;
+import org.simbiosis.ui.bprs.common.shared.GuaranteeDv;
 import org.simbiosis.ui.bprs.common.shared.LoanDv;
 import org.simbiosis.ui.bprs.common.shared.LoanScheduleDv;
 import org.simbiosis.ui.bprs.loan.shared.LoanScheduleGenDv;
@@ -30,6 +31,8 @@ public interface ILoanInput {
 	void setBISektor(List<String> listBISektor);
 
 	void setSchedule(List<LoanScheduleDv> newSchedule);
+	
+	void setGuarantee(List<GuaranteeDv> guarantees);
 
 	public abstract class Activity extends FormActivity {
 		public abstract void showData(DataDv dataDv);
@@ -39,6 +42,8 @@ public interface ILoanInput {
 		public abstract void loadCommonList();
 
 		public abstract void generate(LoanScheduleGenDv data);
+		
+		public abstract void connectGuarantee();
 
 	}
 }

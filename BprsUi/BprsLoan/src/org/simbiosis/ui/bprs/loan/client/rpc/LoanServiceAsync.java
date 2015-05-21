@@ -26,7 +26,7 @@ public interface LoanServiceAsync {
 
 	void saveLoan(String key, LoanDv financingDv, AsyncCallback<LoanDv> callback);
 
-	void createLoanSchedule(String principal, String tenor, String rate,
+	void createLoanSchedule(Double principal, Integer tenor, Double rate,
 			Date beginDate, int type,
 			AsyncCallback<List<LoanScheduleDv>> callback);
 
@@ -57,5 +57,8 @@ public interface LoanServiceAsync {
 
 	void saveLoanReschedule(String key, LoanDv loanDv,
 			AsyncCallback<LoanDv> callback);
+
+	void listGuaranteeByCode(String key, String code,
+			AsyncCallback<List<GuaranteeDv>> callback);
 
 }

@@ -3,8 +3,10 @@ package org.simbiosis.bprs.ui.config.client;
 import org.kembang.module.client.mvp.KembangActivityMapper;
 import org.simbiosis.bprs.ui.config.client.deposit.DepProductListActivity;
 import org.simbiosis.bprs.ui.config.client.deposit.DepProductListPlace;
+import org.simbiosis.bprs.ui.config.client.gl.GlConfigActivity;
 import org.simbiosis.bprs.ui.config.client.loan.LoanProductListActivity;
 import org.simbiosis.bprs.ui.config.client.loan.LoanProductListPlace;
+import org.simbiosis.bprs.ui.config.client.places.GlConfig;
 import org.simbiosis.bprs.ui.config.client.saving.SavProductListActivity;
 import org.simbiosis.bprs.ui.config.client.saving.SavProductListPlace;
 import org.simbiosis.bprs.ui.config.client.teller.TellerListActivity;
@@ -33,6 +35,9 @@ public class AppActivityMapper extends KembangActivityMapper {
 					clientFactory);
 		} else if (place instanceof LoanProductListPlace) {
 			return new LoanProductListActivity((LoanProductListPlace) place,
+					clientFactory);
+		} else if (place instanceof GlConfig) {
+			return new GlConfigActivity((GlConfig) place,
 					clientFactory);
 		}
 		return null;

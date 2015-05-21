@@ -3,6 +3,7 @@ package org.simbiosis.ui.bprs.admin.client.savingjournal;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.kembang.editor.client.DoubleTextBox;
 import org.kembang.module.client.mvp.AppStatus;
 import org.kembang.module.client.mvp.FormWidget;
 import org.simbiosis.ui.bprs.admin.client.editor.CoaListEditor;
@@ -16,7 +17,7 @@ import com.google.gwt.editor.client.Editor;
 import com.google.gwt.editor.client.SimpleBeanEditorDriver;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.DateLabel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -42,7 +43,7 @@ public class SavingJournalEditor extends FormWidget implements ISavingJournal,
 	@UiField
 	SavingInfo saving;
 	@UiField
-	Label strDate;
+	DateLabel date;
 	@UiField
 	TextBox refCode;
 	@UiField
@@ -50,7 +51,7 @@ public class SavingJournalEditor extends FormWidget implements ISavingJournal,
 	@UiField
 	SavingTransTypeEditor type;
 	@UiField
-	TextBox strValue;
+	DoubleTextBox value;
 	@UiField
 	CoaListEditor coa;
 
@@ -93,6 +94,5 @@ public class SavingJournalEditor extends FormWidget implements ISavingJournal,
 		//
 		coa.setList(this.listCoa);
 	}
-
 
 }

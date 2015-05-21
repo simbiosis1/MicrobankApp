@@ -73,8 +73,6 @@ public class GuaranteeInputActivity extends Activity {
 				IGuaranteeInput editorForm = appFactory.getGuaranteeEditor();
 				GuaranteeDv loanDv = new GuaranteeDv();
 				loanDv.setRegistration(new Date());
-				loanDv.setStrRegistration(dateFormat.format(loanDv
-						.getRegistration()));
 				loanDv.setCustomer(savingDv.getCustomer());
 				editorForm.showData(loanDv);
 				appFactory.showApplication(null, editorForm.getFormWidget());

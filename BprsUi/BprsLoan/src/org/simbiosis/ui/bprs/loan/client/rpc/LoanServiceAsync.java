@@ -58,4 +58,7 @@ public interface LoanServiceAsync {
 	void saveLoanReschedule(String key, LoanDv loanDv,
 			AsyncCallback<LoanDv> callback);
 
+	void listGuaranteeByCode(String key, String code,
+			AsyncCallback<List<GuaranteeDv>> callback);
+
 }

@@ -42,6 +42,8 @@ public interface LoanService extends RemoteService {
 
 	GuaranteeDv getGuarantee(Long id);
 
+	List<GuaranteeDv> listGuaranteeByCode(String key, String code);
+
 	List<DataDv> findGuarantee(String key, Boolean hasCode, Boolean hasName,
 			Boolean hasDob, String code, String name, Date dob);
 

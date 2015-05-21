@@ -27,9 +27,7 @@ public class LoanDv implements IsSerializable {
 	String strAo;
 	String aoHistory;
 	Double admin;
-	String strAdmin;
 	Double fine;
-	String strFine;
 	String purpose;
 	String biSektor;
 	List<LoanScheduleDv> schedules = new ArrayList<LoanScheduleDv>();
@@ -326,28 +324,12 @@ public class LoanDv implements IsSerializable {
 		this.admin = admin;
 	}
 
-	public String getStrAdmin() {
-		return strAdmin;
-	}
-
-	public void setStrAdmin(String strAdmin) {
-		this.strAdmin = strAdmin;
-	}
-
 	public Double getFine() {
 		return fine;
 	}
 
 	public void setFine(Double fine) {
 		this.fine = fine;
-	}
-
-	public String getStrFine() {
-		return strFine;
-	}
-
-	public void setStrFine(String strFine) {
-		this.strFine = strFine;
 	}
 
 	public Integer getTenor() {

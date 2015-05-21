@@ -21,6 +21,7 @@ import javax.persistence.Temporal;
 @Table(name = "MIB_GUARANTEE")
 @NamedQueries({
 		@NamedQuery(name = "listDepositGuarantee", query = "select x from Guarantee x where x.company=:company and x.type=3 and x.number=:number"),
+		@NamedQuery(name = "listGuaranteeByCode", query = "select x from Guarantee x where x.company=:company and x.code=:code"),
 		@NamedQuery(name = "listGuaranteeByCompany", query = "select x from Guarantee x where x.company=:company"),
 		@NamedQuery(name = "listGuaranteeByCompanyBranch", query = "select x from Guarantee x where x.company=:company and x.branch=:branch"),
 		@NamedQuery(name = "getMaxGuaranteeCode", query = "select max(x.code) from Guarantee x where x.company=:company and x.branch=:branch and x.code like :prefixCode"),

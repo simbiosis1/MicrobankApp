@@ -136,6 +136,8 @@ public interface ILoan {
 
 	List<GuaranteeDto> listLoanGuarantee(long loanId);
 
+	List<GuaranteeDto> listGuaranteeByCode(long company, String code);
+
 	//
 
 	LoanScheduleDto getLastPayment(long id);

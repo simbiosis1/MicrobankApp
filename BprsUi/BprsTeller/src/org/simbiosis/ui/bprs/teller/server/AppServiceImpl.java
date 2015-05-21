@@ -20,6 +20,7 @@ import org.simbiosis.microbank.TellerDto;
 import org.simbiosis.microbank.TellerTransactionDto;
 import org.simbiosis.microbank.VaultTransactionDto;
 import org.simbiosis.microbank.VaultTransactionItemDto;
+import org.simbiosis.system.UserDto;
 import org.simbiosis.ui.bprs.common.shared.TransactionDv;
 import org.simbiosis.ui.bprs.teller.client.rpc.AppService;
 import org.simbiosis.ui.bprs.teller.shared.TellerDv;
@@ -84,7 +85,7 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 				.toUpperCase() : "");
 		transDto.setDescription(transDv.getDescription() != null ? transDv
 				.getDescription().toUpperCase() : "");
-		//transDto.setValue(Double.parseDouble(transDv.getStrValue()));
+		// transDto.setValue(Double.parseDouble(transDv.getStrValue()));
 		transDto.setValue(transDv.getValue());
 		transDto.setAccountId(transDv.getSaving().getId());
 		//
@@ -161,7 +162,7 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 				.toUpperCase() : "");
 		transDto.setDescription(transDv.getDescription() != null ? transDv
 				.getDescription().toUpperCase() : "");
-		//transDto.setValue(Double.parseDouble(transDv.getStrValue()));
+		// transDto.setValue(Double.parseDouble(transDv.getStrValue()));
 		transDto.setValue(transDv.getValue());
 		transDto.setMaker(transDv.getMaker() != null ? transDv.getMaker()
 				.toUpperCase() : "");
@@ -268,7 +269,7 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 		String strValue = "";
 		if (transDv.getDirection() == 1) {
 			transDto.setTeller(teller.getId());
-			//transDto.setValue(Double.parseDouble(transDv.getStrValue()));
+			// transDto.setValue(Double.parseDouble(transDv.getStrValue()));
 			transDto.setValue(transDv.getValue());
 			strValue = formatNumber(transDv.getValue());
 			// Validasi kecukupan saldo tabungan dan saldo teller ketika
@@ -389,6 +390,7 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 	public VaultTransactionDv approveVaultTrans(String key,
 			VaultTransactionDv transDv) throws IllegalArgumentException {
 		VaultTransactionDto transDto = tellerBp.getVaultTrans(transDv.getId());
+		String strValue = "";
 		if (transDto.getDirection() == 1) {
 			transDto.setTeller(transDv.getTeller());
 			//
@@ -449,6 +451,8 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 				IllegalArgumentException e = new IllegalArgumentException(
 						"Jumlah dana teller tidak sama dengan jumlah detil");
 				throw e;
+			} else {
+				strValue = "" + value;
 			}
 			//
 		} else {
@@ -460,6 +464,14 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 		}
 		transDto = tellerBp.approveVaultTrans(key, transDto);
 		transDv.setCode(transDto.getCode());
+		UserDto user = tellerBp.getUserTeller(transDto.getTeller());
+		//
+		String baris1 = transDto.getCode() + " " + transDto.getDirection()
+				+ " VAULT";
+		String baris2 = "IDR " + strValue;
+		// FIXME : Harus di cari siapa tellernya
+		String baris3 = "" + new Date() + " T " + user.getName();
+		transDv.setValidationText(baris1 + "<>" + baris2 + "<>" + baris3);
 		return transDv;
 	}
 

@@ -263,10 +263,8 @@ public class LoanServiceImpl extends RemoteServiceServlet implements
 		dto.setPurpose(dv.getPurpose() == null ? "" : dv.getPurpose()
 				.toUpperCase());
 		dto.setBiSektor(dv.getBiSektor());
-		dto.setAdmin(dv.getStrAdmin() == null ? 0 : Double.parseDouble(dv
-				.getStrAdmin().replace(",", "")));
-		dto.setFine(dv.getStrFine() == null ? 0 : Double.parseDouble(dv
-				.getStrFine().replace(",", "")));
+		dto.setAdmin(dv.getAdmin());
+		dto.setFine(dv.getFine());
 		for (LoanScheduleDv scheduleDv : dv.getSchedules()) {
 			dto.getSchedules().add(createScheduleFromDv(scheduleDv));
 		}
@@ -373,6 +371,7 @@ public class LoanServiceImpl extends RemoteServiceServlet implements
 				.toUpperCase() : "");
 		dto.setAppraisalIntValue(dv.getAppraisalIntValue());
 		dto.setAppraisalMarkValue(dv.getAppraisalMarkValue());
+		dto.setAppraisalOJKValue(dv.getAppraisalOJKValue());
 		dto.setType(dv.getType());
 		long id = loanBp.saveGuarantee(key, dto);
 		dv.setId(id);
@@ -384,10 +383,8 @@ public class LoanServiceImpl extends RemoteServiceServlet implements
 		return dv;
 	}
 
-	@Override
-	public GuaranteeDv getGuarantee(Long id) {
-		List<String> guaranteeTypes = loanBp.listGuaranteeType("");
-		GuaranteeDto dto = loanBp.getGuarantee(id);
+	private GuaranteeDv createGuaranteeToDv(GuaranteeDto dto,
+			List<String> guaranteeTypes) {
 		GuaranteeDv dv = new GuaranteeDv();
 		dv.setId(dto.getId());
 		dv.setCompany(dto.getCompany());
@@ -406,6 +403,13 @@ public class LoanServiceImpl extends RemoteServiceServlet implements
 		dv.setOwnerName(dto.getOwner());
 		dv.setActive(dto.getActive());
 		return dv;
+	}
+
+	@Override
+	public GuaranteeDv getGuarantee(Long id) {
+		List<String> guaranteeTypes = loanBp.listGuaranteeType("");
+		GuaranteeDto dto = loanBp.getGuarantee(id);
+		return createGuaranteeToDv(dto, guaranteeTypes);
 	}
 
 	@Override
@@ -518,4 +522,13 @@ public class LoanServiceImpl extends RemoteServiceServlet implements
 		return oldLoan;
 	}
 
+	@Override
+	public List<GuaranteeDv> listGuaranteeByCode(String key, String code) {
+		List<String> guaranteeTypes = loanBp.listGuaranteeType("");
+		List<GuaranteeDv> result = new ArrayList<GuaranteeDv>();
+		for (GuaranteeDto dto : loanBp.listGuaranteeByCode(key, code)) {
+			result.add(createGuaranteeToDv(dto, guaranteeTypes));
+		}
+		return result;
+	}
 }

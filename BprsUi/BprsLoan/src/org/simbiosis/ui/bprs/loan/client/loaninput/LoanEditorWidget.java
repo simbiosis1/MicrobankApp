@@ -86,7 +86,7 @@ public class LoanEditorWidget extends Composite implements Editor<LoanDv> {
 	@UiField
 	TextBox aoHistory;
 	@UiField
-	TextBox strAdmin;
+	DoubleTextBox admin;
 	@UiField
 	DoubleTextBox fine;
 

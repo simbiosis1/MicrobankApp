@@ -2,7 +2,9 @@ package org.simbiosis.bp.micbank;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.ejb.Remote;
@@ -149,6 +151,24 @@ public class LoanBp implements ILoanBp {
 				dto.setPurpose(loanDto.getPurpose());
 				dto.setBiSektor(loanDto.getBiSektor());
 				loanDto = dto;
+				//
+				// =====================================================
+				// Sambungkan jaminan-jaminan yang lain
+				// =====================================================
+				//
+				Map<Long, GuaranteeDto> guaMap = new HashMap<Long, GuaranteeDto>();
+				for (GuaranteeDto myGua : dto.getGuarantees()) {
+					guaMap.put(myGua.getId(), myGua);
+				}
+				//
+				for (GuaranteeDto myGua : loanDto.getGuarantees()) {
+					GuaranteeDto thisGua = guaMap.get(myGua.getId());
+					if (thisGua == null) {
+						loanDto.getGuarantees().add(thisGua);
+					}
+				}
+				//
+
 			}
 			// Hitung margin
 			double margin = 0;
@@ -312,7 +332,8 @@ public class LoanBp implements ILoanBp {
 	}
 
 	@Override
-	public void saveLoanJournal(LoanTransactionDto loanTrans,LoanInformationDto loanInfo){
+	public void saveLoanJournal(LoanTransactionDto loanTrans,
+			LoanInformationDto loanInfo) {
 		long savingId = loanInfo.getSaving();
 		switch (loanTrans.getType()) {
 		case 1: // Pencairan
@@ -357,15 +378,16 @@ public class LoanBp implements ILoanBp {
 			break;
 		}
 	}
-	
+
 	@Override
 	public LoanTransactionDto saveCompleteLoanTrans(String key,
 			LoanTransactionDto loanTrans) {
 		LoanInformationDto loanInfo = loan.getLoanInformation(loanTrans
 				.getLoan());
-		loanTrans = createSavingLoanTrans(loanTrans, loanInfo, loanInfo.getSaving());
+		loanTrans = createSavingLoanTrans(loanTrans, loanInfo,
+				loanInfo.getSaving());
 		//
-		saveLoanJournal(loanTrans,loanInfo);
+		saveLoanJournal(loanTrans, loanInfo);
 		//
 		return loanTrans;
 	}
@@ -648,7 +670,8 @@ public class LoanBp implements ILoanBp {
 	}
 
 	@Override
-	public LoanTransactionDto getLoanTransByDateCode(long loanId, Date date, String code){
+	public LoanTransactionDto getLoanTransByDateCode(long loanId, Date date,
+			String code) {
 		return loan.getLoanTransByDateCode(loanId, date, code);
 	}
 
@@ -708,5 +731,14 @@ public class LoanBp implements ILoanBp {
 			return loan.listLoanBySchema(user.getCompany(), scheme);
 		}
 		return new ArrayList<LoanDto>();
+	}
+
+	@Override
+	public List<GuaranteeDto> listGuaranteeByCode(String key, String code) {
+		UserDto user = system.getUserFromSession(key);
+		if (user != null) {
+			return loan.listGuaranteeByCode(user.getCompany(), code);
+		}
+		return new ArrayList<GuaranteeDto>();
 	}
 }

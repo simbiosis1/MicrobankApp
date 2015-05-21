@@ -33,6 +33,7 @@ public class GuaranteeDv implements IsSerializable {
 		appraisalIntValue = 0D;
 		appraisalMarkValue = 0D;
 		appraisalTaxValue = 0D;
+		appraisalOJKValue = 0D;
 	}
 
 	public Integer getNr() {

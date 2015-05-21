@@ -1063,16 +1063,16 @@ public class LoanImpl implements ILoan {
 			qry.setParameter("branch", branch);
 		}
 		List<Loan> loans = qry.getResultList();
-		//System.out.println("Jumlah data : " + loans.size());
+		// System.out.println("Jumlah data : " + loans.size());
 		for (int i = 0; i < loans.size(); i++) {
-			//System.out.print(i + " ");
+			// System.out.print(i + " ");
 			result.add(createLoanInformationToDto(loans.get(i)));
 		}
 		// for (Loan loan : loans) {
 		// System.out.print(".");
 		// result.add(createLoanInformationToDto(loan));
 		// }
-		//System.out.println("Jumlah data : " + result.size());
+		// System.out.println("Jumlah data : " + result.size());
 		return result;
 	}
 
@@ -1508,6 +1508,20 @@ public class LoanImpl implements ILoan {
 		List<GuaranteeDto> result = new ArrayList<GuaranteeDto>();
 		Loan loan = em.find(Loan.class, loanId);
 		for (Guarantee gua : loan.getGuarantees()) {
+			result.add(createGuaranteeToDto(gua));
+		}
+		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<GuaranteeDto> listGuaranteeByCode(long company, String code) {
+		List<GuaranteeDto> result = new ArrayList<GuaranteeDto>();
+		Query qry = em.createNamedQuery("listGuaranteeByCode");
+		qry.setParameter("company", company);
+		qry.setParameter("code", code);
+		List<Guarantee> guarantees = qry.getResultList();
+		for (Guarantee gua : guarantees) {
 			result.add(createGuaranteeToDto(gua));
 		}
 		return result;

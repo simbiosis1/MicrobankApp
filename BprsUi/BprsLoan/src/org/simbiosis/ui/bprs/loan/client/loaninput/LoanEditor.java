@@ -16,8 +16,10 @@ import org.simbiosis.ui.bprs.loan.shared.LoanScheduleGenDv;
 import org.simbiosis.ui.bprs.loan.shared.UserDv;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
 public class LoanEditor extends FormWidget implements ILoanInput {
@@ -47,10 +49,10 @@ public class LoanEditor extends FormWidget implements ILoanInput {
 		setHasBack(true);
 	}
 
-	public Activity getActivity(){
-		return activity; 
+	public Activity getActivity() {
+		return activity;
 	}
-	
+
 	@Override
 	public void setActivity(Activity activity, AppStatus appStatus) {
 		this.activity = activity;
@@ -60,7 +62,7 @@ public class LoanEditor extends FormWidget implements ILoanInput {
 			activity.loadCommonList();
 			//
 			loan.setScheduleHandler(new ScheduleHandler() {
-				
+
 				@Override
 				public void generate(LoanScheduleGenDv data) {
 					getActivity().generate(data);
@@ -117,6 +119,22 @@ public class LoanEditor extends FormWidget implements ILoanInput {
 	@Override
 	public void setBISektor(List<String> listBISektor) {
 		loan.setBISektor(listBISektor);
+	}
+
+	@UiHandler("btnConnect")
+	public void onConnect(ClickEvent e) {
+		activity.connectGuarantee();
+	}
+
+	@Override
+	public void setGuarantee(List<GuaranteeDv> guarantees) {
+		guarantee.clear();
+		selectedData.setGuarantees(guarantees);
+		int nr = 1;
+		for (GuaranteeDv gDv : selectedData.getGuarantees()) {
+			gDv.setNr(nr++);
+			guarantee.addRow(gDv);
+		}
 	}
 
 }

@@ -46,7 +46,8 @@ public class CreateDailyLoan extends WebApiReportServlet {
 
 	private Double createPpap(LoanRpt info) {
 		double ppap = 0.5 * info.getOsPrincipal() / 100;
-		double osPpap = info.getOsPrincipal() - (0.5 * info.getGuarantee());
+		//double osPpap = info.getOsPrincipal() - (0.5 * info.getGuarantee());
+		double osPpap = info.getOsPrincipal() - info.getGuarantee();
 		if (osPpap < 0) {
 			osPpap = 0;
 		}

@@ -117,7 +117,7 @@
 					</td>
 					<td>&nbsp;&nbsp;</td>
 					<td>
-						<g:TextBox ui:field="strAdmin" styleName="formText" />
+						<k:DoubleTextBox ui:field="admin" styleName="formText" />
 					</td>
 				</tr>
 				<tr>

@@ -1,6 +1,5 @@
 package org.simbiosis.ui.bprs.cs.server;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -43,8 +42,6 @@ public class CsServiceImpl extends RemoteServiceServlet implements CsService {
 	IDepositBp depositBp;
 	@EJB(lookup = "java:global/BprsBpEar/BprsBpEjb/TellerBp")
 	ITellerBp tellerBp;
-
-	DecimalFormat df = new DecimalFormat("#,##0.00");
 
 	public CsServiceImpl() {
 	}
@@ -162,9 +159,8 @@ public class CsServiceImpl extends RemoteServiceServlet implements CsService {
 		dto.setProduct(dv.getProduct());
 		dto.setCustomer(dv.getCustomer().getId());
 		dto.setSaving(dv.getSaving().getId());
-		dto.setValue(Double.parseDouble(dv.getStrValue().replace(",", "")));
-		dto.setSpecialRate(Double.parseDouble(dv.getStrSpecialRate().replace(
-				",", "")));
+		dto.setValue(dv.getValue());
+		dto.setSpecialRate(dv.getSpecialRate());
 		dto.setAro(dv.getAro() ? 1 : 0);
 		dto.setZakat(dv.getZakat() ? 1 : 0);
 		dto.setBilyet(dv.getBilyet());
@@ -294,7 +290,7 @@ public class CsServiceImpl extends RemoteServiceServlet implements CsService {
 			}
 		}
 		// Simpan
-		for (SavingBlockirDto blockir : toBlock){
+		for (SavingBlockirDto blockir : toBlock) {
 			savingBp.saveBlockir(blockir);
 		}
 	}

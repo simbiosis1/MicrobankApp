@@ -3,10 +3,16 @@ package org.simbiosis.ui.bprs.admin.server;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.ejb.EJB;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.simbiosis.bp.gl.IGlBp;
 import org.simbiosis.bp.micbank.IDepositBp;
 import org.simbiosis.bp.micbank.ILoanBp;
@@ -21,6 +27,7 @@ import org.simbiosis.microbank.SavingInformationDto;
 import org.simbiosis.microbank.SavingTransactionDto;
 import org.simbiosis.ui.bprs.admin.client.rpc.AppService;
 import org.simbiosis.ui.bprs.admin.shared.CoaDv;
+import org.simbiosis.ui.bprs.admin.shared.TransferCollectiveDv;
 import org.simbiosis.ui.bprs.common.shared.TransactionDv;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -271,6 +278,65 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 		result.add(trans);
 		//
 		return result;
+	}
+
+	@Override
+	public List<TransferCollectiveDv> listConfirmTransfer(String key,
+			String srcData) throws IllegalArgumentException {
+		List<TransferCollectiveDv> result = new ArrayList<TransferCollectiveDv>();
+		String source = srcData.replace("\r", "");
+		String datas[] = source.split("\n");
+		for (int i = 0; i < datas.length; i++) {
+			String line[] = datas[i].split("\t");
+			if (line.length >= 3) {
+				long id = savingBp.getSavingIdByCode(key, line[0]);
+				SavingInformationDto info = savingBp.getInformation(id);
+				TransferCollectiveDv dv = new TransferCollectiveDv(i + 1,
+						line[0], line[1], info.getName(),
+						Double.parseDouble(line[2].replace(",", "")));
+				dv.setSavingId(info.getId());
+				result.add(dv);
+			}
+		}
+		return result;
+	}
+
+	@Override
+	public void executeCollectiveTransfer(String key, Long coa,
+			List<TransferCollectiveDv> data) throws IllegalArgumentException {
+		DateTime now = new DateTime();
+		DateTimeFormatter df = DateTimeFormat.forPattern("yyyyMMdd");
+		String code = "GAJ" + df.print(now);
+		System.out.println("Coa : " + coa.toString());
+		Map<Long, Double> mapValues = new HashMap<Long, Double>();
+		for (TransferCollectiveDv dv : data) {
+			SavingInformationDto info = savingBp.getInformation(dv
+					.getSavingId());
+			Double currentValue = mapValues.get(info.getCoa1());
+			if (currentValue == null) {
+				currentValue = dv.getValue();
+			} else {
+				currentValue += dv.getValue();
+			}
+			mapValues.put(info.getCoa1(), currentValue);
+			SavingTransactionDto trans = new SavingTransactionDto();
+			trans.setDate(now.toDate());
+			trans.setCode(code);
+			trans.setHasCode(true);
+			trans.setDirection(1);
+			trans.setDescription("GAJI - " + info.getName() + " ("
+					+ info.getCode() + ")");
+			trans.setType(3);
+			trans.setValue(dv.getValue());
+			trans.setSaving(dv.getSavingId());
+			savingBp.saveTransaction(key, trans);
+			System.out.println("Transfer : " + dv.getSavingId() + ", "
+					+ dv.getValue().toString());
+		}
+		Set<Long> keys = mapValues.keySet();
+		for (Long lKey : keys) {
+			System.out.println("Coa : " + lKey + ", " + mapValues.get(lKey));
+		}
 	}
 
 }

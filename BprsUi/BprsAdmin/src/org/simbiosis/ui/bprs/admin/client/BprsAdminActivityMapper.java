@@ -5,10 +5,12 @@ import org.simbiosis.ui.bprs.admin.client.deposit.DepositActivity;
 import org.simbiosis.ui.bprs.admin.client.deposit.DepositPlace;
 import org.simbiosis.ui.bprs.admin.client.loan.LoanActivity;
 import org.simbiosis.ui.bprs.admin.client.loan.LoanPlace;
+import org.simbiosis.ui.bprs.admin.client.places.UploadCollective;
 import org.simbiosis.ui.bprs.admin.client.savingjournal.SavingJournalActivity;
 import org.simbiosis.ui.bprs.admin.client.savingjournal.SavingJournalPlace;
 import org.simbiosis.ui.bprs.admin.client.transfer.TransferActivity;
 import org.simbiosis.ui.bprs.admin.client.transfer.TransferPlace;
+import org.simbiosis.ui.bprs.admin.client.uploadcollective.UploadCollectiveActivity;
 
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.place.shared.Place;
@@ -32,6 +34,8 @@ public class BprsAdminActivityMapper extends KembangActivityMapper {
 					clientFactory);
 		} else if (place instanceof TransferPlace) {
 			return new TransferActivity((TransferPlace) place, clientFactory);
+		} else if (place instanceof UploadCollective) {
+			return new UploadCollectiveActivity((UploadCollective) place, clientFactory);
 		}
 		return null;
 	}

@@ -44,7 +44,7 @@
 						Nominal
 					</td>
 					<td>
-						<g:Label ui:field="strValue" styleName="formTextlabel" />
+						<g:NumberLabel ui:field="value" styleName="formTextlabel" customFormat="#,##0.00"/>
 					</td>
 				</tr>
 				<tr>
@@ -52,7 +52,7 @@
 						Nisbah
 					</td>
 					<td>
-						<g:Label ui:field="strRate" styleName="formTextlabel" />
+						<g:NumberLabel ui:field="rate" styleName="formTextlabel"  customFormat="#,##0.00"/>
 					</td>
 				</tr>
 				<tr>
@@ -60,7 +60,7 @@
 						Tambahan nisbah
 					</td>
 					<td>
-						<g:Label ui:field="strSpecialRate" styleName="formTextlabel" />
+						<g:NumberLabel ui:field="specialRate" styleName="formTextlabel"  customFormat="#,##0.00"/>
 					</td>
 				</tr>
 				<tr>

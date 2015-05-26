@@ -1,0 +1,11 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<g:VerticalPanel>
+		<g:TextArea characterWidth="80" visibleLines="20" ui:field="dataSrc" />
+		<g:HTMLPanel>
+			<br />
+		</g:HTMLPanel>
+		<g:Button styleName="formButton" ui:field="btnSendSrc">Kirim data</g:Button>
+	</g:VerticalPanel>
+</ui:UiBinder> 

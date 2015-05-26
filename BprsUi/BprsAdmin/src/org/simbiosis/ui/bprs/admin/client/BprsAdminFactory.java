@@ -5,6 +5,7 @@ import org.simbiosis.ui.bprs.admin.client.deposit.IDeposit;
 import org.simbiosis.ui.bprs.admin.client.loan.ILoan;
 import org.simbiosis.ui.bprs.admin.client.savingjournal.ISavingJournal;
 import org.simbiosis.ui.bprs.admin.client.transfer.ITransfer;
+import org.simbiosis.ui.bprs.admin.client.uploadcollective.IUploadCollective;
 
 public interface BprsAdminFactory extends KembangClientFactory {
 	ILoan getPembiayaanViewer();
@@ -22,4 +23,6 @@ public interface BprsAdminFactory extends KembangClientFactory {
 	ITransfer getTransferViewer();
 
 	ITransfer getTransferEditor();
+
+	IUploadCollective getUploadCollective();
 }

@@ -167,6 +167,26 @@ public class SavingBp implements ISavingBp {
 	}
 
 	@Override
+	public long saveTransaction(String key, SavingTransactionDto transDto) {
+		UserDto user = iSystem.getUserFromSession(key);
+		if (user != null) {
+			//
+			transDto.setCompany(user.getCompany());
+			transDto.setBranch(user.getBranch());
+			//
+			if (transDto.getId() == 0 && !transDto.isHasCode()) {
+				BranchDto branchDto = iSystem.getBranch(transDto.getBranch());
+				String code = createSavingTransCode(
+						transDto.getCompany(), transDto.getBranch(),
+						branchDto.getCode());
+				transDto.setCode(code);
+			}
+			return iSaving.saveTransaction(transDto);
+		}
+		return 0;
+	}
+
+	@Override
 	public long saveSavingTransaction(SavingTransactionDto transDto) {
 		if (transDto.getId() == 0 && !transDto.isHasCode()) {
 			BranchDto branchDto = iSystem.getBranch(transDto.getBranch());

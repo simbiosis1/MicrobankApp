@@ -14,15 +14,12 @@ public class DepositDv implements IsSerializable {
 	Long product;
 	String strProduct;
 	Double rate;
-	String strRate;
 	Double specialRate;
-	String strSpecialRate;
 	Boolean aro;
 	String strAro;
 	Boolean zakat;
 	String strZakat;
 	Double value;
-	String strValue;
 
 	SavingDv saving;
 
@@ -40,7 +37,6 @@ public class DepositDv implements IsSerializable {
 		product = 0L;
 		aro = true;
 		specialRate = 0D;
-		strSpecialRate = "0";
 	}
 
 	public void copyDepositData() {
@@ -214,14 +210,6 @@ public class DepositDv implements IsSerializable {
 		this.value = value;
 	}
 
-	public String getStrValue() {
-		return strValue;
-	}
-
-	public void setStrValue(String strValue) {
-		this.strValue = strValue;
-	}
-
 	public Boolean getZakat() {
 		return zakat;
 	}
@@ -246,28 +234,12 @@ public class DepositDv implements IsSerializable {
 		this.specialRate = specialRate;
 	}
 
-	public String getStrSpecialRate() {
-		return strSpecialRate;
-	}
-
-	public void setStrSpecialRate(String strSpecialRate) {
-		this.strSpecialRate = strSpecialRate;
-	}
-
 	public Double getRate() {
 		return rate;
 	}
 
 	public void setRate(Double rate) {
 		this.rate = rate;
-	}
-
-	public String getStrRate() {
-		return strRate;
-	}
-
-	public void setStrRate(String strRate) {
-		this.strRate = strRate;
 	}
 
 }

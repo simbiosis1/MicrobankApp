@@ -3,6 +3,7 @@ package org.simbiosis.ui.bprs.admin.client.rpc;
 import java.util.List;
 
 import org.simbiosis.ui.bprs.admin.shared.CoaDv;
+import org.simbiosis.ui.bprs.admin.shared.TransferCollectiveDv;
 import org.simbiosis.ui.bprs.common.shared.TransactionDv;
 
 import com.google.gwt.user.client.rpc.RemoteService;
@@ -29,4 +30,9 @@ public interface AppService extends RemoteService {
 	List<TransactionDv> getRepaymentValue(Long id)
 			throws IllegalArgumentException;
 
+	List<TransferCollectiveDv> listConfirmTransfer(String key, String srcData)
+			throws IllegalArgumentException;
+
+	void executeCollectiveTransfer(String key, Long coa,
+			List<TransferCollectiveDv> data) throws IllegalArgumentException;
 }

@@ -3,6 +3,7 @@ package org.simbiosis.ui.bprs.admin.client.rpc;
 import java.util.List;
 
 import org.simbiosis.ui.bprs.admin.shared.CoaDv;
+import org.simbiosis.ui.bprs.admin.shared.TransferCollectiveDv;
 import org.simbiosis.ui.bprs.common.shared.TransactionDv;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -28,5 +29,11 @@ public interface AppServiceAsync {
 
 	void getRepaymentValue(Long id, AsyncCallback<List<TransactionDv>> callback)
 			throws IllegalArgumentException;
+
+	void listConfirmTransfer(String key, String srcData,
+			AsyncCallback<List<TransferCollectiveDv>> callback);
+
+	void executeCollectiveTransfer(String key, Long coa,
+			List<TransferCollectiveDv> data, AsyncCallback<Void> callback);
 
 }

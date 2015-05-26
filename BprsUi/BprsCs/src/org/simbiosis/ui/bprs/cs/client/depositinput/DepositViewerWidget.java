@@ -10,6 +10,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DateLabel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.NumberLabel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class DepositViewerWidget extends Composite implements Editor<DepositDv> {
@@ -34,11 +35,11 @@ public class DepositViewerWidget extends Composite implements Editor<DepositDv> 
 	@UiField
 	Label bilyet;
 	@UiField
-	Label strValue;
+	NumberLabel<Double> value;
 	@UiField
-	Label strRate;
+	NumberLabel<Double> rate;
 	@UiField
-	Label strSpecialRate;
+	NumberLabel<Double> specialRate;
 	@UiField
 	Label strAro;
 	@UiField

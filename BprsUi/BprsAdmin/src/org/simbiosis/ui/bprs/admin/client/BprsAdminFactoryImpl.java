@@ -13,6 +13,8 @@ import org.simbiosis.ui.bprs.admin.client.savingjournal.SavingJournalViewer;
 import org.simbiosis.ui.bprs.admin.client.transfer.ITransfer;
 import org.simbiosis.ui.bprs.admin.client.transfer.TransferEditor;
 import org.simbiosis.ui.bprs.admin.client.transfer.TransferViewer;
+import org.simbiosis.ui.bprs.admin.client.uploadcollective.IUploadCollective;
+import org.simbiosis.ui.bprs.admin.client.uploadcollective.UploadCollective;
 
 public class BprsAdminFactoryImpl extends KembangClientFactoryImpl implements
 		BprsAdminFactory {
@@ -25,6 +27,7 @@ public class BprsAdminFactoryImpl extends KembangClientFactoryImpl implements
 	static final SavingJournalEditor SAVING_JOURNAL_EDITOR = new SavingJournalEditor();
 	static final TransferViewer TRANSFER_VIEWER = new TransferViewer();
 	static final TransferEditor TRANSFER_EDITOR = new TransferEditor();
+	static final UploadCollective UPLOAD_COLLECTIVE = new UploadCollective();
 
 	@Override
 	public ILoan getPembiayaanViewer() {
@@ -64,6 +67,11 @@ public class BprsAdminFactoryImpl extends KembangClientFactoryImpl implements
 	@Override
 	public ITransfer getTransferEditor() {
 		return TRANSFER_EDITOR;
+	}
+
+	@Override
+	public IUploadCollective getUploadCollective() {
+		return UPLOAD_COLLECTIVE;
 	}
 
 }

@@ -31,7 +31,9 @@ public interface ISavingBp {
 
 	List<SavingDto> findSaving(String key, FindSavingDto findSavingDto);
 
-	long saveSavingTransaction(SavingTransactionDto savingTransactionDto);
+	long saveSavingTransaction(SavingTransactionDto dto);
+
+	long saveTransaction(String key, SavingTransactionDto dto);
 
 	long saveSavingTrfTrans(String key, SavingTransactionDto srcDto,
 			SavingTransactionDto destDto);

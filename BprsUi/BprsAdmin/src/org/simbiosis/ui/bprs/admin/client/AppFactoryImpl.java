@@ -16,8 +16,8 @@ import org.simbiosis.ui.bprs.admin.client.transfer.TransferViewer;
 import org.simbiosis.ui.bprs.admin.client.uploadcollective.IUploadCollective;
 import org.simbiosis.ui.bprs.admin.client.uploadcollective.UploadCollective;
 
-public class BprsAdminFactoryImpl extends KembangClientFactoryImpl implements
-		BprsAdminFactory {
+public class AppFactoryImpl extends KembangClientFactoryImpl implements
+		AppFactory {
 
 	static final LoanViewer PEMBIAYAAN_VIEWER = new LoanViewer();
 	static final LoanEditor PEMBIAYAAN_EDITOR = new LoanEditor();

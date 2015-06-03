@@ -22,11 +22,11 @@
 								<tr>
 									<td>Teller</td>
 									<td>&nbsp;</td>
-									<td><p3:TellerListEditor styleName="formDatebox" ui:field="tellers" /></td>
+									<td><p3:TellerListEditor styleName="formCombobox" ui:field="tellers" /></td>
 									<td>&nbsp;&nbsp;</td>
 									<td>Tanggal transaksi</td>
 									<td>&nbsp;</td>
-									<td><p1:DateBox styleName="formDatebox" ui:field="transactionDate" width="75px" /></td>
+									<td><p1:DateBox ui:field="transactionDate" styleName="formDatebox" width="75px" /></td>
 								</tr>
 							</table>
 						</g:HTMLPanel>

@@ -3,6 +3,7 @@ package org.simbiosis.ui.bprs.teller.client;
 import org.kembang.module.client.mvp.KembangClientFactory;
 import org.simbiosis.ui.bprs.teller.client.cashtrans.ICashTrans;
 import org.simbiosis.ui.bprs.teller.client.htvault.IHtVault;
+import org.simbiosis.ui.bprs.teller.client.kolektif.IUploadCollective;
 import org.simbiosis.ui.bprs.teller.client.savingdeposit.IDeposit;
 import org.simbiosis.ui.bprs.teller.client.savingprint.ISavingPrint;
 import org.simbiosis.ui.bprs.teller.client.savingtrans.ISavingTransList;
@@ -37,5 +38,7 @@ public interface AppFactory extends KembangClientFactory {
 	ISavingPrint getCetakTabungan();
 
 	ISavingTransList getSavingTransList();
+
+	IUploadCollective getUploadCollective();
 
 }

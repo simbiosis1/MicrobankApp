@@ -15,15 +15,15 @@ import org.simbiosis.ui.bprs.admin.client.uploadcollective.UploadCollectiveActiv
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.place.shared.Place;
 
-public class BprsAdminActivityMapper extends KembangActivityMapper {
+public class AppActivityMapper extends KembangActivityMapper {
 
-	public BprsAdminActivityMapper(BprsAdminFactory clientFactory) {
+	public AppActivityMapper(AppFactory clientFactory) {
 		super(clientFactory);
 	}
 
 	@Override
 	public Activity createActivity(Place place) {
-		BprsAdminFactory clientFactory = (BprsAdminFactory) getClientFactory();
+		AppFactory clientFactory = (AppFactory) getClientFactory();
 		if (place instanceof LoanPlace) {
 			return new LoanActivity((LoanPlace) place,
 					clientFactory);

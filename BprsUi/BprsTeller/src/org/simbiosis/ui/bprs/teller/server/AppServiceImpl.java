@@ -5,7 +5,10 @@ import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.ejb.EJB;
 
@@ -24,6 +27,7 @@ import org.simbiosis.system.UserDto;
 import org.simbiosis.ui.bprs.common.shared.TransactionDv;
 import org.simbiosis.ui.bprs.teller.client.rpc.AppService;
 import org.simbiosis.ui.bprs.teller.shared.TellerDv;
+import org.simbiosis.ui.bprs.teller.shared.UploadCollectiveDv;
 import org.simbiosis.ui.bprs.teller.shared.VaultTransactionDv;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -541,4 +545,67 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 		return tellerBp.hasTellerApproval(key);
 	}
 
+	@Override
+	public List<UploadCollectiveDv> listConfirmSavingCollective(String key,
+			String srcData) throws IllegalArgumentException {
+		List<UploadCollectiveDv> result = new ArrayList<UploadCollectiveDv>();
+		String source = srcData.replace("\r", "");
+		String datas[] = source.split("\n");
+		double total = 0;
+		for (int i = 0; i < datas.length; i++) {
+			String line[] = datas[i].split("\t");
+			if (line.length >= 4) {
+				long id = savingBp.getSavingIdByCode(key, line[0]);
+				SavingInformationDto info = savingBp.getInformation(id);
+				double debit = line[2].replace(",", "").isEmpty() ? 0 : Double
+						.parseDouble(line[2].replace(",", ""));
+				double credit = line[3].replace(",", "").isEmpty() ? 0 : Double
+						.parseDouble(line[3].replace(",", ""));
+				total += (credit - debit);
+				UploadCollectiveDv dv = new UploadCollectiveDv(i + 1, line[0],
+						line[1], info.getName(), debit, debit, total);
+				dv.setSavingId(info.getId());
+				result.add(dv);
+			}
+		}
+		return result;
+	}
+
+	@Override
+	public void executeCollective(String key, Long coa,
+			List<UploadCollectiveDv> data) throws IllegalArgumentException {
+		DateTime now = new DateTime();
+		DateTimeFormatter df = DateTimeFormat.forPattern("yyyyMMdd");
+		String code = "GAJ" + df.print(now);
+		System.out.println("Coa : " + coa.toString());
+		Map<Long, Double> mapValues = new HashMap<Long, Double>();
+		for (UploadCollectiveDv dv : data) {
+			SavingInformationDto info = savingBp.getInformation(dv
+					.getSavingId());
+			Double currentValue = mapValues.get(info.getCoa1());
+			if (currentValue == null) {
+				// currentValue = dv.getValue();
+			} else {
+				// currentValue += dv.getValue();
+			}
+			mapValues.put(info.getCoa1(), currentValue);
+			SavingTransactionDto trans = new SavingTransactionDto();
+			trans.setDate(now.toDate());
+			trans.setCode(code);
+			trans.setHasCode(true);
+			trans.setDirection(1);
+			trans.setDescription("GAJI - " + info.getName() + " ("
+					+ info.getCode() + ")");
+			trans.setType(3);
+			// trans.setValue(dv.getValue());
+			trans.setSaving(dv.getSavingId());
+			savingBp.saveTransaction(key, trans);
+			// System.out.println("Transfer : " + dv.getSavingId() + ", "
+			// + dv.getValue().toString());
+		}
+		Set<Long> keys = mapValues.keySet();
+		for (Long lKey : keys) {
+			System.out.println("Coa : " + lKey + ", " + mapValues.get(lKey));
+		}
+	}
 }

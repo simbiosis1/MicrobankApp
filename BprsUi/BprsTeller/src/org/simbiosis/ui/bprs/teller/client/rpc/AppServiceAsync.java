@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.simbiosis.ui.bprs.common.shared.TransactionDv;
 import org.simbiosis.ui.bprs.teller.shared.TellerDv;
+import org.simbiosis.ui.bprs.teller.shared.UploadCollectiveDv;
 import org.simbiosis.ui.bprs.teller.shared.VaultTransactionDv;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -43,5 +44,11 @@ public interface AppServiceAsync {
 
 	void hasTellerApproval(String key, AsyncCallback<Boolean> callback)
 			throws IllegalArgumentException;
+
+	void listConfirmSavingCollective(String key, String srcData,
+			AsyncCallback<List<UploadCollectiveDv>> callback);
+
+	void executeCollective(String key, Long coa,
+			List<UploadCollectiveDv> data, AsyncCallback<Void> callback);
 
 }

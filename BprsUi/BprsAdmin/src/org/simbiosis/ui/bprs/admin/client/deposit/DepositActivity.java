@@ -3,7 +3,7 @@ package org.simbiosis.ui.bprs.admin.client.deposit;
 import java.util.Date;
 
 import org.kembang.module.client.mvp.FormActivityType;
-import org.simbiosis.ui.bprs.admin.client.BprsAdminFactory;
+import org.simbiosis.ui.bprs.admin.client.AppFactory;
 import org.simbiosis.ui.bprs.admin.client.deposit.IDeposit.Activity;
 import org.simbiosis.ui.bprs.admin.client.rpc.AppService;
 import org.simbiosis.ui.bprs.admin.client.rpc.AppServiceAsync;
@@ -27,10 +27,10 @@ public class DepositActivity extends Activity {
 	private final AppServiceAsync srv = GWT.create(AppService.class);
 
 	Place myPlace;
-	BprsAdminFactory appFactory;
+	AppFactory appFactory;
 	Activity activity;
 
-	public DepositActivity(Place myPlace, BprsAdminFactory appFactory) {
+	public DepositActivity(Place myPlace, AppFactory appFactory) {
 		setMainFactory(appFactory);
 		this.myPlace = myPlace;
 		this.appFactory = appFactory;

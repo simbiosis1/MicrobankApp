@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.kembang.module.client.mvp.FormActivityType;
-import org.simbiosis.ui.bprs.admin.client.BprsAdminFactory;
+import org.simbiosis.ui.bprs.admin.client.AppFactory;
 import org.simbiosis.ui.bprs.admin.client.rpc.AppService;
 import org.simbiosis.ui.bprs.admin.client.rpc.AppServiceAsync;
 import org.simbiosis.ui.bprs.admin.client.savingjournal.ISavingJournal.Activity;
@@ -28,10 +28,10 @@ public class SavingJournalActivity extends Activity {
 	private final AppServiceAsync botService = GWT.create(AppService.class);
 
 	Place myPlace;
-	BprsAdminFactory appFactory;
+	AppFactory appFactory;
 	Activity activity;
 
-	public SavingJournalActivity(Place myPlace, BprsAdminFactory appFactory) {
+	public SavingJournalActivity(Place myPlace, AppFactory appFactory) {
 		setMainFactory(appFactory);
 		this.myPlace = myPlace;
 		this.appFactory = appFactory;

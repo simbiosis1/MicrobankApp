@@ -302,10 +302,12 @@ public class Neraca {
 		branches.clear();
 		branches.add(0L);
 		String strBranchData = coreClient.sendRawData("listBranchId", "");
-		System.out.println(strBranchData);
-		String[] strBranches = strBranchData.split(";");
-		for (String strBranch : strBranches) {
-			branches.add(Long.parseLong(strBranch));
+		if (!strBranchData.isEmpty()) {
+			System.out.println(strBranchData);
+			String[] strBranches = strBranchData.split(";");
+			for (String strBranch : strBranches) {
+				branches.add(Long.parseLong(strBranch));
+			}
 		}
 	}
 

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.simbiosis.ui.bprs.common.shared.TransactionDv;
 import org.simbiosis.ui.bprs.teller.shared.TellerDv;
+import org.simbiosis.ui.bprs.teller.shared.UploadCollectiveDv;
 import org.simbiosis.ui.bprs.teller.shared.VaultTransactionDv;
 
 import com.google.gwt.user.client.rpc.RemoteService;
@@ -37,5 +38,11 @@ public interface AppService extends RemoteService {
 	List<TellerDv> listTeller(String key) throws IllegalArgumentException;
 
 	Boolean hasTellerApproval(String key) throws IllegalArgumentException;
+
+	List<UploadCollectiveDv> listConfirmSavingCollective(String key, String srcData)
+			throws IllegalArgumentException;
+
+	void executeCollective(String key, Long coa, List<UploadCollectiveDv> data)
+			throws IllegalArgumentException;
 
 }

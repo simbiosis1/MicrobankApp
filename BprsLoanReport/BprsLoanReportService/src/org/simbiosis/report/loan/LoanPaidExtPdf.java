@@ -1,7 +1,6 @@
 package org.simbiosis.report.loan;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +48,7 @@ public class LoanPaidExtPdf extends ReportServlet {
 		return dv;
 	}
 
-	private List<LoanTransDv> prepareData(Long id) throws ParseException {
+	private List<LoanTransDv> prepareData(long id) {
 		//
 		List<LoanTransDv> result = new ArrayList<LoanTransDv>();
 		LoanInformationDto info = loanBp.getInformation(id);
@@ -85,27 +84,22 @@ public class LoanPaidExtPdf extends ReportServlet {
 	protected void onRequest(HttpServletRequest request)
 			throws ServletException, IOException {
 		//
-		try {
-			//
-			String strId = request.getParameter("loan");
-			long id = (strId == null) ? 0 : Long.parseLong(strId);
-			//
-			prepare();
-			//
-			setBeanCollection(prepareData(id));
-			//
-			setParameter("LoanSim.company", getCompanyName());
-			setParameter("LoanSim.branch", getBranchName());
-			setParameter("LoanSim.code", code);
-			setParameter("LoanSim.savingCode", savingCode);
-			setParameter("LoanSim.realName", getUserRealName());
-			setParameter("LoanSim.name", name);
-			setParameter("LoanSim.principal", principal);
-			// setParameter("LoanSim.rate", rate);
-			setParameter("LoanSim.tenor", tenor);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		String strId = request.getParameter("loan");
+		long id = (strId == null) ? 0 : Long.parseLong(strId);
+		//
+		prepare();
+		//
+		setBeanCollection(prepareData(id));
+		//
+		setParameter("LoanSim.company", getCompanyName());
+		setParameter("LoanSim.branch", getBranchName());
+		setParameter("LoanSim.code", code);
+		setParameter("LoanSim.savingCode", savingCode);
+		setParameter("LoanSim.realName", getUserRealName());
+		setParameter("LoanSim.name", name);
+		setParameter("LoanSim.principal", principal);
+		// setParameter("LoanSim.rate", rate);
+		setParameter("LoanSim.tenor", tenor);
 	}
 
 }

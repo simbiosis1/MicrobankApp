@@ -3,7 +3,7 @@ package org.simbiosis.ui.bprs.admin.client.transfer;
 import java.util.Date;
 
 import org.kembang.module.client.mvp.FormActivityType;
-import org.simbiosis.ui.bprs.admin.client.BprsAdminFactory;
+import org.simbiosis.ui.bprs.admin.client.AppFactory;
 import org.simbiosis.ui.bprs.admin.client.rpc.AppService;
 import org.simbiosis.ui.bprs.admin.client.rpc.AppServiceAsync;
 import org.simbiosis.ui.bprs.admin.client.transfer.ITransfer.Activity;
@@ -26,12 +26,12 @@ public class TransferActivity extends Activity {
 	private final AppServiceAsync botSrv = GWT.create(AppService.class);
 
 	Place myPlace;
-	BprsAdminFactory appFactory;
+	AppFactory appFactory;
 	Activity activity;
 
 	final TransactionDv transDv = new TransactionDv();
 
-	public TransferActivity(Place myPlace, BprsAdminFactory appFactory) {
+	public TransferActivity(Place myPlace, AppFactory appFactory) {
 		setMainFactory(appFactory);
 		this.myPlace = myPlace;
 		this.appFactory = appFactory;

@@ -12,6 +12,6 @@ import com.google.gwt.place.shared.WithTokenizers;
 @WithTokenizers({ LoanPlace.Tokenizer.class, DepositPlace.Tokenizer.class,
 		SavingJournalPlace.Tokenizer.class, TransferPlace.Tokenizer.class,
 		UploadCollective.Tokenizer.class })
-public interface BprsAdminHistoryMapper extends KembangHistoryMapper {
+public interface AppHistoryMapper extends KembangHistoryMapper {
 
 }

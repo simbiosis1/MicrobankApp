@@ -1,17 +1,19 @@
 package org.simbiosis.ui.bprs.teller.client;
 
 import org.kembang.module.client.mvp.KembangClientFactoryImpl;
-import org.simbiosis.ui.bprs.teller.client.cashtrans.ICashTrans;
 import org.simbiosis.ui.bprs.teller.client.cashtrans.CashTransEditor;
 import org.simbiosis.ui.bprs.teller.client.cashtrans.CashTransViewer;
+import org.simbiosis.ui.bprs.teller.client.cashtrans.ICashTrans;
 import org.simbiosis.ui.bprs.teller.client.htvault.HtVaultEditor;
 import org.simbiosis.ui.bprs.teller.client.htvault.HtVaultViewer;
 import org.simbiosis.ui.bprs.teller.client.htvault.IHtVault;
-import org.simbiosis.ui.bprs.teller.client.savingdeposit.IDeposit;
+import org.simbiosis.ui.bprs.teller.client.kolektif.IUploadCollective;
+import org.simbiosis.ui.bprs.teller.client.kolektif.UploadCollective;
 import org.simbiosis.ui.bprs.teller.client.savingdeposit.DepositEditor;
 import org.simbiosis.ui.bprs.teller.client.savingdeposit.DepositViewer;
-import org.simbiosis.ui.bprs.teller.client.savingprint.SavingPrint;
+import org.simbiosis.ui.bprs.teller.client.savingdeposit.IDeposit;
 import org.simbiosis.ui.bprs.teller.client.savingprint.ISavingPrint;
+import org.simbiosis.ui.bprs.teller.client.savingprint.SavingPrint;
 import org.simbiosis.ui.bprs.teller.client.savingtrans.ISavingTransList;
 import org.simbiosis.ui.bprs.teller.client.savingtrans.SavingTransList;
 import org.simbiosis.ui.bprs.teller.client.savingwd.IWithdrawal;
@@ -39,6 +41,7 @@ public class AppFactoryImpl extends KembangClientFactoryImpl implements
 	static final TellerTransList LIST_TRANSAKSI_TELLER = new TellerTransList();
 	static final SavingPrint CETAK_TABUNGAN = new SavingPrint();
 	static final SavingTransList SAVING_TRANS_LIST = new SavingTransList();
+	static final UploadCollective UPLOAD_COLLECTIVE = new UploadCollective();
 
 	@Override
 	public IDeposit getSetorTunaiEditor() {
@@ -105,4 +108,8 @@ public class AppFactoryImpl extends KembangClientFactoryImpl implements
 		return SAVING_TRANS_LIST;
 	}
 
+	@Override
+	public IUploadCollective getUploadCollective() {
+		return UPLOAD_COLLECTIVE;
+	}
 }

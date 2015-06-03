@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.kembang.module.client.mvp.FormActivityType;
-import org.simbiosis.ui.bprs.admin.client.BprsAdminFactory;
+import org.simbiosis.ui.bprs.admin.client.AppFactory;
 import org.simbiosis.ui.bprs.admin.client.loan.ILoan.Activity;
 import org.simbiosis.ui.bprs.admin.client.rpc.AppService;
 import org.simbiosis.ui.bprs.admin.client.rpc.AppServiceAsync;
@@ -29,10 +29,10 @@ public class LoanActivity extends Activity {
 			.create(AppService.class);
 
 	Place myPlace;
-	BprsAdminFactory appFactory;
+	AppFactory appFactory;
 	Activity activity;
 
-	public LoanActivity(Place myPlace, BprsAdminFactory appFactory) {
+	public LoanActivity(Place myPlace, AppFactory appFactory) {
 		setMainFactory(appFactory);
 		this.myPlace = myPlace;
 		this.appFactory = appFactory;

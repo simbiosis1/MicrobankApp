@@ -1,17 +1,18 @@
-package org.simbiosis.ui.bprs.admin.client.uploadcollective;
+package org.simbiosis.ui.bprs.teller.client.kolektif;
 
 import java.util.List;
 
 import org.kembang.module.client.mvp.FormActivityType;
-import org.simbiosis.ui.bprs.admin.client.AppFactory;
-import org.simbiosis.ui.bprs.admin.client.rpc.AppService;
-import org.simbiosis.ui.bprs.admin.client.rpc.AppServiceAsync;
-import org.simbiosis.ui.bprs.admin.client.uploadcollective.IUploadCollective.Activity;
-import org.simbiosis.ui.bprs.admin.shared.CoaDv;
-import org.simbiosis.ui.bprs.admin.shared.TransferCollectiveDv;
 import org.simbiosis.ui.bprs.common.client.handler.ValidationHandler;
 import org.simbiosis.ui.bprs.common.client.printing.DlgPrintValidation;
 import org.simbiosis.ui.bprs.common.shared.TransactionDv;
+import org.simbiosis.ui.bprs.teller.client.AppFactory;
+import org.simbiosis.ui.bprs.teller.client.htvault.IHtVault;
+import org.simbiosis.ui.bprs.teller.client.kolektif.IUploadCollective.Activity;
+import org.simbiosis.ui.bprs.teller.client.rpc.AppService;
+import org.simbiosis.ui.bprs.teller.client.rpc.AppServiceAsync;
+import org.simbiosis.ui.bprs.teller.shared.TellerDv;
+import org.simbiosis.ui.bprs.teller.shared.UploadCollectiveDv;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.place.shared.Place;
@@ -22,7 +23,7 @@ import com.google.web.bindery.event.shared.EventBus;
 
 public class UploadCollectiveActivity extends Activity {
 
-	private final AppServiceAsync botSrv = GWT.create(AppService.class);
+	private final AppServiceAsync tellerSrv = GWT.create(AppService.class);
 
 	Place myPlace;
 	AppFactory appFactory;
@@ -47,7 +48,7 @@ public class UploadCollectiveActivity extends Activity {
 		IUploadCollective myForm = appFactory.getUploadCollective();
 		myForm.setActivity(this, appFactory.getAppStatus());
 		if (appFactory.getAppStatus().isLogin()) {
-			loadCoa();
+			loadTellers();
 		}
 		appFactory.showApplication(panel, myForm.getFormWidget());
 	}
@@ -56,69 +57,67 @@ public class UploadCollectiveActivity extends Activity {
 	public void dispatch(FormActivityType formActivityType) {
 	}
 
-	private void loadCoa() {
+	private void loadTellers() {
 		showLoading();
-		botSrv.listCoaForTransaction(getKey(),
-				new AsyncCallback<List<CoaDv>>() {
+		tellerSrv.listTeller(getKey(), new AsyncCallback<List<TellerDv>>() {
 
-					@Override
-					public void onFailure(Throwable caught) {
-						hideLoading();
-						Window.alert("Error : listCoaByType");
-					}
+			@Override
+			public void onFailure(Throwable caught) {
+				hideLoading();
+				Window.alert("Error : listTeller");
+			}
 
-					@Override
-					public void onSuccess(List<CoaDv> result) {
-						hideLoading();
-						IUploadCollective myForm = appFactory
-								.getUploadCollective();
-						myForm.setCoa(result);
-					}
-				});
+			@Override
+			public void onSuccess(List<TellerDv> result) {
+				hideLoading();
+				IUploadCollective myForm = appFactory.getUploadCollective();
+				myForm.setTellers(result);
+			}
+		});
 	}
 
 	@Override
 	public void confirmTransfer() {
 		showLoading();
 		IUploadCollective myForm = appFactory.getUploadCollective();
-		botSrv.listConfirmTransfer(getKey(), myForm.getSrcData(),
-				new AsyncCallback<List<TransferCollectiveDv>>() {
-
-					@Override
-					public void onFailure(Throwable caught) {
-						hideLoading();
-						Window.alert("Error : listConfirmTransfer");
-					}
-
-					@Override
-					public void onSuccess(List<TransferCollectiveDv> result) {
-						hideLoading();
-						IUploadCollective myForm = appFactory
-								.getUploadCollective();
-						myForm.confirmTransfer(result);
-					}
-				});
+		// botSrv.listConfirmTransfer(getKey(), myForm.getSrcData(),
+		// new AsyncCallback<List<TransferCollectiveDv>>() {
+		//
+		// @Override
+		// public void onFailure(Throwable caught) {
+		// hideLoading();
+		// Window.alert("Error : listConfirmTransfer");
+		// }
+		//
+		// @Override
+		// public void onSuccess(List<TransferCollectiveDv> result) {
+		// hideLoading();
+		// IUploadCollective myForm = appFactory
+		// .getUploadCollective();
+		// myForm.confirmTransfer(result);
+		// }
+		// });
 	}
 
 	@Override
 	public void executeTransfer() {
 		showLoading();
 		IUploadCollective myForm = appFactory.getUploadCollective();
-		botSrv.executeCollectiveTransfer(getKey(), myForm.getCoa(),
-				myForm.getTransferData(), new AsyncCallback<Void>() {
-
-					@Override
-					public void onSuccess(Void result) {
-						hideLoading();
-						Window.alert("Transfer berhasil");
-					}
-
-					@Override
-					public void onFailure(Throwable caught) {
-						hideLoading();
-						Window.alert("Error : executeCollectiveTransfer");
-					}
-				});
+		// botSrv.executeCollectiveTransfer(getKey(), myForm.getTeller(),
+		// myForm.getTransferData(), new AsyncCallback<Void>() {
+		//
+		// @Override
+		// public void onSuccess(Void result) {
+		// hideLoading();
+		// Window.alert("Transfer berhasil");
+		// }
+		//
+		// @Override
+		// public void onFailure(Throwable caught) {
+		// hideLoading();
+		// Window.alert("Error : executeCollectiveTransfer");
+		// }
+		// });
 	}
 
 	void printValidation(String validationText) {

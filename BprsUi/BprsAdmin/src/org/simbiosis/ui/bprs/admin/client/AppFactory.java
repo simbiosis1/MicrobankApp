@@ -7,7 +7,7 @@ import org.simbiosis.ui.bprs.admin.client.savingjournal.ISavingJournal;
 import org.simbiosis.ui.bprs.admin.client.transfer.ITransfer;
 import org.simbiosis.ui.bprs.admin.client.uploadcollective.IUploadCollective;
 
-public interface BprsAdminFactory extends KembangClientFactory {
+public interface AppFactory extends KembangClientFactory {
 	ILoan getPembiayaanViewer();
 
 	ILoan getPembiayaanEditor();

@@ -35,7 +35,8 @@ public class UploadCollective extends FormWidget implements IUploadCollective {
 	VerticalPanel dataPanel;
 
 	CopyData copyData = new CopyData();
-	ConfirmCollective confirm = new ConfirmCollective();
+	SavingConfirmCollective savingConfirm = new SavingConfirmCollective();
+	LoanConfirmCollective loanConfirm = new LoanConfirmCollective();
 
 	public UploadCollective() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -44,7 +45,7 @@ public class UploadCollective extends FormWidget implements IUploadCollective {
 		transType.addItem("Angsuran");
 		//
 		copyData.setParent(this);
-		confirm.setParent(this);
+		savingConfirm.setParent(this);
 		//
 		dataPanel.add(copyData);
 		//
@@ -65,7 +66,11 @@ public class UploadCollective extends FormWidget implements IUploadCollective {
 
 	public void confirmTransfer() {
 		dataPanel.clear();
-		dataPanel.add(confirm);
+		if (transType.getSelectedIndex() == 0) {
+			dataPanel.add(savingConfirm);
+		} else {
+			dataPanel.add(loanConfirm);
+		}
 		//
 		activity.confirmTransfer();
 	}
@@ -76,7 +81,7 @@ public class UploadCollective extends FormWidget implements IUploadCollective {
 
 	@Override
 	public void confirmTransfer(List<UploadCollectiveDv> data) {
-		confirm.setData(data);
+		savingConfirm.setData(data);
 	}
 
 	@Override
@@ -86,17 +91,17 @@ public class UploadCollective extends FormWidget implements IUploadCollective {
 
 	@Override
 	public List<UploadCollectiveDv> getTransferData() {
-		return confirm.getData();
+		return savingConfirm.getData();
 	}
 
 	@Override
 	public void setTellers(List<TellerDv> tellers) {
-		confirm.setTellers(tellers);
+		savingConfirm.setTellers(tellers);
 	}
 
 	@Override
 	public Long getTeller() {
-		return confirm.getTeller();
+		return savingConfirm.getTeller();
 	}
 
 	@Override

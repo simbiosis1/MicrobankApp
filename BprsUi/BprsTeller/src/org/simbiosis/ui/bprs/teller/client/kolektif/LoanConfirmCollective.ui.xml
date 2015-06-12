@@ -4,7 +4,7 @@
 	xmlns:e="urn:import:org.simbiosis.ui.bprs.teller.client.editor"
 	xmlns:p3="urn:import:org.simbiosis.ui.bprs.teller.client.editor">
 	<g:VerticalPanel>
-		<e:UploadCollectiveTable ui:field="ctTable"
+		<e:LoanUploadCollectiveTable ui:field="ctTable"
 			width="600px" height="400px" />
 		<g:HTMLPanel>
 			<table>

@@ -9,7 +9,7 @@ import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 
-public class UploadCollectiveTable extends SimpleGrid<UploadCollectiveDv> {
+public class SavingUploadCollectiveTable extends SimpleGrid<UploadCollectiveDv> {
 
 	NumberFormat numberFormat = NumberFormat.getFormat("#,##0.00");
 
@@ -69,7 +69,7 @@ public class UploadCollectiveTable extends SimpleGrid<UploadCollectiveDv> {
 		}
 	};
 
-	public UploadCollectiveTable() {
+	public SavingUploadCollectiveTable() {
 		addColumn(colNr);
 		addColumn(colCode);
 		addColumn(colName);

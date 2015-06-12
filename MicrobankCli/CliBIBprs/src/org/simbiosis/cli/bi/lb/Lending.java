@@ -35,7 +35,7 @@ public class Lending {
 	String nextMonthBegin = "";
 	String nextMonthEnd = "";
 
-	ManualPPAPJam dataManualPpapJam = new ManualPPAPJam();
+	//ManualPPAPJam dataManualPpapJam = new ManualPPAPJam();
 
 	// Map<String, Double> nilai = new HashMap<String, Double>();
 
@@ -57,7 +57,7 @@ public class Lending {
 	}
 
 	public void retrieve() {
-		dataManualPpapJam.loadData();
+		//dataManualPpapJam.loadData();
 		listAllLoan();
 	}
 
@@ -179,14 +179,14 @@ public class Lending {
 		Long iSaldoPiutang = iSaldoPokok + iSaldoMargin;
 		String saldoPiutang = StrUtils.lpadded(iSaldoPiutang.toString(), 12,
 				'0');
-		// Double dNilaiAgunan = info.getGuarantee() / 1000;
-		Double dNilaiAgunan = dataManualPpapJam.getData(loanCode.trim())
-				.getJaminan() / 1000;
+		 Double dNilaiAgunan = info.getGuarantee() / 1000;
+		//Double dNilaiAgunan = dataManualPpapJam.getData(loanCode.trim())
+		//		.getJaminan() / 1000;
 		Long iNilaiAgunan = Math.round(dNilaiAgunan);
 		String nilaiAgunan = StrUtils.lpadded(iNilaiAgunan.toString(), 12, '0');
 		String agunan = getJenisAgunan(info.getGuaranteeType());
-		// Double dPpap = info.getPpap() / 1000;
-		Double dPpap = dataManualPpapJam.getData(loanCode.trim()).getPpap() / 1000;
+		 Double dPpap = info.getPpap() / 1000;
+		//Double dPpap = dataManualPpapJam.getData(loanCode.trim()).getPpap() / 1000;
 		Long iPpap = Math.round(dPpap);
 		String ppap = StrUtils.lpadded(iPpap.toString(), 12, '0');
 		String metodeBasil = "2";
@@ -257,14 +257,14 @@ public class Lending {
 		Long iSaldoPembiayaan = Math.round(dSaldoPembiayaan);
 		String saldoPembiayaan = StrUtils.lpadded(iSaldoPembiayaan.toString(),
 				12, '0');
-		// Double dNilaiAgunan = info.getGuarantee() / 1000;
-		Double dNilaiAgunan = dataManualPpapJam.getData(loanCode.trim())
-				.getJaminan() / 1000;
+		 Double dNilaiAgunan = info.getGuarantee() / 1000;
+		//Double dNilaiAgunan = dataManualPpapJam.getData(loanCode.trim())
+		//		.getJaminan() / 1000;
 		Long iNilaiAgunan = Math.round(dNilaiAgunan);
 		String nilaiAgunan = StrUtils.lpadded(iNilaiAgunan.toString(), 12, '0');
 		String agunan = getJenisAgunan(info.getGuaranteeType());
-		// Double dPpap = info.getPpap() / 1000;
-		Double dPpap = dataManualPpapJam.getData(loanCode.trim()).getPpap() / 1000;
+		 Double dPpap = info.getPpap() / 1000;
+		//Double dPpap = dataManualPpapJam.getData(loanCode.trim()).getPpap() / 1000;
 		Long iPpap = Math.round(dPpap);
 		String ppap = StrUtils.lpadded(iPpap.toString(), 12, '0');
 		String sifatPlafond = "1";
@@ -368,9 +368,9 @@ public class Lending {
 		Long iSaldoPiutang = Math.round(dSaldoPiutang);
 		String saldoPiutang = StrUtils.lpadded(iSaldoPiutang.toString(), 12,
 				'0');
-		// Double dNilaiAgunan = info.getGuarantee() / 1000;
-		Double dNilaiAgunan = dataManualPpapJam.getData(loanCode.trim())
-				.getJaminan() / 1000;
+		 Double dNilaiAgunan = info.getGuarantee() / 1000;
+		//Double dNilaiAgunan = dataManualPpapJam.getData(loanCode.trim())
+		//		.getJaminan() / 1000;
 		Long iNilaiAgunan = Math.round(dNilaiAgunan);
 		String nilaiAgunan = StrUtils.lpadded(iNilaiAgunan.toString(), 12, '0');
 		String agunan = getJenisAgunan(info.getGuaranteeType());
@@ -378,8 +378,8 @@ public class Lending {
 			agunan = "3";
 			System.out.println(loanCode + " - Agunan bermasalah....");
 		}
-		// Double dPpap = info.getPpap() / 1000;
-		Double dPpap = dataManualPpapJam.getData(loanCode.trim()).getPpap() / 1000;
+		 Double dPpap = info.getPpap() / 1000;
+		//Double dPpap = dataManualPpapJam.getData(loanCode.trim()).getPpap() / 1000;
 		Long iPpap = Math.round(dPpap);
 		String ppap = StrUtils.lpadded(iPpap.toString(), 12, '0');
 		String metodeBasil = "2";
@@ -434,14 +434,14 @@ public class Lending {
 		Long iSaldoPiutang = iSaldoPokok + iSaldoMargin;
 		String saldoPiutang = StrUtils.lpadded(iSaldoPiutang.toString(), 12,
 				'0');
-		// Double dNilaiAgunan = info.getGuarantee() / 1000;
-		Double dNilaiAgunan = dataManualPpapJam.getData(loanCode.trim())
-				.getJaminan() / 1000;
+		 Double dNilaiAgunan = info.getGuarantee() / 1000;
+		//Double dNilaiAgunan = dataManualPpapJam.getData(loanCode.trim())
+		//		.getJaminan() / 1000;
 		Long iNilaiAgunan = Math.round(dNilaiAgunan);
 		String nilaiAgunan = StrUtils.lpadded(iNilaiAgunan.toString(), 12, '0');
 		String agunan = getJenisAgunan(info.getGuaranteeType());
-		// Double dPpap = info.getPpap() / 1000;
-		Double dPpap = dataManualPpapJam.getData(loanCode.trim()).getPpap() / 1000;
+		 Double dPpap = info.getPpap() / 1000;
+		//Double dPpap = dataManualPpapJam.getData(loanCode.trim()).getPpap() / 1000;
 		Long iPpap = Math.round(dPpap);
 		String ppap = StrUtils.lpadded(iPpap.toString(), 12, '0');
 		String strLine = StrUtils.lpadded("" + line, 6, '0');

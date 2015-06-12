@@ -15,8 +15,10 @@ public class Interest {
 	Map<Long, Double> taxList = new HashMap<Long, Double>();
 
 	Funding funding = null;
-	double minAverageValue = 2000000;
-	//double minAverageValue = 100000;
+	// sungai atang
+	//double minAverageValue = 2000000;
+	// karya indah
+	double minAverageValue = 100000;
 	// double admin = 2500;
 	double admin = 0;
 

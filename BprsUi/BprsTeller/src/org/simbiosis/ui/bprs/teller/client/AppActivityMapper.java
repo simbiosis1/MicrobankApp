@@ -5,6 +5,8 @@ import org.simbiosis.ui.bprs.teller.client.cashtrans.CashTransActivity;
 import org.simbiosis.ui.bprs.teller.client.cashtrans.CashTransPlace;
 import org.simbiosis.ui.bprs.teller.client.htvault.HtVaultActivity;
 import org.simbiosis.ui.bprs.teller.client.htvault.HtVaultPlace;
+import org.simbiosis.ui.bprs.teller.client.kolektif.UploadCollectiveActivity;
+import org.simbiosis.ui.bprs.teller.client.places.UploadCollective;
 import org.simbiosis.ui.bprs.teller.client.savingdeposit.DepositActivity;
 import org.simbiosis.ui.bprs.teller.client.savingdeposit.DepositPlace;
 import org.simbiosis.ui.bprs.teller.client.savingprint.SavingPrintActivity;
@@ -50,6 +52,9 @@ public class AppActivityMapper extends KembangActivityMapper {
 					clientFactory);
 		} else if (place instanceof SavingTransListPlace) {
 			return new SavingTransListActivity((SavingTransListPlace) place,
+					clientFactory);
+		} else if (place instanceof UploadCollective) {
+			return new UploadCollectiveActivity((UploadCollective) place,
 					clientFactory);
 		}
 		return null;

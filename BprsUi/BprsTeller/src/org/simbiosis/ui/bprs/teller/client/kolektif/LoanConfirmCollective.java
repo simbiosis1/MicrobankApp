@@ -2,7 +2,7 @@ package org.simbiosis.ui.bprs.teller.client.kolektif;
 
 import java.util.List;
 
-import org.simbiosis.ui.bprs.teller.client.editor.UploadCollectiveTable;
+import org.simbiosis.ui.bprs.teller.client.editor.LoanUploadCollectiveTable;
 import org.simbiosis.ui.bprs.teller.client.editor.TellerListEditor;
 import org.simbiosis.ui.bprs.teller.shared.TellerDv;
 import org.simbiosis.ui.bprs.teller.shared.UploadCollectiveDv;
@@ -15,7 +15,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ConfirmCollective extends Composite {
+public class LoanConfirmCollective extends Composite {
 
 	UploadCollective parent;
 
@@ -23,15 +23,15 @@ public class ConfirmCollective extends Composite {
 			.create(TarikTunaiViewerUiBinder.class);
 
 	interface TarikTunaiViewerUiBinder extends
-			UiBinder<Widget, ConfirmCollective> {
+			UiBinder<Widget, LoanConfirmCollective> {
 	}
 
 	@UiField
-	UploadCollectiveTable ctTable;
+	LoanUploadCollectiveTable ctTable;
 	@UiField
 	TellerListEditor tellers;
 
-	public ConfirmCollective() {
+	public LoanConfirmCollective() {
 		initWidget(uiBinder.createAndBindUi(this));
 		//
 	}

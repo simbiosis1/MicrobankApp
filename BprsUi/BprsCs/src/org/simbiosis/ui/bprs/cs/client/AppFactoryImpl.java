@@ -3,6 +3,10 @@ package org.simbiosis.ui.bprs.cs.client;
 import org.kembang.module.client.mvp.KembangClientFactoryImpl;
 import org.simbiosis.ui.bprs.cs.client.customer.Customer;
 import org.simbiosis.ui.bprs.cs.client.customer.ICustomer;
+import org.simbiosis.ui.bprs.cs.client.customerinfo.CustomerInfoData;
+import org.simbiosis.ui.bprs.cs.client.customerinfo.CustomerInfoForm;
+import org.simbiosis.ui.bprs.cs.client.customerinfo.ICustomerInfo;
+import org.simbiosis.ui.bprs.cs.client.customerinfo.ICustomerInfoData;
 import org.simbiosis.ui.bprs.cs.client.customerinput.CustomerEditor;
 import org.simbiosis.ui.bprs.cs.client.customerinput.CustomerViewer;
 import org.simbiosis.ui.bprs.cs.client.customerinput.ICustomerInput;
@@ -37,6 +41,8 @@ public class AppFactoryImpl extends KembangClientFactoryImpl implements
 	static final DepositViewer DEPOSIT_VIEWER = new DepositViewer();
 	static final DepositEditor DEPOSIT_EDITOR = new DepositEditor();
 	static final SavingBlockEditor SAVING_BLOCK_EDITOR = new SavingBlockEditor();
+	static final CustomerInfoForm CUSTOMER_INFO_FORM = new CustomerInfoForm();
+	static final CustomerInfoData CUSTOMER_INFO_DATA = new CustomerInfoData();
 
 	@Override
 	public ICustomer getListCustomer() {
@@ -96,6 +102,16 @@ public class AppFactoryImpl extends KembangClientFactoryImpl implements
 	@Override
 	public ISavingBlockEditor getSavingBlockEditor() {
 		return SAVING_BLOCK_EDITOR;
+	}
+
+	@Override
+	public ICustomerInfo getCustomerInfo() {
+		return CUSTOMER_INFO_FORM;
+	}
+
+	@Override
+	public ICustomerInfoData getCustomerInfoData() {
+		return CUSTOMER_INFO_DATA;
 	}
 
 }

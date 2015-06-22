@@ -34,6 +34,7 @@ public class SavingDv implements IsSerializable {
 	public SavingDv() {
 		super();
 		id = 0L;
+		nr=0;
 		newCustomer = false;
 		product = 0L;
 		zakat = true;

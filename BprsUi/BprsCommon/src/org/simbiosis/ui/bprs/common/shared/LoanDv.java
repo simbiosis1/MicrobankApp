@@ -46,9 +46,11 @@ public class LoanDv implements IsSerializable {
 
 	public LoanDv() {
 		super();
+		nr=0;
 		id = 0L;
 		product = 0L;
 		principal = 0D;
+		margin = 0D;
 		rate = 0D;
 		tenor = 0;
 		ao = 0L;

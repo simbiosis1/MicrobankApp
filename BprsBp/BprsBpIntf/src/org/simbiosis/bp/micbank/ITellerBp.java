@@ -20,6 +20,8 @@ public interface ITellerBp {
 	TellerDto getTellerByUser(String key);
 
 	//
+	long savePrivateTellerSavingTrans(String key, TellerTransactionDto transDto);
+	
 	long saveTellerSavingTrans(String key, TellerTransactionDto transDto);
 
 	long saveTellerCashTrans(String key, TellerTransactionDto transDto);

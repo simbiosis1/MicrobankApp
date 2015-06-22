@@ -135,6 +135,7 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 				throw new IllegalArgumentException("AUTH");
 			}
 		}
+		//
 		long id = tellerBp.saveTellerSavingTrans(key, transDto);
 		transDto = tellerBp.getTellerTransaction(id);
 		transDv.setCode(transDto.getCode());
@@ -546,7 +547,7 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 	}
 
 	@Override
-	public List<UploadCollectiveDv> listConfirmSavingCollective(String key,
+	public List<UploadCollectiveDv> listConfirmSavingCollective(String key,Date date,
 			String srcData) throws IllegalArgumentException {
 		List<UploadCollectiveDv> result = new ArrayList<UploadCollectiveDv>();
 		String source = srcData.replace("\r", "");
@@ -554,21 +555,50 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 		double total = 0;
 		for (int i = 0; i < datas.length; i++) {
 			String line[] = datas[i].split("\t");
-			if (line.length >= 4) {
-				long id = savingBp.getSavingIdByCode(key, line[0]);
-				SavingInformationDto info = savingBp.getInformation(id);
-				double debit = line[2].replace(",", "").isEmpty() ? 0 : Double
-						.parseDouble(line[2].replace(",", ""));
-				double credit = line[3].replace(",", "").isEmpty() ? 0 : Double
-						.parseDouble(line[3].replace(",", ""));
+			// Slip Code, rek, nama, ket, debit, kredit
+			if (line.length >= 6) {
+				double debit = line[4].replace(",", "").isEmpty() ? 0 : Double
+						.parseDouble(line[4].replace(",", ""));
+				double credit = line[5].replace(",", "").isEmpty() ? 0 : Double
+						.parseDouble(line[5].replace(",", ""));
 				total += (credit - debit);
 				UploadCollectiveDv dv = new UploadCollectiveDv(i + 1, line[0],
-						line[1], info.getName(), debit, debit, total);
-				dv.setSavingId(info.getId());
+						line[1], line[2], "", line[3], debit, credit, total);
+				long id = savingBp.getSavingIdByCode(key, line[1]);
+				if (id != 0) {
+					SavingInformationDto info = savingBp.getInformation(id);
+					dv.setSystemName(info.getName());
+					dv.setSavingId(info.getId());
+					dv.processSavingTrans();
+					double saldo = savingBp.getWithdrawalBallance(id, date, false);
+					if (dv.getDirection()==2 && dv.getValue()>saldo){
+						dv.setStatus(3);
+					}
+				} else{
+					dv.setStatus(1);
+				}
 				result.add(dv);
 			}
 		}
 		return result;
+	}
+
+	@Override
+	public void uploadSavingCollective(String key, Date date, Long teller,
+			List<UploadCollectiveDv> datas) throws IllegalArgumentException {
+		for (UploadCollectiveDv data : datas){
+			TellerTransactionDto transDto = new TellerTransactionDto();
+			transDto.setDate(date);
+			transDto.setDirection(data.getDirection());
+			transDto.setCode(data.getRefCode());
+			transDto.setRefCode(data.getRefCode());
+			transDto.setDescription(data.getDescription().toUpperCase());
+			transDto.setValue(data.getValue());
+			transDto.setAccountId(data.getSavingId());
+			transDto.setTeller(teller);
+			//
+			tellerBp.savePrivateTellerSavingTrans(key, transDto);
+		}
 	}
 
 	@Override
@@ -608,4 +638,12 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 			System.out.println("Coa : " + lKey + ", " + mapValues.get(lKey));
 		}
 	}
+
+	@Override
+	public void executeUpdate(String key, Date date, Long teller,
+			List<UploadCollectiveDv> data) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

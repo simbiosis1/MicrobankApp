@@ -3,8 +3,10 @@ package org.simbiosis.ui.bprs.cs.client;
 import org.kembang.module.client.mvp.KembangActivityMapper;
 import org.simbiosis.ui.bprs.cs.client.customer.CustomerActivity;
 import org.simbiosis.ui.bprs.cs.client.customer.CustomerPlace;
+import org.simbiosis.ui.bprs.cs.client.customerinfo.CustomerInfoActivity;
 import org.simbiosis.ui.bprs.cs.client.deposit.DepositActivity;
 import org.simbiosis.ui.bprs.cs.client.deposit.DepositPlace;
+import org.simbiosis.ui.bprs.cs.client.places.CustomerInfo;
 import org.simbiosis.ui.bprs.cs.client.places.SavingBlock;
 import org.simbiosis.ui.bprs.cs.client.saving.SavingActivity;
 import org.simbiosis.ui.bprs.cs.client.saving.SavingPlace;
@@ -35,6 +37,9 @@ public class AppActivityMapper extends KembangActivityMapper {
 					clientFactory);
 		} else if (place instanceof SavingBlock) {
 			return new SavingBlockActivity((SavingBlock) place,
+					clientFactory);
+		} else if (place instanceof CustomerInfo) {
+			return new CustomerInfoActivity((CustomerInfo) place,
 					clientFactory);
 		}
 		return null;

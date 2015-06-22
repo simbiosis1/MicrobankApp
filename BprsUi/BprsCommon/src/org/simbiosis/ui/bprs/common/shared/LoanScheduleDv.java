@@ -15,6 +15,7 @@ public class LoanScheduleDv implements IsSerializable {
 
 	public LoanScheduleDv() {
 		super();
+		nr = 0;
 		id = 0L;
 		principal = 0D;
 		margin = 0D;
@@ -24,6 +25,7 @@ public class LoanScheduleDv implements IsSerializable {
 
 	public LoanScheduleDv(Date date, double principal, double margin,
 			double total) {
+		nr = 0;
 		id = 0L;
 		this.date = date;
 		this.principal = principal;

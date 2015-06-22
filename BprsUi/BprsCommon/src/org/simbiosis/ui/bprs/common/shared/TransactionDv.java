@@ -109,6 +109,7 @@ public class TransactionDv implements IsSerializable {
 		direction = 0;
 		teller = 0L;
 		coa = 0L;
+		value = 0D;
 		principal = 0D;
 		margin = 0D;
 		discount = 0D;

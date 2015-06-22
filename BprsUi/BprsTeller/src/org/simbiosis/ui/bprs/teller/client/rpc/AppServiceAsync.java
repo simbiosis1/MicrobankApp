@@ -45,10 +45,16 @@ public interface AppServiceAsync {
 	void hasTellerApproval(String key, AsyncCallback<Boolean> callback)
 			throws IllegalArgumentException;
 
-	void listConfirmSavingCollective(String key, String srcData,
+	void listConfirmSavingCollective(String key, Date date, String srcData,
 			AsyncCallback<List<UploadCollectiveDv>> callback);
 
+	void uploadSavingCollective(String key, Date date, Long teller,
+			List<UploadCollectiveDv> data, AsyncCallback<Void> callback);
+
 	void executeCollective(String key, Long coa,
+			List<UploadCollectiveDv> data, AsyncCallback<Void> callback);
+
+	void executeUpdate(String key, Date date, Long teller,
 			List<UploadCollectiveDv> data, AsyncCallback<Void> callback);
 
 }

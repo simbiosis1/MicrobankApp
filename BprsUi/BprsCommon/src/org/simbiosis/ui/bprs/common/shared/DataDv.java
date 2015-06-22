@@ -12,6 +12,13 @@ public class DataDv implements IsSerializable {
 	String strProduk;
 	Double rate;
 
+	public DataDv() {
+		nr = 0;
+		id = 0L;
+		produk = 0L;
+		rate = 0D;
+	}
+
 	public Integer getNr() {
 		return nr;
 	}

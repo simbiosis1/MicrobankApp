@@ -13,10 +13,14 @@ public interface IUploadCollective {
 	void setActivity(Activity activity, AppStatus appStatus);
 
 	FormWidget getFormWidget();
+	
+	void gotoFirstForm();
 
 	void confirmTransfer(List<UploadCollectiveDv> data);
 
 	String getSrcData();
+	
+	List<UploadCollectiveDv> getCollectiveData();
 
 	List<UploadCollectiveDv> getTransferData();
 
@@ -29,9 +33,9 @@ public interface IUploadCollective {
 	int getType();
 
 	public abstract class Activity extends FormActivity {
-		public abstract void confirmTransfer();
+		public abstract void confirmUpload(int type, Date date);
 
-		public abstract void executeTransfer();
+		public abstract void executeUpload(int type, Date date, Long teller);
 	}
 
 }

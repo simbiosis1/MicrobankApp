@@ -33,10 +33,14 @@ public class DepositDv implements IsSerializable {
 	String province;
 
 	public DepositDv() {
+		nr = 0;
 		id = 0L;
 		product = 0L;
 		aro = true;
+		zakat = false;
+		rate = 0D;
 		specialRate = 0D;
+		value = 0D;
 	}
 
 	public void copyDepositData() {

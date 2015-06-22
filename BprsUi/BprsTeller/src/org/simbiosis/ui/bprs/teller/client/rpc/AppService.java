@@ -39,7 +39,13 @@ public interface AppService extends RemoteService {
 
 	Boolean hasTellerApproval(String key) throws IllegalArgumentException;
 
-	List<UploadCollectiveDv> listConfirmSavingCollective(String key, String srcData)
+	List<UploadCollectiveDv> listConfirmSavingCollective(String key, Date date, String srcData)
+			throws IllegalArgumentException;
+
+	void uploadSavingCollective(String key, Date date, Long teller, List<UploadCollectiveDv> data)
+			throws IllegalArgumentException;
+	
+	void executeUpdate(String key, Date date, Long teller, List<UploadCollectiveDv> data)
 			throws IllegalArgumentException;
 
 	void executeCollective(String key, Long coa, List<UploadCollectiveDv> data)

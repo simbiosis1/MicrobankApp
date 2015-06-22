@@ -2,6 +2,8 @@ package org.simbiosis.ui.bprs.cs.client;
 
 import org.kembang.module.client.mvp.KembangClientFactory;
 import org.simbiosis.ui.bprs.cs.client.customer.ICustomer;
+import org.simbiosis.ui.bprs.cs.client.customerinfo.ICustomerInfo;
+import org.simbiosis.ui.bprs.cs.client.customerinfo.ICustomerInfoData;
 import org.simbiosis.ui.bprs.cs.client.customerinput.ICustomerInput;
 import org.simbiosis.ui.bprs.cs.client.deposit.IDeposit;
 import org.simbiosis.ui.bprs.cs.client.depositinput.IDepositInput;
@@ -35,5 +37,9 @@ public interface AppFactory extends KembangClientFactory {
 	ISavingClose getSavingCloseEditor();
 
 	ISavingBlockEditor getSavingBlockEditor();
+
+	ICustomerInfo getCustomerInfo();
+
+	ICustomerInfoData getCustomerInfoData();
 
 }

@@ -24,6 +24,15 @@ public class SavingUploadCollectiveTable extends SimpleGrid<UploadCollectiveDv> 
 		}
 	};
 
+	ColumnDef<UploadCollectiveDv, String> colRefCode = new ColumnDef<UploadCollectiveDv, String>(
+			ColumnType.LABEL, "Slip", "74px", "70px") {
+
+		@Override
+		public String getDataValue(UploadCollectiveDv data) {
+			return data.getRefCode();
+		}
+	};
+
 	ColumnDef<UploadCollectiveDv, String> colCode = new ColumnDef<UploadCollectiveDv, String>(
 			ColumnType.LABEL, "No rek", "84px", "80px") {
 
@@ -43,7 +52,7 @@ public class SavingUploadCollectiveTable extends SimpleGrid<UploadCollectiveDv> 
 	};
 
 	ColumnDef<UploadCollectiveDv, String> colNameSystem = new ColumnDef<UploadCollectiveDv, String>(
-			ColumnType.LABEL, "Nama system", "154px", "150px") {
+			ColumnType.LABEL, "Nama sistem", "154px", "150px") {
 
 		@Override
 		public String getDataValue(UploadCollectiveDv data) {
@@ -51,8 +60,17 @@ public class SavingUploadCollectiveTable extends SimpleGrid<UploadCollectiveDv> 
 		}
 	};
 
+	ColumnDef<UploadCollectiveDv, String> colDescription = new ColumnDef<UploadCollectiveDv, String>(
+			ColumnType.LABEL, "Keterangan", "104px", "100px") {
+
+		@Override
+		public String getDataValue(UploadCollectiveDv data) {
+			return data.getDescription();
+		}
+	};
+
 	ColumnDef<UploadCollectiveDv, String> colDebit = new ColumnDef<UploadCollectiveDv, String>(
-			ColumnType.LABEL, "Debit", "104px", "100px") {
+			ColumnType.LABEL, "Debit", "94px", "90px") {
 
 		@Override
 		public String getDataValue(UploadCollectiveDv data) {
@@ -61,23 +79,44 @@ public class SavingUploadCollectiveTable extends SimpleGrid<UploadCollectiveDv> 
 	};
 
 	ColumnDef<UploadCollectiveDv, String> colCredit = new ColumnDef<UploadCollectiveDv, String>(
-			ColumnType.LABEL, "Debit", "104px", "100px") {
+			ColumnType.LABEL, "Kredit", "94px", "90px") {
 
 		@Override
 		public String getDataValue(UploadCollectiveDv data) {
-			return numberFormat.format(data.getDebit());
+			return numberFormat.format(data.getCredit());
+		}
+	};
+
+	ColumnDef<UploadCollectiveDv, String> colStatus = new ColumnDef<UploadCollectiveDv, String>(
+			ColumnType.LABEL, "Status") {
+
+		@Override
+		public String getDataValue(UploadCollectiveDv data) {
+			switch (data.getStatus()) {
+			case 1:
+				return "REKENING TIDAK ADA";
+			case 2:
+				return "MASALAH NILAI DEBIT KREDIT";
+			case 3:
+				return "MASALAH SALDO PENARIKAN";
+			default:
+				return "";
+			}
 		}
 	};
 
 	public SavingUploadCollectiveTable() {
 		addColumn(colNr);
+		addColumn(colRefCode);
 		addColumn(colCode);
 		addColumn(colName);
 		addColumn(colNameSystem);
+		addColumn(colDescription);
 		colDebit.setAlign(HasHorizontalAlignment.ALIGN_RIGHT);
 		addColumn(colDebit);
 		colCredit.setAlign(HasHorizontalAlignment.ALIGN_RIGHT);
 		addColumn(colCredit);
+		addColumn(colStatus);
 	}
 
 }

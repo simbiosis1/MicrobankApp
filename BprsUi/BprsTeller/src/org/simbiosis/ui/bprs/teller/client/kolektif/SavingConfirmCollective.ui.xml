@@ -5,7 +5,9 @@
 	xmlns:p3="urn:import:org.simbiosis.ui.bprs.teller.client.editor">
 	<g:VerticalPanel>
 		<e:SavingUploadCollectiveTable ui:field="ctTable"
-			width="600px" height="400px" />
+			width="950px" height="400px" />
+		<g:FlexTable ui:field='transactionFooter' styleName='Global-FlexTable-Footer'
+						cellSpacing='0' cellPadding='0' />
 		<g:HTMLPanel>
 			<table>
 				<tr>
@@ -18,7 +20,6 @@
 			</table>
 			<br />
 		</g:HTMLPanel>
-		<g:Button styleName="formButton" ui:field="btnExecute">Jalankan pindah
-			buku</g:Button>
+		<g:Button styleName="formButton" ui:field="btnExecute">Jalankan transaksi</g:Button>
 	</g:VerticalPanel>
 </ui:UiBinder> 

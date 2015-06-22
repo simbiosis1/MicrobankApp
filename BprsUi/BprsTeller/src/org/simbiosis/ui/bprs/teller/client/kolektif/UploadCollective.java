@@ -9,6 +9,7 @@ import org.simbiosis.ui.bprs.teller.shared.TellerDv;
 import org.simbiosis.ui.bprs.teller.shared.UploadCollectiveDv;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.ListBox;
@@ -46,10 +47,13 @@ public class UploadCollective extends FormWidget implements IUploadCollective {
 		//
 		copyData.setParent(this);
 		savingConfirm.setParent(this);
+		loanConfirm.setParent(this);
 		//
 		dataPanel.add(copyData);
 		//
 		transDate.setValue(new Date());
+		transDate.setFormat(new DateBox.DefaultFormat(DateTimeFormat
+				.getFormat("dd-MM-yyyy")));
 	}
 
 	@Override
@@ -64,7 +68,7 @@ public class UploadCollective extends FormWidget implements IUploadCollective {
 		return this;
 	}
 
-	public void confirmTransfer() {
+	public void confirmUpload() {
 		dataPanel.clear();
 		if (transType.getSelectedIndex() == 0) {
 			dataPanel.add(savingConfirm);
@@ -72,16 +76,21 @@ public class UploadCollective extends FormWidget implements IUploadCollective {
 			dataPanel.add(loanConfirm);
 		}
 		//
-		activity.confirmTransfer();
+		activity.confirmUpload(transType.getSelectedIndex(),transDate.getValue());
 	}
 
-	public void executeTransfer() {
-		activity.executeTransfer();
+	public void executeUpload(Long teller) {
+		activity.executeUpload(transType.getSelectedIndex(),
+				transDate.getValue(), teller);
 	}
 
 	@Override
 	public void confirmTransfer(List<UploadCollectiveDv> data) {
-		savingConfirm.setData(data);
+		if (transType.getSelectedIndex() == 0) {
+			savingConfirm.setData(data);
+		} else {
+			loanConfirm.setData(data);
+		}
 	}
 
 	@Override
@@ -112,6 +121,22 @@ public class UploadCollective extends FormWidget implements IUploadCollective {
 	@Override
 	public int getType() {
 		return transType.getSelectedIndex() + 1;
+	}
+
+	@Override
+	public List<UploadCollectiveDv> getCollectiveData() {
+		if (transType.getSelectedIndex() == 0) {
+			return savingConfirm.getData();
+		} else {
+			return loanConfirm.getData();
+		}
+	}
+
+	@Override
+	public void gotoFirstForm() {
+		copyData.clear();
+		dataPanel.clear();
+		dataPanel.add(copyData);
 	}
 
 }

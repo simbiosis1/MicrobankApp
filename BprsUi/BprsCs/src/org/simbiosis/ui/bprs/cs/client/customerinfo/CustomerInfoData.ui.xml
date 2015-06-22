@@ -1,0 +1,18 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:a="urn:import:org.simbiosis.ui.bprs.common.client.customerhelper"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<g:HTMLPanel>
+			<table class="formTableLayout" width="100%">
+				<tr>
+					<td class="formSubtitle">Info nasabah</td>
+				</tr>
+				<tr>
+					<td width="100%"><a:SimpleCustomerViewer ui:field="anggota" /></td>
+				</tr>
+				<tr>
+					<td class="formLabel">&nbsp;</td>
+				</tr>
+			</table>
+	</g:HTMLPanel>
+</ui:UiBinder> 

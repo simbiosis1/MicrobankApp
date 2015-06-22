@@ -19,11 +19,9 @@ public class LoanConfirmCollective extends Composite {
 
 	UploadCollective parent;
 
-	private static TarikTunaiViewerUiBinder uiBinder = GWT
-			.create(TarikTunaiViewerUiBinder.class);
+	private static MyUiBinder uiBinder = GWT.create(MyUiBinder.class);
 
-	interface TarikTunaiViewerUiBinder extends
-			UiBinder<Widget, LoanConfirmCollective> {
+	interface MyUiBinder extends UiBinder<Widget, LoanConfirmCollective> {
 	}
 
 	@UiField
@@ -59,6 +57,6 @@ public class LoanConfirmCollective extends Composite {
 
 	@UiHandler("btnExecute")
 	public void onExecute(ClickEvent e) {
-		parent.executeTransfer();
+		parent.executeUpload(tellers.getValue());
 	}
 }

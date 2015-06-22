@@ -15,16 +15,19 @@ public class LoanScheduleGenDv implements IsSerializable {
 	List<LoanScheduleDv> schedules = new ArrayList<LoanScheduleDv>();
 	int scheduleType;
 
+	public LoanScheduleGenDv() {
+		scheduleType = 1;
+		principal = 0D;
+		rate = 0D;
+		tenor = 0;
+	}
+
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public LoanScheduleGenDv() {
-		scheduleType = 1;
 	}
 
 	public Double getPrincipal() {

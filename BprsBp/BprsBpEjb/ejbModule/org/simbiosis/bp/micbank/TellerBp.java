@@ -197,7 +197,7 @@ public class TellerBp implements ITellerBp {
 		transDto.setSubBranch(teller.getSubBranch());
 		transDto.setTeller(teller.getId());
 		transDto.setTimestamp(now);
-		if (transDto.getId() == 0) {
+		if (transDto.getId() == 0 && transDto.getCode().isEmpty()) {
 			BranchDto branchDto = system.getBranch(teller.getBranch());
 			SubBranchDto subBranchDto = system.getSubBranch(teller
 					.getSubBranch());
@@ -328,6 +328,56 @@ public class TellerBp implements ITellerBp {
 			//
 			saveTellerSavingJournal(transDto, infoSaving, product, ballance,
 					adminClosing, ballanceRemaining);
+		}
+		return id;
+	}
+
+	@Override
+	public long savePrivateTellerSavingTrans(String key,
+			TellerTransactionDto transDto) {
+		UserDto user = system.getUserFromSession(key);
+		long id = 0;
+		if (user != null) {
+			//
+			SavingInformationDto infoSaving = saving.getInformation(transDto
+					.getAccountId());
+			SavingProductDto product = saving.getProduct(infoSaving
+					.getProduct());
+			//
+			String transDesc = (transDto.getDirection() == 1) ? "SETOR TUNAI - "
+					: "TARIK TUNAI - ";
+			transDesc += infoSaving.getName() + " (" + infoSaving.getCode()
+					+ ")";
+			transDesc += transDto.getDescription().isEmpty() ? ""
+					: (" - " + transDto.getDescription());
+			//
+			TellerDto tellerDto = teller.getTeller(transDto.getTeller());
+			//
+			transDto = setupTellerTrans(transDto, tellerDto);
+			transDto.setDescription(transDesc.toUpperCase());
+			transDto.setType(3); // for saving transaction
+			id = teller.saveTellerTransaction(transDto);
+			//
+			SavingTransactionDto savingTransDto = new SavingTransactionDto();
+			savingTransDto.setDate(transDto.getDate());
+			savingTransDto.setTimestamp(new Date());
+			savingTransDto.setCode(transDto.getCode());
+			savingTransDto.setHasCode(true);
+			savingTransDto.setDescription(transDto.getDescription());
+			savingTransDto.setDirection(transDto.getDirection());
+			savingTransDto.setValue(transDto.getValue());
+			// Teller transaction masuk->1, keluar->2
+			savingTransDto.setType(transDto.getDirection());
+			savingTransDto.setSaving(transDto.getAccountId());
+			savingTransDto.setCompany(user.getCompany());
+			savingTransDto.setBranch(user.getBranch());
+			SavingTransMsg savingTransMsg = new SavingTransMsg();
+			savingTransMsg.setIdSource(id);
+			savingTransMsg.setQueueName("java:jboss/queue/transTellerIn");
+			savingTransMsg.setSavingTransactionDto(savingTransDto);
+			savingMsg.sendSavingTrans(savingTransMsg);
+			//
+			saveTellerSavingJournal(transDto, infoSaving, product, 0, 0, 0);
 		}
 		return id;
 	}

@@ -17,6 +17,7 @@ public class SavingTransDv implements Serializable {
 	String credit;
 	String ballance;
 	String operator;
+	String code;
 
 	public SavingTransDv() {
 		super();
@@ -27,6 +28,7 @@ public class SavingTransDv implements Serializable {
 		credit = "";
 		ballance = "";
 		operator = "";
+		code = "";
 	}
 
 	public int getLine() {
@@ -99,6 +101,14 @@ public class SavingTransDv implements Serializable {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 }

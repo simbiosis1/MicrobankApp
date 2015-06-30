@@ -43,7 +43,7 @@ public class CollectiveTransferTable extends SimpleGrid<TransferCollectiveDv> {
 	};
 
 	ColumnDef<TransferCollectiveDv, String> colNameSystem = new ColumnDef<TransferCollectiveDv, String>(
-			ColumnType.LABEL, "Nama system", "154px", "150px") {
+			ColumnType.LABEL, "Nama sistem", "154px", "150px") {
 
 		@Override
 		public String getDataValue(TransferCollectiveDv data) {
@@ -52,11 +52,20 @@ public class CollectiveTransferTable extends SimpleGrid<TransferCollectiveDv> {
 	};
 
 	ColumnDef<TransferCollectiveDv, String> colValue = new ColumnDef<TransferCollectiveDv, String>(
-			ColumnType.LABEL, "Nilai") {
+			ColumnType.LABEL, "Nilai", "154px", "150px") {
 
 		@Override
 		public String getDataValue(TransferCollectiveDv data) {
 			return numberFormat.format(data.getValue());
+		}
+	};
+
+	ColumnDef<TransferCollectiveDv, String> colStatus = new ColumnDef<TransferCollectiveDv, String>(
+			ColumnType.LABEL, "Status") {
+
+		@Override
+		public String getDataValue(TransferCollectiveDv data) {
+			return data.getStatus();
 		}
 	};
 
@@ -67,6 +76,7 @@ public class CollectiveTransferTable extends SimpleGrid<TransferCollectiveDv> {
 		addColumn(colNameSystem);
 		colValue.setAlign(HasHorizontalAlignment.ALIGN_RIGHT);
 		addColumn(colValue);
+		addColumn(colStatus);
 	}
 
 }

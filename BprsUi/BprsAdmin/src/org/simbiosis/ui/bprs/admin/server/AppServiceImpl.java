@@ -18,6 +18,8 @@ import org.simbiosis.bp.micbank.IDepositBp;
 import org.simbiosis.bp.micbank.ILoanBp;
 import org.simbiosis.bp.micbank.ISavingBp;
 import org.simbiosis.gl.model.Coa;
+import org.simbiosis.gl.model.GlTrans;
+import org.simbiosis.gl.model.GlTransItem;
 import org.simbiosis.microbank.DepositTransactionDto;
 import org.simbiosis.microbank.GuaranteeDto;
 import org.simbiosis.microbank.LoanDto;
@@ -289,12 +291,19 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 		for (int i = 0; i < datas.length; i++) {
 			String line[] = datas[i].split("\t");
 			if (line.length >= 3) {
-				long id = savingBp.getSavingIdByCode(key, line[0]);
-				SavingInformationDto info = savingBp.getInformation(id);
+				String accountCode = line[0].trim();
 				TransferCollectiveDv dv = new TransferCollectiveDv(i + 1,
-						line[0], line[1], info.getName(),
-						Double.parseDouble(line[2].replace(",", "")));
-				dv.setSavingId(info.getId());
+						accountCode, line[1], Double.parseDouble(line[2]
+								.replace(",", "")));
+				//
+				long id = savingBp.getSavingIdByCode(key, accountCode);
+				if (id != 0) {
+					SavingInformationDto info = savingBp.getInformation(id);
+					dv.setSystemName(info.getName());
+					dv.setSavingId(info.getId());
+				} else {
+					dv.setStatus("Rekening tidak ditemukan");
+				}
 				result.add(dv);
 			}
 		}
@@ -302,13 +311,15 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 	}
 
 	@Override
-	public void executeCollectiveTransfer(String key, Long coa,
+	public void executeCollectiveTransfer(String key, Long lcoa,
 			List<TransferCollectiveDv> data) throws IllegalArgumentException {
 		DateTime now = new DateTime();
 		DateTimeFormatter df = DateTimeFormat.forPattern("yyyyMMdd");
+		DateTimeFormatter mf = DateTimeFormat.forPattern("MM/yyyy");
 		String code = "GAJ" + df.print(now);
-		System.out.println("Coa : " + coa.toString());
+		Double totalValue = 0D;
 		Map<Long, Double> mapValues = new HashMap<Long, Double>();
+		// Kirim ke masing-masing tabungan
 		for (TransferCollectiveDv dv : data) {
 			SavingInformationDto info = savingBp.getInformation(dv
 					.getSavingId());
@@ -328,15 +339,39 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 					+ info.getCode() + ")");
 			trans.setType(3);
 			trans.setValue(dv.getValue());
+			totalValue += dv.getValue();
 			trans.setSaving(dv.getSavingId());
 			savingBp.saveTransaction(key, trans);
-			System.out.println("Transfer : " + dv.getSavingId() + ", "
-					+ dv.getValue().toString());
 		}
+		// Buat jurnal
 		Set<Long> keys = mapValues.keySet();
+		GlTrans jurnal = new GlTrans();
+		jurnal.setCode(code);
+		jurnal.setDate(now.toDate());
+		String description = "GAJI " + mf.print(now) + " - " + keys.size()
+				+ " orang ";
+		jurnal.setDescription(description);
+		// jurnal.setUser(user);
+		Coa coa = glBp.getCoa(lcoa);
+		GlTransItem item = new GlTransItem();
+		item.setCoa(coa);
+		item.setDescription(description);
+		item.setValue(totalValue);
+		item.setDirection(1);
+		item.setTransaction(jurnal);
+		jurnal.getItems().add(item);
 		for (Long lKey : keys) {
 			System.out.println("Coa : " + lKey + ", " + mapValues.get(lKey));
+			item = new GlTransItem();
+			coa = glBp.getCoa(lKey);
+			item.setCoa(coa);
+			item.setDescription(description);
+			item.setValue(mapValues.get(lKey));
+			item.setDirection(2);
+			item.setTransaction(jurnal);
+			jurnal.getItems().add(item);
 		}
+		glBp.saveGLTrans(key, jurnal);
 	}
 
 }

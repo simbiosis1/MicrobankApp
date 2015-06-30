@@ -197,7 +197,7 @@ public class TellerBp implements ITellerBp {
 		transDto.setSubBranch(teller.getSubBranch());
 		transDto.setTeller(teller.getId());
 		transDto.setTimestamp(now);
-		if (transDto.getId() == 0 && transDto.getCode().isEmpty()) {
+		if (transDto.getId() == 0 && transDto.getCode() == null) {
 			BranchDto branchDto = system.getBranch(teller.getBranch());
 			SubBranchDto subBranchDto = system.getSubBranch(teller
 					.getSubBranch());

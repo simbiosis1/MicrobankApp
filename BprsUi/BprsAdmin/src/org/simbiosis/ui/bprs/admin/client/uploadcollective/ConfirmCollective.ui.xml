@@ -4,7 +4,7 @@
 	xmlns:e="urn:import:org.simbiosis.ui.bprs.admin.client.editor">
 	<g:VerticalPanel>
 		<e:CollectiveTransferTable ui:field="ctTable"
-			width="600px" height="400px" />
+			width="700px" height="400px" />
 		<g:HTMLPanel>
 			<table>
 				<tr>

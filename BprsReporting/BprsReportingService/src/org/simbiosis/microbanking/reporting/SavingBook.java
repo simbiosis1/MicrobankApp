@@ -141,6 +141,7 @@ public class SavingBook extends ValidationServlet {
 			}
 			// Teller tellerDto = teller.getTeller(dto.get);
 			transDv.setOperator("T001");
+			transDv.setCode(dto.getCode());
 			//
 			dvList.add(transDv);
 			savingBp.saveNUC(dto.getId(), i);

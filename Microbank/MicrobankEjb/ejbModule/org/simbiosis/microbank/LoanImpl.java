@@ -1386,7 +1386,35 @@ public class LoanImpl implements ILoan {
 	@Override
 	public LoanScheduleDto getEarlyRepayment(long id) {
 		LoanScheduleDto result = new LoanScheduleDto();
-		// Loan loan = em.find(Loan.class, id);
+
+		Loan loan = em.find(Loan.class, id);
+		double principal = loan.getPrincipal();
+		double margin = loan.getMargin();
+
+		Query q = em.createNamedQuery("getSumLoanTransaction");
+		q.setParameter("loanId", id);
+		q.setParameter("direction", 2);
+		q.setParameter("date", new Date());
+		List<Object[]> res = (List<Object[]>) q.getResultList();
+		double paydPrincipal = 0;
+		double paydMargin = 0;
+		if (res.size() > 0) {
+			Object[] obj = res.get(0);
+			paydPrincipal = (double) obj[1];
+			paydMargin = (double) obj[2];
+		}
+		principal = principal - paydPrincipal;
+		margin = margin - paydMargin;
+		result.setPrincipal(principal);
+		if (loan.getProduct().getSchema() == 5
+				|| loan.getProduct().getSchema() == 6
+				|| loan.getProduct().getSchema() == 7) {
+			result.setMargin(0);
+		} else {
+			result.setMargin(margin);
+		}
+		result.setDate(new Date());
+
 		// Query qry = em.createNamedQuery("listLoanScheduleNotPaid2");
 		// qry.setParameter("id", id);
 		// List<LoanSchedule> schedules = qry.getResultList();
@@ -1409,37 +1437,37 @@ public class LoanImpl implements ILoan {
 		// result.setMargin(0);
 		// }
 
-		Query qry = em.createNamedQuery("listLoanSchedule");
-		qry.setParameter("id", id);
-		List<LoanSchedule> schedules = qry.getResultList();
-		double principal = 0;
-		double margin = 0;
-		if (schedules.size() > 0) {
-			for (LoanSchedule schedule : schedules) {
-				principal += schedule.getPrincipal();
-				margin += schedule.getMargin();
-			}
-			Query q = em.createNamedQuery("getSumLoanTransaction");
-			q.setParameter("loanId", id);
-			q.setParameter("direction", 2);
-			q.setParameter("date", new Date());
-			List<Object[]> res = (List<Object[]>) q.getResultList();
-			double paydPrincipal = 0;
-			double paydMargin = 0;
-			if (res.size() > 0) {
-				Object[] obj = res.get(0);
-				paydPrincipal = (double) obj[1];
-				paydMargin = (double) obj[2];
-			}
-			principal = principal - paydPrincipal;
-			margin = margin - paydMargin;
-			result.setPrincipal(principal);
-			result.setMargin(margin);
-		} else {
-			result.setPrincipal(0);
-			result.setMargin(0);
-		}
-		result.setDate(new Date());
+		// Query qry = em.createNamedQuery("listLoanSchedule");
+		// qry.setParameter("id", id);
+		// List<LoanSchedule> schedules = qry.getResultList();
+		// double principal = 0;
+		// double margin = 0;
+		// if (schedules.size() > 0) {
+		// for (LoanSchedule schedule : schedules) {
+		// principal += schedule.getPrincipal();
+		// margin += schedule.getMargin();
+		// }
+		// Query q = em.createNamedQuery("getSumLoanTransaction");
+		// q.setParameter("loanId", id);
+		// q.setParameter("direction", 2);
+		// q.setParameter("date", new Date());
+		// List<Object[]> res = (List<Object[]>) q.getResultList();
+		// double paydPrincipal = 0;
+		// double paydMargin = 0;
+		// if (res.size() > 0) {
+		// Object[] obj = res.get(0);
+		// paydPrincipal = (double) obj[1];
+		// paydMargin = (double) obj[2];
+		// }
+		// principal = principal - paydPrincipal;
+		// margin = margin - paydMargin;
+		// result.setPrincipal(principal);
+		// result.setMargin(margin);
+		// } else {
+		// result.setPrincipal(0);
+		// result.setMargin(0);
+		// }
+		// result.setDate(new Date());
 		return result;
 	}
 

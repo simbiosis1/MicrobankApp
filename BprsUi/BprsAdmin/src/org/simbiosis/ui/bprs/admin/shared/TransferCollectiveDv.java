@@ -9,6 +9,7 @@ public class TransferCollectiveDv implements IsSerializable {
 	String name;
 	String systemName;
 	Double value;
+	String status;
 
 	public TransferCollectiveDv() {
 		nr = 0;
@@ -16,12 +17,12 @@ public class TransferCollectiveDv implements IsSerializable {
 	}
 
 	public TransferCollectiveDv(Integer nr, String code, String name,
-			String systemName, Double value) {
+			Double value) {
 		this.nr = nr;
 		this.code = code;
 		this.name = name;
 		savingId = 0L;
-		this.systemName = systemName;
+		systemName = "";
 		this.value = value;
 	}
 
@@ -71,6 +72,14 @@ public class TransferCollectiveDv implements IsSerializable {
 
 	public void setSavingId(Long savingId) {
 		this.savingId = savingId;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

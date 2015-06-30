@@ -1,9 +1,11 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
-	<g:VerticalPanel>
+	<g:ScrollPanel height="100%">
+	<g:VerticalPanel height="100%">
 	    <g:HTMLPanel styleName="formLabel">Tanggal</g:HTMLPanel>
 	    <g:DateLabel styleName="formTextlabel" ui:field="transDate" customFormat="dd-MM-yyyy" />
 	    <g:VerticalPanel ui:field="dataPanel" />
 	</g:VerticalPanel>
+	</g:ScrollPanel>
 </ui:UiBinder> 

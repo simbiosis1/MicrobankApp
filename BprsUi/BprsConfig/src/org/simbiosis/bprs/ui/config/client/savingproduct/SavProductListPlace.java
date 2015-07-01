@@ -1,4 +1,4 @@
-package org.simbiosis.bprs.ui.config.client.saving;
+package org.simbiosis.bprs.ui.config.client.savingproduct;
 
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;

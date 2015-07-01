@@ -7,8 +7,8 @@ import org.simbiosis.bprs.ui.config.client.gl.GlConfigActivity;
 import org.simbiosis.bprs.ui.config.client.loan.LoanProductListActivity;
 import org.simbiosis.bprs.ui.config.client.loan.LoanProductListPlace;
 import org.simbiosis.bprs.ui.config.client.places.GlConfig;
-import org.simbiosis.bprs.ui.config.client.saving.SavProductListActivity;
-import org.simbiosis.bprs.ui.config.client.saving.SavProductListPlace;
+import org.simbiosis.bprs.ui.config.client.savingproduct.SavProductListActivity;
+import org.simbiosis.bprs.ui.config.client.savingproduct.SavProductListPlace;
 import org.simbiosis.bprs.ui.config.client.teller.TellerListActivity;
 import org.simbiosis.bprs.ui.config.client.teller.TellerListPlace;
 

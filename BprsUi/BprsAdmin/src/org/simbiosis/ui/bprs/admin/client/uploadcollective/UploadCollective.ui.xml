@@ -5,7 +5,11 @@
 	<g:VerticalPanel height="100%">
 	    <g:HTMLPanel styleName="formLabel">Tanggal</g:HTMLPanel>
 	    <g:DateLabel styleName="formTextlabel" ui:field="transDate" customFormat="dd-MM-yyyy" />
-	    <g:VerticalPanel ui:field="dataPanel" />
+		<g:HTMLPanel><br /></g:HTMLPanel>
+	    <g:HTMLPanel styleName="formLabel">Jenis transaksi</g:HTMLPanel>
+	    <g:ListBox styleName="formCombobox" ui:field="transType"/>
+		<g:HTMLPanel><br /></g:HTMLPanel>
+		<g:VerticalPanel ui:field="dataPanel" />
 	</g:VerticalPanel>
 	</g:ScrollPanel>
 </ui:UiBinder> 

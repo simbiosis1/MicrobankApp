@@ -16,16 +16,16 @@ public class Interest {
 
 	Funding funding = null;
 	// sungai atang
-	//double minAverageValue = 2000000;
+	// double minAverageValue = 2000000;
 	// karya indah
 	double minAverageValue = 100000;
 	// double admin = 2500;
 	double admin = 0;
 
-	public Interest(MicrobankCoreClient jsonClient, String beginDate, int days,
-			String endDate) {
+	public Interest(MicrobankCoreClient jsonClient, String beforeDate,
+			String beginDate, int days, String endDate) {
 		this.days = days;
-		funding = new Funding(jsonClient, beginDate, endDate, days,
+		funding = new Funding(jsonClient, beforeDate, beginDate, endDate, days,
 				revSharingMap, taxList);
 	}
 

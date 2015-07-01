@@ -26,6 +26,7 @@ public class Calculate extends CliBase {
 	//
 	int month;
 	int year;
+	String beforeDate;
 	String beginDate;
 	String endDate;
 	int days;
@@ -40,8 +41,10 @@ public class Calculate extends CliBase {
 	public Calculate() {
 		super("cli.properties");
 		// Dijalankan tanggal 1 awal bulan.....
-		DateTime now = new DateTime().dayOfMonth().withMinimumValue().minusDays(1);
+		DateTime now = new DateTime().dayOfMonth().withMinimumValue()
+				.minusDays(1);
 		//
+		DateTimeFormatter sDate = DateTimeFormat.forPattern("dd-MM-yyyy");
 		DateTimeFormatter sMonth = DateTimeFormat.forPattern("MM");
 		DateTimeFormatter sYear = DateTimeFormat.forPattern("yyyy");
 		//
@@ -50,6 +53,8 @@ public class Calculate extends CliBase {
 		year = Integer.parseInt(sYear.print(now));
 		beginDate = "01-" + strMonth + "-" + year;
 		endDate = getEndMonths(month) + "-" + year;
+		DateTime beforeDateTime = sDate.parseDateTime(beginDate).minusDays(1);
+		beforeDate = sDate.print(beforeDateTime);
 		days = monthDays[month];
 	}
 
@@ -57,8 +62,8 @@ public class Calculate extends CliBase {
 		while (next()) {
 			UserDto user = getUserFromSession();
 			if (user != null) {
-				revSharing = new RevSharing(getCoreClient(), beginDate, days,
-						endDate);
+				revSharing = new RevSharing(getCoreClient(), beforeDate,
+						beginDate, days, endDate);
 				//
 				System.out.println("Tanggal : " + beginDate + " - " + endDate);
 				System.out.println("Process revSharing data...");

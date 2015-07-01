@@ -32,7 +32,7 @@ public class CopyData extends Composite {
 
 	@UiHandler("btnSendSrc")
 	public void onSendSrc(ClickEvent e) {
-		parent.confirmTransfer();
+		parent.confirmTrans();
 	}
 
 	public String getData() {

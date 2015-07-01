@@ -15,7 +15,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ConfirmCollective extends Composite {
+public class ConfirmGajiCollective extends Composite {
 
 	UploadCollective parent;
 
@@ -23,7 +23,7 @@ public class ConfirmCollective extends Composite {
 			.create(TarikTunaiViewerUiBinder.class);
 
 	interface TarikTunaiViewerUiBinder extends
-			UiBinder<Widget, ConfirmCollective> {
+			UiBinder<Widget, ConfirmGajiCollective> {
 	}
 
 	@UiField
@@ -31,7 +31,7 @@ public class ConfirmCollective extends Composite {
 	@UiField
 	CoaListEditor coa;
 
-	public ConfirmCollective() {
+	public ConfirmGajiCollective() {
 		initWidget(uiBinder.createAndBindUi(this));
 		//
 	}

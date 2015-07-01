@@ -1,5 +1,6 @@
 package org.simbiosis.ui.bprs.admin.client.uploadcollective;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.DateLabel;
+import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -29,18 +31,19 @@ public class UploadCollective extends FormWidget implements IUploadCollective {
 	@UiField
 	DateLabel transDate;
 	@UiField
+	ListBox transType;
+	@UiField
 	VerticalPanel dataPanel;
 
 	CopyData copyData = new CopyData();
-	ConfirmCollective confirm = new ConfirmCollective();
+	ConfirmGajiCollective confirmGaji = new ConfirmGajiCollective();
 
 	public UploadCollective() {
 		initWidget(uiBinder.createAndBindUi(this));
 		//
-		copyData.setParent(this);
-		confirm.setParent(this);
-		//
-		dataPanel.add(copyData);
+		transType.addItem("Pilih jenis transaksi");
+		transType.addItem("Gaji");
+		transType.addItem("Transfer antar rek");
 		//
 		transDate.setValue(new Date());
 	}
@@ -50,6 +53,11 @@ public class UploadCollective extends FormWidget implements IUploadCollective {
 		this.activity = activity;
 		setFormActivity(activity);
 		setAppStatus(appStatus);
+		//
+		copyData.setParent(this);
+		confirmGaji.setParent(this);
+		//
+		dataPanel.add(copyData);
 	}
 
 	@Override
@@ -57,20 +65,28 @@ public class UploadCollective extends FormWidget implements IUploadCollective {
 		return this;
 	}
 
-	public void confirmTransfer() {
+	public void confirmTrans() {
 		dataPanel.clear();
-		dataPanel.add(confirm);
+		switch (transType.getSelectedIndex()) {
+		case 1:
+			dataPanel.add(confirmGaji);
+			activity.confirmGaji();
+			break;
+		}
 		//
-		activity.confirmTransfer();
 	}
 
-	public void executeTransfer(){
+	public void executeTransfer() {
 		activity.executeTransfer();
 	}
-	
+
 	@Override
 	public void confirmTransfer(List<TransferCollectiveDv> data) {
-		confirm.setData(data);
+		switch (transType.getSelectedIndex()) {
+		case 1:
+			confirmGaji.setData(data);
+			break;
+		}
 	}
 
 	@Override
@@ -79,18 +95,23 @@ public class UploadCollective extends FormWidget implements IUploadCollective {
 	}
 
 	@Override
-	public List<TransferCollectiveDv> getTransferData() {
-		return confirm.getData();
+	public List<TransferCollectiveDv> getData() {
+		switch (transType.getSelectedIndex()) {
+		case 1:
+			return confirmGaji.getData();
+		default:
+			return new ArrayList<TransferCollectiveDv>();
+		}
 	}
 
 	@Override
 	public void setCoa(List<CoaDv> coas) {
-		confirm.setCoa(coas);
+		confirmGaji.setCoa(coas);
 	}
 
 	@Override
 	public Long getCoa() {
-		return confirm.getCoa();
+		return confirmGaji.getCoa();
 	}
 
 }

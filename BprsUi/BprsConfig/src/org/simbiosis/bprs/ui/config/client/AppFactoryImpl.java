@@ -7,8 +7,8 @@ import org.simbiosis.bprs.ui.config.client.gl.GlConfig;
 import org.simbiosis.bprs.ui.config.client.gl.IGlConfig;
 import org.simbiosis.bprs.ui.config.client.loan.ILoanProduct;
 import org.simbiosis.bprs.ui.config.client.loan.LoanProductList;
-import org.simbiosis.bprs.ui.config.client.saving.ISavProduct;
-import org.simbiosis.bprs.ui.config.client.saving.SavProductList;
+import org.simbiosis.bprs.ui.config.client.savingproduct.ISavProduct;
+import org.simbiosis.bprs.ui.config.client.savingproduct.SavProductList;
 import org.simbiosis.bprs.ui.config.client.teller.ITeller;
 import org.simbiosis.bprs.ui.config.client.teller.TellerList;
 

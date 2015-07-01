@@ -17,14 +17,14 @@ public interface IUploadCollective {
 
 	String getSrcData();
 
-	List<TransferCollectiveDv> getTransferData();
+	List<TransferCollectiveDv> getData();
 
 	void setCoa(List<CoaDv> coas);
 
 	Long getCoa();
 
 	public abstract class Activity extends FormActivity {
-		public abstract void confirmTransfer();
+		public abstract void confirmGaji();
 
 		public abstract void executeTransfer();
 	}

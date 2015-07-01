@@ -1,4 +1,4 @@
-package org.simbiosis.bprs.ui.config.client.saving;
+package org.simbiosis.bprs.ui.config.client.savingproduct;
 
 import org.simbiosis.bprs.ui.config.shared.ProductDv;
 

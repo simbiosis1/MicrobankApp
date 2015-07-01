@@ -1,4 +1,4 @@
-package org.simbiosis.bprs.ui.config.client.saving;
+package org.simbiosis.bprs.ui.config.client.savingproduct;
 
 import org.simbiosis.bprs.ui.config.shared.ProductDv;
 
@@ -11,15 +11,15 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 
-public class SavProductViewerMdh extends Composite implements Editor<ProductDv> {
+public class SavProductViewerWdh extends Composite implements Editor<ProductDv> {
 
 	private static UserViewerUiBinder uiBinder = GWT
 			.create(UserViewerUiBinder.class);
 
-	interface UserViewerUiBinder extends UiBinder<Widget, SavProductViewerMdh> {
+	interface UserViewerUiBinder extends UiBinder<Widget, SavProductViewerWdh> {
 	}
 
-	interface Driver extends SimpleBeanEditorDriver<ProductDv, SavProductViewerMdh> {
+	interface Driver extends SimpleBeanEditorDriver<ProductDv, SavProductViewerWdh> {
 	}
 
 	private Driver driver = GWT.create(Driver.class);
@@ -39,13 +39,13 @@ public class SavProductViewerMdh extends Composite implements Editor<ProductDv> 
 	@UiField
 	Label strSchema;
 	@UiField
-	Label strSharing;
+	Label strHasShare;
 	@UiField
 	Label strMinValue;
 	@UiField
 	Label strCloseAdmin;
 	
-	public SavProductViewerMdh() {
+	public SavProductViewerWdh() {
 		initWidget(uiBinder.createAndBindUi(this));
 		//
 		driver.initialize(this);

@@ -24,10 +24,10 @@ public class RevSharing {
 	double wadiahSharing = 0;
 	double taxableMin = 7500000;
 
-	public RevSharing(MicrobankCoreClient coreClient, String beginDate,
-			int days, String endDate) {
+	public RevSharing(MicrobankCoreClient coreClient, String beforeDate,
+			String beginDate, int days, String endDate) {
 		this.days = days;
-		funding = new Funding(coreClient, beginDate, endDate, days,
+		funding = new Funding(coreClient, beforeDate, beginDate, endDate, days,
 				revSharingMap, taxMap);
 		landing = new Lending(coreClient, beginDate, endDate);
 		//

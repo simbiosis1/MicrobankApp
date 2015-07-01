@@ -8,10 +8,16 @@
 		<g:HTMLPanel>
 			<table>
 				<tr>
-					<td class="formLabel">COA</td>
+					<td class="formLabel"><g:RadioButton ui:field="typeCoa" name="sumberDana">COA</g:RadioButton></td>
 					<td>&nbsp;</td>
 					<td>
 						<e:CoaListEditor ui:field="coa" styleName="formCombobox" />
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel"><g:RadioButton ui:field="typeAcc" name="sumberDana">Rekening tabungan</g:RadioButton></td>
+					<td>&nbsp;</td>
+					<td>
 					</td>
 				</tr>
 			</table>

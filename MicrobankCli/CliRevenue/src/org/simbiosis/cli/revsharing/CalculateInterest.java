@@ -25,6 +25,7 @@ public class CalculateInterest extends CliBase {
 	//
 	int month;
 	int year;
+	String beforeDate;
 	String beginDate;
 	String endDate;
 	int days;
@@ -42,6 +43,7 @@ public class CalculateInterest extends CliBase {
 		DateTime now = new DateTime().dayOfMonth().withMinimumValue()
 				.minusDays(1);
 		//
+		DateTimeFormatter sDate = DateTimeFormat.forPattern("dd-MM-yyyy");
 		DateTimeFormatter sMonth = DateTimeFormat.forPattern("MM");
 		DateTimeFormatter sYear = DateTimeFormat.forPattern("yyyy");
 		//
@@ -50,6 +52,8 @@ public class CalculateInterest extends CliBase {
 		year = Integer.parseInt(sYear.print(now));
 		beginDate = "01-" + strMonth + "-" + year;
 		endDate = getEndMonths(month) + "-" + year;
+		DateTime beforeDateTime = sDate.parseDateTime(beginDate).minusDays(1);
+		beforeDate = sDate.print(beforeDateTime);
 		days = monthDays[month];
 	}
 
@@ -57,8 +61,8 @@ public class CalculateInterest extends CliBase {
 		while (next()) {
 			UserDto user = getUserFromSession();
 			if (user != null) {
-				interest = new Interest(getCoreClient(), beginDate, days,
-						endDate);
+				interest = new Interest(getCoreClient(), beforeDate, beginDate,
+						days, endDate);
 				//
 				System.out.println("Process interest data...");
 				interest.execute();

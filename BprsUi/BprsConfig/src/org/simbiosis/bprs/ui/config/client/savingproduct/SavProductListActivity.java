@@ -1,4 +1,4 @@
-package org.simbiosis.bprs.ui.config.client.saving;
+package org.simbiosis.bprs.ui.config.client.savingproduct;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.kembang.module.client.mvp.FormActivityType;
 import org.simbiosis.bprs.ui.config.client.AppFactory;
 import org.simbiosis.bprs.ui.config.client.rpc.AppService;
 import org.simbiosis.bprs.ui.config.client.rpc.AppServiceAsync;
-import org.simbiosis.bprs.ui.config.client.saving.ISavProduct.Activity;
+import org.simbiosis.bprs.ui.config.client.savingproduct.ISavProduct.Activity;
 import org.simbiosis.bprs.ui.config.shared.CoaDv;
 import org.simbiosis.bprs.ui.config.shared.ProductDv;
 

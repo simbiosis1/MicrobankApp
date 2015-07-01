@@ -78,7 +78,7 @@ public class UploadCollectiveActivity extends Activity {
 	}
 
 	@Override
-	public void confirmTransfer() {
+	public void confirmGaji() {
 		showLoading();
 		IUploadCollective myForm = appFactory.getUploadCollective();
 		botSrv.listConfirmTransfer(getKey(), myForm.getSrcData(),
@@ -105,7 +105,7 @@ public class UploadCollectiveActivity extends Activity {
 		showLoading();
 		IUploadCollective myForm = appFactory.getUploadCollective();
 		botSrv.executeCollectiveTransfer(getKey(), myForm.getCoa(),
-				myForm.getTransferData(), new AsyncCallback<Void>() {
+				myForm.getData(), new AsyncCallback<Void>() {
 
 					@Override
 					public void onSuccess(Void result) {

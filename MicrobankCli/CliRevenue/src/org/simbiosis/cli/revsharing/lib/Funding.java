@@ -18,6 +18,7 @@ import org.simbiosis.microbank.SavingTransactionDto;
 
 public class Funding {
 
+	String beforeDate;
 	String beginDate;
 	String endDate;
 	DateTimeFormatter dayFormat = DateTimeFormat.forPattern("dd");
@@ -30,12 +31,13 @@ public class Funding {
 
 	MicrobankCoreClient jsonClient;
 
-	public Funding(MicrobankCoreClient jsonClient, String beginDate,
-			String endDate, int days,
+	public Funding(MicrobankCoreClient jsonClient, String beforeDate,
+			String beginDate, String endDate, int days,
 			Map<String, RevenueSharingDto> revSharingMap,
 			Map<Long, Double> taxMap) {
 		this.revSharingMap = revSharingMap;
 		this.taxMap = taxMap;
+		this.beforeDate = beforeDate;
 		this.beginDate = beginDate;
 		this.endDate = endDate;
 		this.days = days;
@@ -82,6 +84,7 @@ public class Funding {
 
 	double createSavingAverageBallance(long id, double startBallance) {
 		//
+
 		setBallances(1, startBallance);
 		//
 		String param = "" + id + ";" + beginDate + ";" + endDate;
@@ -157,7 +160,7 @@ public class Funding {
 			long savingId = Long.parseLong(id);
 			//
 			String ballance = jsonClient.sendRawData("getSavingBallance", id
-					+ ";" + beginDate);
+					+ ";" + beforeDate);
 			double startBallance = Double.parseDouble(ballance);
 			//
 			double averageBallance = createSavingAverageBallance(savingId,
@@ -198,6 +201,9 @@ public class Funding {
 				}
 				// Masukkan
 				revSharingMap.put("1;" + savingId, item);
+			} else {
+				System.out.println("Nilai saldo rata2 salah " + savingId + "="
+						+ averageBallance);
 			}
 		}
 

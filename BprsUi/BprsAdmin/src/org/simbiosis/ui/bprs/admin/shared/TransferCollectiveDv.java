@@ -5,14 +5,20 @@ import com.google.gwt.user.client.rpc.IsSerializable;
 public class TransferCollectiveDv implements IsSerializable {
 	Integer nr;
 	Long savingId;
+	Long destSavingId;
 	String code;
 	String name;
 	String systemName;
+	String destCode;
+	String destName;
+	String destSystemName;
 	Double value;
+	Integer srcType;
 	String status;
 
 	public TransferCollectiveDv() {
 		nr = 0;
+		srcType = 0;
 		savingId = 0L;
 	}
 
@@ -23,6 +29,20 @@ public class TransferCollectiveDv implements IsSerializable {
 		this.name = name;
 		savingId = 0L;
 		systemName = "";
+		this.value = value;
+	}
+
+	public TransferCollectiveDv(Integer nr, String code, String name,
+			String destCode, String destName, Double value) {
+		this.nr = nr;
+		this.code = code;
+		this.name = name;
+		this.destCode = destCode;
+		this.destName = destName;
+		savingId = 0L;
+		destSavingId = 0L;
+		systemName = "";
+		destSystemName = "";
 		this.value = value;
 	}
 
@@ -80,6 +100,46 @@ public class TransferCollectiveDv implements IsSerializable {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getDestCode() {
+		return destCode;
+	}
+
+	public void setDestCode(String destCode) {
+		this.destCode = destCode;
+	}
+
+	public String getDestName() {
+		return destName;
+	}
+
+	public void setDestName(String destName) {
+		this.destName = destName;
+	}
+
+	public String getDestSystemName() {
+		return destSystemName;
+	}
+
+	public void setDestSystemName(String destSystemName) {
+		this.destSystemName = destSystemName;
+	}
+
+	public Integer getSrcType() {
+		return srcType;
+	}
+
+	public void setSrcType(Integer srcType) {
+		this.srcType = srcType;
+	}
+
+	public Long getDestSavingId() {
+		return destSavingId;
+	}
+
+	public void setDestSavingId(Long destSavingId) {
+		this.destSavingId = destSavingId;
 	}
 
 }

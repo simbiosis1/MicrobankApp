@@ -98,6 +98,7 @@ public class RevenueSharingXls extends ReportServlet {
 		try {
 			String month = request.getParameter("month");
 			String year = request.getParameter("year");
+			System.out.println("Bulan tahun " + month + "-" + year);
 			prepare();
 			setBeanCollection(prepareData(Integer.parseInt(month),
 					Integer.parseInt(year)));

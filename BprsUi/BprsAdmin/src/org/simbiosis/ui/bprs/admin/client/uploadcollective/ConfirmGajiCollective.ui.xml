@@ -1,23 +1,28 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-	xmlns:g="urn:import:com.google.gwt.user.client.ui"
-	xmlns:e="urn:import:org.simbiosis.ui.bprs.admin.client.editor">
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:e="urn:import:org.simbiosis.ui.bprs.admin.client.editor">
 	<g:VerticalPanel>
-		<e:CollectiveTransferTable ui:field="ctTable"
-			width="700px" height="400px" />
+		<e:GajiCollectiveTable ui:field="ctTable" width="800px"
+			height="400px" />
 		<g:HTMLPanel>
 			<table>
 				<tr>
-					<td class="formLabel"><g:RadioButton ui:field="typeCoa" name="sumberDana">COA</g:RadioButton></td>
+					<td class="formLabel">
+						<g:RadioButton ui:field="typeCoa" name="sumberDana">COA</g:RadioButton>
+					</td>
 					<td>&nbsp;</td>
 					<td>
 						<e:CoaListEditor ui:field="coa" styleName="formCombobox" />
 					</td>
 				</tr>
 				<tr>
-					<td class="formLabel"><g:RadioButton ui:field="typeAcc" name="sumberDana">Rekening tabungan</g:RadioButton></td>
+					<td class="formLabel">
+						<g:RadioButton ui:field="typeAcc" name="sumberDana">Rekening
+							tabungan</g:RadioButton>
+					</td>
 					<td>&nbsp;</td>
 					<td>
+					    <g:TextBox ui:field="acc" styleName="formTextbox" />
 					</td>
 				</tr>
 			</table>

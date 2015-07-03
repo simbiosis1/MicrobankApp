@@ -81,6 +81,29 @@ public class UploadCollectiveActivity extends Activity {
 	public void confirmGaji() {
 		showLoading();
 		IUploadCollective myForm = appFactory.getUploadCollective();
+		botSrv.listConfirmGaji(getKey(), myForm.getSrcData(),
+				new AsyncCallback<List<TransferCollectiveDv>>() {
+
+					@Override
+					public void onFailure(Throwable caught) {
+						hideLoading();
+						Window.alert("Error : listConfirmTransfer");
+					}
+
+					@Override
+					public void onSuccess(List<TransferCollectiveDv> result) {
+						hideLoading();
+						IUploadCollective myForm = appFactory
+								.getUploadCollective();
+						myForm.confirmUpload(result);
+					}
+				});
+	}
+
+	@Override
+	public void confirmTransfer() {
+		showLoading();
+		IUploadCollective myForm = appFactory.getUploadCollective();
 		botSrv.listConfirmTransfer(getKey(), myForm.getSrcData(),
 				new AsyncCallback<List<TransferCollectiveDv>>() {
 
@@ -95,7 +118,30 @@ public class UploadCollectiveActivity extends Activity {
 						hideLoading();
 						IUploadCollective myForm = appFactory
 								.getUploadCollective();
-						myForm.confirmTransfer(result);
+						myForm.confirmUpload(result);
+					}
+				});
+	}
+
+	@Override
+	public void executeGaji() {
+		showLoading();
+		IUploadCollective myForm = appFactory.getUploadCollective();
+		botSrv.executeCollectiveGaji(getKey(), myForm.getDescription(),
+				myForm.getSource(), myForm.getCoa(), myForm.getAcc(),
+				myForm.getData(), new AsyncCallback<Void>() {
+
+					@Override
+					public void onSuccess(Void result) {
+						hideLoading();
+						Window.alert("Transfer gaji berhasil");
+						appFactory.getUploadCollective().gotoFirst();
+					}
+
+					@Override
+					public void onFailure(Throwable caught) {
+						hideLoading();
+						Window.alert("Error : executeCollectiveGaji");
 					}
 				});
 	}
@@ -104,13 +150,14 @@ public class UploadCollectiveActivity extends Activity {
 	public void executeTransfer() {
 		showLoading();
 		IUploadCollective myForm = appFactory.getUploadCollective();
-		botSrv.executeCollectiveTransfer(getKey(), myForm.getCoa(),
+		botSrv.executeCollectiveTransfer(getKey(), myForm.getDescription(),
 				myForm.getData(), new AsyncCallback<Void>() {
 
 					@Override
 					public void onSuccess(Void result) {
 						hideLoading();
 						Window.alert("Transfer berhasil");
+						appFactory.getUploadCollective().gotoFirst();
 					}
 
 					@Override

@@ -30,6 +30,7 @@ import org.simbiosis.microbank.SavingTransactionDto;
 import org.simbiosis.ui.bprs.admin.client.rpc.AppService;
 import org.simbiosis.ui.bprs.admin.shared.CoaDv;
 import org.simbiosis.ui.bprs.admin.shared.TransferCollectiveDv;
+import org.simbiosis.ui.bprs.common.shared.SavingDv;
 import org.simbiosis.ui.bprs.common.shared.TransactionDv;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -221,8 +222,6 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 				.toUpperCase());
 		srcDto.setDescription(dv.getDescription() == null ? "" : dv
 				.getDescription().toUpperCase());
-		// srcDto.setValue(Double.parseDouble(dv.getStrValue().replace(",",
-		// "")));
 		srcDto.setValue(dv.getValue());
 		srcDto.setDirection(2);
 		// Kecukupan saldo tabungan
@@ -237,8 +236,10 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 		SavingTransactionDto destDto = new SavingTransactionDto();
 		destDto.setDate(dv.getDate());
 		destDto.setSaving(dv.getSavingDest().getId());
-		destDto.setRefCode(dv.getRefCode());
-		destDto.setDescription(dv.getDescription());
+		srcDto.setRefCode(dv.getRefCode() == null ? "" : dv.getRefCode()
+				.toUpperCase());
+		srcDto.setDescription(dv.getDescription() == null ? "" : dv
+				.getDescription().toUpperCase());
 		destDto.setValue(dv.getValue());
 		destDto.setDirection(1);
 		SavingTransactionDto transDto = new SavingTransactionDto();
@@ -283,8 +284,8 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 	}
 
 	@Override
-	public List<TransferCollectiveDv> listConfirmTransfer(String key,
-			String srcData) throws IllegalArgumentException {
+	public List<TransferCollectiveDv> listConfirmGaji(String key, String srcData)
+			throws IllegalArgumentException {
 		List<TransferCollectiveDv> result = new ArrayList<TransferCollectiveDv>();
 		String source = srcData.replace("\r", "");
 		String datas[] = source.split("\n");
@@ -311,14 +312,62 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 	}
 
 	@Override
-	public void executeCollectiveTransfer(String key, Long lcoa,
-			List<TransferCollectiveDv> data) throws IllegalArgumentException {
+	public List<TransferCollectiveDv> listConfirmTransfer(String key,
+			String srcData) throws IllegalArgumentException {
+		List<TransferCollectiveDv> result = new ArrayList<TransferCollectiveDv>();
+		String source = srcData.replace("\r", "");
+		String datas[] = source.split("\n");
+		for (int i = 0; i < datas.length; i++) {
+			String line[] = datas[i].split("\t");
+			if (line.length >= 5) {
+				String srcCode = line[0].trim();
+				String destCode = line[2].trim();
+				TransferCollectiveDv dv = new TransferCollectiveDv(i + 1,
+						srcCode, line[1], destCode, line[3],
+						Double.parseDouble(line[4].replace(",", "")));
+				//
+				long srcId = savingBp.getSavingIdByCode(key, srcCode);
+				long destId = savingBp.getSavingIdByCode(key, destCode);
+				// cek rekening asal
+				if (srcId != 0) {
+					SavingInformationDto info = savingBp.getInformation(srcId);
+					dv.setSystemName(info.getName());
+					dv.setSavingId(info.getId());
+					// check rekening tujuan
+					if (destId != 0) {
+						info = savingBp.getInformation(destId);
+						dv.setDestSystemName(info.getName());
+						dv.setDestSavingId(info.getId());
+						// check saldo
+						double saldo = savingBp.getWithdrawalBallance(srcId,
+								new Date(), false);
+						if (saldo < dv.getValue()) {
+							dv.setStatus("Saldo sumber tidak mencukupi "
+									+ saldo);
+						}
+					} else {
+						dv.setStatus("Rekening tujuan tidak ditemukan");
+					}
+				} else {
+					dv.setStatus("Rekening sumber tidak ditemukan");
+				}
+				result.add(dv);
+			}
+		}
+		return result;
+	}
+
+	@Override
+	public void executeCollectiveGaji(String key, String description,
+			Integer type, Long lcoa, String acc, List<TransferCollectiveDv> data)
+			throws IllegalArgumentException {
 		DateTime now = new DateTime();
 		DateTimeFormatter df = DateTimeFormat.forPattern("yyyyMMdd");
 		DateTimeFormatter mf = DateTimeFormat.forPattern("MM/yyyy");
 		String code = "GAJ" + df.print(now);
 		Double totalValue = 0D;
 		Map<Long, Double> mapValues = new HashMap<Long, Double>();
+		//
 		// Kirim ke masing-masing tabungan
 		for (TransferCollectiveDv dv : data) {
 			SavingInformationDto info = savingBp.getInformation(dv
@@ -335,22 +384,41 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 			trans.setCode(code);
 			trans.setHasCode(true);
 			trans.setDirection(1);
-			trans.setDescription("GAJI - " + info.getName() + " ("
-					+ info.getCode() + ")");
+			trans.setDescription(description.toUpperCase() + mf.print(now)
+					+ " - " + info.getName() + " (" + info.getCode() + ")");
 			trans.setType(3);
 			trans.setValue(dv.getValue());
 			totalValue += dv.getValue();
 			trans.setSaving(dv.getSavingId());
 			savingBp.saveTransaction(key, trans);
 		}
+		// Cari tabungan asal
+		if (type == 2) {
+			long accId = savingBp.getSavingIdByCode(key, acc);
+			SavingInformationDto accInfo = savingBp.getInformation(accId);
+			lcoa = accInfo.getCoa1();
+			//
+			SavingTransactionDto trans = new SavingTransactionDto();
+			trans.setDate(now.toDate());
+			trans.setCode(code);
+			trans.setHasCode(true);
+			trans.setDirection(2);
+			trans.setDescription("PENGELUARAN " + description.toUpperCase()
+					+ " " + mf.print(now) + " - " + accInfo.getName() + " ("
+					+ accInfo.getCode() + ")");
+			trans.setType(4);
+			trans.setValue(totalValue);
+			trans.setSaving(accId);
+			savingBp.saveTransaction(key, trans);
+		}
+
 		// Buat jurnal
 		Set<Long> keys = mapValues.keySet();
 		GlTrans jurnal = new GlTrans();
 		jurnal.setCode(code);
 		jurnal.setDate(now.toDate());
-		String description = "GAJI " + mf.print(now) + " - " + keys.size()
-				+ " orang ";
-		jurnal.setDescription(description);
+		jurnal.setDescription("PENGELUARAN " + description.toUpperCase() + " "
+				+ mf.print(now));
 		// jurnal.setUser(user);
 		Coa coa = glBp.getCoa(lcoa);
 		GlTransItem item = new GlTransItem();
@@ -361,7 +429,6 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 		item.setTransaction(jurnal);
 		jurnal.getItems().add(item);
 		for (Long lKey : keys) {
-			System.out.println("Coa : " + lKey + ", " + mapValues.get(lKey));
 			item = new GlTransItem();
 			coa = glBp.getCoa(lKey);
 			item.setCoa(coa);
@@ -372,6 +439,30 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 			jurnal.getItems().add(item);
 		}
 		glBp.saveGLTrans(key, jurnal);
+	}
+
+	@Override
+	public void executeCollectiveTransfer(String key, String description,
+			List<TransferCollectiveDv> datas) throws IllegalArgumentException {
+		Date now = new Date();
+		for (TransferCollectiveDv data : datas) {
+			TransactionDv dv = new TransactionDv();
+			dv.setDate(now);
+			dv.setDescription(description.toUpperCase());
+			SavingDv savingDv = new SavingDv();
+			savingDv.setId(data.getSavingId());
+			savingDv.setCode(data.getCode());
+			savingDv.setName(data.getSystemName());
+			dv.setSaving(savingDv);
+			savingDv = new SavingDv();
+			savingDv.setId(data.getDestSavingId());
+			savingDv.setCode(data.getDestCode());
+			savingDv.setName(data.getDestSystemName());
+			dv.setSavingDest(savingDv);
+			dv.setValue(data.getValue());
+			saveTransferSaving(key, dv);
+		}
+
 	}
 
 }

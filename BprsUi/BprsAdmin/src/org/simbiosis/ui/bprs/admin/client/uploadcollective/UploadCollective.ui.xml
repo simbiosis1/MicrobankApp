@@ -9,6 +9,9 @@
 	    <g:HTMLPanel styleName="formLabel">Jenis transaksi</g:HTMLPanel>
 	    <g:ListBox styleName="formCombobox" ui:field="transType"/>
 		<g:HTMLPanel><br /></g:HTMLPanel>
+	    <g:HTMLPanel styleName="formLabel">Keterangan</g:HTMLPanel>
+	    <g:TextBox styleName="formText" ui:field="description"/>
+		<g:HTMLPanel><br /></g:HTMLPanel>
 		<g:VerticalPanel ui:field="dataPanel" />
 	</g:VerticalPanel>
 	</g:ScrollPanel>

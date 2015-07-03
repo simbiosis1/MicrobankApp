@@ -30,9 +30,16 @@ public interface AppService extends RemoteService {
 	List<TransactionDv> getRepaymentValue(Long id)
 			throws IllegalArgumentException;
 
+	List<TransferCollectiveDv> listConfirmGaji(String key, String srcData)
+			throws IllegalArgumentException;
+
 	List<TransferCollectiveDv> listConfirmTransfer(String key, String srcData)
 			throws IllegalArgumentException;
 
-	void executeCollectiveTransfer(String key, Long coa,
+	void executeCollectiveGaji(String key, String description, Integer type,
+			Long coa, String account, List<TransferCollectiveDv> data)
+			throws IllegalArgumentException;
+
+	void executeCollectiveTransfer(String key, String description,
 			List<TransferCollectiveDv> data) throws IllegalArgumentException;
 }

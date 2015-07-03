@@ -13,7 +13,9 @@ public interface IUploadCollective {
 
 	FormWidget getFormWidget();
 
-	void confirmTransfer(List<TransferCollectiveDv> data);
+	void confirmUpload(List<TransferCollectiveDv> data);
+	
+	String getDescription();
 
 	String getSrcData();
 
@@ -21,10 +23,20 @@ public interface IUploadCollective {
 
 	void setCoa(List<CoaDv> coas);
 
+	Integer getSource();
+
 	Long getCoa();
+
+	String getAcc();
+	
+	void gotoFirst();
 
 	public abstract class Activity extends FormActivity {
 		public abstract void confirmGaji();
+
+		public abstract void confirmTransfer();
+
+		public abstract void executeGaji();
 
 		public abstract void executeTransfer();
 	}

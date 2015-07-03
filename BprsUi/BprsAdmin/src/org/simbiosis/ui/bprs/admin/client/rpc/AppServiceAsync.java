@@ -30,10 +30,17 @@ public interface AppServiceAsync {
 	void getRepaymentValue(Long id, AsyncCallback<List<TransactionDv>> callback)
 			throws IllegalArgumentException;
 
+	void listConfirmGaji(String key, String srcData,
+			AsyncCallback<List<TransferCollectiveDv>> callback);
+
 	void listConfirmTransfer(String key, String srcData,
 			AsyncCallback<List<TransferCollectiveDv>> callback);
 
-	void executeCollectiveTransfer(String key, Long coa,
+	void executeCollectiveGaji(String key, String description, Integer type,
+			Long coa, String account, List<TransferCollectiveDv> data,
+			AsyncCallback<Void> callback);
+
+	void executeCollectiveTransfer(String key, String description,
 			List<TransferCollectiveDv> data, AsyncCallback<Void> callback);
 
 }

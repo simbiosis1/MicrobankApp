@@ -176,9 +176,8 @@ public class SavingBp implements ISavingBp {
 			//
 			if (transDto.getId() == 0 && !transDto.isHasCode()) {
 				BranchDto branchDto = iSystem.getBranch(transDto.getBranch());
-				String code = createSavingTransCode(
-						transDto.getCompany(), transDto.getBranch(),
-						branchDto.getCode());
+				String code = createSavingTransCode(transDto.getCompany(),
+						transDto.getBranch(), branchDto.getCode());
 				transDto.setCode(code);
 			}
 			return iSaving.saveTransaction(transDto);
@@ -267,14 +266,35 @@ public class SavingBp implements ISavingBp {
 		String prefix = branch.getCode() + "21";
 		String code = createSavingTransCode(infoSrc.getCompany(),
 				infoSrc.getCompany(), prefix);
-		String description = srcDto.getDescription().toUpperCase();
-		description += " - TRF " + infoSrc.getName() + " (" + infoSrc.getCode()
-				+ ") KE " + infoDest.getName() + " (" + infoDest.getCode()
-				+ ")";
+		String descriptionSrc = "TRF KE "
+				+ infoDest.getName()
+				+ " ("
+				+ infoDest.getCode()
+				+ ")"
+				+ (srcDto.getDescription().isEmpty() ? "" : " - "
+						+ srcDto.getDescription().toUpperCase());
+		String descriptionDest = "TRF DARI "
+				+ infoSrc.getName()
+				+ " ("
+				+ infoSrc.getCode()
+				+ ")"
+				+ (srcDto.getDescription().isEmpty() ? "" : " - "
+						+ srcDto.getDescription().toUpperCase());
+		String description = "TRF DARI "
+				+ infoSrc.getName()
+				+ " ("
+				+ infoSrc.getCode()
+				+ ") KE "
+				+ infoDest.getName()
+				+ " ("
+				+ infoDest.getCode()
+				+ ")"
+				+ (srcDto.getDescription().isEmpty() ? "" : " - "
+						+ srcDto.getDescription().toUpperCase());
 		//
 		// Save saving transaction
 		//
-		srcDto.setDescription(description);
+		srcDto.setDescription(descriptionSrc);
 		srcDto.setTimestamp(now);
 		srcDto.setCode(code);
 		srcDto.setHasCode(true);
@@ -291,7 +311,7 @@ public class SavingBp implements ISavingBp {
 		//
 		// Save saving transaction
 		//
-		destDto.setDescription(description);
+		destDto.setDescription(descriptionDest);
 		destDto.setTimestamp(now);
 		destDto.setCode(code);
 		destDto.setHasCode(true);
@@ -306,6 +326,7 @@ public class SavingBp implements ISavingBp {
 		savingTransactionMsg.setSavingTransactionDto(destDto);
 		savingMsg.sendSavingTrans(savingTransactionMsg);
 		//
+		srcDto.setDescription(description);
 		if (infoSrc.getBranch() == infoDest.getBranch()) {
 			savingTrans.createJournalGL(srcDto, infoSrc, infoDest.getCoa1());
 		} else {

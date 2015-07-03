@@ -1,0 +1,13 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:e="urn:import:org.simbiosis.ui.bprs.admin.client.editor">
+	<g:VerticalPanel>
+		<e:TransferCollectiveTable ui:field="ctTable" width="950px"
+			height="400px" />
+		<g:HTMLPanel>
+			<br />
+		</g:HTMLPanel>
+		<g:Button styleName="formButton" ui:field="btnExecute">Jalankan pindah
+			buku</g:Button>
+	</g:VerticalPanel>
+</ui:UiBinder> 

@@ -9,7 +9,7 @@ import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 
-public class CollectiveTransferTable extends SimpleGrid<TransferCollectiveDv> {
+public class TransferCollectiveTable extends SimpleGrid<TransferCollectiveDv> {
 
 	NumberFormat numberFormat = NumberFormat.getFormat("#,##0.00");
 
@@ -25,7 +25,7 @@ public class CollectiveTransferTable extends SimpleGrid<TransferCollectiveDv> {
 	};
 
 	ColumnDef<TransferCollectiveDv, String> colCode = new ColumnDef<TransferCollectiveDv, String>(
-			ColumnType.LABEL, "No rek", "84px", "80px") {
+			ColumnType.LABEL, "Rek asal", "84px", "80px") {
 
 		@Override
 		public String getDataValue(TransferCollectiveDv data) {
@@ -34,7 +34,7 @@ public class CollectiveTransferTable extends SimpleGrid<TransferCollectiveDv> {
 	};
 
 	ColumnDef<TransferCollectiveDv, String> colName = new ColumnDef<TransferCollectiveDv, String>(
-			ColumnType.LABEL, "Nama", "154px", "150px") {
+			ColumnType.LABEL, "Nama", "134px", "130px") {
 
 		@Override
 		public String getDataValue(TransferCollectiveDv data) {
@@ -43,7 +43,7 @@ public class CollectiveTransferTable extends SimpleGrid<TransferCollectiveDv> {
 	};
 
 	ColumnDef<TransferCollectiveDv, String> colNameSystem = new ColumnDef<TransferCollectiveDv, String>(
-			ColumnType.LABEL, "Nama sistem", "154px", "150px") {
+			ColumnType.LABEL, "Nama sistem", "134px", "130px") {
 
 		@Override
 		public String getDataValue(TransferCollectiveDv data) {
@@ -51,8 +51,36 @@ public class CollectiveTransferTable extends SimpleGrid<TransferCollectiveDv> {
 		}
 	};
 
+	
+	ColumnDef<TransferCollectiveDv, String> colCodeDest = new ColumnDef<TransferCollectiveDv, String>(
+			ColumnType.LABEL, "Rek tujuan", "84px", "80px") {
+
+		@Override
+		public String getDataValue(TransferCollectiveDv data) {
+			return data.getDestCode();
+		}
+	};
+
+	ColumnDef<TransferCollectiveDv, String> colNameDest = new ColumnDef<TransferCollectiveDv, String>(
+			ColumnType.LABEL, "Nama", "134px", "130px") {
+
+		@Override
+		public String getDataValue(TransferCollectiveDv data) {
+			return data.getDestName();
+		}
+	};
+
+	ColumnDef<TransferCollectiveDv, String> colNameSystemDest = new ColumnDef<TransferCollectiveDv, String>(
+			ColumnType.LABEL, "Nama sistem", "134px", "130px") {
+
+		@Override
+		public String getDataValue(TransferCollectiveDv data) {
+			return data.getDestSystemName();
+		}
+	};
+
 	ColumnDef<TransferCollectiveDv, String> colValue = new ColumnDef<TransferCollectiveDv, String>(
-			ColumnType.LABEL, "Nilai", "154px", "150px") {
+			ColumnType.LABEL, "Nilai", "114px", "110px") {
 
 		@Override
 		public String getDataValue(TransferCollectiveDv data) {
@@ -69,11 +97,14 @@ public class CollectiveTransferTable extends SimpleGrid<TransferCollectiveDv> {
 		}
 	};
 
-	public CollectiveTransferTable() {
+	public TransferCollectiveTable() {
 		addColumn(colNr);
 		addColumn(colCode);
 		addColumn(colName);
 		addColumn(colNameSystem);
+		addColumn(colCodeDest);
+		addColumn(colNameDest);
+		addColumn(colNameSystemDest);
 		colValue.setAlign(HasHorizontalAlignment.ALIGN_RIGHT);
 		addColumn(colValue);
 		addColumn(colStatus);

@@ -3,9 +3,11 @@ package org.simbiosis.ui.bprs.dashboard.client;
 import org.kembang.module.client.mvp.KembangActivityMapper;
 import org.simbiosis.ui.bprs.dashboard.client.dashboard.DashboardActivity;
 import org.simbiosis.ui.bprs.dashboard.client.loan.DashboardLoanActivity;
+import org.simbiosis.ui.bprs.dashboard.client.loanmonitor.LoanMonitorActivity;
 import org.simbiosis.ui.bprs.dashboard.client.places.Dashboard;
-import org.simbiosis.ui.bprs.dashboard.client.places.DashboardTks;
 import org.simbiosis.ui.bprs.dashboard.client.places.DashboardLoan;
+import org.simbiosis.ui.bprs.dashboard.client.places.DashboardTks;
+import org.simbiosis.ui.bprs.dashboard.client.places.LoanMonitor;
 import org.simbiosis.ui.bprs.dashboard.client.tks.DashboardTksActivity;
 
 import com.google.gwt.activity.shared.Activity;
@@ -26,6 +28,9 @@ public class AppActivityMapper extends KembangActivityMapper {
 			return new DashboardLoanActivity((DashboardLoan) place, clientFactory);
 		} else if (place instanceof DashboardTks) {
 			return new DashboardTksActivity((DashboardTks) place,
+					clientFactory);
+		} else if (place instanceof LoanMonitor) {
+			return new LoanMonitorActivity((LoanMonitor) place,
 					clientFactory);
 		}
 		return null;

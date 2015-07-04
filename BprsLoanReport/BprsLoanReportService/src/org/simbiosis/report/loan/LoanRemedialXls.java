@@ -25,6 +25,8 @@ public class LoanRemedialXls extends ReportServlet {
 	@EJB(lookup = "java:global/MicrobankEar/MicrobankReportEjb/LoanReport")
 	ILoanReport report;
 
+	DateTimeFormatter sdfd = DateTimeFormat.forPattern("dd");
+
 	long branch;
 	long ao;
 	boolean all;
@@ -85,8 +87,10 @@ public class LoanRemedialXls extends ReportServlet {
 
 			@Override
 			public int compare(LoanRpt o1, LoanRpt o2) {
-				String s1 = o1.getAoName() + o1.getProductName();
-				String s2 = o2.getAoName() + o2.getProductName();
+				//String s1 = o1.getAoName() + o1.getProductName();
+				//String s2 = o2.getAoName() + o2.getProductName();
+				String s1 = o1.getAoName() + sdfd.print(new DateTime(o1.getEnd()));
+				String s2 = o2.getAoName() + sdfd.print(new DateTime(o2.getEnd()));
 				return s1.compareToIgnoreCase(s2);
 			}
 		});

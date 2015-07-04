@@ -1,5 +1,6 @@
 package org.simbiosis.microbanking.reporting;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -21,6 +22,8 @@ public class LoanReport implements ILoanReport {
 	@PersistenceContext(unitName = "MicrobankReportEjb", type = PersistenceContextType.TRANSACTION)
 	EntityManager em;
 
+	SimpleDateFormat sdf = new SimpleDateFormat("dd");
+	
 	@Override
 	public void createDailyLoan(LoanRpt loan) {
 		em.merge(loan);
@@ -180,7 +183,7 @@ public class LoanReport implements ILoanReport {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<LoanRpt> listLoanBilling(long company, long branch, Date pos,
-			long ao) {
+			long ao, boolean all) {
 		String strQry = "listDailyLoan4";
 		if (branch == 0 && ao == 0) {
 			strQry = "listDailyLoan1";
@@ -204,12 +207,19 @@ public class LoanReport implements ILoanReport {
 		Iterator<LoanRpt> iter = result.iterator();
 		while (iter.hasNext()) {
 			LoanRpt current = iter.next();
-			if (current.getDueOs() == 0) {
-				iter.remove();
-			} else {
+			if (all) {
 				em.detach(current);
 				if (current.getSavingBallance() > current.getOsTotal()) {
 					current.setSavingBallance(current.getOsTotal());
+				}
+			} else {
+				if (current.getDueOs() == 0) {
+					iter.remove();
+				} else {
+					em.detach(current);
+					if (current.getSavingBallance() > current.getOsTotal()) {
+						current.setSavingBallance(current.getOsTotal());
+					}
 				}
 			}
 		}

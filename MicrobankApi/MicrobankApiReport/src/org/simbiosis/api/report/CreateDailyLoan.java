@@ -10,12 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.simbiosis.api.lib.WebApiReportServlet;
 import org.simbiosis.microbank.GuaranteeDto;
 import org.simbiosis.microbank.LoanInformationDto;
 import org.simbiosis.microbank.LoanQualityDto;
+import org.simbiosis.microbank.LoanScheduleDto;
 import org.simbiosis.microbank.LoanTransInfoDto;
 import org.simbiosis.microbank.SavingInformationDto;
 import org.simbiosis.microbank.model.LoanRpt;
@@ -46,7 +48,7 @@ public class CreateDailyLoan extends WebApiReportServlet {
 
 	private Double createPpap(LoanRpt info) {
 		double ppap = 0.5 * info.getOsPrincipal() / 100;
-		//double osPpap = info.getOsPrincipal() - (0.5 * info.getGuarantee());
+		// double osPpap = info.getOsPrincipal() - (0.5 * info.getGuarantee());
 		double osPpap = info.getOsPrincipal() - info.getGuarantee();
 		if (osPpap < 0) {
 			osPpap = 0;
@@ -121,6 +123,26 @@ public class CreateDailyLoan extends WebApiReportServlet {
 		}
 		loan.setPaidTotal(loan.getPaidPrincipal() + loan.getPaidMargin()
 				+ loan.getPaidDiscount());
+		// Current trans
+		DateTime beginDate = new DateTime(date).dayOfMonth().withMinimumValue();
+		DateTime endDate = new DateTime(date).dayOfMonth().withMaximumValue();
+		List<LoanScheduleDto> curPayments = iLoan.listRepaymentByRange(id,
+				beginDate.toDate(), date);
+		double totalCurPayment = 0;
+		for (LoanScheduleDto curPayment : curPayments) {
+			System.out.println(curPayment);
+			totalCurPayment += curPayment.getTotal();
+		}
+		loan.setCurrentPayment(totalCurPayment);
+		List<LoanScheduleDto> curSchedules = iLoan.listLoanScheduleByRange(id,
+				beginDate.toDate(), endDate.toDate());
+		double totalCurSchedule = 0;
+		for (LoanScheduleDto curSchedule : curSchedules) {
+			totalCurSchedule += curSchedule.getTotal();
+		}
+		loan.setMonthlyPayment(totalCurSchedule);
+		loan.setPaymentDueDate(curSchedules.size() > 0 ? curSchedules.get(0)
+				.getDate() : loan.getEnd());
 		//
 		loan.setOsPrincipal(loan.getPrincipal() - loan.getPaidPrincipal());
 		// Prinsip jual beli, multijasa, konvensional

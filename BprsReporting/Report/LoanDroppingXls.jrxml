@@ -28,6 +28,7 @@
 	<field name="code" class="java.lang.String">
 		<fieldDescription><![CDATA[code]]></fieldDescription>
 	</field>
+	<field name="ao" class="java.lang.String"/>
 	<variable name="totalPrincipal" class="java.lang.Double" calculation="Sum">
 		<variableExpression><![CDATA[$F{principal}]]></variableExpression>
 	</variable>
@@ -100,7 +101,7 @@
 				<text><![CDATA[Tanggal]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="168" y="1" width="264" height="15" uuid="c2250cad-cc60-472f-8806-ce8d70176a6b"/>
+				<reportElement x="256" y="1" width="176" height="15" uuid="c2250cad-cc60-472f-8806-ce8d70176a6b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
 				</textElement>
@@ -112,6 +113,13 @@
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[No rek]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="168" y="1" width="88" height="15" uuid="e4d23616-d16f-4f9e-b53a-bf4906656a66"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ao]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -146,7 +154,7 @@
 				<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd-MM-yyyy">
-				<reportElement x="168" y="1" width="264" height="15" uuid="4206c5b5-f2d5-499d-a52f-8c07f8059b0a"/>
+				<reportElement x="256" y="1" width="176" height="15" uuid="4206c5b5-f2d5-499d-a52f-8c07f8059b0a"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="8" isBold="false"/>
 				</textElement>
@@ -158,6 +166,13 @@
 					<font size="8" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{code}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MM-yyyy">
+				<reportElement x="168" y="1" width="88" height="15" uuid="948abe99-5d31-45ac-b0cf-8e806aadf9e2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ao}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

@@ -63,6 +63,9 @@ public interface ILoan {
 	List<LoanScheduleDto> listLoanScheduleByRange(long id, Date beginDate,
 			Date endDate);
 
+	List<LoanScheduleDto> listAllLoanScheduleByRange(long id, Date beginDate,
+			Date endDate);
+
 	List<LoanScheduleDto> createFlatSchedule(double principal, double tenor,
 			double rate, Date beginDate);
 
@@ -88,7 +91,8 @@ public interface ILoan {
 
 	LoanTransactionDto getLoanTransaction(long id);
 
-	LoanTransactionDto getLoanTransByDateCode(long loanId, Date date, String code);
+	LoanTransactionDto getLoanTransByDateCode(long loanId, Date date,
+			String code);
 
 	LoanTransInfoDto getLoanTransInfo(long id, Date date);
 
@@ -110,6 +114,9 @@ public interface ILoan {
 
 	List<LoanTransInfoDto> listLoanTransInfo(long company, long branch,
 			Date date);
+
+	List<LoanScheduleDto> listLoanRepaymentRange(long loan, Date dateBegin,
+			Date dateEnd);
 
 	List<LoanTransInfoDto> listSimpleLoanTransInfo(long company, long branch,
 			Date date);

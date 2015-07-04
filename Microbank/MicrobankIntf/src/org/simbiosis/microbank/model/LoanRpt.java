@@ -68,6 +68,9 @@ public class LoanRpt implements Serializable {
 	String aoName;
 	double fine;
 	double installment;
+	Date paymentDueDate;
+	double currentPayment;
+	double monthlyPayment;
 
 	public LoanRptPk getId() {
 		return id;
@@ -531,6 +534,30 @@ public class LoanRpt implements Serializable {
 
 	public void setGuaranteeTypeName(String guaranteeTypeName) {
 		this.guaranteeTypeName = guaranteeTypeName;
+	}
+
+	public Date getPaymentDueDate() {
+		return paymentDueDate;
+	}
+
+	public void setPaymentDueDate(Date paymentDueDate) {
+		this.paymentDueDate = paymentDueDate;
+	}
+
+	public double getCurrentPayment() {
+		return currentPayment;
+	}
+
+	public void setCurrentPayment(double currentPayment) {
+		this.currentPayment = currentPayment;
+	}
+
+	public double getMonthlyPayment() {
+		return monthlyPayment;
+	}
+
+	public void setMonthlyPayment(double monthlyPayment) {
+		this.monthlyPayment = monthlyPayment;
 	}
 
 }

@@ -27,6 +27,7 @@ public class LoanRemedialXls extends ReportServlet {
 
 	long branch;
 	long ao;
+	boolean all;
 	Date date;
 
 	String[] endMonths = { "", "31-01", "28-02", "31-03", "30-04", "31-05",
@@ -58,22 +59,28 @@ public class LoanRemedialXls extends ReportServlet {
 					.parseDateTime(endMonths[month] + "-" + sdfy.print(today))
 					.toDate();
 		}
+		//
 		String strBranch = request.getParameter("branch");
 		String branchName = "KONSOLIDASI";
 		branch = (strBranch == null) ? 0 : Long.parseLong(strBranch);
 		if (branch != 0) {
 			branchName = getBranchName(branch);
 		}
+		//
 		String strAo = request.getParameter("ao");
 		String aoName = "SELURUH AO";
 		ao = (strAo == null) ? 0 : Long.parseLong(strAo);
 		if (ao != 0) {
 			aoName = getUserRealName(ao);
 		}
+		//
+		String strAll = request.getParameter("all");
+		all = (strAll == null) ? true : strAll.equalsIgnoreCase("1");
+		//
 		prepare();
 		//
 		List<LoanRpt> hasil = report.listLoanBilling(getCompany(), branch,
-				date, ao);
+				date, ao,all);
 		Collections.sort(hasil, new Comparator<LoanRpt>() {
 
 			@Override

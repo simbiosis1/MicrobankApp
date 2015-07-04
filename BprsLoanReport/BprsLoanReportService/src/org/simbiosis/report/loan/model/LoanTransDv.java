@@ -10,6 +10,7 @@ public class LoanTransDv implements Serializable {
 	private static final long serialVersionUID = 2758474227984394149L;
 	Date date;
 	String code;
+	String ao;
 	String description;
 	Double principal;
 	Double margin;
@@ -79,6 +80,14 @@ public class LoanTransDv implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getAo() {
+		return ao;
+	}
+
+	public void setAo(String ao) {
+		this.ao = ao;
 	}
 
 }

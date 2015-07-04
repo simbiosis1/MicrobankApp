@@ -26,6 +26,8 @@
 						<g:Label styleName="formLabel" text="AO :" />
 						<g:HTMLPanel>&nbsp;</g:HTMLPanel>
 						<e:UserListBox styleName="formCombobox" ui:field="ao" />
+						<g:HTMLPanel>&nbsp;</g:HTMLPanel>
+						<g:ListBox styleName="formCombobox" ui:field="all" />
 					</g:HorizontalPanel>
 				</g:HorizontalPanel>
 			</g:HorizontalPanel>

@@ -24,8 +24,11 @@ public class LoanRemedial extends ReportServlet {
 	@EJB(lookup = "java:global/MicrobankEar/MicrobankReportEjb/LoanReport")
 	ILoanReport report;
 
+	DateTimeFormatter sdfd = DateTimeFormat.forPattern("dd");
+
 	long branch;
 	long ao;
+	boolean all = true;
 
 	String[] endMonths = { "", "31-01", "28-02", "31-03", "30-04", "31-05",
 			"30-06", "31-07", "31-08", "30-09", "31-10", "30-11", "31-12" };
@@ -39,8 +42,8 @@ public class LoanRemedial extends ReportServlet {
 			throws ServletException, IOException {
 		DateTime date = new DateTime();
 		DateTimeFormatter sdf = DateTimeFormat.forPattern("dd-MM-yyyy");
-		DateTimeFormatter sdfy = DateTimeFormat.forPattern("yyyy");
 		DateTimeFormatter sdfm = DateTimeFormat.forPattern("MM");
+		DateTimeFormatter sdfy = DateTimeFormat.forPattern("yyyy");
 		String strMonth = request.getParameter("month");
 		//
 		//
@@ -57,22 +60,29 @@ public class LoanRemedial extends ReportServlet {
 		if (branch != 0) {
 			branchName = getBranchName(branch);
 		}
+		//
 		String strAo = request.getParameter("ao");
 		String aoName = "SELURUH AO";
 		ao = (strAo == null) ? 0 : Long.parseLong(strAo);
 		if (ao != 0) {
 			aoName = getUserRealName(ao);
 		}
+		//
+		String strAll = request.getParameter("all");
+		all = (strAll == null) ? true : strAll.equalsIgnoreCase("1");
+		//
 		prepare();
 		//
 		List<LoanRpt> hasil = report.listLoanBilling(getCompany(), branch,
-				date.toDate(), ao);
+				date.toDate(), ao, all);
 		Collections.sort(hasil, new Comparator<LoanRpt>() {
 
 			@Override
 			public int compare(LoanRpt o1, LoanRpt o2) {
-				String s1 = o1.getAoName() + o1.getProductName();
-				String s2 = o2.getAoName() + o2.getProductName();
+				//String s1 = o1.getAoName() + o1.getProductName();
+				//String s2 = o2.getAoName() + o2.getProductName();
+				String s1 = o1.getAoName() + sdfd.print(new DateTime(o1.getEnd()));
+				String s2 = o2.getAoName() + sdfd.print(new DateTime(o2.getEnd()));
 				return s1.compareToIgnoreCase(s2);
 			}
 		});

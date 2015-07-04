@@ -23,7 +23,7 @@ public interface ILoanReport {
 
 	LoanRpt getDailyLoanByCode(long company, String code, Date pos);
 
-	List<LoanRpt> listLoanBilling(long company, long branch, Date pos, long ao);
+	List<LoanRpt> listLoanBilling(long company, long branch, Date pos, long ao, boolean all);
 
 	List<LoanRpt> listDailyLoanByAo(long company, Date pos, long ao, int quality);
 

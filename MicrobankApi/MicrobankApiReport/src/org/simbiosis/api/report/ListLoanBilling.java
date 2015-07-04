@@ -34,10 +34,11 @@ public class ListLoanBilling extends WebApiReportServlet {
 		String key = request.getParameter("key");
 		String data = request.getParameter("data");
 		String date = request.getParameter("date");
-		response.getWriter().println(processData(key, data, date));
+		String all = request.getParameter("all");
+		response.getWriter().println(processData(key, data, date, all));
 	}
 
-	String processData(String key, String data, String strDate) {
+	String processData(String key, String data, String strDate, String all) {
 		String result = "";
 		UserDto user = iSystem.getUserFromSession(key);
 		if (user != null) {
@@ -49,8 +50,9 @@ public class ListLoanBilling extends WebApiReportServlet {
 			DateTimeFormatter dtf = DateTimeFormat.forPattern("dd-MM-yyyy");
 			Date date = dtf.parseDateTime(strDate).toDate();
 			try {
-				List<LoanRpt> loans = iLoanReport.listLoanBilling(
-						user.getCompany(), branch, date, ao);
+				List<LoanRpt> loans = iLoanReport.listLoanBilling(user
+						.getCompany(), branch, date, ao, all == null ? false
+						: all.equalsIgnoreCase("1"));
 				mapper.writeValue(sw, loans);
 				result = sw.toString();
 			} catch (IOException e) {

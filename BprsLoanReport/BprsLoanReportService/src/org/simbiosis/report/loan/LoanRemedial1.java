@@ -74,7 +74,7 @@ public class LoanRemedial1 extends ReportServlet {
 		prepare();
 		//
 		List<LoanRpt> hasil = report.listLoanBilling(getCompany(), branch,
-				date.toDate(), ao);
+				date.toDate(), ao,false);
 		Collections.sort(hasil, new Comparator<LoanRpt>() {
 
 			@Override

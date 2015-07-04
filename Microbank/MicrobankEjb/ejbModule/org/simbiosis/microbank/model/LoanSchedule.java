@@ -27,12 +27,13 @@ import javax.persistence.Temporal;
 		@NamedQuery(name = "minLoanSchedule", query = "select min(x.date) from LoanSchedule x where x.loan.id=:id"),
 		@NamedQuery(name = "maxLoanSchedule", query = "select max(x.date) from LoanSchedule x where x.loan.id=:id"),
 		@NamedQuery(name = "listLoanSchedule", query = "select x from LoanSchedule x where x.loan.id=:id order by x.date"),
+		@NamedQuery(name = "listLoanScheduleByRange", query = "select x from LoanSchedule x where x.loan.id=:id and x.date>=:beginDate and x.date<=:endDate order by x.date"),
 		@NamedQuery(name = "listLoanBill", query = "select x from LoanSchedule x where x.loan.company=:company and x.loan.active=1 and x.paid<>1 and x.date<=:date order by x.loan.code, x.date"),
 		@NamedQuery(name = "listLoanScheduleNotPaid", query = "select x from LoanSchedule x where x.loan.id=:id and x.paid<>1 and x.date<=:date order by x.date"),
 		@NamedQuery(name = "listLoanScheduleNotPaid2", query = "select x from LoanSchedule x where x.loan.id=:id and x.paid<>1 order by x.date"),
 		@NamedQuery(name = "deleteLoanSchedules", query = "delete from LoanSchedule x where x.loan.id=:loanId"),
 		@NamedQuery(name = "listRepaymentByRange", query = "select x from LoanSchedule x where x.loan.id=:loanId and x.paid=0 and x.date<=:endDate"),
-		@NamedQuery(name = "listLoanSchedulesByRange", query = "select x from LoanSchedule x where x.loan.active=1 and x.loan.company=:company and x.date>=:beginDate and x.date<=:endDate") })
+		@NamedQuery(name = "listAllLoanSchedulesByRange", query = "select x from LoanSchedule x where x.loan.active=1 and x.loan.company=:company and x.date>=:beginDate and x.date<=:endDate") })
 public class LoanSchedule {
 	@Id
 	@Column(name = "LSC_ID")

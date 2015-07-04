@@ -457,6 +457,16 @@
 			<basic name="guaranteeTypeName">
 				<column name="LOA_GUARANTEETYPENAME" length="200"/>
 			</basic>
+			<basic name="paymentDueDate">
+				<column name="LOA_PAYMENTDUEDATE"/>
+				<temporal>DATE</temporal>
+			</basic>
+			<basic name="currentPayment">
+				<column name="LOA_CURRENTPAYMENT"/>
+			</basic>
+			<basic name="monthlyPayment">
+				<column name="LOA_MONTHLYPAYMENT"/>
+			</basic>
 		</attributes>
 	</entity>
 	<entity class="org.simbiosis.microbank.model.CifRpt">

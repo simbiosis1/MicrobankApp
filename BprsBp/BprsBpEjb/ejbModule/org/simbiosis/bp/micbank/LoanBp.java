@@ -555,7 +555,7 @@ public class LoanBp implements ILoanBp {
 			Date beginDate, Date endDate) {
 		UserDto user = system.getUserFromSession(key);
 		if (user != null) {
-			return loan.listLoanScheduleByRange(user.getCompany(), beginDate,
+			return loan.listAllLoanScheduleByRange(user.getCompany(), beginDate,
 					endDate);
 		}
 		return new ArrayList<LoanScheduleDto>();
@@ -716,12 +716,21 @@ public class LoanBp implements ILoanBp {
 	@Override
 	public List<LoanInformationDto> listDroppedLoan(String key, long branch,
 			Date beginDate, Date endDate) {
-		UserDto user = system.getUserFromSession(key);
-		if (user != null) {
-			return loan.listDroppedLoan(user.getCompany(), branch, beginDate,
+		UserDto myUser = system.getUserFromSession(key);
+		List<LoanInformationDto> result = new ArrayList<LoanInformationDto>(); 
+		if (myUser != null) {
+			List<UserDto> users = system.listUsers(myUser.getCompany(), 0);
+			Map<Long, UserDto> userMap = new HashMap<Long, UserDto>();
+			for (UserDto user : users){
+				userMap.put(user.getId(), user);
+			}
+			result = loan.listDroppedLoan(myUser.getCompany(), branch, beginDate,
 					endDate);
+			for (LoanInformationDto loan : result){
+				loan.setAoName(userMap.get(loan.getAo()).getRealName());
+			}
 		}
-		return new ArrayList<LoanInformationDto>();
+		return result; 
 	}
 
 	@Override

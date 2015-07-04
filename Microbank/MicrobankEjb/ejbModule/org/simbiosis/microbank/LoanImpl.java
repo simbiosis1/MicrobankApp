@@ -781,11 +781,34 @@ public class LoanImpl implements ILoan {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<LoanScheduleDto> listLoanScheduleByRange(long company,
+	public List<LoanScheduleDto> listAllLoanScheduleByRange(long company,
 			Date beginDate, Date endDate) {
 		List<LoanScheduleDto> result = new ArrayList<LoanScheduleDto>();
-		Query qry = em.createNamedQuery("listLoanSchedulesByRange");
+		Query qry = em.createNamedQuery("listAllLoanSchedulesByRange");
 		qry.setParameter("company", company);
+		qry.setParameter("beginDate", beginDate);
+		qry.setParameter("endDate", endDate);
+		List<LoanSchedule> list = qry.getResultList();
+		for (LoanSchedule schedule : list) {
+			LoanScheduleDto scheduleDto = new LoanScheduleDto();
+			scheduleDto.setId(schedule.getId());
+			scheduleDto.setDate(schedule.getDate());
+			scheduleDto.setPrincipal(schedule.getPrincipal());
+			scheduleDto.setMargin(schedule.getMargin());
+			scheduleDto.setTotal(schedule.getTotal());
+			scheduleDto.setLoan(schedule.getLoan().getId());
+			result.add(scheduleDto);
+		}
+		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<LoanScheduleDto> listLoanScheduleByRange(long id,
+			Date beginDate, Date endDate) {
+		List<LoanScheduleDto> result = new ArrayList<LoanScheduleDto>();
+		Query qry = em.createNamedQuery("listLoanScheduleByRange");
+		qry.setParameter("id", id);
 		qry.setParameter("beginDate", beginDate);
 		qry.setParameter("endDate", endDate);
 		List<LoanSchedule> list = qry.getResultList();
@@ -807,7 +830,7 @@ public class LoanImpl implements ILoan {
 	public List<LoanTransactionDto> listAllLoanTransactionByRange(long company,
 			long branch, int direction, Date beginDate, Date endDate) {
 		List<LoanTransactionDto> result = new ArrayList<LoanTransactionDto>();
-		String strQry = "listLoanTransactionByRange"
+		String strQry = "listAllLoanTransactionByRange"
 				+ (branch == 0 ? "1" : "2");
 		Query qry = em.createNamedQuery(strQry);
 		qry.setParameter("direction", direction);
@@ -821,6 +844,27 @@ public class LoanImpl implements ILoan {
 		List<LoanTransaction> list = qry.getResultList();
 		for (LoanTransaction trans : list) {
 			result.add(createLoanTransactionToDto(trans));
+		}
+		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<LoanScheduleDto> listLoanRepaymentRange(long loanId,
+			Date startDate, Date endDate) {
+		List<LoanScheduleDto> result = new ArrayList<LoanScheduleDto>();
+		Query qry = em.createNamedQuery("listLoanRepaymentByRange");
+		qry.setParameter("id", loanId);
+		qry.setParameter("startDate", startDate);
+		qry.setParameter("endDate", endDate);
+		List<LoanTransaction> list = qry.getResultList();
+		for (LoanTransaction trans : list) {
+			LoanScheduleDto scheduleDto = new LoanScheduleDto();
+			scheduleDto.setDate(trans.getDate());
+			scheduleDto.setPrincipal(trans.getPrincipal());
+			scheduleDto.setMargin(trans.getMargin());
+			scheduleDto.setTotal(trans.getPrincipal() + trans.getMargin());
+			result.add(scheduleDto);
 		}
 		return result;
 	}
@@ -1498,17 +1542,18 @@ public class LoanImpl implements ILoan {
 	public List<LoanScheduleDto> listRepaymentByRange(long id, Date beginDate,
 			Date endDate) {
 		List<LoanScheduleDto> result = new ArrayList<LoanScheduleDto>();
-		Query qry = em.createNamedQuery("listRepaymentByRange");
-		qry.setParameter("loanId", id);
+		Query qry = em.createNamedQuery("listLoanRepaymentByRange");
+		qry.setParameter("id", id);
+		qry.setParameter("beginDate", beginDate);
 		qry.setParameter("endDate", endDate);
-		List<LoanSchedule> scheds = qry.getResultList();
-		for (LoanSchedule sched : scheds) {
+		List<LoanTransaction> scheds = qry.getResultList();
+		for (LoanTransaction sched : scheds) {
 			LoanScheduleDto dto = new LoanScheduleDto();
 			dto.setId(sched.getId());
 			dto.setDate(sched.getDate());
 			dto.setPrincipal(sched.getPrincipal());
 			dto.setMargin(sched.getMargin());
-			dto.setTotal(sched.getTotal());
+			dto.setTotal(sched.getPrincipal() + sched.getMargin());
 			result.add(dto);
 		}
 		return result;
@@ -1577,6 +1622,7 @@ public class LoanImpl implements ILoan {
 			item.setContractDate(loan.getContractDate());
 			item.setPrincipal(loan.getPrincipal());
 			item.setMargin(loan.getMargin());
+			item.setAo(loan.getAo());
 			result.add(item);
 		}
 		return result;

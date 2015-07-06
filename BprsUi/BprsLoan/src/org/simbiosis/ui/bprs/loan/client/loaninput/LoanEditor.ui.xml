@@ -3,9 +3,7 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:a="urn:import:org.simbiosis.ui.bprs.common.client.customerhelper"
 	xmlns:s="urn:import:org.simbiosis.ui.bprs.common.client.savinghelper"
 	xmlns:e="urn:import:org.simbiosis.ui.bprs.loan.client.editor" xmlns:p="urn:import:org.simbiosis.ui.bprs.loan.client.loaninput">
-	<ui:style>
-	
-	</ui:style>
+
 	<g:ScrollPanel>
 		<g:HTMLPanel>
 			<table class="formTableLayout" width="100%">

@@ -170,7 +170,14 @@ public class LoanImpl implements ILoan {
 			gDto.setCustomer(gua.getCustomer().getId());
 			gDto.setNumber(gua.getNumber());
 			gDto.setType(gua.getType());
+			gDto.setBondDate(gua.getBondDate());
+			gDto.setBondType(gua.getBondType());
+			gDto.setBondNotarial(gua.getBondNotarial());
+			gDto.setBondNotarialName(gua.getBondNotarialName());
+			gDto.setAppraisalDate(gua.getAppraisalDate());
+			gDto.setAppraisalMarkValue(gua.getAppraisalMarkValue());
 			gDto.setAppraisalIntValue(gua.getAppraisalIntValue());
+			gDto.setAppraisalOJKValue(gua.getAppraisalOJKValue());
 			dto.getGuarantees().add(gDto);
 		}
 		dto.setCompany(loan.getCompany());

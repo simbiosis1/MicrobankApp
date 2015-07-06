@@ -87,6 +87,19 @@
 							</tr>
 							<tr>
 								<td class="formLabel">
+									Kelurahan, Kecamatan
+								</td>
+								<td>&nbsp;&nbsp;</td>
+								<td>
+									<g:HorizontalPanel>
+										<g:Label ui:field="village" styleName="formTextlabel" />
+										<g:HTMLPanel>&nbsp;</g:HTMLPanel>
+										<g:Label ui:field="district" styleName="formTextlabel" />
+									</g:HorizontalPanel>
+								</td>
+							</tr>
+							<tr>
+								<td class="formLabel">
 									Kota, kode pos
 								</td>
 								<td>&nbsp;&nbsp;</td>

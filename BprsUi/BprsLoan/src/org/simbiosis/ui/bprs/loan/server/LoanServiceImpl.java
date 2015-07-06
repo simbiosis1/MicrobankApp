@@ -59,53 +59,51 @@ public class LoanServiceImpl extends RemoteServiceServlet implements
 	@EJB(lookup = "java:global/SystemBpEar/SystemBpEjb/SystemBp")
 	ISystemBp systemBp;
 
-	// DecimalFormat nf = new DecimalFormat("#,##0.00");
-	// DateTimeFormatter sdf = DateTimeFormat.forPattern("dd-MM-yyyy");
-
 	public LoanServiceImpl() {
 	}
 
-	private CustomerDv createCustomerDvFromDto(CustomerDto customerDto) {
-		CustomerDv customerDv = new CustomerDv();
-		customerDv.setId(customerDto.getId());
-		customerDv.setCode(customerDto.getCode());
-		customerDv.setRegistration(customerDto.getRegistration());
-		customerDv.setName(customerDto.getName());
-		customerDv.setSex(customerDto.getSex());
-		customerDv.setStrSex(SexTypeEnum.valueToString(customerDv.getSex()));
-		customerDv.setPob(customerDto.getPob());
-		customerDv.setDob(customerDto.getDob());
-		customerDv.setIdType(customerDto.getIdType());
-		customerDv
-				.setStrIdType(IdTypeEnum.valueToString(customerDv.getIdType()));
-		customerDv.setIdCode(customerDto.getIdCode());
-		customerDv.setMotherName(customerDto.getMotherName());
-		customerDv.setAddress(customerDto.getAddress());
-		customerDv.setCity(customerDto.getCity());
-		customerDv.setPostCode(customerDto.getPostCode());
-		customerDv.setProvince(customerDto.getProvince());
-		customerDv.setPhone(customerDto.getPhone());
-		customerDv.setHandphone(customerDto.getHandphone());
-		return customerDv;
+	private CustomerDv createCustomerDvFromDto(CustomerDto dto) {
+		CustomerDv dv = new CustomerDv();
+		dv.setId(dto.getId());
+		dv.setCode(dto.getCode());
+		dv.setRegistration(dto.getRegistration());
+		dv.setName(dto.getName());
+		dv.setSex(dto.getSex());
+		dv.setStrSex(SexTypeEnum.valueToString(dv.getSex()));
+		dv.setPob(dto.getPob());
+		dv.setDob(dto.getDob());
+		dv.setIdType(dto.getIdType());
+		dv.setStrIdType(IdTypeEnum.valueToString(dv.getIdType()));
+		dv.setIdCode(dto.getIdCode());
+		dv.setMotherName(dto.getMotherName());
+		dv.setAddress(dto.getAddress());
+		dv.setVillage(dto.getVillage());
+		dv.setDistrict(dto.getDistrict());
+		dv.setCity(dto.getCity());
+		dv.setPostCode(dto.getPostCode());
+		dv.setProvince(dto.getProvince());
+		dv.setPhone(dto.getPhone());
+		dv.setHandphone(dto.getHandphone());
+		return dv;
 	}
 
-	public LoanScheduleDv createScheduleDv(LoanScheduleDto scheduleDto) {
-		LoanScheduleDv scheduleDv = new LoanScheduleDv();
-		scheduleDv.setId(scheduleDto.getId());
-		scheduleDv.setDate(scheduleDto.getDate());
-		scheduleDv.setPrincipal(scheduleDto.getPrincipal());
-		scheduleDv.setMargin(scheduleDto.getMargin());
-		scheduleDv.setTotal(scheduleDto.getTotal());
-		return scheduleDv;
+	public LoanScheduleDv createScheduleDv(LoanScheduleDto dto) {
+		LoanScheduleDv dv = new LoanScheduleDv();
+		dv.setId(dto.getId());
+		dv.setDate(dto.getDate());
+		dv.setPrincipal(dto.getPrincipal());
+		dv.setMargin(dto.getMargin());
+		dv.setTotal(dto.getTotal());
+		return dv;
 	}
 
-	private LoanScheduleDto createScheduleFromDv(LoanScheduleDv scheduleDv) {
-		LoanScheduleDto scheduleDto = new LoanScheduleDto();
-		scheduleDto.setDate(scheduleDv.getDate());
-		scheduleDto.setPrincipal(scheduleDv.getPrincipal());
-		scheduleDto.setMargin(scheduleDv.getMargin());
-		scheduleDto.setTotal(scheduleDv.getTotal());
-		return scheduleDto;
+	private LoanScheduleDto createScheduleFromDv(LoanScheduleDv dv) {
+		LoanScheduleDto dto = new LoanScheduleDto();
+		dto.setDate(dv.getDate());
+		dto.setPrincipal(dv.getPrincipal());
+		dto.setMargin(dv.getMargin());
+		dto.setTotal(dv.getTotal());
+		return dto;
 	}
 
 	public GuaranteeDto createGuaranteFromDv(GuaranteeDv dv) {
@@ -217,6 +215,7 @@ public class LoanServiceImpl extends RemoteServiceServlet implements
 			gDv.setCode(gDto.getCode());
 			gDv.setStrType(guaranteeTypes.get(gDto.getType()));
 			gDv.setNumber(gDto.getNumber());
+			gDv.setAppraisalOJKValue(gDto.getAppraisalOJKValue());
 			dv.getGuarantees().add(gDv);
 		}
 		//

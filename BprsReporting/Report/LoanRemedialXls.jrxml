@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LoanNominatif" language="groovy" pageWidth="960" pageHeight="595" orientation="Landscape" columnWidth="960" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="7971a7c5-6d0f-4150-bba9-d8f1ca257d88">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LoanNominatif" language="groovy" pageWidth="980" pageHeight="595" orientation="Landscape" columnWidth="980" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="7971a7c5-6d0f-4150-bba9-d8f1ca257d88">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="604"/>
+	<property name="ireport.x" value="643"/>
 	<property name="ireport.y" value="0"/>
 	<style name="PbyRed">
 		<conditionalStyle>
-			<conditionExpression><![CDATA[new Boolean($F{dueOs} > 2)]]></conditionExpression>
+			<conditionExpression><![CDATA[new Boolean(($F{dueOs} > 2) || ($F{quality}>1))]]></conditionExpression>
 			<style forecolor="#FF0000" isBold="false"/>
 		</conditionalStyle>
 	</style>
@@ -58,6 +58,7 @@
 	<field name="lastPaid" class="java.util.Date"/>
 	<field name="monthlyPayment" class="java.lang.Double"/>
 	<field name="currentPayment" class="java.lang.Double"/>
+	<field name="quality" class="java.lang.Integer"/>
 	<variable name="osPrincipal_SUM" class="java.lang.Double" resetType="Group" resetGroup="AoName" calculation="Sum">
 		<variableExpression><![CDATA[$F{osPrincipal}]]></variableExpression>
 	</variable>
@@ -107,7 +108,7 @@
 					<textFieldExpression><![CDATA[$V{osTotal_SUM}]]></textFieldExpression>
 				</textField>
 				<textField pattern="#,##0;-#,##0">
-					<reportElement x="724" y="1" width="60" height="12" uuid="4e3d24fb-9e7b-4895-bdc8-03fd4e7554ef"/>
+					<reportElement x="742" y="1" width="60" height="12" uuid="4e3d24fb-9e7b-4895-bdc8-03fd4e7554ef"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font size="8" isBold="false"/>
 					</textElement>
@@ -186,21 +187,21 @@
 				<text><![CDATA[Total]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="704" y="1" width="20" height="12" uuid="3f97fec8-d00e-4de4-b402-0d36d3930701"/>
+				<reportElement x="724" y="1" width="20" height="12" uuid="3f97fec8-d00e-4de4-b402-0d36d3930701"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[Tgk]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="724" y="1" width="60" height="12" uuid="8bad4127-9c8d-4c3d-81e3-f94dac92e2d3"/>
+				<reportElement x="744" y="1" width="60" height="12" uuid="8bad4127-9c8d-4c3d-81e3-f94dac92e2d3"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<text><![CDATA[Tag]]></text>
+				<text><![CDATA[Tot Tag]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="784" y="1" width="55" height="12" uuid="8ba64869-328e-4fbc-8c24-b303fe8e78b4"/>
+				<reportElement x="804" y="1" width="55" height="12" uuid="8ba64869-328e-4fbc-8c24-b303fe8e78b4"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
@@ -221,18 +222,25 @@
 				<text><![CDATA[JT]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="839" y="1" width="60" height="12" uuid="f723e87c-d08a-4580-a44a-72068f1e57fe"/>
+				<reportElement x="859" y="1" width="60" height="12" uuid="f723e87c-d08a-4580-a44a-72068f1e57fe"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[Angbul]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="899" y="1" width="60" height="12" uuid="adf5a923-3613-405a-bed0-ceb00ac19e0f"/>
+				<reportElement x="919" y="1" width="60" height="12" uuid="adf5a923-3613-405a-bed0-ceb00ac19e0f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[Bayar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="704" y="1" width="20" height="12" uuid="60b7de61-4e8b-4e22-8b62-56f420b89548"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Kol]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -267,21 +275,21 @@
 				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
 			</textField>
 			<textField pattern="0">
-				<reportElement style="PbyRed" x="704" y="1" width="20" height="12" uuid="bd022a86-e05e-4c23-9b94-8f28d1cc8cdc"/>
+				<reportElement style="PbyRed" x="724" y="1" width="20" height="12" uuid="bd022a86-e05e-4c23-9b94-8f28d1cc8cdc"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{dueOs}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0;-#,##0">
-				<reportElement style="PbyRed" x="724" y="1" width="60" height="12" uuid="30a28440-d02a-4aea-afeb-df4461937971"/>
+				<reportElement style="PbyRed" x="744" y="1" width="60" height="12" uuid="30a28440-d02a-4aea-afeb-df4461937971"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{dueOsTotal}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0;-#,##0">
-				<reportElement style="PbyRed" x="784" y="1" width="55" height="12" uuid="3be7c1f6-e01b-4aa4-8bd1-0f5118058066"/>
+				<reportElement style="PbyRed" x="804" y="1" width="55" height="12" uuid="3be7c1f6-e01b-4aa4-8bd1-0f5118058066"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
@@ -323,18 +331,25 @@
 				<textFieldExpression><![CDATA[$F{osTotal}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0;-#,##0">
-				<reportElement style="PbyRed" x="839" y="1" width="60" height="12" uuid="8571ba34-2f44-4fba-8c58-ccef4aa4df35"/>
+				<reportElement style="PbyRed" x="859" y="1" width="60" height="12" uuid="8571ba34-2f44-4fba-8c58-ccef4aa4df35"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{monthlyPayment}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0;-#,##0">
-				<reportElement style="PbyRed" x="899" y="1" width="60" height="12" uuid="b6473599-16d6-44db-bbe1-ba7a0a4ad8a4"/>
+				<reportElement style="PbyRed" x="919" y="1" width="60" height="12" uuid="b6473599-16d6-44db-bbe1-ba7a0a4ad8a4"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{currentPayment}]]></textFieldExpression>
+			</textField>
+			<textField pattern="0">
+				<reportElement style="PbyRed" x="704" y="1" width="20" height="12" uuid="341ec521-d487-4f4f-b296-2505e2024450"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quality}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

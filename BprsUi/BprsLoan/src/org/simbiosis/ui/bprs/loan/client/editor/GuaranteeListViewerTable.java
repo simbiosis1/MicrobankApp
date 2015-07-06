@@ -57,7 +57,7 @@ public class GuaranteeListViewerTable extends SimpleGrid<GuaranteeDv> {
 
 		@Override
 		public String getDataValue(GuaranteeDv data) {
-			return numberFormat.format(data.getAppraisalIntValue());
+			return numberFormat.format(data.getAppraisalOJKValue());
 		}
 	};
 

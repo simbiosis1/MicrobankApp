@@ -47,6 +47,10 @@ public class SimpleCustomerViewer extends Composite implements
 	@UiField
 	Label address;
 	@UiField
+	Label village;
+	@UiField
+	Label district;
+	@UiField
 	Label city;
 	@UiField
 	Label postCode;

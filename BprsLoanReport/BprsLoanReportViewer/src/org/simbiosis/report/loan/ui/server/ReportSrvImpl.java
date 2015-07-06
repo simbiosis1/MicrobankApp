@@ -44,7 +44,7 @@ public class ReportSrvImpl extends RemoteServiceServlet implements ReportSrv {
 		UserDto userDto = iSystemBp.getUserFromSession(key);
 		for (Long user : users) {
 			UserDto ao = iSystemBp.getUser(user);
-			if (userDto.getLevel() <= 4 && found == false) {
+			if (userDto.getLevel() <= 5 && found == false) {
 				UserDv dv = new UserDv();
 				dv.setId(0L);
 				dv.setRealName("SELURUH AO");

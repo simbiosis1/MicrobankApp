@@ -18,8 +18,7 @@ import com.google.web.bindery.event.shared.EventBus;
 
 public class InfoViewerActivity extends Activity {
 
-	private final LoanServiceAsync koperasiService = GWT
-			.create(LoanService.class);
+	private final LoanServiceAsync srv = GWT.create(LoanService.class);
 
 	InfoListPlace myPlace;
 	BprsLoanFactory appFactory;
@@ -64,7 +63,7 @@ public class InfoViewerActivity extends Activity {
 	}
 
 	public void showData(DataDv dataDv) {
-		koperasiService.getLoan(dataDv.getId(), new AsyncCallback<LoanDv>() {
+		srv.getLoan(dataDv.getId(), new AsyncCallback<LoanDv>() {
 
 			@Override
 			public void onSuccess(LoanDv result) {
@@ -82,7 +81,7 @@ public class InfoViewerActivity extends Activity {
 	}
 
 	private void loadPayment(long id) {
-		koperasiService.getPaymentInfo(id, new AsyncCallback<InfoLoanDv>() {
+		srv.getPaymentInfo(id, new AsyncCallback<InfoLoanDv>() {
 
 			@Override
 			public void onFailure(Throwable caught) {

@@ -11,6 +11,10 @@ import org.simbiosis.report.loan.ui.client.remedial.IRemedial;
 import org.simbiosis.report.loan.ui.client.remedial.Remedial;
 import org.simbiosis.report.loan.ui.client.remedial1.IRemedial1;
 import org.simbiosis.report.loan.ui.client.remedial1.Remedial1;
+import org.simbiosis.report.loan.ui.client.remedial12.IRemedial12;
+import org.simbiosis.report.loan.ui.client.remedial12.Remedial12;
+import org.simbiosis.report.loan.ui.client.remedial34.IRemedial34;
+import org.simbiosis.report.loan.ui.client.remedial34.Remedial34;
 import org.simbiosis.report.loan.ui.client.transaction.ITransaction;
 import org.simbiosis.report.loan.ui.client.transaction.Transaction;
 
@@ -21,6 +25,8 @@ public class AppFactoryImpl extends KembangClientFactoryImpl implements
 	static final NominatifAo LOAN_NOMINATIFAO = new NominatifAo();
 	static final Remedial LOAN_REMEDIAL = new Remedial();
 	static final Remedial1 LOAN_REMEDIAL1 = new Remedial1();
+	static final Remedial12 LOAN_REMEDIAL12 = new Remedial12();
+	static final Remedial34 LOAN_REMEDIAL34 = new Remedial34();
 	static final Transaction TRANSACTION = new Transaction();
 	static final Dropping DROPPING = new Dropping();
 
@@ -52,6 +58,16 @@ public class AppFactoryImpl extends KembangClientFactoryImpl implements
 	@Override
 	public IDropping getDropping() {
 		return DROPPING;
+	}
+
+	@Override
+	public IRemedial12 getLoanRemedial12() {
+		return LOAN_REMEDIAL12;
+	}
+
+	@Override
+	public IRemedial34 getLoanRemedial34() {
+		return LOAN_REMEDIAL34;
 	}
 
 }

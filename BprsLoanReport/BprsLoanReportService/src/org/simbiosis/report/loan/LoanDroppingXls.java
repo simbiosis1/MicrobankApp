@@ -7,9 +7,6 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 import org.simbiosis.bp.micbank.ILoanBp;
 import org.simbiosis.printing.lib.ReportServlet;
 
@@ -29,27 +26,17 @@ public class LoanDroppingXls extends ReportServlet {
 	protected void onRequest(HttpServletRequest request)
 			throws ServletException, IOException {
 		//
-		DateTimeFormatter dtf = DateTimeFormat.forPattern("dd-MM-yyyy");
-		//
-		String strBeginDate = request.getParameter("beginDate");
-		DateTime beginDate = strBeginDate != null ? dtf
-				.parseDateTime(strBeginDate) : new DateTime();
-		String strEndDate = request.getParameter("endDate");
-		DateTime endDate = strEndDate != null ? dtf.parseDateTime(strEndDate)
-				: new DateTime();
-		String strBranch = request.getParameter("branch");
-		Long branch = strBranch != null ? Long.parseLong(strBranch) : 0L;
+		LoanDroppingEngine engine = new LoanDroppingEngine(loanBp, getSession());
+		engine.prepareRequest(request, this);
 		//
 		prepare();
 		//
-		LoanDroppingEngine engine = new LoanDroppingEngine(loanBp, getSession());
-		setBeanCollection(engine.prepareData(branch, beginDate.toDate(),
-				endDate.toDate()));
+		setBeanCollection(engine.prepareData());
 		//
 		setParameter("LoanDropping.company", getCompanyName());
-		setParameter("LoanDropping.branch", getBranchName(branch));
-		setParameter("LoanDropping.beginDate", strBeginDate);
-		setParameter("LoanDropping.endDate", strEndDate);
+		setParameter("LoanDropping.branch", engine.getBranchName());
+		setParameter("LoanDropping.beginDate", engine.getStrBeginDate());
+		setParameter("LoanDropping.endDate", engine.getStrEndDate());
 	}
 
 }

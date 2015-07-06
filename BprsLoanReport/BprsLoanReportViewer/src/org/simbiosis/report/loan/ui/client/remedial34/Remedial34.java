@@ -1,4 +1,4 @@
-package org.simbiosis.report.loan.ui.client.remedial;
+package org.simbiosis.report.loan.ui.client.remedial34;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,13 +21,13 @@ import com.google.gwt.user.client.ui.Frame;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class Remedial extends FormWidget implements IRemedial {
+public class Remedial34 extends FormWidget implements IRemedial34 {
 
 	Activity activity;
 
 	private static MyUiBinder uiBinder = GWT.create(MyUiBinder.class);
 
-	interface MyUiBinder extends UiBinder<Widget, Remedial> {
+	interface MyUiBinder extends UiBinder<Widget, Remedial34> {
 	}
 
 	@UiField
@@ -43,7 +43,7 @@ public class Remedial extends FormWidget implements IRemedial {
 
 	List<UserDv> aoList = new ArrayList<UserDv>();
 
-	public Remedial() {
+	public Remedial34() {
 		initWidget(uiBinder.createAndBindUi(this));
 		//
 		setHasView(true);
@@ -69,8 +69,9 @@ public class Remedial extends FormWidget implements IRemedial {
 		String strBranch = "branch=" + branch.getValue();
 		String strAo = "&ao=" + ao.getValue();
 		String strAll = "&all=" + all.getValue(all.getSelectedIndex());
+		String strCol = "&col=34";
 		String url = reportService + "/" + report + "?" + strBranch + strAo
-				+ strAll;
+				+ strAll + strCol;
 		Frame frame = null;
 		if (download) {
 			frame = Frame

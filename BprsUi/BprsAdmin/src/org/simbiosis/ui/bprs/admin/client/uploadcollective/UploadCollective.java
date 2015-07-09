@@ -10,14 +10,15 @@ import org.simbiosis.ui.bprs.admin.shared.CoaDv;
 import org.simbiosis.ui.bprs.admin.shared.TransferCollectiveDv;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.DateLabel;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.user.datepicker.client.DateBox;
 
 public class UploadCollective extends FormWidget implements IUploadCollective {
 
@@ -31,7 +32,7 @@ public class UploadCollective extends FormWidget implements IUploadCollective {
 	}
 
 	@UiField
-	DateLabel transDate;
+	DateBox transDate;
 	@UiField
 	ListBox transType;
 	@UiField
@@ -41,16 +42,21 @@ public class UploadCollective extends FormWidget implements IUploadCollective {
 
 	CopyData copyData = new CopyData();
 	ConfirmGajiCollective confirmGaji = new ConfirmGajiCollective();
+	ConfirmPotonganCollective confirmPotongan = new ConfirmPotonganCollective();
 	ConfirmTransferCollective confirmTransfer = new ConfirmTransferCollective();
 
 	public UploadCollective() {
 		initWidget(uiBinder.createAndBindUi(this));
 		//
 		transType.addItem("Pilih jenis transaksi");
-		transType.addItem("Gaji");
+		transType.addItem("Gaji, Bonus, Honor");
+		transType.addItem("Potongan");
 		transType.addItem("Transfer antar rek");
 		//
+		//
 		transDate.setValue(new Date());
+		transDate.setFormat(new DateBox.DefaultFormat(DateTimeFormat
+				.getFormat("dd-MM-yyyy")));
 	}
 
 	@Override
@@ -61,6 +67,7 @@ public class UploadCollective extends FormWidget implements IUploadCollective {
 		//
 		copyData.setParent(this);
 		confirmGaji.setParent(this);
+		confirmPotongan.setParent(this);
 		confirmTransfer.setParent(this);
 		//
 		dataPanel.add(copyData);
@@ -85,9 +92,13 @@ public class UploadCollective extends FormWidget implements IUploadCollective {
 			switch (transType.getSelectedIndex()) {
 			case 1:
 				dataPanel.add(confirmGaji);
-				activity.confirmGaji();
+				activity.confirmGajiPotongan();
 				break;
 			case 2:
+				dataPanel.add(confirmPotongan);
+				activity.confirmGajiPotongan();
+				break;
+			case 3:
 				dataPanel.add(confirmTransfer);
 				activity.confirmTransfer();
 				break;
@@ -101,6 +112,9 @@ public class UploadCollective extends FormWidget implements IUploadCollective {
 			activity.executeGaji();
 			break;
 		case 2:
+			activity.executePotongan();
+			break;
+		case 3:
 			activity.executeTransfer();
 			break;
 		}
@@ -113,6 +127,9 @@ public class UploadCollective extends FormWidget implements IUploadCollective {
 			confirmGaji.setData(data);
 			break;
 		case 2:
+			confirmPotongan.setData(data);
+			break;
+		case 3:
 			confirmTransfer.setData(data);
 			break;
 		}
@@ -122,7 +139,7 @@ public class UploadCollective extends FormWidget implements IUploadCollective {
 	public String getDescription() {
 		return description.getText();
 	}
-	
+
 	@Override
 	public String getSrcData() {
 		return copyData.getData();
@@ -134,6 +151,8 @@ public class UploadCollective extends FormWidget implements IUploadCollective {
 		case 1:
 			return confirmGaji.getData();
 		case 2:
+			return confirmPotongan.getData();
+		case 3:
 			return confirmTransfer.getData();
 		default:
 			return new ArrayList<TransferCollectiveDv>();
@@ -143,16 +162,22 @@ public class UploadCollective extends FormWidget implements IUploadCollective {
 	@Override
 	public void setCoa(List<CoaDv> coas) {
 		confirmGaji.setCoa(coas);
+		confirmPotongan.setCoa(coas);
 	}
 
 	@Override
-	public Long getCoa() {
-		return confirmGaji.getCoa();
+	public ConfirmGajiCollective getFormGaji() {
+		return confirmGaji;
 	}
 
 	@Override
-	public String getAcc() {
-		return confirmGaji.getAcc();
+	public ConfirmPotonganCollective getFormPotongan() {
+		return confirmPotongan;
+	}
+	
+	@Override
+	public Date getDate(){
+		return transDate.getValue();
 	}
 
 	@Override

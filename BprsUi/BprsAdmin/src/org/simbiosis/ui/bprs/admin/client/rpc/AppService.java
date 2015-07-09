@@ -1,5 +1,6 @@
 package org.simbiosis.ui.bprs.admin.client.rpc;
 
+import java.util.Date;
 import java.util.List;
 
 import org.simbiosis.ui.bprs.admin.shared.CoaDv;
@@ -36,10 +37,11 @@ public interface AppService extends RemoteService {
 	List<TransferCollectiveDv> listConfirmTransfer(String key, String srcData)
 			throws IllegalArgumentException;
 
-	void executeCollectiveGaji(String key, String description, Integer type,
-			Long coa, String account, List<TransferCollectiveDv> data)
+	void executeCollectiveGajiPotongan(String key, Date date,
+			String description, Integer direction, Integer type, Long coa,
+			String account, List<TransferCollectiveDv> data)
 			throws IllegalArgumentException;
 
-	void executeCollectiveTransfer(String key, String description,
+	void executeCollectiveTransfer(String key, Date date, String description,
 			List<TransferCollectiveDv> data) throws IllegalArgumentException;
 }

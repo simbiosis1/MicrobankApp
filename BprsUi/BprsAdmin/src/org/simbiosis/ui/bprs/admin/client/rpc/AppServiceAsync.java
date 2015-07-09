@@ -1,5 +1,6 @@
 package org.simbiosis.ui.bprs.admin.client.rpc;
 
+import java.util.Date;
 import java.util.List;
 
 import org.simbiosis.ui.bprs.admin.shared.CoaDv;
@@ -36,11 +37,11 @@ public interface AppServiceAsync {
 	void listConfirmTransfer(String key, String srcData,
 			AsyncCallback<List<TransferCollectiveDv>> callback);
 
-	void executeCollectiveGaji(String key, String description, Integer type,
+	void executeCollectiveGajiPotongan(String key, Date date, String description, Integer direction, Integer type,
 			Long coa, String account, List<TransferCollectiveDv> data,
 			AsyncCallback<Void> callback);
 
-	void executeCollectiveTransfer(String key, String description,
+	void executeCollectiveTransfer(String key, Date date, String description,
 			List<TransferCollectiveDv> data, AsyncCallback<Void> callback);
 
 }

@@ -1,5 +1,6 @@
 package org.simbiosis.ui.bprs.admin.client.uploadcollective;
 
+import java.util.Date;
 import java.util.List;
 
 import org.kembang.module.client.mvp.AppStatus;
@@ -14,7 +15,7 @@ public interface IUploadCollective {
 	FormWidget getFormWidget();
 
 	void confirmUpload(List<TransferCollectiveDv> data);
-	
+
 	String getDescription();
 
 	String getSrcData();
@@ -25,18 +26,22 @@ public interface IUploadCollective {
 
 	Integer getSource();
 
-	Long getCoa();
+	Date getDate();
 
-	String getAcc();
-	
+	ConfirmGajiCollective getFormGaji();
+
+	ConfirmPotonganCollective getFormPotongan();
+
 	void gotoFirst();
 
 	public abstract class Activity extends FormActivity {
-		public abstract void confirmGaji();
+		public abstract void confirmGajiPotongan();
 
 		public abstract void confirmTransfer();
 
 		public abstract void executeGaji();
+		
+		public abstract void executePotongan();
 
 		public abstract void executeTransfer();
 	}

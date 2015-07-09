@@ -358,13 +358,13 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 	}
 
 	@Override
-	public void executeCollectiveGaji(String key, String description,
-			Integer type, Long lcoa, String acc, List<TransferCollectiveDv> data)
-			throws IllegalArgumentException {
-		DateTime now = new DateTime();
+	public void executeCollectiveGajiPotongan(String key, Date date, String description,
+			Integer direction, Integer type, Long lcoa, String acc,
+			List<TransferCollectiveDv> data) throws IllegalArgumentException {
+		DateTime now = new DateTime(date);
 		DateTimeFormatter df = DateTimeFormat.forPattern("yyyyMMdd");
 		DateTimeFormatter mf = DateTimeFormat.forPattern("MM/yyyy");
-		String code = "GAJ" + df.print(now);
+		String code = description.substring(0, 3) + df.print(now);
 		Double totalValue = 0D;
 		Map<Long, Double> mapValues = new HashMap<Long, Double>();
 		//
@@ -383,10 +383,10 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 			trans.setDate(now.toDate());
 			trans.setCode(code);
 			trans.setHasCode(true);
-			trans.setDirection(1);
+			trans.setDirection(direction);
 			trans.setDescription(description.toUpperCase() + mf.print(now)
 					+ " - " + info.getName() + " (" + info.getCode() + ")");
-			trans.setType(3);
+			trans.setType(direction == 1 ? 3 : 4);
 			trans.setValue(dv.getValue());
 			totalValue += dv.getValue();
 			trans.setSaving(dv.getSavingId());
@@ -402,11 +402,11 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 			trans.setDate(now.toDate());
 			trans.setCode(code);
 			trans.setHasCode(true);
-			trans.setDirection(2);
+			trans.setDirection(direction == 1 ? 2 : 1);
 			trans.setDescription("PENGELUARAN " + description.toUpperCase()
 					+ " " + mf.print(now) + " - " + accInfo.getName() + " ("
 					+ accInfo.getCode() + ")");
-			trans.setType(4);
+			trans.setType(direction == 1 ? 4 : 3);
 			trans.setValue(totalValue);
 			trans.setSaving(accId);
 			savingBp.saveTransaction(key, trans);
@@ -417,7 +417,8 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 		GlTrans jurnal = new GlTrans();
 		jurnal.setCode(code);
 		jurnal.setDate(now.toDate());
-		jurnal.setDescription("PENGELUARAN " + description.toUpperCase() + " "
+		String prefix = direction == 1 ? "PENGELUARAN " : "PEMASUKAN ";
+		jurnal.setDescription(prefix + description.toUpperCase() + " "
 				+ mf.print(now));
 		// jurnal.setUser(user);
 		Coa coa = glBp.getCoa(lcoa);
@@ -425,7 +426,7 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 		item.setCoa(coa);
 		item.setDescription(description);
 		item.setValue(totalValue);
-		item.setDirection(1);
+		item.setDirection(direction);
 		item.setTransaction(jurnal);
 		jurnal.getItems().add(item);
 		for (Long lKey : keys) {
@@ -434,7 +435,7 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 			item.setCoa(coa);
 			item.setDescription(description);
 			item.setValue(mapValues.get(lKey));
-			item.setDirection(2);
+			item.setDirection(direction == 1 ? 2 : 1);
 			item.setTransaction(jurnal);
 			jurnal.getItems().add(item);
 		}
@@ -442,9 +443,8 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 	}
 
 	@Override
-	public void executeCollectiveTransfer(String key, String description,
+	public void executeCollectiveTransfer(String key, Date now, String description,
 			List<TransferCollectiveDv> datas) throws IllegalArgumentException {
-		Date now = new Date();
 		for (TransferCollectiveDv data : datas) {
 			TransactionDv dv = new TransactionDv();
 			dv.setDate(now);

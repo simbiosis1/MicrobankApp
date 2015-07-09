@@ -1,16 +1,15 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-	xmlns:g="urn:import:com.google.gwt.user.client.ui"
-	xmlns:d="urn:import:com.google.gwt.user.datepicker.client">
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:d="urn:import:com.google.gwt.user.datepicker.client">
 	<g:ScrollPanel height="100%">
-	<g:VerticalPanel height="100%">
-	    <g:HTMLPanel styleName="formLabel">Tanggal</g:HTMLPanel>
-	    <d:DateBox styleName="formCombobox" ui:field="transDate"/>
-	    <g:HTMLPanel styleName="formLabel">&nbsp;</g:HTMLPanel>
-	    <g:HTMLPanel styleName="formLabel">Jenis transaksi</g:HTMLPanel>
-	    <g:ListBox styleName="formCombobox" ui:field="transType"/>
-	    <g:HTMLPanel styleName="formLabel">&nbsp;</g:HTMLPanel>
-	    <g:VerticalPanel ui:field="dataPanel" />
-	</g:VerticalPanel>
+		<g:VerticalPanel height="100%">
+			<g:HTMLPanel styleName="formLabel">Tanggal</g:HTMLPanel>
+			<d:DateBox styleName="formCombobox" ui:field="transDate" />
+			<g:HTMLPanel styleName="formLabel">&nbsp;</g:HTMLPanel>
+			<g:HTMLPanel styleName="formLabel">Jenis transaksi</g:HTMLPanel>
+			<g:ListBox styleName="formCombobox" ui:field="transType" />
+			<g:HTMLPanel styleName="formLabel">&nbsp;</g:HTMLPanel>
+			<g:VerticalPanel ui:field="dataPanel" />
+		</g:VerticalPanel>
 	</g:ScrollPanel>
 </ui:UiBinder> 

@@ -24,19 +24,25 @@
 			<tr>
 				<td class="formLabel">Nisbah</td>
 				<td>
-					<g:Label ui:field="strSharing" styleName="formTextlabel" />
+					<g:NumberLabel ui:field="sharing" styleName="formTextlabel" customFormat="#,##0.00" />
 				</td>
 			</tr>
 			<tr>
 				<td class="formLabel">Saldo minimal</td>
 				<td>
-					<g:Label ui:field="strMinValue" styleName="formTextlabel" />
+					<g:NumberLabel ui:field="minValue" styleName="formTextlabel" customFormat="#,##0.00" />
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel">Saldo bahas/bonus minimal</td>
+				<td>
+					<g:NumberLabel ui:field="minSharable" styleName="formTextlabel" customFormat="#,##0.00"/>
 				</td>
 			</tr>
 			<tr>
 				<td class="formLabel">Biaya penutupan</td>
 				<td>
-					<g:Label ui:field="strCloseAdmin" styleName="formTextlabel" />
+					<g:NumberLabel ui:field="closeAdmin" styleName="formTextlabel" customFormat="#,##0.00" />
 				</td>
 			</tr>
 			<tr>

@@ -2,6 +2,7 @@ package org.simbiosis.bprs.ui.config.client.deposit;
 
 import java.util.List;
 
+import org.kembang.editor.client.DoubleTextBox;
 import org.kembang.module.shared.SimpleBranchDv;
 import org.simbiosis.bprs.ui.config.client.editor.CoaListEditor;
 import org.simbiosis.bprs.ui.config.client.editor.TermListBox;
@@ -42,7 +43,7 @@ public class DepProductEditor extends Composite implements Editor<ProductDv> {
 	@UiField
 	CoaListEditor coa3;
 	@UiField
-	TextBox strSharing;
+	DoubleTextBox sharing;
 	@UiField
 	TermListBox term;
 

@@ -57,7 +57,7 @@ public class ProductDv implements IsSerializable {
 	Long company;
 	Integer schema;
 	Double sharing;
-	// Integer hasShare;
+	Double minSharable;
 	Long coa1;
 	Long coa2;
 	Long coa3;
@@ -71,15 +71,12 @@ public class ProductDv implements IsSerializable {
 	String strCoa5;
 	String strCoa6;
 	Double minValue;
-	String strSharing;
-	String strMinValue;
 	String strSchema;
 	Boolean hasShare;
 	String strHasShare;
 	String strTerm;
 	Long term;
 	Double closeAdmin;
-	String strCloseAdmin;
 
 	public ProductDv() {
 		id = 0L;
@@ -234,22 +231,6 @@ public class ProductDv implements IsSerializable {
 		this.coa3 = coa3;
 	}
 
-	public String getStrSharing() {
-		return strSharing;
-	}
-
-	public void setStrSharing(String strSharing) {
-		this.strSharing = strSharing;
-	}
-
-	public String getStrMinValue() {
-		return strMinValue;
-	}
-
-	public void setStrMinValue(String strMinValue) {
-		this.strMinValue = strMinValue;
-	}
-
 	public String getStrSchema() {
 		return strSchema;
 	}
@@ -330,12 +311,12 @@ public class ProductDv implements IsSerializable {
 		this.closeAdmin = closeAdmin;
 	}
 
-	public String getStrCloseAdmin() {
-		return strCloseAdmin;
+	public Double getMinSharable() {
+		return minSharable;
 	}
 
-	public void setStrCloseAdmin(String strCloseAdmin) {
-		this.strCloseAdmin = strCloseAdmin;
+	public void setMinSharable(Double minSharable) {
+		this.minSharable = minSharable;
 	}
 
 }

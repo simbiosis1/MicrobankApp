@@ -9,6 +9,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.NumberLabel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class DepProductViewer extends Composite implements Editor<ProductDv> {
@@ -34,7 +35,7 @@ public class DepProductViewer extends Composite implements Editor<ProductDv> {
 	@UiField
 	Label strCoa3;
 	@UiField
-	Label strSharing;
+	NumberLabel<Double> sharing;
 	@UiField
 	Label strTerm;
 	@UiField

@@ -2,6 +2,7 @@ package org.simbiosis.bprs.ui.config.client.savingproduct;
 
 import java.util.List;
 
+import org.kembang.editor.client.DoubleTextBox;
 import org.simbiosis.bprs.ui.config.client.editor.CoaListEditor;
 import org.simbiosis.bprs.ui.config.shared.CoaDv;
 import org.simbiosis.bprs.ui.config.shared.ProductDv;
@@ -42,11 +43,13 @@ public class SavProductEditorMdh extends Composite implements Editor<ProductDv> 
 	@UiField
 	CoaListEditor coa4;
 	@UiField
-	TextBox strSharing;
+	DoubleTextBox sharing;
 	@UiField
-	TextBox strMinValue;
+	DoubleTextBox minValue;
 	@UiField
-	TextBox strCloseAdmin;
+	DoubleTextBox minSharable;
+	@UiField
+	DoubleTextBox closeAdmin;
 
 	public SavProductEditorMdh(List<CoaDv> coas) {
 		initWidget(uiBinder.createAndBindUi(this));

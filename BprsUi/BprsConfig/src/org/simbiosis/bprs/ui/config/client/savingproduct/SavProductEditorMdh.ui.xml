@@ -1,6 +1,7 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:e="urn:import:org.simbiosis.bprs.ui.config.client.editor">
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:e="urn:import:org.simbiosis.bprs.ui.config.client.editor"
+	xmlns:k="urn:import:org.kembang.editor.client">
 	<g:HTMLPanel>
 		<table>
 			<tr>
@@ -18,19 +19,25 @@
 			<tr>
 				<td class="formLabel" width="150px">Nisbah</td>
 				<td>
-					<g:TextBox ui:field="strSharing" styleName="formText" />
+					<k:DoubleTextBox ui:field="sharing" styleName="formText" />
 				</td>
 			</tr>
 			<tr>
 				<td class="formLabel" width="150px">Saldo minimal</td>
 				<td>
-					<g:TextBox ui:field="strMinValue" styleName="formText" />
+					<k:DoubleTextBox ui:field="minValue" styleName="formText" />
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel" width="150px">Saldo bahas/bonus minimal</td>
+				<td>
+					<k:DoubleTextBox ui:field="minSharable" styleName="formText" />
 				</td>
 			</tr>
 			<tr>
 				<td class="formLabel" width="150px">Biaya penutupan</td>
 				<td>
-					<g:TextBox ui:field="strCloseAdmin" styleName="formText" />
+					<k:DoubleTextBox ui:field="closeAdmin" styleName="formText" />
 				</td>
 			</tr>
 			<tr>

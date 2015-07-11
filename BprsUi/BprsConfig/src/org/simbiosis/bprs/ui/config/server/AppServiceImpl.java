@@ -239,7 +239,7 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 		dto.setCoa3(dv.getCoa3());
 		dto.setCode(dv.getCode());
 		dto.setName(dv.getName() != null ? dv.getName().toUpperCase() : "");
-		dto.setSharing(Double.parseDouble(dv.getStrSharing()));
+		dto.setSharing(dv.getSharing());
 		dto.setCode(dv.getCode() != null ? dv.getCode().toUpperCase() : "");
 		dto.setTerm(Integer.parseInt(String.valueOf(dv.getTerm())));
 		depositBp.saveDepositProduct(key, dto);
@@ -249,27 +249,26 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 	public List<ProductDv> listDepProduct(String key)
 			throws IllegalArgumentException {
 		List<ProductDv> result = new ArrayList<ProductDv>();
-		List<DepositProductDto> users = depositBp.listDepositProduct(key);
+		List<DepositProductDto> products = depositBp.listDepositProduct(key);
 		int nr = 1;
-		for (DepositProductDto user : users) {
+		for (DepositProductDto product : products) {
 			ProductDv dv = new ProductDv();
 			dv.setNr(nr++);
-			dv.setId(user.getId());
-			dv.setCoa1(user.getCoa1());
-			Coa dto = glBp.getCoa(user.getCoa1());
+			dv.setId(product.getId());
+			dv.setCoa1(product.getCoa1());
+			Coa dto = glBp.getCoa(product.getCoa1());
 			dv.setStrCoa1(dto.getCode() + " - " + dto.getDescription());
-			dv.setCoa2(user.getCoa2());
-			Coa dto2 = glBp.getCoa(user.getCoa2());
+			dv.setCoa2(product.getCoa2());
+			Coa dto2 = glBp.getCoa(product.getCoa2());
 			dv.setStrCoa2(dto2.getCode() + " - " + dto2.getDescription());
-			dv.setCoa3(user.getCoa3());
-			Coa dto3 = glBp.getCoa(user.getCoa3());
+			dv.setCoa3(product.getCoa3());
+			Coa dto3 = glBp.getCoa(product.getCoa3());
 			dv.setStrCoa3(dto3.getCode() + " - " + dto3.getDescription());
-			dv.setName(user.getName());
-			dv.setSharing(user.getSharing());
-			dv.setStrSharing(String.valueOf(user.getSharing()));
-			dv.setTerm(Long.parseLong(String.valueOf(user.getTerm())));
-			dv.setStrTerm(String.valueOf(user.getTerm() + " BULAN"));
-			dv.setCode(user.getCode());
+			dv.setName(product.getName());
+			dv.setSharing(product.getSharing());
+			dv.setTerm(Long.parseLong(String.valueOf(product.getTerm())));
+			dv.setStrTerm(String.valueOf(product.getTerm() + " BULAN"));
+			dv.setCode(product.getCode());
 			result.add(dv);
 		}
 		return result;
@@ -287,11 +286,10 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 		dto.setName(dv.getName() != null ? dv.getName().toUpperCase() : "");
 		dto.setCode(dv.getCode() != null ? dv.getCode().toUpperCase() : "");
 		dto.setSchema(dv.getSchema());
-		dto.setSharing(dto.getSchema() == 1 ? 0 : Double.parseDouble(dv
-				.getStrSharing()));
+		dto.setSharing(dto.getSchema() == 1 ? 0 : dv.getSharing());
 		dto.setHasShare(dv.getHasShare() ? 1 : 0);
-		dto.setMinValue(Double.parseDouble(dv.getStrMinValue()));
-		dto.setCloseAdmin(Double.parseDouble(dv.getStrCloseAdmin()));
+		dto.setMinValue(dv.getMinValue());
+		dto.setCloseAdmin(dv.getCloseAdmin());
 		savingBp.saveSavingProduct(key, dto);
 	}
 
@@ -322,15 +320,11 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 			dv.setSchema(product.getSchema());
 			dv.setStrSchema(savingSchema[product.getSchema()]);
 			dv.setSharing(product.getSharing());
-			dv.setStrSharing(String.valueOf(product.getSharing()));
 			dv.setHasShare(product.getHasShare() == 1);
 			dv.setStrHasShare(bonus[product.getHasShare()]);
 			dv.setMinValue(product.getMinValue());
-			dv.setStrMinValue(dv.getMinValue().toString());
 			dv.setMinValue(product.getMinValue());
-			dv.setStrMinValue(dv.getMinValue().toString());
 			dv.setCloseAdmin(product.getCloseAdmin());
-			dv.setStrCloseAdmin(dv.getCloseAdmin().toString());
 			result.add(dv);
 			nr++;
 		}
@@ -353,7 +347,7 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 		}
 		return returnList;
 	}
-	
+
 	String getCoaDescription(long id) {
 		Coa coa = glBp.getCoa(id);
 		return coa == null ? "-" : (coa.getCode() + " - " + coa

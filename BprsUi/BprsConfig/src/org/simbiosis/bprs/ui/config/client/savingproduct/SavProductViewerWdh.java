@@ -9,6 +9,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.NumberLabel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class SavProductViewerWdh extends Composite implements Editor<ProductDv> {
@@ -41,9 +42,11 @@ public class SavProductViewerWdh extends Composite implements Editor<ProductDv> 
 	@UiField
 	Label strHasShare;
 	@UiField
-	Label strMinValue;
+	NumberLabel<Double> minValue;
 	@UiField
-	Label strCloseAdmin;
+	NumberLabel<Double> minSharable;
+	@UiField
+	NumberLabel<Double> closeAdmin;
 	
 	public SavProductViewerWdh() {
 		initWidget(uiBinder.createAndBindUi(this));

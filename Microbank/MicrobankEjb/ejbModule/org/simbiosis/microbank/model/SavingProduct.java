@@ -46,8 +46,12 @@ public class SavingProduct {
 	long coa4;
 	@Column(name = "SPR_MINVALUE")
 	double minValue;
+	@Column(name = "SPR_MINSHARABLE")
+	double minSharable;
 	@Column(name = "SPR_CLOSEADMIN")
 	double closeAdmin;
+	@Column(name = "SPR_MONTHLYADMIN")
+	double monthlyAdmin;
 	@Column(name = "SPR_ACTIVE")
 	int active;
 
@@ -169,6 +173,22 @@ public class SavingProduct {
 
 	public void setCloseAdmin(double closeAdmin) {
 		this.closeAdmin = closeAdmin;
+	}
+
+	public double getMinSharable() {
+		return minSharable;
+	}
+
+	public void setMinSharable(double minSharable) {
+		this.minSharable = minSharable;
+	}
+
+	public double getMonthlyAdmin() {
+		return monthlyAdmin;
+	}
+
+	public void setMonthlyAdmin(double monthlyAdmin) {
+		this.monthlyAdmin = monthlyAdmin;
 	}
 
 }

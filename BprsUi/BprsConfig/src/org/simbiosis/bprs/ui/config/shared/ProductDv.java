@@ -77,9 +77,11 @@ public class ProductDv implements IsSerializable {
 	String strTerm;
 	Long term;
 	Double closeAdmin;
+	Double monthlyAdmin;
 
 	public ProductDv() {
 		id = 0L;
+		nr = 0;
 		refId = 0L;
 		coa1 = 0L;
 		coa2 = 0L;
@@ -90,7 +92,9 @@ public class ProductDv implements IsSerializable {
 		hasShare = true;
 		sharing = 0D;
 		minValue = 0D;
+		minSharable = 0D;
 		closeAdmin = 0D;
+		monthlyAdmin = 0D;
 		schema = 1;
 		term = 0L;
 	}
@@ -317,6 +321,14 @@ public class ProductDv implements IsSerializable {
 
 	public void setMinSharable(Double minSharable) {
 		this.minSharable = minSharable;
+	}
+
+	public Double getMonthlyAdmin() {
+		return monthlyAdmin;
+	}
+
+	public void setMonthlyAdmin(Double monthlyAdmin) {
+		this.monthlyAdmin = monthlyAdmin;
 	}
 
 }

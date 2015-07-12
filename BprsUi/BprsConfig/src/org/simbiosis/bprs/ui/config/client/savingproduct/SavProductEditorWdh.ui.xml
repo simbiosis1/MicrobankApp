@@ -35,6 +35,12 @@
 				</td>
 			</tr>
 			<tr>
+				<td class="formLabel" width="150px">Biaya bulanan</td>
+				<td>
+					<k:DoubleTextBox ui:field="monthlyAdmin" styleName="formText" />
+				</td>
+			</tr>
+			<tr>
 				<td class="formLabel" width="150px">Biaya penutupan</td>
 				<td>
 					<k:DoubleTextBox ui:field="closeAdmin" styleName="formText" />

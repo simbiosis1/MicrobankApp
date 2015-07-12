@@ -47,6 +47,8 @@ public class SavProductViewerMdh extends Composite implements Editor<ProductDv> 
 	NumberLabel<Double> minSharable;
 	@UiField
 	NumberLabel<Double> closeAdmin;
+	@UiField
+	NumberLabel<Double> monthlyAdmin;
 	
 	public SavProductViewerMdh() {
 		initWidget(uiBinder.createAndBindUi(this));

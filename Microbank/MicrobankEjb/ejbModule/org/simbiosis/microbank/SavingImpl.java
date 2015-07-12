@@ -85,7 +85,9 @@ public class SavingImpl implements ISaving {
 		product.setCoa3(dto.getCoa3());
 		product.setCoa4(dto.getCoa4());
 		product.setMinValue(dto.getMinValue());
+		product.setMinSharable(dto.getMinSharable());
 		product.setCloseAdmin(dto.getCloseAdmin());
+		product.setMonthlyAdmin(dto.getMonthlyAdmin());
 		return product;
 	}
 
@@ -104,7 +106,9 @@ public class SavingImpl implements ISaving {
 		dto.setCoa3(product.getCoa3());
 		dto.setCoa4(product.getCoa4());
 		dto.setMinValue(product.getMinValue());
+		dto.setMinSharable(product.getMinSharable());
 		dto.setCloseAdmin(product.getCloseAdmin());
+		dto.setMonthlyAdmin(product.getMonthlyAdmin());
 		return dto;
 	}
 

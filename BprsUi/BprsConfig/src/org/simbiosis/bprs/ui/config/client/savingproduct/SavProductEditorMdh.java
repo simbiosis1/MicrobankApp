@@ -50,6 +50,8 @@ public class SavProductEditorMdh extends Composite implements Editor<ProductDv> 
 	DoubleTextBox minSharable;
 	@UiField
 	DoubleTextBox closeAdmin;
+	@UiField
+	DoubleTextBox monthlyAdmin;
 
 	public SavProductEditorMdh(List<CoaDv> coas) {
 		initWidget(uiBinder.createAndBindUi(this));

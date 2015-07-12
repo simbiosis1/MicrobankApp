@@ -35,9 +35,9 @@ public class SavProductListActivity extends Activity {
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 		ISavProduct myForm = appFactory.getSavProduct();
 		myForm.setActivity(this, appFactory.getAppStatus());
-		if (appFactory.getAppStatus().isLogin()) {
-			loadCommonData();
-		}
+		//if (appFactory.getAppStatus().isLogin()) {
+		//	loadCommonData();
+		//}
 		appFactory.showApplication(panel, myForm.getFormWidget());
 	}
 
@@ -70,7 +70,7 @@ public class SavProductListActivity extends Activity {
 	}
 
 	private void onReload() {
-		loadUsers();
+		loadProducts();
 		ISavProduct myForm = appFactory.getSavProduct();
 		myForm.clearViewer();
 	}
@@ -116,7 +116,7 @@ public class SavProductListActivity extends Activity {
 			public void onSuccess(List<CoaDv> result) {
 				ISavProduct myForm = appFactory.getSavProduct();
 				myForm.setCoa(result);
-				loadUsers();
+				loadProducts();
 			}
 
 			@Override
@@ -127,7 +127,7 @@ public class SavProductListActivity extends Activity {
 		});
 	}
 
-	private void loadUsers() {
+	private void loadProducts() {
 		wmsService.listSavingProduct(getKey(), new AsyncCallback<List<ProductDv>>() {
 
 			@Override

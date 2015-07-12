@@ -289,7 +289,9 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 		dto.setSharing(dto.getSchema() == 1 ? 0 : dv.getSharing());
 		dto.setHasShare(dv.getHasShare() ? 1 : 0);
 		dto.setMinValue(dv.getMinValue());
+		dto.setMinSharable(dv.getMinSharable());
 		dto.setCloseAdmin(dv.getCloseAdmin());
+		dto.setMonthlyAdmin(dv.getMonthlyAdmin());
 		savingBp.saveSavingProduct(key, dto);
 	}
 
@@ -323,8 +325,9 @@ public class AppServiceImpl extends RemoteServiceServlet implements AppService {
 			dv.setHasShare(product.getHasShare() == 1);
 			dv.setStrHasShare(bonus[product.getHasShare()]);
 			dv.setMinValue(product.getMinValue());
-			dv.setMinValue(product.getMinValue());
+			dv.setMinSharable(product.getMinSharable());
 			dv.setCloseAdmin(product.getCloseAdmin());
+			dv.setMonthlyAdmin(product.getMonthlyAdmin());
 			result.add(dv);
 			nr++;
 		}

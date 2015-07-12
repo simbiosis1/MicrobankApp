@@ -20,7 +20,9 @@ public class SavingProductDto implements Serializable {
 	long coa3;
 	long coa4;
 	double minValue;
+	double minSharable;
 	double closeAdmin;
+	double monthlyAdmin;
 
 	public SavingProductDto() {
 		id = 0;
@@ -136,6 +138,22 @@ public class SavingProductDto implements Serializable {
 
 	public void setCloseAdmin(double closeAdmin) {
 		this.closeAdmin = closeAdmin;
+	}
+
+	public double getMinSharable() {
+		return minSharable;
+	}
+
+	public void setMinSharable(double minSharable) {
+		this.minSharable = minSharable;
+	}
+
+	public double getMonthlyAdmin() {
+		return monthlyAdmin;
+	}
+
+	public void setMonthlyAdmin(double monthlyAdmin) {
+		this.monthlyAdmin = monthlyAdmin;
 	}
 
 }

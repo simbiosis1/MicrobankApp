@@ -19,7 +19,7 @@
 				<td class="formLabel" width="75px" colspan="2"><g:CheckBox ui:field="hasShare" styleName="formCheckbox">Dibagihasilkan</g:CheckBox></td>
 			</tr>
 			<tr>
-				<td class="formLabel" colspan="2">Akun</td>
+				<td class="formSubtitle" colspan="2">Akun</td>
 			</tr>
 			<tr>
 				<td class="formLabel" width="75px">Produk</td>
@@ -28,9 +28,33 @@
 				</td>
 			</tr>
 			<tr>
+				<td class="formLabel" width="75px">Marjin ditangguhkan</td>
+				<td>
+					<e:CoaListEditor ui:field="coa2" styleName="formCombobox" />
+				</td>
+			</tr>
+			<tr>
 				<td class="formLabel" width="75px">Pendapatan</td>
 				<td>
 					<e:CoaListEditor ui:field="coa3" styleName="formCombobox" />
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel" width="75px">Diskon</td>
+				<td>
+					<e:CoaListEditor ui:field="coa4" styleName="formCombobox" />
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel" width="75px">Titipan admin</td>
+				<td>
+					<e:CoaListEditor ui:field="coa5" styleName="formCombobox" />
+				</td>
+			</tr>
+			<tr>
+				<td class="formLabel" width="75px">Admin</td>
+				<td>
+					<e:CoaListEditor ui:field="coa6" styleName="formCombobox" />
 				</td>
 			</tr>
 		</table>

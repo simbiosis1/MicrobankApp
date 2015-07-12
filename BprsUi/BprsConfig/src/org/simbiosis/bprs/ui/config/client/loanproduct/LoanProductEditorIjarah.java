@@ -1,4 +1,4 @@
-package org.simbiosis.bprs.ui.config.client.loan;
+package org.simbiosis.bprs.ui.config.client.loanproduct;
 
 import java.util.List;
 
@@ -16,17 +16,17 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class LoanProductEditorMbh extends Composite implements
+public class LoanProductEditorIjarah extends Composite implements
 		Editor<ProductDv> {
 
 	private static UserViewerUiBinder uiBinder = GWT
 			.create(UserViewerUiBinder.class);
 
-	interface UserViewerUiBinder extends UiBinder<Widget, LoanProductEditorMbh> {
+	interface UserViewerUiBinder extends UiBinder<Widget, LoanProductEditorIjarah> {
 	}
 
 	interface Driver extends
-			SimpleBeanEditorDriver<ProductDv, LoanProductEditorMbh> {
+			SimpleBeanEditorDriver<ProductDv, LoanProductEditorIjarah> {
 	}
 
 	private Driver driver = GWT.create(Driver.class);
@@ -42,23 +42,17 @@ public class LoanProductEditorMbh extends Composite implements
 	@UiField
 	CoaListEditor coa4;
 	@UiField
-	CoaListEditor coa5;
-	@UiField
-	CoaListEditor coa6;
-	@UiField
 	TextBox code;
 	@UiField
 	CheckBox hasShare;
 
-	public LoanProductEditorMbh(List<CoaDv> coas) {
+	public LoanProductEditorIjarah(List<CoaDv> coas) {
 		initWidget(uiBinder.createAndBindUi(this));
 		//
 		coa1.setList(coas);
 		coa2.setList(coas);
 		coa3.setList(coas);
 		coa4.setList(coas);
-		coa5.setList(coas);
-		coa6.setList(coas);
 		//
 		driver.initialize(this);
 		driver.edit(new ProductDv());

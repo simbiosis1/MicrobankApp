@@ -28,6 +28,7 @@ public class RevenueSharingDto implements Serializable {
 	double customerSharing;
 	double tax;
 	double zakat;
+	double minSharable;
 
 	public RevenueSharingDto() {
 		super();
@@ -201,4 +202,13 @@ public class RevenueSharingDto implements Serializable {
 	public void setHasShare(int hasShare) {
 		this.hasShare = hasShare;
 	}
+
+	public double getMinSharable() {
+		return minSharable;
+	}
+
+	public void setMinSharable(double minSharable) {
+		this.minSharable = minSharable;
+	}
+
 }

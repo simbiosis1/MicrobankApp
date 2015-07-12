@@ -28,8 +28,8 @@ public class SavProductList extends FormWidget implements ISavProduct {
 	List<CoaDv> listCoa = new ArrayList<CoaDv>();
 	List<ProductDv> listProduct = new ArrayList<ProductDv>();
 
-	//SavProductViewer productViewer = new SavProductViewer();
-	//SavProductEditor productEditor = new SavProductEditor();
+	SavProductViewer productViewer = new SavProductViewer();
+	SavProductEditor productEditor = new SavProductEditor();
 	Boolean isEditor = false;
 
 	@UiField
@@ -70,7 +70,7 @@ public class SavProductList extends FormWidget implements ISavProduct {
 
 	@Override
 	public void setCoa(List<CoaDv> listCoa) {
-		//productEditor.setCoa(listCoa);
+		productEditor.setCoa(listCoa);
 	}
 
 	@Override
@@ -78,8 +78,8 @@ public class SavProductList extends FormWidget implements ISavProduct {
 		listProduct.clear();
 		listProduct.addAll(products);
 		this.users.clear();
-		for (ProductDv user : products) {
-			this.users.addRow(user);
+		for (ProductDv product : products) {
+			this.users.addRow(product);
 		}
 	}
 
@@ -94,8 +94,8 @@ public class SavProductList extends FormWidget implements ISavProduct {
 	private void setViewerData(ProductDv user) {
 		//
 		userForm.clear();
-		//userForm.add(productViewer);
-		//productViewer.setData(user);
+		userForm.add(productViewer);
+		productViewer.setData(user);
 
 		showSave(false);
 		isEditor = false;
@@ -103,8 +103,8 @@ public class SavProductList extends FormWidget implements ISavProduct {
 
 	public void setEditorData(ProductDv user) {
 		userForm.clear();
-		//userForm.add(productEditor);
-		//productEditor.setData(user);
+		userForm.add(productEditor);
+		productEditor.setData(user);
 		showBack(true);
 		showSave(true);
 		isEditor = true;
@@ -132,12 +132,11 @@ public class SavProductList extends FormWidget implements ISavProduct {
 
 	@Override
 	public ProductDv getProduct() {
-		//if (isEditor) {
-		//	return productEditor.getUser();
-		//} else {
-		//	return users.getSelectedData();
-		//}
-		return null;
+		if (isEditor) {
+			return productEditor.getUser();
+		} else {
+			return users.getSelectedData();
+		}
 	}
 
 }

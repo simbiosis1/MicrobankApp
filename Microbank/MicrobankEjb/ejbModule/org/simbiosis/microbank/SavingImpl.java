@@ -449,6 +449,7 @@ public class SavingImpl implements ISaving {
 		info.setCity(saving.getCustomer().getCity());
 		info.setSharing(saving.getProduct().getSharing());
 		info.setHasShare(saving.getProduct().getHasShare());
+		info.setMinSharable(saving.getProduct().getMinSharable());
 		info.setOnClose(saving.getOnClose());
 		info.setCoa1(saving.getProduct().getCoa1());
 		info.setCoa2(saving.getProduct().getCoa2());

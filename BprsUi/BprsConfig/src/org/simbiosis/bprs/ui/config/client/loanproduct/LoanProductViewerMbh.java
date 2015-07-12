@@ -1,4 +1,4 @@
-package org.simbiosis.bprs.ui.config.client.deposit;
+package org.simbiosis.bprs.ui.config.client.loanproduct;
 
 import org.simbiosis.bprs.ui.config.shared.ProductDv;
 
@@ -9,23 +9,24 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.NumberLabel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class DepProductViewer extends Composite implements Editor<ProductDv> {
+public class LoanProductViewerMbh extends Composite implements Editor<ProductDv> {
 
 	private static UserViewerUiBinder uiBinder = GWT
 			.create(UserViewerUiBinder.class);
 
-	interface UserViewerUiBinder extends UiBinder<Widget, DepProductViewer> {
+	interface UserViewerUiBinder extends UiBinder<Widget, LoanProductViewerMbh> {
 	}
 
 	interface Driver extends
-			SimpleBeanEditorDriver<ProductDv, DepProductViewer> {
+			SimpleBeanEditorDriver<ProductDv, LoanProductViewerMbh> {
 	}
 
 	private Driver driver = GWT.create(Driver.class);
 
+	@UiField
+	Label code;
 	@UiField
 	Label name;
 	@UiField
@@ -35,13 +36,17 @@ public class DepProductViewer extends Composite implements Editor<ProductDv> {
 	@UiField
 	Label strCoa3;
 	@UiField
-	NumberLabel<Double> sharing;
+	Label strCoa4;
 	@UiField
-	Label strTerm;
+	Label strCoa5;
 	@UiField
-	Label code;
+	Label strCoa6;
+	@UiField
+	Label strSchema;
+	@UiField
+	Label strHasShare;
 
-	public DepProductViewer() {
+	public LoanProductViewerMbh() {
 		initWidget(uiBinder.createAndBindUi(this));
 		//
 		driver.initialize(this);

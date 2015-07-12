@@ -1,10 +1,10 @@
-package org.simbiosis.bprs.ui.config.client.loan;
+package org.simbiosis.bprs.ui.config.client.loanproduct;
 
 import java.util.List;
 
 import org.kembang.module.client.mvp.FormActivityType;
 import org.simbiosis.bprs.ui.config.client.AppFactory;
-import org.simbiosis.bprs.ui.config.client.loan.ILoanProduct.Activity;
+import org.simbiosis.bprs.ui.config.client.loanproduct.ILoanProduct.Activity;
 import org.simbiosis.bprs.ui.config.client.rpc.AppService;
 import org.simbiosis.bprs.ui.config.client.rpc.AppServiceAsync;
 import org.simbiosis.bprs.ui.config.shared.CoaDv;

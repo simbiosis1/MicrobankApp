@@ -26,9 +26,9 @@
 				<td>
 					<g:Label ui:field="strHasShare" styleName="formTextlabel" />
 				</td>
-			</tr>			
+			</tr>
 			<tr>
-				<td class="formLabel" colspan="2">Akun</td>
+				<td class="formSubtitle" colspan="2">Akun</td>
 			</tr>
 			<tr>
 				<td class="formLabel">Produk</td>
@@ -37,33 +37,9 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="formLabel">Marjin ditangguhkan</td>
-				<td>
-					<g:Label ui:field="strCoa2" styleName="formTextlabel" />
-				</td>
-			</tr>
-			<tr>
 				<td class="formLabel">Pendapatan</td>
 				<td>
 					<g:Label ui:field="strCoa3" styleName="formTextlabel" />
-				</td>
-			</tr>
-			<tr>
-				<td class="formLabel">Diskon</td>
-				<td>
-					<g:Label ui:field="strCoa4" styleName="formTextlabel" />
-				</td>
-			</tr>
-			<tr>
-				<td class="formLabel">Titipan admin</td>
-				<td>
-					<g:Label ui:field="strCoa5" styleName="formTextlabel" />
-				</td>
-			</tr>
-			<tr>
-				<td class="formLabel">Admin</td>
-				<td>
-					<g:Label ui:field="strCoa6" styleName="formTextlabel" />
 				</td>
 			</tr>
 		</table>

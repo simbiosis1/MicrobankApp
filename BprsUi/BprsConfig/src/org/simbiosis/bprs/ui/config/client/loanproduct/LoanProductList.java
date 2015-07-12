@@ -1,4 +1,4 @@
-package org.simbiosis.bprs.ui.config.client.deposit;
+package org.simbiosis.bprs.ui.config.client.loanproduct;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,6 @@ import java.util.List;
 import org.kembang.grid.client.GridSelectionHandler;
 import org.kembang.module.client.mvp.AppStatus;
 import org.kembang.module.client.mvp.FormWidget;
-import org.kembang.module.shared.SimpleBranchDv;
 import org.simbiosis.bprs.ui.config.client.editor.ProductTable;
 import org.simbiosis.bprs.ui.config.shared.CoaDv;
 import org.simbiosis.bprs.ui.config.shared.ProductDv;
@@ -17,21 +16,18 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class DepProductList extends FormWidget implements IDepProduct {
+public class LoanProductList extends FormWidget implements ILoanProduct {
 
 	Activity activity;
 
 	private static MyUiBinder uiBinder = GWT.create(MyUiBinder.class);
 
-	interface MyUiBinder extends UiBinder<Widget, DepProductList> {
+	interface MyUiBinder extends UiBinder<Widget, LoanProductList> {
 	}
 
-	List<CoaDv> listCoa = new ArrayList<CoaDv>();
 	List<ProductDv> listProduct = new ArrayList<ProductDv>();
-	List<SimpleBranchDv> listTerm = new ArrayList<SimpleBranchDv>();
-
-	DepProductViewer userViewer = new DepProductViewer();
-	DepProductEditor userEditor = null;
+	LoanProductViewer userViewer = new LoanProductViewer();
+	LoanProductEditor userEditor = new LoanProductEditor();
 	Boolean isEditor = false;
 
 	@UiField
@@ -39,7 +35,7 @@ public class DepProductList extends FormWidget implements IDepProduct {
 	@UiField
 	HorizontalPanel userForm;
 
-	public DepProductList() {
+	public LoanProductList() {
 		initWidget(uiBinder.createAndBindUi(this));
 		//
 		setHasNew(true);
@@ -71,19 +67,11 @@ public class DepProductList extends FormWidget implements IDepProduct {
 
 	@Override
 	public void setCoa(List<CoaDv> coas) {
-		listCoa.clear();
-		listCoa.addAll(coas);
+		userEditor.setCoa(coas);
 	}
 
 	@Override
-	public void setTerm(List<SimpleBranchDv> terms) {
-		listTerm.clear();
-		listTerm.addAll(terms);
-		userEditor = new DepProductEditor(listCoa, listTerm);
-	}
-
-	@Override
-	public void setProduct(List<ProductDv> products) {
+	public void setProducts(List<ProductDv> products) {
 		listProduct.clear();
 		listProduct.addAll(products);
 		this.users.clear();
@@ -96,10 +84,10 @@ public class DepProductList extends FormWidget implements IDepProduct {
 		setViewerData(users.getSelectedData());
 	}
 
-	private void setViewerData(ProductDv user) {
+	private void setViewerData(ProductDv product) {
 		userForm.clear();
 		userForm.add(userViewer);
-		userViewer.setUser(user);
+		userViewer.setData(product);
 		showBack(false);
 		showSave(false);
 		isEditor = false;
@@ -137,7 +125,7 @@ public class DepProductList extends FormWidget implements IDepProduct {
 	@Override
 	public ProductDv getProduct() {
 		if (isEditor) {
-			return userEditor.getData();
+			return userEditor.getUser();
 		} else {
 			return users.getSelectedData();
 		}

@@ -1,4 +1,4 @@
-package org.simbiosis.bprs.ui.config.client.loan;
+package org.simbiosis.bprs.ui.config.client.loanproduct;
 
 import org.simbiosis.bprs.ui.config.shared.ProductDv;
 

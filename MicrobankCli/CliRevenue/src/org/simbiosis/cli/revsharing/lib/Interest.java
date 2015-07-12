@@ -18,7 +18,7 @@ public class Interest {
 	// sungai atang
 	// double minAverageValue = 2000000;
 	// karya indah
-	double minAverageValue = 100000;
+	//double minAverageValue = 100000;
 	// double admin = 2500;
 	double admin = 0;
 
@@ -38,7 +38,7 @@ public class Interest {
 
 	public void disburstRevenue() {
 		for (RevenueSharingDto revSharing : revSharingMap.values()) {
-			if (revSharing.getAverageValue() >= minAverageValue) {
+			if (revSharing.getAverageValue() >= revSharing.getMinSharable()) {
 				revSharing.setTotalSharing(0);
 				revSharing.setCustomerSharing(revSharing.getAverageValue()
 						* revSharing.getSharing() * days / 36500);

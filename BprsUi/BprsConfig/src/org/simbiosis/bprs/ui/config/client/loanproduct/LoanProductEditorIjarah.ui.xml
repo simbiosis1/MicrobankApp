@@ -19,7 +19,7 @@
 				<td class="formLabel" width="75px" colspan="2"><g:CheckBox ui:field="hasShare" styleName="formCheckbox">Dibagihasilkan</g:CheckBox></td>
 			</tr>
 			<tr>
-				<td class="formLabel" colspan="2">Akun</td>
+				<td class="formSubtitle" colspan="2">Akun</td>
 			</tr>
 			<tr>
 				<td class="formLabel" width="75px">Produk</td>

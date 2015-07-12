@@ -22,6 +22,7 @@ public class SavingInformationDto implements Serializable {
 	Date begin;
 	double sharing;
 	int hasShare;
+	double minSharable;
 	int onClose;
 	long coa1;
 	long coa2;
@@ -196,6 +197,14 @@ public class SavingInformationDto implements Serializable {
 
 	public void setBallance(double ballance) {
 		this.ballance = ballance;
+	}
+
+	public double getMinSharable() {
+		return minSharable;
+	}
+
+	public void setMinSharable(double minSharable) {
+		this.minSharable = minSharable;
 	}
 
 }

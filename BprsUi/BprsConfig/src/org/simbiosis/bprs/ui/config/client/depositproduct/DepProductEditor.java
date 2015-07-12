@@ -1,4 +1,4 @@
-package org.simbiosis.bprs.ui.config.client.deposit;
+package org.simbiosis.bprs.ui.config.client.depositproduct;
 
 import java.util.List;
 

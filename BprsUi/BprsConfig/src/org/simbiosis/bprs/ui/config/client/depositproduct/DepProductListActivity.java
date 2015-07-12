@@ -1,11 +1,11 @@
-package org.simbiosis.bprs.ui.config.client.deposit;
+package org.simbiosis.bprs.ui.config.client.depositproduct;
 
 import java.util.List;
 
 import org.kembang.module.client.mvp.FormActivityType;
 import org.kembang.module.shared.SimpleBranchDv;
 import org.simbiosis.bprs.ui.config.client.AppFactory;
-import org.simbiosis.bprs.ui.config.client.deposit.IDepProduct.Activity;
+import org.simbiosis.bprs.ui.config.client.depositproduct.IDepProduct.Activity;
 import org.simbiosis.bprs.ui.config.client.rpc.AppService;
 import org.simbiosis.bprs.ui.config.client.rpc.AppServiceAsync;
 import org.simbiosis.bprs.ui.config.shared.CoaDv;

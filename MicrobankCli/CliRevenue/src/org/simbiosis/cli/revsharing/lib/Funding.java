@@ -183,6 +183,7 @@ public class Funding {
 			item.setProduct(info.getProductName());
 			item.setSharing(info.getSharing());
 			item.setHasShare(info.getHasShare());
+			item.setMinSharable(info.getMinSharable());
 			item.setZakat(info.getZakat());
 			if (item.getAverageValue() > 0) {
 				if (cif.getTaxable() == 1) {

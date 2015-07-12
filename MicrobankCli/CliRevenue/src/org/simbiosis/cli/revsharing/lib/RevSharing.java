@@ -59,7 +59,10 @@ public class RevSharing {
 		double wadiahFactor = wadiahSharing
 				/ funding.getTotalWadiahAverageBallance();
 		for (RevenueSharingDto revSharing : revSharingMap.values()) {
-			if (revSharing.getAverageValue() > 0) {
+			// FIXME :
+			if (revSharing.getAverageValue() > 0
+					&& revSharing.getAverageValue() >= revSharing
+							.getMinSharable()) {
 				double totalSharing = revSharing.getAverageValue() * factor;
 				double customerSharing = 0;
 				if (revSharing.getSharing() > 0) {

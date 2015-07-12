@@ -24,8 +24,7 @@ public class SavProductListActivity extends Activity {
 	Place myPlace;
 	AppFactory appFactory;
 
-	public SavProductListActivity(Place myPlace,
-			AppFactory appFactory) {
+	public SavProductListActivity(Place myPlace, AppFactory appFactory) {
 		setMainFactory(appFactory);
 		this.myPlace = myPlace;
 		this.appFactory = appFactory;
@@ -35,9 +34,9 @@ public class SavProductListActivity extends Activity {
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 		ISavProduct myForm = appFactory.getSavProduct();
 		myForm.setActivity(this, appFactory.getAppStatus());
-		//if (appFactory.getAppStatus().isLogin()) {
-		//	loadCommonData();
-		//}
+		if (appFactory.getAppStatus().isLogin()) {
+			loadCommonData();
+		}
 		appFactory.showApplication(panel, myForm.getFormWidget());
 	}
 
@@ -76,26 +75,26 @@ public class SavProductListActivity extends Activity {
 	}
 
 	private void onSave() {
-	
+
 		ISavProduct myForm = appFactory.getSavProduct();
 		ProductDv dv = myForm.getProduct();
-	
-			showLoading();
-			wmsService.saveSavingProduct(getKey(), dv, new AsyncCallback<Void>() {
 
-				@Override
-				public void onSuccess(Void result) {
-					hideLoading();
-					Window.alert("Data sudah disimpan");
-					onReload();
-				}
+		showLoading();
+		wmsService.saveSavingProduct(getKey(), dv, new AsyncCallback<Void>() {
 
-				@Override
-				public void onFailure(Throwable caught) {
-					hideLoading();
-					Window.alert("Error : saveProduct");
-				}
-			});
+			@Override
+			public void onSuccess(Void result) {
+				hideLoading();
+				Window.alert("Data sudah disimpan");
+				onReload();
+			}
+
+			@Override
+			public void onFailure(Throwable caught) {
+				hideLoading();
+				Window.alert("Error : saveProduct");
+			}
+		});
 	}
 
 	private void onBack() {
@@ -110,38 +109,40 @@ public class SavProductListActivity extends Activity {
 
 	public void loadCommonData() {
 		showLoading();
-		wmsService.listCoaForTransaction(getKey(), new AsyncCallback<List<CoaDv>>() {
+		wmsService.listCoaForTransaction(getKey(),
+				new AsyncCallback<List<CoaDv>>() {
 
-			@Override
-			public void onSuccess(List<CoaDv> result) {
-				ISavProduct myForm = appFactory.getSavProduct();
-				myForm.setCoa(result);
-				loadProducts();
-			}
+					@Override
+					public void onSuccess(List<CoaDv> result) {
+						ISavProduct myForm = appFactory.getSavProduct();
+						myForm.setCoa(result);
+						loadProducts();
+					}
 
-			@Override
-			public void onFailure(Throwable caught) {
-				hideLoading();
-				Window.alert("Error : listCoa1");
-			}
-		});
+					@Override
+					public void onFailure(Throwable caught) {
+						hideLoading();
+						Window.alert("Error : listCoa1");
+					}
+				});
 	}
 
 	private void loadProducts() {
-		wmsService.listSavingProduct(getKey(), new AsyncCallback<List<ProductDv>>() {
+		wmsService.listSavingProduct(getKey(),
+				new AsyncCallback<List<ProductDv>>() {
 
-			@Override
-			public void onFailure(Throwable caught) {
-				hideLoading();
-				Window.alert("Error : listProduct");
-			}
+					@Override
+					public void onFailure(Throwable caught) {
+						hideLoading();
+						Window.alert("Error : listProduct");
+					}
 
-			@Override
-			public void onSuccess(List<ProductDv> result) {
-				ISavProduct myForm = appFactory.getSavProduct();
-				myForm.setProducts(result);
-				hideLoading();
-			}
-		});
+					@Override
+					public void onSuccess(List<ProductDv> result) {
+						ISavProduct myForm = appFactory.getSavProduct();
+						myForm.setProducts(result);
+						hideLoading();
+					}
+				});
 	}
 }

@@ -4,6 +4,7 @@ import org.kembang.module.client.mvp.KembangClientFactory;
 import org.simbiosis.ui.bprs.teller.client.cashtrans.ICashTrans;
 import org.simbiosis.ui.bprs.teller.client.htvault.IHtVault;
 import org.simbiosis.ui.bprs.teller.client.kolektif.IUploadCollective;
+import org.simbiosis.ui.bprs.teller.client.loanrep.ILoanRepayment;
 import org.simbiosis.ui.bprs.teller.client.savingdeposit.IDeposit;
 import org.simbiosis.ui.bprs.teller.client.savingprint.ISavingPrint;
 import org.simbiosis.ui.bprs.teller.client.savingtrans.ISavingTransList;
@@ -40,5 +41,9 @@ public interface AppFactory extends KembangClientFactory {
 	ISavingTransList getSavingTransList();
 
 	IUploadCollective getUploadCollective();
+
+	ILoanRepayment getLoanRepaymentEditor();
+
+	ILoanRepayment getLoanRepaymentViewer();
 
 }

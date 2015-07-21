@@ -1,0 +1,82 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:l="urn:import:org.simbiosis.ui.bprs.common.client.loanhelper"
+	xmlns:s="urn:import:org.simbiosis.ui.bprs.common.client.savinghelper">
+	<g:ScrollPanel>
+		<g:HTMLPanel>
+			<table class="formTableLayout" width="100%">
+				<tr>
+					<td class="formDescription">Transaksi pembiayaan</td>
+				</tr>
+				<tr>
+					<td class="formSubtitle">Info pembiayaan</td>
+				</tr>
+				<tr>
+					<td width="100%"><l:LoanInfo ui:field="loan" /></td>
+				</tr>
+				<tr>
+					<td class="formLabel">&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="formSubtitle">Info tabungan</td>
+				</tr>
+				<tr>
+					<td width="100%"><s:SavingInfo ui:field="saving" /></td>
+				</tr>
+				<tr>
+					<td class="formLabel">&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="formSubtitle">Info transaksi</td>
+				</tr>
+				<tr>
+					<td>
+					<table>
+						<tr>
+							<td class="formLabel">Jenis</td>
+							<td>&nbsp;</td>
+							<td><g:Label ui:field="strType" styleName="formTextlabel"/></td>
+						</tr>
+						<tr>
+							<td class="formLabel">Tanggal</td>
+							<td>&nbsp;</td>
+							<td><g:DateLabel ui:field="date" styleName="formTextlabel" customFormat="dd-MM-yyyy"/></td>
+						</tr>
+						<tr>
+							<td class="formLabel">Kode</td>
+							<td>&nbsp;</td>
+							<td><g:Label ui:field="code" styleName="formTextlabel"/></td>
+						</tr>
+						<tr>
+							<td class="formLabel">Referensi</td>
+							<td>&nbsp;</td>
+							<td><g:Label ui:field="refCode" styleName="formTextlabel"/></td>
+						</tr>
+						<tr>
+							<td class="formLabel">Jumlah</td>
+							<td>&nbsp;</td>
+							<td><g:NumberLabel ui:field="value" styleName="formTextlabel" customFormat="#,##0.00"/></td>
+						</tr>
+						<tr>
+							<td class="formLabel">Pokok</td>
+							<td>&nbsp;</td>
+							<td><g:NumberLabel ui:field="principal" styleName="formTextlabel" customFormat="#,##0.00"/></td>
+						</tr>
+						<tr>
+							<td class="formLabel">Marjin</td>
+							<td>&nbsp;</td>
+							<td><g:NumberLabel ui:field="margin" styleName="formTextlabel" customFormat="#,##0.00"/></td>
+						</tr>
+						<tr>
+							<td class="formLabel">Diskon</td>
+							<td>&nbsp;</td>
+							<td><g:NumberLabel ui:field="discount" styleName="formTextlabel" customFormat="#,##0.00"/></td>
+						</tr>
+					</table>
+					</td>
+				</tr>
+			</table>
+		</g:HTMLPanel>
+	</g:ScrollPanel>
+</ui:UiBinder> 

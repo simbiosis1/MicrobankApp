@@ -9,6 +9,9 @@ import org.simbiosis.ui.bprs.teller.client.htvault.HtVaultViewer;
 import org.simbiosis.ui.bprs.teller.client.htvault.IHtVault;
 import org.simbiosis.ui.bprs.teller.client.kolektif.IUploadCollective;
 import org.simbiosis.ui.bprs.teller.client.kolektif.UploadCollective;
+import org.simbiosis.ui.bprs.teller.client.loanrep.ILoanRepayment;
+import org.simbiosis.ui.bprs.teller.client.loanrep.LoanRepaymentFormEditor;
+import org.simbiosis.ui.bprs.teller.client.loanrep.LoanRepaymentFormViewer;
 import org.simbiosis.ui.bprs.teller.client.savingdeposit.DepositEditor;
 import org.simbiosis.ui.bprs.teller.client.savingdeposit.DepositViewer;
 import org.simbiosis.ui.bprs.teller.client.savingdeposit.IDeposit;
@@ -42,6 +45,8 @@ public class AppFactoryImpl extends KembangClientFactoryImpl implements
 	static final SavingPrint CETAK_TABUNGAN = new SavingPrint();
 	static final SavingTransList SAVING_TRANS_LIST = new SavingTransList();
 	static final UploadCollective UPLOAD_COLLECTIVE = new UploadCollective();
+	static final LoanRepaymentFormEditor LOAN_REPAYMENT_EDITOR = new LoanRepaymentFormEditor();
+	static final LoanRepaymentFormViewer LOAN_REPAYMENT_VIEWER = new LoanRepaymentFormViewer();
 
 	@Override
 	public IDeposit getSetorTunaiEditor() {
@@ -111,5 +116,15 @@ public class AppFactoryImpl extends KembangClientFactoryImpl implements
 	@Override
 	public IUploadCollective getUploadCollective() {
 		return UPLOAD_COLLECTIVE;
+	}
+
+	@Override
+	public ILoanRepayment getLoanRepaymentEditor() {
+		return LOAN_REPAYMENT_EDITOR;
+	}
+
+	@Override
+	public ILoanRepayment getLoanRepaymentViewer() {
+		return LOAN_REPAYMENT_VIEWER;
 	}
 }

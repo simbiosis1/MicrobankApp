@@ -6,6 +6,8 @@ import org.simbiosis.ui.bprs.teller.client.cashtrans.CashTransPlace;
 import org.simbiosis.ui.bprs.teller.client.htvault.HtVaultActivity;
 import org.simbiosis.ui.bprs.teller.client.htvault.HtVaultPlace;
 import org.simbiosis.ui.bprs.teller.client.kolektif.UploadCollectiveActivity;
+import org.simbiosis.ui.bprs.teller.client.loanrep.LoanRepaymentActivity;
+import org.simbiosis.ui.bprs.teller.client.places.LoanRepayment;
 import org.simbiosis.ui.bprs.teller.client.places.UploadCollective;
 import org.simbiosis.ui.bprs.teller.client.savingdeposit.DepositActivity;
 import org.simbiosis.ui.bprs.teller.client.savingdeposit.DepositPlace;
@@ -33,8 +35,7 @@ public class AppActivityMapper extends KembangActivityMapper {
 	public Activity createActivity(Place place) {
 		AppFactory clientFactory = (AppFactory) getClientFactory();
 		if (place instanceof DepositPlace) {
-			return new DepositActivity((DepositPlace) place,
-					clientFactory);
+			return new DepositActivity((DepositPlace) place, clientFactory);
 		} else if (place instanceof WithdrawalPlace) {
 			return new WithdrawalActivity((WithdrawalPlace) place,
 					clientFactory);
@@ -45,8 +46,8 @@ public class AppActivityMapper extends KembangActivityMapper {
 		} else if (place instanceof HtVaultPlace) {
 			return new HtVaultActivity((HtVaultPlace) place, clientFactory);
 		} else if (place instanceof TellerTransListPlace) {
-			return new TellerTransListActivity(
-					(TellerTransListPlace) place, clientFactory);
+			return new TellerTransListActivity((TellerTransListPlace) place,
+					clientFactory);
 		} else if (place instanceof SavingPrintPlace) {
 			return new SavingPrintActivity((SavingPrintPlace) place,
 					clientFactory);
@@ -55,6 +56,9 @@ public class AppActivityMapper extends KembangActivityMapper {
 					clientFactory);
 		} else if (place instanceof UploadCollective) {
 			return new UploadCollectiveActivity((UploadCollective) place,
+					clientFactory);
+		} else if (place instanceof LoanRepayment) {
+			return new LoanRepaymentActivity((LoanRepayment) place,
 					clientFactory);
 		}
 		return null;
